@@ -1,0 +1,63 @@
+generated: '2026-07-25'
+method: searched
+source: live HTTP probes of every apis.yml baseURL host, OpenAPI servers[] host and the docs/portal hosts
+summary: >-
+  Syniverse serves no /.well-known/ discovery surface. Every RFC 9116 security.txt,
+  OIDC discovery, RFC 8414 authorization-server metadata, RFC 9728 protected-resource
+  metadata, RFC 9727 api-catalog and ai-plugin.json probe missed on every host. Two
+  hosts answer 200 for all paths but are false positives: developer.syniverse.com is
+  an AngularJS single-page app with a catch-all route that returns the SPA HTML shell
+  for any path, so its 200s carry no document. The Messaging Trust host published in
+  the Messaging Trust OpenAPI definitions does not resolve in public DNS at all.
+hosts_probed:
+- host: https://api.syniverse.com
+  role: production API gateway (SCG, 10DLC, PNV, ESS, token management)
+  result: 404 on every probe
+- host: https://www.syniverse.com
+  role: corporate website
+  result: 404 on every probe
+- host: https://developer.syniverse.com
+  role: Syniverse Developer Community portal
+  result: 200 on every probe, but the body is the SPA HTML shell — no document served
+- host: https://sdcdocumentation.syniverse.com
+  role: documentation host (concrete5 + Redoc)
+  result: 404 on every probe
+- host: https://api.mt1.messaging-trust.syniverse.com
+  role: Messaging Trust API host from the published OpenAPI servers[]
+  result: DNS does not resolve (curl exit, no HTTP status)
+- host: https://mobileidsandbox.syniverse.com
+  role: sandbox host from the RPV/ATO OpenAPI servers[]
+  result: DNS resolves to api-sbox.dnlsrv.com but no HTTP response to probes
+documents:
+- path: /.well-known/security.txt
+  status: 404
+  hosts: [api.syniverse.com, www.syniverse.com, sdcdocumentation.syniverse.com]
+  file: null
+- path: /security.txt
+  status: 404
+  hosts: [api.syniverse.com, www.syniverse.com, sdcdocumentation.syniverse.com]
+  file: null
+- path: /.well-known/openid-configuration
+  status: 404
+  hosts: [api.syniverse.com, www.syniverse.com, sdcdocumentation.syniverse.com]
+  file: null
+- path: /.well-known/oauth-authorization-server
+  status: 404
+  hosts: [api.syniverse.com, www.syniverse.com, sdcdocumentation.syniverse.com]
+  file: null
+- path: /.well-known/oauth-protected-resource
+  status: 404
+  hosts: [api.syniverse.com, www.syniverse.com, sdcdocumentation.syniverse.com]
+  file: null
+- path: /.well-known/api-catalog
+  status: 404
+  hosts: [api.syniverse.com, www.syniverse.com, sdcdocumentation.syniverse.com]
+  file: null
+- path: /.well-known/ai-plugin.json
+  status: 404
+  hosts: [api.syniverse.com, www.syniverse.com, sdcdocumentation.syniverse.com]
+  file: null
+found: 0
+note: >-
+  Recorded as a negative result, not an omission. No WellKnown, APICatalog or
+  SecurityTxt pointer is wired in apis.yml because no such document exists.

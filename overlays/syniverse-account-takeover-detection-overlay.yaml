@@ -1,0 +1,24 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Syniverse Account Takeover Detection API
+  version: 1.0.0
+extends: openapi/syniverse-account-takeover-detection-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: syniverse
+    x-apievangelist-source: openapi/syniverse-account-takeover-detection-openapi.yml
+    x-apievangelist-artifacts:
+      authentication: authentication/syniverse-authentication.yml
+      conventions: conventions/syniverse-conventions.yml
+      errors: errors/syniverse-error-codes.yml
+      lifecycle: lifecycle/syniverse-lifecycle.yml
+      rate_limits: rate-limits/syniverse-rate-limits.yml
+      sandbox: sandbox/syniverse-sandbox.yml
+      events: asyncapi/syniverse-event-manager-webhooks.yml
+      data_model: data-model/syniverse-data-model.yml
+      agentic_access: agentic-access/syniverse-agentic-access.yml
+    x-apievangelist-idempotency: false
+    x-apievangelist-error-format: proprietary (error_code / error_description) — not RFC 9457
+    x-apievangelist-notes: SIM-swap adjacent but NOT the CAMARA SIM Swap specification — a Syniverse-proprietary
+      contract. The published servers[] host is a sandbox host.

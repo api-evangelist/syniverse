@@ -1,0 +1,113 @@
+generated: '2026-07-25'
+method: derived
+source: >-
+  Derived from the eleven OpenAPI/Swagger definitions in openapi/ and the published
+  API Standards, security and Event Manager documentation on
+  https://sdcdocumentation.syniverse.com/; CAMARA/Open Gateway posture from review.yml.
+summary: >-
+  Syniverse conforms to the telecom messaging standards stack it actually operates in
+  — SMPP delivery statuses, 3GPP MM4/MMS headers, US 10DLC campaign registration — and
+  to OAuth 2.0 bearer authentication. It does not conform to the modern API-governance
+  standards layer: no RFC 9457 problem details, no RFC 9116 security.txt, no OIDC
+  discovery, no RFC 8414 authorization-server metadata, no RFC 8594 sunset headers, no
+  RFC 9727 api-catalog. And despite being a GSMA Open Gateway channel partner, nothing
+  CAMARA-shaped is documented or callable: its SIM-swap-adjacent and number-verification
+  products are Syniverse-proprietary contracts published years before CAMARA.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    OAuth 2.0 (RFC 6749) named as the application-validation framework in the published
+    security documentation; oauth2 securitySchemes declared in the Messaging Trust
+    definitions (clientCredentials) and the Whitelisting Service definition (implicit).
+- id: rfc6750-bearer-token
+  conforms: true
+  evidence: 'Authorization: Bearer {access token} across SCG, 10DLC and PNV; RFC 6750 cited in the security docs.'
+- id: openid-connect
+  conforms: false
+  evidence: No openIdConnect scheme in any definition; /.well-known/openid-configuration returns 404.
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: false
+  evidence: /.well-known/oauth-authorization-server returns 404 on every host.
+- id: rfc9728-oauth-protected-resource
+  conforms: false
+  evidence: /.well-known/oauth-protected-resource returns 404 on every host.
+- id: ciba
+  conforms: false
+  evidence: >-
+    No CIBA / backchannel authentication anywhere in the definitions or documentation —
+    the authorization pattern CAMARA network APIs rely on is absent.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    No application/problem+json media type in any definition. Errors use service-specific
+    shapes; the SCG family uses error_code / error_description.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on every host.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation header is declared or documented; deprecated versions are handled editorially.
+- id: rfc9727-api-catalog
+  conforms: false
+  evidence: /.well-known/api-catalog returns 404 on every host.
+- id: openapi-3
+  conforms: true
+  evidence: >-
+    Six of the eleven published definitions are OpenAPI 3.0.x (10DLC v2.3, PNV, RPV, ATO,
+    Messaging Trust Resolve, Messaging Trust Datafeed, Token Management); the remaining
+    five are Swagger 2.0.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    A real event surface exists (Event Manager / ESS) but is documented as a rendered RAML
+    console with no AsyncAPI or downloadable definition.
+- id: json-api
+  conforms: false
+  evidence: Plain JSON resource representations; no JSON:API media type or envelope.
+- id: smpp
+  conforms: true
+  evidence: >-
+    SMPP delivery status codes (DELIVRD, ACCEPTED, DELETED, UNDELIV, REJECTD, UNKNOWN) are
+    published and mapped into SCG message states.
+- id: 3gpp-mm4-mms
+  conforms: true
+  evidence: >-
+    MM4 MMS ingestion is a declared request media type (message/rfc822) on the Messaging
+    Trust MMS resolver, with X-Mms-Message-ID, X-Mms-Transaction-ID, X-Mms-Message-Type,
+    X-Mms-MMS-Version, X-Mms-3GPP-MMS-Version, X-Mms-Delivery-Report,
+    X-Mms-Ack-Request and X-Mms-Originator-System headers.
+- id: us-10dlc-campaign-registration
+  conforms: true
+  evidence: >-
+    A full 10DLC campaign provisioning API (create/retrieve/suspend/resume campaigns,
+    attach/detach longcodes and number pools) plus AT&T DCA campaign and application-address
+    operations — openapi/syniverse-10dlc-openapi.yml.
+- id: rcs-business-messaging
+  conforms: true
+  evidence: RCS is a documented and sold channel on the SCG omni-channel messaging surface.
+- id: camara
+  conforms: false
+  evidence: >-
+    Zero matches for camara, CIBA, backchannel, open gateway, sim swap, number verification,
+    device location or quality on demand across all eleven definitions. Syniverse joined GSMA
+    Open Gateway (2025-04-29) as a channel partner and announced an Aduna integration
+    (2025-06-18), but no CAMARA-defined API is documented or callable on the developer portal.
+- id: tmforum-open-api
+  conforms: false
+  evidence: No TMF-numbered API and no TM Forum conformance certification found.
+- id: 3gpp-nef-scef
+  conforms: false
+  evidence: >-
+    Syniverse operates IPX, signaling and 5G SEPP as carrier infrastructure but exposes no
+    public NEF/SCEF network-exposure endpoint.
+compliance_program:
+  published_certifications: []
+  trust_center: null
+  note: >-
+    No SOC 2, ISO 27001, PCI DSS, HIPAA or FedRAMP claim is published on syniverse.com.
+    /compliance redirects to the Legal page, which carries the Master Services Agreement,
+    website terms of use, Code of Business Conduct, ethics hotline, Modern Slavery Act
+    statement and Supplier Code of Conduct — corporate governance documents, not a security
+    compliance posture. No Compliance or TrustCenter pointer is wired, because there is
+    nothing to point at.

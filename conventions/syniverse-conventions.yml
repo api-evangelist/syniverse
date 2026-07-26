@@ -1,0 +1,155 @@
+generated: '2026-07-25'
+method: searched
+source: >-
+  https://sdcdocumentation.syniverse.com/index.php/reporting/api-standards,
+  https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/user-guides/developer-community-gateway-services-api-standards,
+  https://sdcdocumentation.syniverse.com/index.php/reporting/security,
+  https://sdcdocumentation.syniverse.com/index.php/omni-channel/getting-started/sms-mms-quickstart,
+  plus the eleven OpenAPI/Swagger definitions in openapi/
+docs:
+- https://sdcdocumentation.syniverse.com/index.php/reporting/api-standards
+- https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/user-guides/developer-community-gateway-services-api-standards
+summary: >-
+  Syniverse publishes an explicit "API Standards" page for the Developer Community,
+  which is unusual for a wholesale carrier and is the strongest cross-cutting
+  contract it ships. It pins the HTTP method semantics (notably: POST performs
+  partial update, PUT requires the complete entity, PATCH is not supported) and a
+  fixed HTTP status-code vocabulary. What it does not define — and what the
+  definitions confirm is absent — is idempotency, a uniform pagination contract,
+  a request-id header on most surfaces, or a single error envelope shared across
+  product families. Each product family carries its own error shape.
+authentication:
+  style: bearer token per registered SDC application
+  header: 'Authorization: Bearer {access token}'
+  framework: OAuth 2.0 (RFC 6749) with bearer tokens (RFC 6750)
+  credentials: [consumer key, consumer secret, access token]
+  initial_token_ttl: 1 hour
+  post_refresh_ttl: no expiry once regenerated
+  refresh_operation: GET /saop-rest-data/v1/apptoken-refresh
+  variants:
+  - family: Messaging Trust
+    scheme: OAuth 2.0 client_credentials
+    token_url: https://api.mt1.messaging-trust.syniverse.com/oauth2/token
+    scopes: none declared
+  - family: Whitelisting Service (Developer Community Gateway)
+    scheme: legacy OAuth 2.0 implicit
+    authorization_url: https://beta.api.syniverse.com/token
+  see_also: authentication/syniverse-authentication.yml
+transport:
+  tls_required: true
+  tls_version: TLS 1.2 (stated as the currently supported standard)
+  scheme: https only
+http_methods:
+  POST: create or update an entity; partial update allowed, unspecified attributes are unchanged
+  PUT: update an entity; the complete entity must be supplied, partial update not permitted
+  GET: retrieve an entity
+  DELETE: remove an entity; results may be retained for tracking but the entity becomes inaccessible
+  HEAD: same as GET but only headers are returned
+  PATCH: not supported — use POST
+  note: >-
+    The POST-as-partial-update / PUT-as-full-replace inversion is the single most
+    important convention to get right on this API. It is the opposite of the
+    PATCH/PUT convention most REST APIs use.
+idempotency:
+  supported: false
+  header: null
+  evidence: >-
+    No Idempotency-Key or equivalent header, parameter or extension appears in any
+    of the eleven published definitions, and neither API Standards page mentions
+    idempotency, retry safety or replay protection. Retries of POST /messaging/message_requests
+    are not deduplicated by the contract.
+pagination:
+  uniform: false
+  by_family:
+  - family: 10DLC v2
+    style: page-number
+    params: [page, size]
+    defaults: {page: '0', size: '10'}
+    response_envelope: PageCampaignResponse (pageable + sort objects)
+    source: openapi/syniverse-10dlc-openapi.yml
+  - family: SCG omni-channel messaging
+    style: filter-only
+    params: []
+    note: >-
+      List operations (GET /messaging/messages, /messaging/message_requests/,
+      /contacts, /contact_groups, /messaging/channels, ...) expose per-field query
+      filters (id, state, created_date, last_updated_date, application_id,
+      from_address, to_address, direction, ...) but the published Swagger declares
+      no limit/offset/cursor parameter and no paging envelope.
+    source: openapi/syniverse-omni-channel-messaging-openapi.yml
+filtering:
+  style: query parameters named for the resource field
+  common_filters: [id, application_id, created_date, last_updated_date, state, external_id, name, type]
+  date_format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ (example: 2023-05-24T23:24:37.464Z)"
+versioning:
+  scheme: uri-path
+  examples:
+  - /scg-external-api/api/v1
+  - /numberidentity/v3
+  - /engage/tendlc-services/v2
+  - /ess/v1
+  - /saop-rest-data/v1
+  note: >-
+    Major version lives in the path and old majors are retired by publishing them
+    under an explicitly deprecated documentation section (10DLC v1). There is no
+    header-based or date-based version negotiation.
+  see_also: lifecycle/syniverse-lifecycle.yml
+request_tracing:
+  header: x-request-id
+  scope: Messaging Trust family only (Resolve and Spam Datafeed responses)
+  example: 94bf014e-580b-49ba-b86e-c2fc0920204d
+  note: >-
+    Declared as a response header in the Messaging Trust definitions. No correlation
+    or trace header is declared on the SCG, 10DLC, PNV, RPV or ATO surfaces.
+error_envelope:
+  uniform: false
+  standard: >-
+    Two-tiered — the HTTP status code, plus a service-specific error object in the body.
+    Not RFC 9457 problem+json; no application/problem+json media type appears anywhere.
+  shapes:
+  - family: SCG omni-channel messaging and voice
+    fields: [error_code, error_description]
+    code_format: SCG_ERROR_nnnn
+  - family: Messaging Trust
+    schema: endpoint.FilterResponseError / endpoint.SpamReportError
+  - family: Right Party Verification / Account Takeover Detection
+    schema: errorResponse1 / errorResponse2 / errorResponse3
+  - family: 10DLC v2
+    schema: ApiBadRequestResponse / ApiUnauthorizedResponse / ApiNotFoundResponse / ApiInternalErrorResponse
+  - family: SDC gateway (token management)
+    fields: [errorCode, moreInfo, userMsg]
+    observed: '{"errorCode":1,"moreInfo":"consumerkey parameter required","userMsg":"consumerkey"}'
+    note: >-
+      Observed live on 2026-07-25 from GET https://api.syniverse.com/saop-rest-data/v1/apptoken-refresh
+      with no parameters. A fourth distinct error envelope — the gateway layer does not
+      share a shape with any of the product families.
+  see_also: errors/syniverse-error-codes.yml
+status_codes:
+  success:
+    '200': General purpose successful API call
+    '201': Entity created by POST or PUT
+    '202': Action request accepted but not yet completed
+  failure:
+    '304': Not Modified — update failed
+    '400': Bad Request — something went wrong with the request / missing parameters
+    '401': Unauthorized — missing credentials
+    '403': Forbidden — credentials do not carry the entitlements
+    '404': Not Found
+    '405': Method Not Allowed
+    '409': Conflict — update could not be completed, including optimistic-locking failure
+    '412': Precondition Failed — a header condition evaluated false
+    '500': Internal Error
+    '501': Not Implemented
+    '503': Service Unavailable — overloaded or under maintenance
+rate_limit_signaling:
+  headers_published: false
+  note: >-
+    No RateLimit-* or Retry-After header is declared in any definition. Throttling
+    surfaces as HTTP 429 responses (declared throughout the Multi-Factor
+    Authentication definition) and as asynchronous failure code 1039 delivered
+    through Event Manager. Delivery throughput ceilings are documented in the
+    knowledge base rather than in the contract.
+  see_also: rate-limits/syniverse-rate-limits.yml
+events:
+  model: subscribe-then-deliver (Event Manager / Event Subscription Service)
+  see_also: asyncapi/syniverse-event-manager-webhooks.yml

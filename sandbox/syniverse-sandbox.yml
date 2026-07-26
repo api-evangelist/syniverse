@@ -1,0 +1,73 @@
+generated: '2026-07-25'
+method: searched
+source: >-
+  https://sdcdocumentation.syniverse.com/index.php/omni-channel/getting-started/sms-mms-quickstart,
+  https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference,
+  and the servers[] hosts published in the Right Party Verification and Account
+  Takeover Detection definitions
+docs: https://sdcdocumentation.syniverse.com/index.php/omni-channel/getting-started/sms-mms-quickstart
+summary: >-
+  Syniverse has no separate test-mode key prefix and no simulated network. What it
+  ships instead is a trial account model on the live gateway: sign up on the
+  Developer Community, get a free API key, and send against production using a
+  published shared US test channel. Trial accounts are constrained by a destination
+  whitelist — every US mobile number you want to text must be whitelisted first,
+  which is itself exposed as an API (the Whitelisting Service). The mobile-identity
+  family is different again: Right Party Verification and Account Takeover Detection
+  publish their definitions against a dedicated sandbox host rather than a
+  production host.
+mode_separation:
+  test_key_prefix: null
+  live_key_prefix: null
+  model: trial account on the production gateway, constrained by a destination whitelist
+  note: >-
+    The same https://api.syniverse.com base URL serves trial and paid traffic. There
+    is no sk_test/sk_live style separation; the account tier, not the credential
+    shape, determines what a call is allowed to do.
+test_values:
+- name: Public US test channel
+  value: 1KJPMkuHQkair_o15etpmg
+  usage: 'from: "channel: 1KJPMkuHQkair_o15etpmg"'
+  scope: SCG omni-channel messaging (POST /messaging/message_requests)
+  published_at: https://sdcdocumentation.syniverse.com/index.php/omni-channel/getting-started/sms-mms-quickstart
+  note: >-
+    Published verbatim in the quickstart as a shared US test channel so a new
+    developer can send their first message without purchasing a sender address.
+example_request:
+  operation: POST /scg-external-api/api/v1/messaging/message_requests
+  curl: |
+    curl -X POST \
+      -H "Authorization: Bearer [Access Token]" \
+      -H "Content-Type: application/json" \
+      -d '{"from":"channel: 1KJPMkuHQkair_o15etpmg","to":["[recipient]"],"body":"Hello from SCG message"}' \
+      https://api.syniverse.com/scg-external-api/api/v1/messaging/message_requests
+  success_response: '{"id": "[message_id]"}'
+trial_account_limits:
+- Destination US mobile numbers must be whitelisted before a trial account can message them.
+- Trial accounts cannot purchase dedicated sender addresses.
+- Postpaid accounts require engagement with a Syniverse representative.
+whitelisting:
+  api: openapi/syniverse-whitelisting-service-openapi.json
+  docs: https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  operations:
+  - post_whitelist/{WHITELIST_ID}
+  - get_whitelist/{WHITELIST_ID}
+  - get_whitelist/{WHITELIST_ID}/{ENTITY_ID}
+  - delete_whitelist/{WHITELIST_ID}/{ENTITY_ID}
+  - post_whitelist/{WHITELIST_ID}/{ENTITY_ID}/{TRANSACTION_ID}
+  - get_whitelist/{WHITELIST_ID}/{ENTITY_ID}/{TRANSACTION_ID}
+  note: The trial-account destination allow list is managed programmatically, not only in the console.
+sandbox_hosts:
+- host: https://mobileidsandbox.syniverse.com/cigateway/id
+  services: [Right Party Verification, Account Takeover Detection]
+  note: >-
+    The published RPV and ATO definitions declare this sandbox host in servers[];
+    no production host is published for either service. DNS resolves to
+    api-sbox.dnlsrv.com.
+message_state_simulation:
+  supported: false
+  note: >-
+    No test clock, no forced-failure trigger values and no simulated decline/failure
+    identifiers are published. Failure behaviour is observed through real delivery
+    receipts and the asynchronous failure codes in errors/syniverse-error-codes.yml.
+signup: https://developer.syniverse.com/

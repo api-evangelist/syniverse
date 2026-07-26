@@ -59,6 +59,8 @@ apis:
     url: https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
   - type: OpenAPI
     url: openapi/syniverse-omni-channel-messaging-openapi.yml
+  - type: Overlay
+    url: overlays/syniverse-omni-channel-messaging-overlay.yaml
 - aid: syniverse:syniverse-multi-factor-authentication-api
   name: Syniverse Multi-Factor Authentication API
   description: >-
@@ -78,6 +80,8 @@ apis:
     url: https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
   - type: OpenAPI
     url: openapi/syniverse-multi-factor-authentication-openapi.yml
+  - type: Overlay
+    url: overlays/syniverse-multi-factor-authentication-overlay.yaml
 - aid: syniverse:syniverse-phone-number-verification-api
   name: Syniverse Phone Number Verification API
   description: >-
@@ -98,6 +102,8 @@ apis:
     url: https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
   - type: OpenAPI
     url: openapi/syniverse-phone-number-verification-openapi.yml
+  - type: Overlay
+    url: overlays/syniverse-phone-number-verification-overlay.yaml
 - aid: syniverse:syniverse-right-party-verification-api
   name: Syniverse Right Party Verification API
   description: >-
@@ -117,6 +123,8 @@ apis:
     url: https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
   - type: OpenAPI
     url: openapi/syniverse-right-party-verification-openapi.yml
+  - type: Overlay
+    url: overlays/syniverse-right-party-verification-overlay.yaml
 - aid: syniverse:syniverse-account-takeover-detection-api
   name: Syniverse Account Takeover Detection API
   description: >-
@@ -137,6 +145,8 @@ apis:
     url: https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
   - type: OpenAPI
     url: openapi/syniverse-account-takeover-detection-openapi.yml
+  - type: Overlay
+    url: overlays/syniverse-account-takeover-detection-overlay.yaml
 - aid: syniverse:syniverse-messaging-trust-resolve-api
   name: Syniverse Messaging Trust Resolve API
   description: >-
@@ -156,6 +166,8 @@ apis:
     url: https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
   - type: OpenAPI
     url: openapi/syniverse-messaging-trust-resolve-openapi.yml
+  - type: Overlay
+    url: overlays/syniverse-messaging-trust-resolve-overlay.yaml
 - aid: syniverse:syniverse-messaging-trust-spam-datafeed-api
   name: Syniverse Messaging Trust Spam Datafeed API
   description: >-
@@ -174,6 +186,8 @@ apis:
     url: https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
   - type: OpenAPI
     url: openapi/syniverse-messaging-trust-datafeed-openapi.yml
+  - type: Overlay
+    url: overlays/syniverse-messaging-trust-datafeed-overlay.yaml
 - aid: syniverse:syniverse-10dlc-api
   name: Syniverse 10DLC API
   description: >-
@@ -194,6 +208,8 @@ apis:
     url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
   - type: OpenAPI
     url: openapi/syniverse-10dlc-openapi.yml
+  - type: Overlay
+    url: overlays/syniverse-10dlc-overlay.yaml
 - aid: syniverse:syniverse-10dlc-number-pool-api
   name: Syniverse 10DLC Number Pool API (v1, deprecated)
   description: >-
@@ -213,6 +229,8 @@ apis:
     url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
   - type: OpenAPI
     url: openapi/syniverse-10dlc-number-pool-openapi.yml
+  - type: Overlay
+    url: overlays/syniverse-10dlc-number-pool-overlay.yaml
 - aid: syniverse:syniverse-whitelisting-service-api
   name: Syniverse Whitelisting Service API
   description: >-
@@ -220,6 +238,7 @@ apis:
     used to allow trial-account destination numbers and similar platform-level allow lists. Six
     operations across whitelist, entity and transaction resources.
   humanURL: https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  baseURL: https://api.syniverse.com
   tags:
   - Platform
   - Whitelisting
@@ -229,13 +248,19 @@ apis:
     url: https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
   - type: OpenAPI
     url: openapi/syniverse-whitelisting-service-openapi.json
+  - type: Overlay
+    url: overlays/syniverse-whitelisting-service-overlay.yaml
 - aid: syniverse:syniverse-access-token-management-api
   name: Syniverse SDC Application Access Token Management API
   description: >-
     Regenerates the access token associated with an SDC application via
     GET /saop-rest-data/v1/apptoken-refresh. This is the token-lifecycle piece of the Syniverse
-    Developer Community bearer-token auth model.
+    Developer Community bearer-token auth model. Confirmed live on 2026-07-25: both
+    /saop-rest-data/v1/apptoken-refresh and the shorter /apptoken-refresh used by Syniverse's own
+    example code answer on https://api.syniverse.com with
+    {"errorCode":1,"moreInfo":"consumerkey parameter required","userMsg":"consumerkey"}.
   humanURL: https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+  baseURL: https://api.syniverse.com
   tags:
   - Authentication
   - Token Management
@@ -245,6 +270,8 @@ apis:
     url: https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
   - type: OpenAPI
     url: openapi/syniverse-token-management-openapi.yml
+  - type: Overlay
+    url: overlays/syniverse-token-management-overlay.yaml
 - aid: syniverse:syniverse-event-subscription-service-api
   name: Syniverse Event Subscription Service API (Event Manager)
   description: >-
@@ -269,6 +296,54 @@ apis:
   - type: Documentation
     url: https://sdcdocumentation.syniverse.com/index.php/reporting/event-manager/user-guide
 common:
+- type: AgenticAccess
+  url: agentic-access/syniverse-agentic-access.yml
+- type: DomainSecurity
+  url: security/syniverse-domain-security.yml
+- type: OAuthScopes
+  url: scopes/syniverse-scopes.yml
+- type: Authentication
+  url: authentication/syniverse-authentication.yml
+- type: Packages
+  name: Syniverse client libraries and quickstarts
+  url: packages/syniverse-packages.yml
+- type: SDKs
+  name: Syniverse SDKs (Maven Central, npm, GitHub source)
+  url: packages/syniverse-packages.yml
+- type: Conventions
+  name: Syniverse API conventions
+  url: conventions/syniverse-conventions.yml
+- type: ErrorCatalog
+  name: SCG error code registry
+  url: errors/syniverse-error-codes.yml
+- type: ErrorCatalog
+  name: Derived error responses from the published definitions
+  url: errors/syniverse-problem-types.yml
+- type: RateLimits
+  name: Syniverse throughput and throttling
+  url: rate-limits/syniverse-rate-limits.yml
+- type: Lifecycle
+  name: Syniverse versioning and deprecation posture
+  url: lifecycle/syniverse-lifecycle.yml
+- type: Sandbox
+  name: Trial account, public test channel and sandbox hosts
+  url: sandbox/syniverse-sandbox.yml
+- type: Webhooks
+  name: Event Manager (Event Subscription Service) event catalog
+  url: asyncapi/syniverse-event-manager-webhooks.yml
+- type: Conformance
+  name: Standards conformance assessment
+  url: conformance/syniverse-conformance.yml
+- type: DataModel
+  name: Syniverse Communication Gateway entity model
+  url: data-model/syniverse-data-model.yml
+- type: AgentSkill
+  name: Syniverse agent skills
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/syniverse-llms.txt
+- type: GettingStarted
+  url: https://sdcdocumentation.syniverse.com/index.php/omni-channel/getting-started/sms-mms-quickstart
 - type: Website
   url: https://www.syniverse.com/
 - type: DeveloperPortal
@@ -291,7 +366,11 @@ common:
   url: https://www.syniverse.com/contact/general-inquiries
 - type: Legal
   url: https://www.syniverse.com/legal/
+- type: TermsOfService
+  url: https://www.syniverse.com/legal/terms-of-use/
 - type: Privacy
+  url: https://www.syniverse.com/privacy/
+- type: PrivacyPolicy
   url: https://www.syniverse.com/privacy/
 maintainers:
 - FN: Kin Lane

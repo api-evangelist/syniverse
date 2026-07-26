@@ -1,0 +1,175 @@
+generated: '2026-07-25'
+method: derived
+source: >-
+  openapi/syniverse-omni-channel-messaging-openapi.yml, openapi/syniverse-10dlc-openapi.yml,
+  openapi/syniverse-phone-number-verification-openapi.yml,
+  openapi/syniverse-account-takeover-detection-openapi.yml,
+  openapi/syniverse-right-party-verification-openapi.yml,
+  openapi/syniverse-messaging-trust-resolve-openapi.yml,
+  openapi/syniverse-multi-factor-authentication-openapi.yml
+status: candidate
+summary: >-
+  No official hosted, remote or local Model Context Protocol server was found for
+  Syniverse — nothing on developer.syniverse.com, nothing in the SDC documentation,
+  nothing in the Syniverse GitHub organization, nothing in the npm/MCP registries.
+  The tool set below is DERIVED from the published Syniverse OpenAPI/Swagger
+  operations as a proposal for an agent-facing surface. It is not published by
+  Syniverse. Each tool names the exact method + path it would bind to; the SCG
+  definition declares no operationIds, so the method+path pair is the only stable
+  identifier the contract offers.
+server: null
+transport: null
+auth:
+  type: http
+  scheme: bearer
+  header: 'Authorization: Bearer {SDC application access token}'
+  note: >-
+    Messaging Trust tools would instead need an OAuth 2.0 client-credentials token from
+    https://api.mt1.messaging-trust.syniverse.com/oauth2/token.
+candidate_tools:
+- name: send_message
+  maps_to: POST /scg-external-api/api/v1/messaging/message_requests
+  spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  description: Send an SMS, MMS, RCS, WhatsApp, social or push message to one or more recipients.
+  consequence: write
+- name: get_message_request
+  maps_to: GET /scg-external-api/api/v1/messaging/message_requests/{MessageRequest_ID}
+  spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  description: Retrieve a single message request and its status.
+- name: list_message_request_messages
+  maps_to: GET /scg-external-api/api/v1/messaging/message_requests/{MessageRequest_ID}/messages
+  spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  description: List the per-recipient messages produced by a message request.
+- name: list_messages
+  maps_to: GET /scg-external-api/api/v1/messaging/messages
+  spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  description: Search messages by direction, state, from/to address, sent date and other filters.
+- name: get_message
+  maps_to: GET /scg-external-api/api/v1/messaging/messages/{Message_ID}
+  spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  description: Retrieve one message and its delivery state.
+- name: cancel_scheduled_message
+  maps_to: DELETE /scg-external-api/api/v1/messaging/messages/scheduled/{Message_Scheduled_ID}
+  spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  description: Cancel a message that is scheduled but not yet sent.
+  consequence: write
+- name: list_channels
+  maps_to: GET /scg-external-api/api/v1/messaging/channels
+  spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  description: List messaging channels available to the application.
+- name: list_sender_ids
+  maps_to: GET /scg-external-api/api/v1/messaging/sender_ids
+  spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  description: List provisioned sender addresses.
+- name: create_message_template
+  maps_to: POST /scg-external-api/api/v1/messaging/message_templates
+  spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  description: Create a reusable message template.
+  consequence: write
+- name: upload_attachment
+  maps_to: POST /scg-external-api/api/v1/messaging/attachments
+  spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  description: Create an attachment record for MMS/RCS media.
+  consequence: write
+- name: list_contacts
+  maps_to: GET /scg-external-api/api/v1/contacts
+  spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  description: Search contacts.
+- name: create_contact
+  maps_to: POST /scg-external-api/api/v1/contacts
+  spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  description: Create a contact.
+  consequence: write
+- name: list_contact_groups
+  maps_to: GET /scg-external-api/api/v1/contact_groups
+  spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  description: List contact groups usable as send targets.
+- name: opt_out_contact_address
+  maps_to: POST /scg-external-api/api/v1/consent/contact_address_statuses/optout
+  spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  description: Record an opt-out for a contact address against a sender.
+  consequence: write
+- name: get_contact_address_history
+  maps_to: GET /scg-external-api/api/v1/consent/contact_address_history
+  spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  description: Retrieve consent/address status history for a contact address.
+- name: place_call
+  maps_to: POST /scg-external-api/api/v1/calling/calls
+  spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  description: Place an outbound voice call.
+  consequence: physical
+- name: play_tts_on_call
+  maps_to: POST /scg-external-api/api/v1/calling/calls/{call_id}/play_tts
+  spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  description: Play text-to-speech into an active call.
+  consequence: write
+- name: verify_phone_number
+  maps_to: POST /numberidentity/v3/lookup
+  spec: openapi/syniverse-phone-number-verification-openapi.yml
+  operation_id: POST_lookup
+  description: Look up a phone number's current carrier, line type and status (ported, deactivated, disconnected).
+- name: check_sim_swap
+  maps_to: POST /cigateway/id/v1/simCheck
+  spec: openapi/syniverse-account-takeover-detection-openapi.yml
+  description: Report recent SIM change or call-forwarding activity on a mobile number as an account-takeover risk signal.
+- name: match_identity
+  maps_to: POST /cigateway/id/v2/match
+  spec: openapi/syniverse-right-party-verification-openapi.yml
+  description: Score an asserted identity against Syniverse-sourced mobile data.
+- name: resolve_text_message
+  maps_to: POST /api/v1/txt/resolve
+  spec: openapi/syniverse-messaging-trust-resolve-openapi.yml
+  description: Classify an inbound text message for spam/abuse disposition.
+- name: resolve_mms_message
+  maps_to: POST /api/v1/mms/resolve
+  spec: openapi/syniverse-messaging-trust-resolve-openapi.yml
+  description: Classify an inbound MMS (JSON or MM4) for spam/abuse disposition.
+- name: report_spam
+  maps_to: POST /api/v1/spam/report
+  spec: openapi/syniverse-messaging-trust-datafeed-openapi.yml
+  description: Submit a spam report into the Messaging Trust datafeed.
+  consequence: write
+- name: list_10dlc_campaigns
+  maps_to: GET /engage/tendlc-services/v2/campaigns
+  spec: openapi/syniverse-10dlc-openapi.yml
+  operation_id: getCampaigns
+  description: List registered US 10DLC campaigns, paged.
+- name: get_10dlc_campaign
+  maps_to: GET /engage/tendlc-services/v2/campaigns/{campaignId}
+  spec: openapi/syniverse-10dlc-openapi.yml
+  operation_id: getCampaign
+  description: Retrieve one 10DLC campaign.
+- name: attach_10dlc_longcode
+  maps_to: POST /engage/tendlc-services/v2/campaigns/{campaignId}/longcodes/{longcode}
+  spec: openapi/syniverse-10dlc-openapi.yml
+  operation_id: create10DLCNumberV2
+  description: Attach a long code to a registered 10DLC campaign.
+  consequence: write
+- name: suspend_10dlc_campaign
+  maps_to: POST /engage/tendlc-services/v2/campaigns/{campaignId}/suspend
+  spec: openapi/syniverse-10dlc-openapi.yml
+  operation_id: suspendCampaign
+  description: Suspend a 10DLC campaign.
+  consequence: write
+- name: start_mfa_login
+  maps_to: POST /scg-external-api/api/v1/applications/{Application_ID}/users/{User_ID}/login_start
+  spec: openapi/syniverse-multi-factor-authentication-openapi.yml
+  description: Start a multi-factor login and deliver a one-time passcode.
+  consequence: write
+- name: validate_mfa_token
+  maps_to: POST /scg-external-api/api/v1/applications/{Application_ID}/users/{User_ID}/validate
+  spec: openapi/syniverse-multi-factor-authentication-openapi.yml
+  description: Validate a one-time passcode supplied by an end user.
+  consequence: write
+- name: refresh_access_token
+  maps_to: GET /saop-rest-data/v1/apptoken-refresh
+  spec: openapi/syniverse-token-management-openapi.yml
+  description: Regenerate the SDC application access token.
+  consequence: write
+coverage:
+  candidate_tools: 30
+  rest_operations_total: 187
+  note: >-
+    Deliberately a marquee subset, not a 1:1 wrapper of all 187 operations. The full
+    operation inventory and its agent-access classification live in
+    agentic-access/syniverse-agentic-access.yml.

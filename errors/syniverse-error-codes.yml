@@ -1,0 +1,134 @@
+generated: '2026-07-25'
+method: searched
+source: >-
+  https://sdcsupport.syniverse.com/hc/en-us/articles/360038257473-SCG-Voice-and-Messaging-error-codes
+  and https://sdcsupport.syniverse.com/hc/en-us/articles/16034008898839-PNV-error-codes
+docs: https://sdcsupport.syniverse.com/hc/en-us/articles/360038257473-SCG-Voice-and-Messaging-error-codes
+format: proprietary
+summary: >-
+  Syniverse publishes a real error registry for the Syniverse Communication Gateway
+  in its support knowledge base, split three ways: synchronous API error codes
+  (SCG_ERROR_nnnn, returned in the API response alongside the HTTP status),
+  asynchronous failure codes (numeric, delivered through Event Manager once a
+  message has been accepted but then fails downstream), and carrier SMPP status
+  codes mapped into SCG delivery states. This is not RFC 9457 — errors are carried
+  as an error_code / error_description pair, not application/problem+json.
+envelope:
+  fields: [error_code, error_description]
+  media_type: application/json
+  note: >-
+    Two-tiered per the API Standards page — the HTTP status code first, then the
+    service error object in the body.
+synchronous_errors:
+- code: SCG_ERROR_4001
+  http_status: 400
+  title: Required parameter missing or is null
+  description: 'Required parameter <parameter> missing or is null'
+  remediation: Provide the missing parameter.
+- code: SCG_ERROR_4002
+  http_status: 400
+  title: Parameter has incorrect data type or format
+  remediation: Correct the format of the parameter.
+- code: SCG_ERROR_4003
+  http_status: 400
+  title: Optional parameter format error
+  remediation: Fix the data type of the optional parameter.
+- code: SCG_ERROR_4004
+  http_status: 400
+  title: Invalid parameter provided
+  remediation: Remove the invalid parameter.
+- code: SCG_ERROR_4005
+  http_status: 400
+  title: Message size exceeds system limit
+  remediation: Reduce the message size.
+- code: SCG_ERROR_4006
+  http_status: 400
+  title: Parameter exceeds maximum length
+  remediation: Shorten the value.
+- code: SCG_ERROR_4007
+  http_status: 400
+  title: Invalid tracking URL provided
+  remediation: Change the tracking URL.
+- code: SCG_ERROR_40015
+  http_status: 400
+  title: Recipient limit exceeded
+  remediation: Reduce the number of recipients.
+- code: SCG_ERROR_40024
+  http_status: 400
+  title: Invalid Recipient
+  remediation: Verify the recipient address format.
+- code: SCG_ERROR_40025
+  http_status: 400
+  title: Invalid payload
+  remediation: Ensure the body is valid, non-empty JSON.
+- code: SCG_ERROR_4010
+  http_status: 401
+  title: Token unauthorized for this resource
+  remediation: Use the correct application access token for this resource.
+- code: SCG_ERROR_4020
+  http_status: 402
+  title: Insufficient credit
+  remediation: Contact Syniverse support.
+- code: SCG_ERROR_4021
+  http_status: 402
+  title: Quota exceeded
+  remediation: Contact Syniverse support.
+- code: SCG_ERROR_4030
+  http_status: 403
+  title: Forbidden
+  remediation: Check the request parameters and entitlements.
+- code: SCG_ERROR_4031
+  http_status: 403
+  title: Attachment not found in cache or database
+  remediation: Re-upload the attachment before referencing it.
+- code: SCG_ERROR_4040
+  http_status: 404
+  title: Resource not found
+  remediation: Review the request parameters.
+- code: SCG_ERROR_4046
+  http_status: 404
+  title: Access token expired
+  remediation: Request a new access token (GET /saop-rest-data/v1/apptoken-refresh).
+- code: SCG_ERROR_5000
+  http_status: 500
+  title: Unexpected Server Error
+  remediation: Retry later; contact support if it persists.
+- code: SCG_ERROR_5030
+  http_status: 503
+  title: Service Unavailable
+  remediation: Retry after a delay.
+asynchronous_failure_codes:
+  delivery: Event Manager (Event Subscription Service) message_state_change events
+  codes:
+  - {code: 1001, meaning: Stale data}
+  - {code: 1002, meaning: Invalid recipient address or address format}
+  - {code: 1003, meaning: SenderId not applicable for this message type}
+  - {code: 1004, meaning: Message contains a forbidden phrase}
+  - {code: 1005, meaning: No subscriber consent}
+  - {code: 1006, meaning: Template error — missing values or validation failure}
+  - {code: 1007, meaning: Message expired before delivery}
+  - {code: 1009, meaning: Message delivery failure}
+  - {code: 1012, meaning: 'Message size <size> exceeds max allowed size <size>'}
+  - {code: 1015, meaning: Invalid sender address}
+  - {code: 1019, meaning: 'Attachment size <size> exceeds max allowed attachment size'}
+  - {code: 1039, meaning: Throttling error — message exceeds the configured rate limit}
+  - {code: 1067, meaning: Too many messages to the same phone number}
+smpp_status_codes:
+  note: >-
+    Returned by the terminating carrier and mapped into SCG delivery state. Each
+    carries an origination source (Syniverse or Carrier) and a terminal/interim
+    classification.
+  codes:
+  - {code: 0, status: DELIVRD, meaning: Message delivered to the device}
+  - {code: 3, status: null, meaning: Message sent for delivery to the carrier}
+  - {code: 4, status: ACCEPTED, meaning: Message buffered by the carrier}
+  - {code: 5, status: DELETED, meaning: Message deleted by the carrier}
+  - {code: 7, status: UNDELIV, meaning: Delivery failure}
+  - {code: 9, status: UNDELIV, meaning: Delivery failure}
+  - {code: 90, status: UNDELIV, meaning: Delivery failure}
+  - {code: 23, status: REJECTD, meaning: Message rejected by the carrier}
+  - {code: 999, status: UNKNOWN, meaning: Unknown carrier status}
+other_families:
+- family: Phone Number Verification
+  docs: https://sdcsupport.syniverse.com/hc/en-us/articles/16034008898839-PNV-error-codes
+  note: PNV publishes its own error-code article, separate from the SCG registry.

@@ -1,0 +1,75 @@
+generated: '2026-07-25'
+method: searched
+source: >-
+  https://sdcsupport.syniverse.com/hc/en-us/articles/360020119814-How-fast-can-I-send-MMS-Messages,
+  https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide,
+  https://sdcdocumentation.syniverse.com/index.php/reporting/event-manager/resources,
+  and the eleven OpenAPI/Swagger definitions in openapi/
+docs: https://sdcsupport.syniverse.com/hc/en-us/articles/360020119814-How-fast-can-I-send-MMS-Messages
+summary: >-
+  Syniverse throttles, but it does not publish a machine-readable rate-limit contract.
+  There is no RateLimit-* header, no Retry-After and no documented quota table in any
+  of the eleven definitions. What is published is a delivery-throughput ceiling for
+  MMS, a description of throttling applied per sender address, per customer and system
+  wide, HTTP 429 responses declared across the Multi-Factor Authentication surface, an
+  asynchronous throttling failure code delivered through Event Manager, and a
+  customer-configurable throttle on event delivery. Quotas beyond that are account and
+  contract specific.
+headers:
+  ratelimit_headers: false
+  retry_after: false
+  note: No rate-limit signalling headers are declared in any published definition.
+limits:
+- name: MMS delivery throughput to operators
+  limit_count: 20
+  window: second
+  unit: transactions per second
+  scope: MMS sent via the SCG API
+  quote: 'the current delivery throughput to the operators is a max of 20TPS'
+  source: https://sdcsupport.syniverse.com/hc/en-us/articles/360020119814-How-fast-can-I-send-MMS-Messages
+- name: SMS/MMS output throttling
+  limit_count: null
+  window: null
+  scope: per sender address, per customer, and system wide
+  note: >-
+    The SMS & MMS user guide states that message output is throttled on a per sender
+    address, per customer and system-wide basis, and that the sender class determines
+    message throughput and sending-window restrictions. No numeric values are published.
+  source: https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+- name: Event delivery throttle
+  limit_count: null
+  window: minute
+  unit: events per minute
+  scope: per delivery configuration (Event Manager)
+  note: Customer-configurable rate limit on outbound event delivery, set on the delivery configuration.
+  source: https://sdcdocumentation.syniverse.com/index.php/reporting/event-manager/resources
+- name: 10DLC daily quota
+  limit_count: null
+  window: day
+  scope: 10DLC provisioning operations
+  note: >-
+    'Request failed. Daily quota exceeded' is a declared 400 response condition on the
+    10DLC v2 longcode and number-pool operations — a daily quota exists but its value
+    is not published.
+  source: openapi/syniverse-10dlc-openapi.yml
+enforcement_signals:
+- signal: HTTP 429
+  where: Declared on every operation of the Multi-Factor Authentication definition
+  source: openapi/syniverse-multi-factor-authentication-openapi.yml
+- signal: 'Failure code 1039 — throttling error, message exceeds rate limit'
+  where: Delivered asynchronously through Event Manager message_state_change events
+  source: https://sdcsupport.syniverse.com/hc/en-us/articles/360038257473-SCG-Voice-and-Messaging-error-codes
+- signal: 'Failure code 1067 — too many messages to the same phone number'
+  where: Delivered asynchronously through Event Manager message_state_change events
+- signal: 'SCG_ERROR_4021 — quota exceeded (HTTP 402)'
+  where: Synchronous API response
+- signal: 'x-throttling-tier: Unlimited'
+  where: >-
+    WSO2 gateway extension declared on every operation of the Whitelisting Service
+    definition — evidence the Developer Community gateway assigns throttling tiers
+    per operation.
+  source: openapi/syniverse-whitelisting-service-openapi.json
+increase_process:
+  self_serve: false
+  note: Throughput and quota increases run through Syniverse support or the account team.
+  contact: https://sdcsupport.syniverse.com/hc/en-us

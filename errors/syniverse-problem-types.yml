@@ -1,0 +1,882 @@
+generated: '2026-07-25'
+method: derived
+source: derived from the 4xx/5xx responses declared across the eleven OpenAPI/Swagger definitions in openapi/
+format: proprietary
+note: No Syniverse definition uses application/problem+json or RFC 9457 problem details. Errors are carried
+  as a service-specific JSON object; the SCG family uses error_code / error_description. See errors/syniverse-error-codes.yml
+  for the published SCG error registry, which names the codes these statuses carry.
+summary:
+  declared_error_responses: 1194
+  distinct_shapes: 93
+  rfc9457: false
+problems:
+- status: 401
+  title: You are not authorized to view the resource
+  source_spec: openapi/syniverse-10dlc-number-pool-openapi.yml
+  occurrences: 4
+- status: 404
+  title: The resource you were trying to reach is not found
+  source_spec: openapi/syniverse-10dlc-number-pool-openapi.yml
+  occurrences: 4
+- status: 400
+  title: '[Request failed. Daily quota exceeded, Number Pool cannot be added as it is already associated
+    with another campaign, Number Pool cannot be deleted as it is not associated to the campaign, Number
+    Pool cannot be added to campaign. Limit exceeded, Number Pool cannot be added/delete as Campaign is
+    not Deployed., NNID invalid, Number Pool type is invalid,  Number pool does not match with campaign
+    , Number pool does not match with campaign]'
+  source_spec: openapi/syniverse-10dlc-openapi.yml
+  occurrences: 1
+- status: 400
+  title: '[Request failed. Daily quota exceeded, Longcode cannot be added/deleted as it is already associated
+    with another campaign., Longcode cannot be added to campaign. Limit exceeded, Longcode cannot be added/deleted
+    as Campaign is not Deployed.,Invalid Longcode. Longcode must be a number., Invalid Longcode. Longcode
+    must be 11 digits and must start with country code 1.]'
+  source_spec: openapi/syniverse-10dlc-openapi.yml
+  occurrences: 1
+- status: 400
+  title: '[Request failed. Daily quota exceeded, Longcode cannot be added/deleted as it is already associated
+    with another campaign., Longcode cannot be deleted as it is not associated with campaign., Longcode
+    cannot be added/deleted as Campaign is not Deployed.,Invalid Longcode. Longcode must be a number.,
+    Invalid Longcode. Longcode must be 11 digits and must start with country code 1.]'
+  source_spec: openapi/syniverse-10dlc-openapi.yml
+  occurrences: 1
+- status: 400
+  title: '[Suspend operation is not allowed as campaign is already removed,Campaign suspend duplicate
+    request,Campaign Deployed request in progress. Please retry after some time,Campaign remove request
+    in progress,Suspend operation is not allowed as campaign is being removed,Campaign is not Deployed.
+    Please retry after some time]'
+  source_spec: openapi/syniverse-10dlc-openapi.yml
+  occurrences: 1
+- status: 400
+  title: '[Resume operation is not allowed as campaign is already removed,Campaign does not exist,Campaign
+    Deployed request in progress .,Campaign resume request is invalid, Campaign remove request in progress,Campaign
+    resume request is invalid, Campaign remove request in progress,Campaign resume request is invalid,
+    Campaign Deployed request in progress,Suspend Request Already in progress,Campaign resume request
+    is invalid, the Campaign is already in deployed state]'
+  source_spec: openapi/syniverse-10dlc-openapi.yml
+  occurrences: 1
+- status: 400
+  title: '[Request failed. Daily quota exceeded,   Number Pool cannot be deleted as it is not associated
+    to the campaign, Number Pool cannot be added/delete as Campaign is not Deployed., NNID invalid, Number
+    pool does not match with campaign.]'
+  source_spec: openapi/syniverse-10dlc-openapi.yml
+  occurrences: 1
+- status: 400
+  title: Bad Request Received
+  source_spec: openapi/syniverse-10dlc-openapi.yml
+  occurrences: 2
+  schema: ApiBadRequestResponse
+- status: 401
+  title: You are not authorized to view the resource
+  source_spec: openapi/syniverse-10dlc-openapi.yml
+  occurrences: 9
+  schema: ApiUnauthorizedResponse
+- status: 401
+  title: You are not authorized to view the resource
+  source_spec: openapi/syniverse-10dlc-openapi.yml
+  occurrences: 1
+  schema: ApiGeneralResponse
+- status: 404
+  title: Longcode does not exist
+  source_spec: openapi/syniverse-10dlc-openapi.yml
+  occurrences: 2
+  schema: ApiNotFoundResponseLongCode
+- status: 404
+  title: Campaign Id does not exist
+  source_spec: openapi/syniverse-10dlc-openapi.yml
+  occurrences: 2
+  schema: ApiNotFoundResponse
+- status: 409
+  title: Request already completed.
+  source_spec: openapi/syniverse-10dlc-openapi.yml
+  occurrences: 6
+  schema: ApiProcessedAlreadyResponse
+- status: 409
+  title: '[Campaign suspend duplicate request]'
+  source_spec: openapi/syniverse-10dlc-openapi.yml
+  occurrences: 1
+- status: 422
+  title: Unsupported Event Type Received
+  source_spec: openapi/syniverse-10dlc-openapi.yml
+  occurrences: 1
+  schema: ApiUnsupportedEventResponse
+- status: 500
+  title: Internal Error Occurred
+  source_spec: openapi/syniverse-10dlc-openapi.yml
+  occurrences: 4
+  schema: ApiInternalErrorResponse
+- status: 400
+  title: Malformed request submitted, or insufficient data to make a determination.
+  source_spec: openapi/syniverse-account-takeover-detection-openapi.yml
+  occurrences: 1
+  schema: simCheckErrorResponse
+- status: 500
+  title: Internal system error.
+  source_spec: openapi/syniverse-account-takeover-detection-openapi.yml
+  occurrences: 1
+- status: 400
+  title: Bad Request
+  source_spec: openapi/syniverse-messaging-trust-datafeed-openapi.yml
+  occurrences: 1
+  schema: endpoint.SpamReportError
+- status: 404
+  title: Not Found
+  source_spec: openapi/syniverse-messaging-trust-datafeed-openapi.yml
+  occurrences: 1
+- status: 415
+  title: Unsupported Media Type
+  source_spec: openapi/syniverse-messaging-trust-datafeed-openapi.yml
+  occurrences: 1
+  schema: endpoint.SpamReportError
+- status: 500
+  title: Internal Server Error
+  source_spec: openapi/syniverse-messaging-trust-datafeed-openapi.yml
+  occurrences: 1
+  schema: endpoint.SpamReportError
+- status: 400
+  title: Bad Request
+  source_spec: openapi/syniverse-messaging-trust-resolve-openapi.yml
+  occurrences: 2
+  schema: endpoint.FilterResponseError
+- status: 404
+  title: Not Found
+  source_spec: openapi/syniverse-messaging-trust-resolve-openapi.yml
+  occurrences: 2
+- status: 415
+  title: Unsupported Media Type
+  source_spec: openapi/syniverse-messaging-trust-resolve-openapi.yml
+  occurrences: 2
+  schema: endpoint.FilterResponseError
+- status: 500
+  title: Internal Server Error
+  source_spec: openapi/syniverse-messaging-trust-resolve-openapi.yml
+  occurrences: 2
+  schema: endpoint.FilterResponseError
+- status: 400
+  title: "Bad Request.  The request could not be understood by the server.\n\n  * **1023** - Indexed field\
+    \ too long - One of the values in the request exceeded the maximum allowed length"
+  source_spec: openapi/syniverse-multi-factor-authentication-openapi.yml
+  occurrences: 11
+- status: 401
+  title: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided\
+    \ authentication data is invalid or insufficient"
+  source_spec: openapi/syniverse-multi-factor-authentication-openapi.yml
+  occurrences: 11
+- status: 402
+  title: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficeint\
+    \ funds for this operation"
+  source_spec: openapi/syniverse-multi-factor-authentication-openapi.yml
+  occurrences: 11
+- status: 403
+  title: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403**\
+    \ - Forbidden - Access to this resource is not allowed with the current application token"
+  source_spec: openapi/syniverse-multi-factor-authentication-openapi.yml
+  occurrences: 11
+- status: 404
+  title: "Not found. The requested resource could not be found.\n\n  * **404** - The Error message provides\
+    \ details about the missing resource - Requested resource not found"
+  source_spec: openapi/syniverse-multi-factor-authentication-openapi.yml
+  occurrences: 11
+- status: 409
+  title: "Conflict. The request could not be completed due to a conflict with the current state of the\
+    \ target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource\
+    \ and retry.\n  * **1011** - The Error message provides details about the key being violated - Unique\
+    \ key constraint violated"
+  source_spec: openapi/syniverse-multi-factor-authentication-openapi.yml
+  occurrences: 10
+- status: 409
+  title: "Conflict. The request could not be completed due to a conflict with the current state of the\
+    \ target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource\
+    \ and retry.\n  * **1011** - The Error message provides details about the key being violated - Unique\
+    \ key constraint violated\n  * **2003** - User MDN not validated - The user's MDN must have been validated.\
+    \ MDN should be validated before login."
+  source_spec: openapi/syniverse-multi-factor-authentication-openapi.yml
+  occurrences: 1
+- status: 429
+  title: "Too Many Requests. The user has sent too many requests in a given amount of time.\n\n  * **2004**\
+    \ - User sent too many requests - User sent too many requests."
+  source_spec: openapi/syniverse-multi-factor-authentication-openapi.yml
+  occurrences: 11
+- status: 500
+  title: "Server Error. An error has been encountered while processing this request.\n\n  * **500** -\
+    \ Server Error - Internal server error. Please report"
+  source_spec: openapi/syniverse-multi-factor-authentication-openapi.yml
+  occurrences: 11
+- status: 400
+  title: "Bad Request.  The request could not be understood by the server. \n * **400** - Bad Request\
+    \ - Error Message provides information about what's wrong with the request \n  * **1012** - Error\
+    \ message contains details about the limit being exceeded - Message size exceeds system limit \n \
+    \ * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed\
+    \ length \n  * **1020** - Invalid Tracking URL - The tracking URL that was provided is invalid \n\
+    \  * **4001** - Required parameter<parameter> missing or is null \n  * **4002** - Required parameter\
+    \ <parameter> data type/format is incorrect  \n  * **4003** - Optional parameter <parameter> data\
+    \ type/format is incorrect\n  * **4004** - Invalid parameter <parameter> defined \n  * **4005** -\
+    \ Error message contains details about the limit being exceeded - Message size exceeds system limit\n\
+    \  * **4006** - Indexed parameter <parameter> too long - Value of <parameter> in the request exceeded\
+    \ the maximum allowed length\n  * **4007** - Invalid Tracking URL - The tracking URL <parameter> that\
+    \ was provided is invalid\n  * **4008** - Message scheduled time exceeds max allowed days: <parameter>\n\
+    \  * **4009** - Cannot exceed more than <parameter> media URLs\n  * **40010** - Cannot include media\
+    \ URLs with attachment\n  * **40011** - Group message only supported for US Phone numbers\n  * **40012**\
+    \ - No sender addresses capable of sending requested message type\n  * **40013** - No sender addresses\
+    \ capable of sending requested verifiedSms message\n  * **40014** - Cannot failover to SMS on a message\
+    \ with attachments\n  * **40015** - Cannot exceed more than <parameter> recipients\n  * **40016**\
+    \ - Sender id is not capable of sending MMS\n  * **40017** - Only sender id with type id LONGCODE\
+    \ is supported for group MMS\n  * **40018** - Invalid senderId/address: <parameter>\n  * **40019**\
+    \ - Multiple sender id with address: <parameter>. Use sender id to send message.\n  * **40020** -\
+    \ Unrecognized option(s): <parameter>\n  * **40021** - Failover to SMS requires a SenderId for SMS\
+    \ (use a channel)\n  * **40022** - Failover TO SMS requires a SenderId for <parameter> (use a channel)\n\
+    \  * **40023** - Delivery Window Restriction Violation\n  * **40024** - Invalid Recipient \n  * **40025**\
+    \ - Invalid payload\n  * **40026** - Missing form-data part: <part>\n  * **40027** - Content size\
+    \ in Content-Disposition is mandatory\n  * **40028** - Content length is mandatory\n  * **40029**\
+    \ - Attachment size <parameter> exceeds max allowed attachment size <parameter>\n  * **40030** - Only\
+    \ UPLOADED attachments can be downloaded."
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 1
+- status: 400
+  title: "Bad Request.  The request could not be understood by the server. \n  * **400** - Bad Request\
+    \ - Error Message provides information about what's wrong with the request \n  * **1012** - Error\
+    \ message contains details about the limit being exceeded - Message size exceeds system limit  \n\
+    \  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed\
+    \ length \n  * **1020** - Invalid Tracking URL - The tracking URL that was provided is invalid \n\
+    \  * **4001** - Required parameter<parameter> missing or is null \n  * **4002** - Required parameter\
+    \ <parameter> data type/format is incorrect  \n  * **4003** - Optional parameter <parameter> data\
+    \ type/format is incorrect\n  * **4004** - Invalid parameter <parameter> defined \n  * **4005** -\
+    \ Error message contains details about the limit being exceeded - Message size exceeds system limit\n\
+    \  * **4006** - Indexed parameter <parameter> too long - Value of <parameter> in the request exceeded\
+    \ the maximum allowed length\n  * **4007** - Invalid Tracking URL - The tracking URL <parameter> that\
+    \ was provided is invalid\n  * **4008** - Message scheduled time exceeds max allowed days: <parameter>\n\
+    \  * **4009** - Cannot exceed more than <parameter> media URLs\n  * **40010** - Cannot include media\
+    \ URLs with attachment\n  * **40011** - Group message only supported for US Phone numbers\n  * **40012**\
+    \ - No sender addresses capable of sending requested message type\n  * **40013** - No sender addresses\
+    \ capable of sending requested verifiedSms message\n  * **40014** - Cannot failover to SMS on a message\
+    \ with attachments\n  * **40015** - Cannot exceed more than <parameter> recipients\n  * **40016**\
+    \ - Sender id is not capable of sending MMS\n  * **40017** - Only sender id with type id LONGCODE\
+    \ is supported for group MMS\n  * **40018** - Invalid senderId/address: <parameter>\n  * **40019**\
+    \ - Multiple sender id with address: <parameter>. Use sender id to send message.\n  * **40020** -\
+    \ Unrecognized option(s): <parameter>\n  * **40021** - Failover to SMS requires a SenderId for SMS\
+    \ (use a channel)\n  * **40022** - Failover TO SMS requires a SenderId for <parameter> (use a channel)\n\
+    \  * **40023** - Delivery Window Restriction Violation\n  * **40024** - Invalid Recipient \n  * **40025**\
+    \ - Invalid payload\n  * **40026** - Missing form-data part: <part>\n  * **40027** - Content size\
+    \ in Content-Disposition is mandatory\n  * **40028** - Content length is mandatory\n  * **40029**\
+    \ - Attachment size <parameter> exceeds max allowed attachment size <parameter>\n  * **40030** - Only\
+    \ UPLOADED attachments can be downloaded."
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 1
+- status: 400
+  title: "Bad Request.  The request could not be understood by the server. \n  * **400** - Bad Request\
+    \ - Error Message provides information about what's wrong with the request \n  * **1012** - Error\
+    \ message contains details about the limit being exceeded - Message size exceeds system limit \n \
+    \ * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed\
+    \ length \n  * **1020** - Invalid Tracking URL - The tracking URL that was provided is invalid \n\
+    \  * **4001** - Required parameter<parameter> missing or is null \n  * **4002** - Required parameter\
+    \ <parameter> data type/format is incorrect \n  * **4003** - Optional parameter <parameter> data type/format\
+    \ is incorrect\n  * **4004** - Invalid parameter <parameter> defined \n  * **4005** - Error message\
+    \ contains details about the limit being exceeded - Message size exceeds system limit\n  * **4006**\
+    \ - Indexed parameter <parameter> too long - Value of <parameter> in the request exceeded the maximum\
+    \ allowed length\n  * **4007** - Invalid Tracking URL - The tracking URL <parameter> that was provided\
+    \ is invalid\n  * **4008** - Message scheduled time exceeds max allowed days: <parameter>\n  * **4009**\
+    \ - Cannot exceed more than <parameter> media URLs\n  * **40010** - Cannot include media URLs with\
+    \ attachment\n  * **40011** - Group message only supported for US Phone numbers\n  * **40012** - No\
+    \ sender addresses capable of sending requested message type\n  * **40013** - No sender addresses\
+    \ capable of sending requested verifiedSms message\n  * **40014** - Cannot failover to SMS on a message\
+    \ with attachments\n  * **40015** - Cannot exceed more than <parameter> recipients\n  * **40016**\
+    \ - Sender id is not capable of sending MMS\n  * **40017** - Only sender id with type id LONGCODE\
+    \ is supported for group MMS\n  * **40018** - Invalid senderId/address: <parameter>\n  * **40019**\
+    \ - Multiple sender id with address: <parameter>. Use sender id to send message.\n  * **40020** -\
+    \ Unrecognized option(s): <parameter>\n  * **40021** - Failover to SMS requires a SenderId for SMS\
+    \ (use a channel)\n  * **40022** - Failover TO SMS requires a SenderId for <parameter> (use a channel)\n\
+    \  * **40023** - Delivery Window Restriction Violation\n  * **40024** - Invalid Recipient \n  * **40025**\
+    \ - Invalid payload\n  * **40026** - Missing form-data part: <part>\n  * **40027** - Content size\
+    \ in Content-Disposition is mandatory\n  * **40028** - Content length is mandatory\n  * **40029**\
+    \ - Attachment size <parameter> exceeds max allowed attachment size <parameter>\n  * **40030** - Only\
+    \ UPLOADED attachments can be downloaded."
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 5
+- status: 400
+  title: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request\
+    \ - Error Message provides information about what's wrong with the request\n  * **1023** - Indexed\
+    \ field too long - One of the values in the request exceeded the maximum allowed length"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 74
+- status: 400
+  title: "Bad Request.  The request could not be understood by the server. \n  * **400** - Bad Request\
+    \ - Error Message provides information about what's wrong with the request \n  * **1012** - Error\
+    \ message contains details about the limit being exceeded - Message size exceeds system limit \n \
+    \ * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed\
+    \ length   \n  * **1020** - Invalid Tracking URL - The tracking URL that was provided is invalid \n\
+    \  * **4001** - Required parameter<parameter> missing or is null \n  * **4002** - Required parameter\
+    \ <parameter> data type/format is incorrect \n  * **4003** - Optional parameter <parameter> data type/format\
+    \ is incorrect\n  * **4004** - Invalid parameter <parameter> defined \n  * **4005** - Error message\
+    \ contains details about the limit being exceeded - Message size exceeds system limit\n  * **4006**\
+    \ - Indexed parameter <parameter> too long - Value of <parameter> in the request exceeded the maximum\
+    \ allowed length\n  * **4007** - Invalid Tracking URL - The tracking URL <parameter> that was provided\
+    \ is invalid\n  * **4008** - Message scheduled time exceeds max allowed days: <parameter>\n  * **4009**\
+    \ - Cannot exceed more than <parameter> media URLs\n  * **40010** - Cannot include media URLs with\
+    \ attachment\n  * **40011** - Group message only supported for US Phone numbers\n  * **40012** - No\
+    \ sender addresses capable of sending requested message type\n  * **40013** - No sender addresses\
+    \ capable of sending requested verifiedSms message\n  * **40014** - Cannot failover to SMS on a message\
+    \ with attachments\n  * **40015** - Cannot exceed more than <parameter> recipients\n  * **40016**\
+    \ - Sender id is not capable of sending MMS\n  * **40017** - Only sender id with type id LONGCODE\
+    \ is supported for group MMS\n  * **40018** - Invalid senderId/address: <parameter>\n  * **40019**\
+    \ - Multiple sender id with address: <parameter>. Use sender id to send message.\n  * **40020** -\
+    \ Unrecognized option(s): <parameter>\n  * **40021** - Failover to SMS requires a SenderId for SMS\
+    \ (use a channel)\n  * **40022** - Failover TO SMS requires a SenderId for <parameter> (use a channel)\n\
+    \  * **40023** - Delivery Window Restriction Violation\n  * **40024** - Invalid Recipient \n  * **40025**\
+    \ - Invalid payload\n  * **40026** - Missing form-data part: <part>\n  * **40027** - Content size\
+    \ in Content-Disposition is mandatory\n  * **40028** - Content length is mandatory\n  * **40029**\
+    \ - Attachment size <parameter> exceeds max allowed attachment size <parameter>\n  * **40030** - Only\
+    \ UPLOADED attachments can be downloaded."
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 1
+- status: 400
+  title: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request\
+    \ - Error Message provides information about what's wrong with the request\n  * **1012** - Error message\
+    \ contains details about the limit being exceeded - Message size exceeds system limit\n  * **1023**\
+    \ - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n\
+    \  * **1020** - Invalid Tracking URL - The tracking URL that was provided is invalid \n  * **SCG_ERROR_4001**\
+    \ - Required parameter<parameter> missing or is null\n  * **SCG_ERROR_4002** - Required parameter\
+    \ <parameter> data type/format is incorrect\n  * **SCG_ERROR_4003** - Optional parameter <parameter>\
+    \ data type/format is incorrect            \n  * **SCG_ERROR_4004** - Invalid parameter <parameter>\
+    \ defined            \n  * **SCG_ERROR_4005** - Error message contains details about the limit being\
+    \ exceeded - Message size exceeds system limit            \n  * **SCG_ERROR_4006** -  Indexed parameter\
+    \ <parameter> too long - Value of <parameter> in the request exceeded the maximum allowed length \
+    \         \n  * **SCG_ERROR_4007** -  Invalid Tracking URL - The tracking URL <parameter> that was\
+    \ provided is invalid          \n  * **SCG_ERROR_4008** -  Message scheduled time exceeds max allowed\
+    \ days: <parameter>          \n  * **SCG_ERROR_4009** -  Cannot exceed more than <parameter> media\
+    \ URLs                    \n  * **SCG_ERROR_40010**  -  Cannot include media URLs with attachment\
+    \        \n  * **SCG_ERROR_40011**  -  Group message only supported for US Phone numbers        \n\
+    \  * **SCG_ERROR_40012**  -  No sender addresses capable of sending requested message type       \
+    \ \n  * **SCG_ERROR_40013**  -  No sender addresses capable of sending requested verifiedSms message\
+    \      \n  * **SCG_ERROR_40014**  -  Cannot failover to SMS on a message with attachments        \n\
+    \  * **SCG_ERROR_40015**  - Cannot exceed more than <parameter> recipients          \n  * **SCG_ERROR_40016**\
+    \  -  Sender id is not capable of sending MMS        \n  * **SCG_ERROR_40017**  -  Only sender id\
+    \ with type id LONGCODE is supported for group MMS        \n  * **SCG_ERROR_40018**  -  Invalid senderId/address:\
+    \ <parameter>        \n  * **SCG_ERROR_40019**  -  Multiple sender id with address: <parameter>. Use\
+    \ sender id to send message.        \n  * **SCG_ERROR_40020**  -  Unrecognized option(s): <parameter>\
+    \        \n  * **SCG_ERROR_40021**  -  Failover to SMS requires a SenderId for SMS (use a channel)\
+    \        \n  * **SCG_ERROR_40022**  -  Failover TO SMS requires a SenderId for <parameter> (use a\
+    \ channel)        \n  * **SCG_ERROR_40023**  -  Delivery Window Restriction Violation        \n  *\
+    \ **SCG_ERROR_40024**  -  Invalid Recipient        \n  * **SCG_ERROR_40025**  -  Invalid payload \
+    \       \n  * **SCG_ERROR_40026**  -  Missing form-data part: <part>        \n  * **SCG_ERROR_40027**\
+    \  -  Content size in Content-Disposition is mandatory        \n  * **SCG_ERROR_40028**  -  Content\
+    \ length is mandatory        \n  * **SCG_ERROR_40029**  -  Attachment size <parameter> exceeds max\
+    \ allowed attachment size <parameter>        \n  * **SCG_ERROR_40030**  - Only UPLOADED attachments\
+    \ can be downloaded."
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 1
+- status: 400
+  title: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request\
+    \ - Error Message provides information about what's wrong with the request\n  * **1012** - Error message\
+    \ contains details about the limit being exceeded - Message size exceeds system limit\n  * **1023**\
+    \ - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n\
+    \  * **1020** - Invalid Tracking URL - The tracking URL that was provided is invalid\n  * **SCG_ERROR_4001**\
+    \ - Required parameter<parameter> missing or is null\n  * **SCG_ERROR_4002** - Required parameter\
+    \ <parameter> data type/format is incorrect\n  * **SCG_ERROR_4003** - Optional parameter <parameter>\
+    \ data type/format is incorrect            \n  * **SCG_ERROR_4004** - Invalid parameter <parameter>\
+    \ defined            \n  * **SCG_ERROR_4005** - Error message contains details about the limit being\
+    \ exceeded - Message size exceeds system limit            \n  * **SCG_ERROR_4006** -  Indexed parameter\
+    \ <parameter> too long - Value of <parameter> in the request exceeded the maximum allowed length \
+    \         \n  * **SCG_ERROR_4007** -  Invalid Tracking URL - The tracking URL <parameter> that was\
+    \ provided is invalid          \n  * **SCG_ERROR_4008** -  Message scheduled time exceeds max allowed\
+    \ days: <parameter>          \n  * **SCG_ERROR_4009** -  Cannot exceed more than <parameter> media\
+    \ URLs                    \n  * **SCG_ERROR_40010**  -  Cannot include media URLs with attachment\
+    \        \n  * **SCG_ERROR_40011**  -  Group message only supported for US Phone numbers        \n\
+    \  * **SCG_ERROR_40012**  -  No sender addresses capable of sending requested message type       \
+    \ \n  * **SCG_ERROR_40013**  -  No sender addresses capable of sending requested verifiedSms message\
+    \      \n  * **SCG_ERROR_40014**  -  Cannot failover to SMS on a message with attachments        \n\
+    \  * **SCG_ERROR_40015**  - Cannot exceed more than <parameter> recipients          \n  * **SCG_ERROR_40016**\
+    \  -  Sender id is not capable of sending MMS        \n  * **SCG_ERROR_40017**  -  Only sender id\
+    \ with type id LONGCODE is supported for group MMS        \n  * **SCG_ERROR_40018**  -  Invalid senderId/address:\
+    \ <parameter>        \n  * **SCG_ERROR_40019**  -  Multiple sender id with address: <parameter>. Use\
+    \ sender id to send message.        \n  * **SCG_ERROR_40020**  -  Unrecognized option(s): <parameter>\
+    \        \n  * **SCG_ERROR_40021**  -  Failover to SMS requires a SenderId for SMS (use a channel)\
+    \        \n  * **SCG_ERROR_40022**  -  Failover TO SMS requires a SenderId for <parameter> (use a\
+    \ channel)        \n  * **SCG_ERROR_40023**  -  Delivery Window Restriction Violation        \n  *\
+    \ **SCG_ERROR_40024**  -  Invalid Recipient        \n  * **SCG_ERROR_40025**  -  Invalid payload \
+    \       \n  * **SCG_ERROR_40026**  -  Missing form-data part: <part>        \n  * **SCG_ERROR_40027**\
+    \  -  Content size in Content-Disposition is mandatory        \n  * **SCG_ERROR_40028**  -  Content\
+    \ length is mandatory        \n  * **SCG_ERROR_40029**  -  Attachment size <parameter> exceeds max\
+    \ allowed attachment size <parameter>        \n  * **SCG_ERROR_40030**  - Only UPLOADED attachments\
+    \ can be downloaded."
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 3
+- status: 400
+  title: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request\
+    \ - Error Message provides information about what's wrong with the request\n  * **1023** - Indexed\
+    \ field too long - One of the values in the request exceeded the maximum allowed length\n  * **SCG_ERROR_4001**\
+    \ - Required parameter<parameter> missing or is null\n  * **SCG_ERROR_4002** - Required parameter\
+    \ <parameter> data type/format is incorrect\n  * **SCG_ERROR_4003** - Optional parameter <parameter>\
+    \ data type/format is incorrect            \n  * **SCG_ERROR_4004** - Invalid parameter <parameter>\
+    \ defined            \n  * **SCG_ERROR_400**5 - Error message contains details about the limit being\
+    \ exceeded - Message size exceeds system limit            \n  * **SCG_ERROR_4006** -  Indexed parameter\
+    \ <parameter> too long - Value of <parameter> in the request exceeded the maximum allowed length \
+    \         \n  * **SCG_ERROR_4007** -  Invalid Tracking URL - The tracking URL <parameter> that was\
+    \ provided is invalid          \n  * **SCG_ERROR_4008** -  Message scheduled time exceeds max allowed\
+    \ days: <parameter>          \n * **SCG_ERROR_4009** -  Cannot exceed more than <parameter> media\
+    \ URLs                    \n  * **SCG_ERROR_40010**  -  Cannot include media URLs with attachment\
+    \        \n  * **SCG_ERROR_40011**  -  Group message only supported for US Phone numbers        \n\
+    \  * **SCG_ERROR_40012**  -  No sender addresses capable of sending requested message type       \
+    \ \n * **SCG_ERROR_40013**  -  No sender addresses capable of sending requested verifiedSms message\
+    \      \n  * **SCG_ERROR_40014**  -  Cannot failover to SMS on a message with attachments        \n\
+    \  * **SCG_ERROR_40015**  - Cannot exceed more than <parameter> recipients          \n  * **SCG_ERROR_40016**\
+    \  -  Sender id is not capable of sending MMS        \n  * **SCG_ERROR_40017**  -  Only sender id\
+    \ with type id LONGCODE is supported for group MMS        \n  * **SCG_ERROR_40018**  -  Invalid senderId/address:\
+    \ <parameter>        \n  * **SCG_ERROR_40019**  -  Multiple sender id with address: <parameter>. Use\
+    \ sender id to send message.        \n  * **SCG_ERROR_40020**  -  Unrecognized option(s): <parameter>\
+    \        \n  * **SCG_ERROR_40021**  -  Failover to SMS requires a SenderId for SMS (use a channel)\
+    \        \n  * **SCG_ERROR_40022**  -  Failover TO SMS requires a SenderId for <parameter> (use a\
+    \ channel)        \n  * **SCG_ERROR_40023**  -  Delivery Window Restriction Violation        \n  *\
+    \ **SCG_ERROR_40024**  -  Invalid Recipient        \n  * **SCG_ERROR_40025**  -  Invalid payload \
+    \       \n  * **SCG_ERROR_40026**  -  Missing form-data part: <part>        \n  * **SCG_ERROR_40027**\
+    \  -  Content size in Content-Disposition is mandatory        \n  * **SCG_ERROR_40028**  -  Content\
+    \ length is mandatory        \n  * **SCG_ERROR_40029**  -  Attachment size <parameter> exceeds max\
+    \ allowed attachment size <parameter>        \n  * **SCG_ERROR_40030**  - Only UPLOADED attachments\
+    \ can be downloaded."
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 1
+- status: 400
+  title: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request\
+    \ - Error Message provides information about what's wrong with the request\n  * **1023** - Indexed\
+    \ field too long - One of the values in the request exceeded the maximum allowed length\n  * **SCG_ERROR_4001**\
+    \ - Required parameter<parameter> missing or is null\n  * **SCG_ERROR_4002** - Required parameter\
+    \ <parameter> data type/format is incorrect\n  * **SCG_ERROR_4003** - Optional parameter <parameter>\
+    \ data type/format is incorrect            \n  * **SCG_ERROR_4004** - Invalid parameter <parameter>\
+    \ defined            \n  * **SCG_ERROR_4005** - Error message contains details about the limit being\
+    \ exceeded - Message size exceeds system limit            \n  * **SCG_ERROR_4006** -  Indexed parameter\
+    \ <parameter> too long - Value of <parameter> in the request exceeded the maximum allowed length \
+    \         \n  * **SCG_ERROR_4007** -  Invalid Tracking URL - The tracking URL <parameter> that was\
+    \ provided is invalid          \n  * **SCG_ERROR_4008** -  Message scheduled time exceeds max allowed\
+    \ days: <parameter>          \n  * **SCG_ERROR_4009** -  Cannot exceed more than <parameter> media\
+    \ URLs                    \n  * **SCG_ERROR_40010**  -  Cannot include media URLs with attachment\
+    \        \n  * **SCG_ERROR_40011**  -  Group message only supported for US Phone numbers        \n\
+    \  * **SCG_ERROR_40012**  -  No sender addresses capable of sending requested message type       \
+    \ \n  * **SCG_ERROR_40013**  -  No sender addresses capable of sending requested verifiedSms message\
+    \      \n  * **SCG_ERROR_40014**  -  Cannot failover to SMS on a message with attachments        \n\
+    \  * **SCG_ERROR_40015**  - Cannot exceed more than <parameter> recipients          \n  * **SCG_ERROR_40016**\
+    \  -  Sender id is not capable of sending MMS        \n  * **SCG_ERROR_40017**  -  Only sender id\
+    \ with type id LONGCODE is supported for group MMS        \n  * **SCG_ERROR_40018**  -  Invalid senderId/address:\
+    \ <parameter>        \n  * **SCG_ERROR_40019**  -  Multiple sender id with address: <parameter>. Use\
+    \ sender id to send message.        \n  * **SCG_ERROR_40020**  -  Unrecognized option(s): <parameter>\
+    \        \n  * **SCG_ERROR_40021**  -  Failover to SMS requires a SenderId for SMS (use a channel)\
+    \        \n  * **SCG_ERROR_40022**  -  Failover TO SMS requires a SenderId for <parameter> (use a\
+    \ channel)        \n  * **SCG_ERROR_40023**  -  Delivery Window Restriction Violation        \n  *\
+    \ **SCG_ERROR_40024**  -  Invalid Recipient        \n  * **SCG_ERROR_40025**  -  Invalid payload \
+    \       \n  * **SCG_ERROR_40026**  -  Missing form-data part: <part>        \n  * **SCG_ERROR_40027**\
+    \  -  Content size in Content-Disposition is mandatory        \n  * **SCG_ERROR_40028**  -  Content\
+    \ length is mandatory        \n  * **SCG_ERROR_40029**  -  Attachment size <parameter> exceeds max\
+    \ allowed attachment size <parameter>        \n  * **SCG_ERROR_40030**  - Only UPLOADED attachments\
+    \ can be downloaded."
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 2
+- status: 400
+  title: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request\
+    \ - Error Message provides information about what's wrong with the request\n  * **1023** - Indexed\
+    \ field too long - One of the values in the request exceeded the maximum allowed length\n  * **SCG_ERROR_4001**\
+    \ - Required parameter<parameter> missing or is null\n  * **SCG_ERROR_4002** - Required parameter\
+    \ <parameter> data type/format is incorrect\n  * **SCG_ERROR_4003** - Optional parameter <parameter>\
+    \ data type/format is incorrect            \n  * **SCG_ERROR_4004** - Invalid parameter <parameter>\
+    \ defined            \n  * **SCG_ERROR_4005** - Error message contains details about the limit being\
+    \ exceeded - Message size exceeds system limit            \n  * **SCG_ERROR_4006** -  Indexed parameter\
+    \ <parameter> too long - Value of <parameter> in the request exceeded the maximum allowed length \
+    \         \n  * **SCG_ERROR_4007** -  Invalid Tracking URL - The tracking URL <parameter> that was\
+    \ provided is invalid          \n  * **SCG_ERROR_4008** -  Message scheduled time exceeds max allowed\
+    \ days: <parameter>          \n  * **SCG_ERROR_4009** -  Cannot exceed more than <parameter> media\
+    \ URLs                    \n  * **SCG_ERROR_40010**  -  Cannot include media URLs with attachment\
+    \        \n  * **SCG_ERROR_40011**  -  Group message only supported for US Phone numbers        \n\
+    \  * **SCG_ERROR_40012**  -  No sender addresses capable of sending requested message type       \
+    \ \n  * **SCG_ERROR_40013**  -  No sender addresses capable of sending requested verifiedSms message\
+    \      \n  * **SCG_ERROR_40014**  -  Cannot failover to SMS on a message with attachments        \n\
+    \  * **SCG_ERROR_40015**  - Cannot exceed more than <parameter> recipients**          \n  * **SCG_ERROR_40016**\
+    \  -  Sender id is not capable of sending MMS        \n  * **SCG_ERROR_40017**  -  Only sender id\
+    \ with type id LONGCODE is supported for group MMS        \n  * **SCG_ERROR_40018**  -  Invalid senderId/address:\
+    \ <parameter>        \n  * **SCG_ERROR_40019**  -  Multiple sender id with address: <parameter>. Use\
+    \ sender id to send message.        \n  * **SCG_ERROR_40020**  -  Unrecognized option(s): <parameter>\
+    \        \n  * **SCG_ERROR_40021**  -  Failover to SMS requires a SenderId for SMS (use a channel)\
+    \        \n  * **SCG_ERROR_40022**  -  Failover TO SMS requires a SenderId for <parameter> (use a\
+    \ channel)        \n  * **SCG_ERROR_40023**  -  Delivery Window Restriction Violation        \n  *\
+    \ **SCG_ERROR_40024**  -  Invalid Recipient        \n  * **SCG_ERROR_40025**  -  Invalid payload \
+    \       \n  * **SCG_ERROR_40026**  -  Missing form-data part: <part>        \n  * **SCG_ERROR_40027**\
+    \  -  Content size in Content-Disposition is mandatory        \n  * **SCG_ERROR_40028**  -  Content\
+    \ length is mandatory        \n  * **SCG_ERROR_40029**  -  Attachment size <parameter> exceeds max\
+    \ allowed attachment size <parameter>        \n  * **SCG_ERROR_40030**  - Only UPLOADED attachments\
+    \ can be downloaded."
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 1
+- status: 400
+  title: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request\
+    \ - Error Message provides information about what's wrong with the request\n  * **1019** - Attachment\
+    \ Too Big - Attachment content size exceeds system limits\n  * **1023** - Indexed field too long -\
+    \ One of the values in the request exceeded the maximum allowed length"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 25
+- status: 400
+  title: "Bad Request.  The request could not be understood by the server.\n\n  * **1023** - Indexed field\
+    \ too long - One of the values in the request exceeded the maximum allowed length"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 26
+- status: 400
+  title: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request\
+    \ - Error Message provides information about what's wrong with the request\n  * **1017** - Invalid\
+    \ Json expression in Dynamic Group definition - The Dymanic Group definition was invalid\n  * **1023**\
+    \ - Indexed field too long - One of the values in the request exceeded the maximum allowed length"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 2
+- status: 400
+  title: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request\
+    \ - Error Message provides information about what's wrong with the request"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 5
+- status: 401
+  title: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided\
+    \ authentication data is invalid or insufficient\n  * **4010** - Token unauthorized for this resource"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 8
+- status: 401
+  title: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided\
+    \ authentication data is invalid or insufficient"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 132
+- status: 401
+  title: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided\
+    \ authentication data is invalid or insufficient\n  * **SCG_ERROR_4010** - Token unauthorized for\
+    \ this resource"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 8
+- status: 402
+  title: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient\
+    \ funds for this operation\n  * **4021** - Quota exceeded"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 8
+- status: 402
+  title: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient\
+    \ funds for this operation"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 127
+- status: 402
+  title: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient\
+    \ funds for this operation\n  * **SCG_ERROR_4021** - Quota exceeded"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 8
+- status: 403
+  title: "Forbidden. The user does not have permission to access the specified resource \n  * **403**\
+    \ - Forbidden - Access to this resource is not allowed with the current application token\n  * **4030**\
+    \ - Forbidden          \n  * **4031** - Attachment <parameter> was not found neither in cache nor\
+    \ in database            \n  * **4032** - Attachment <parameter> is in incorrect state   <parameter>\
+    \                       \n  * **4033** - SenderId start date in the future: <parameter>          \
+    \ \n  * **4034** - SenderId end date in the past: <parameter>          \n  * **4035** - Invalid sender\
+    \ ID state: <parameter>         \n  * **4036** - Invalid sender ID ownership: <parameter>        \
+    \   \n  * **4037** - <parameter> forbidden for attachment in state: <parameter>"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 1
+- status: 403
+  title: "Forbidden. The user does not have permission to access the specified resource \n  * **403**\
+    \ - Forbidden - Access to this resource is not allowed with the current application token\n  * **4030**\
+    \ - Forbidden          \n  * **4031** - Attachment <parameter> was not found neither in cache nor\
+    \ in database            \n  * **4032** - Attachment <parameter> is in incorrect state \n    <parameter>\
+    \                       \n  * **4033** - SenderId start date in the future: <parameter>          \
+    \ \n  * **4034** - SenderId end date in the past: <parameter>          \n  * **4035** - Invalid sender\
+    \ ID state: <parameter>         \n  * **4036** - Invalid sender ID ownership: <parameter>        \
+    \   \n  * **4037** - <parameter> forbidden for attachment in state: <parameter>"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 1
+- status: 403
+  title: "Forbidden. The user does not have permission to access the specified resource\n  * **403** -\
+    \ Forbidden - Access to this resource is not allowed with the current application token\n  * **4030**\
+    \ - Forbidden          \n  * **4031** - Attachment <parameter> was not found neither in cache nor\
+    \ in database            \n  * **4032** - Attachment <parameter> is in incorrect state   <parameter>\
+    \                       \n  * **4033** - SenderId start date in the future: <parameter>          \
+    \ \n  * **4034** - SenderId end date in the past: <parameter>          \n  * **4035** - Invalid sender\
+    \ ID state: <parameter>         \n  * **4036** - Invalid sender ID ownership: <parameter>        \
+    \   \n  * **4037** - <parameter> forbidden for attachment in state: <parameter>"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 1
+- status: 403
+  title: "Forbidden. The user does not have permission to access the specified resource\n  * **403** -\
+    \ Forbidden - Access to this resource is not allowed with the current application token\n  * **4030**\
+    \ - Forbidden          \n  * **4031** - Attachment <parameter> was not found neither in cache nor\
+    \ in database            \n  * **4032** - Attachment <parameter> is in incorrect state\n    <parameter>\
+    \                       \n  * **4033** - SenderId start date in the future: <parameter>          \
+    \ \n  * **4034** - SenderId end date in the past: <parameter>          \n  * **4035** - Invalid sender\
+    \ ID state: <parameter>         \n  * **4036** - Invalid sender ID ownership: <parameter>        \
+    \   \n  * **4037** - <parameter> forbidden for attachment in state: <parameter>"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 1
+- status: 403
+  title: "Forbidden. The user does not have permission to access the specified resource\n  * **403** -\
+    \ Forbidden - Access to this resource is not allowed with the current application token\n  * **4030**\
+    \ - Forbidden          \n  * **4031** - Attachment <parameter> was not found neither in cache nor\
+    \ in database            \n  * **4032** - Attachment <parameter> is in incorrect state \n    <parameter>\
+    \                       \n  * **4033** - SenderId start date in the future: <parameter>          \
+    \ \n  * **4034** - SenderId end date in the past: <parameter>          \n  * **4035** - Invalid sender\
+    \ ID state: <parameter>         \n  * **4036** - Invalid sender ID ownership: <parameter>        \
+    \   \n  * **4037** - <parameter> forbidden for attachment in state: <parameter>"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 3
+- status: 403
+  title: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403**\
+    \ - Forbidden - Access to this resource is not allowed with the current application token"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 129
+- status: 403
+  title: "Forbidden. The user does not have permission to access the specified resource. \n * **403**\
+    \ - Forbidden - Access to this resource is not allowed with the current application token \n * **4030**\
+    \ - Forbidden \n * **4031** - Attachment <parameter> was not found neither in cache nor in database\
+    \ \n * **4032** - Attachment <parameter> is in incorrect state <parameter> \n * **4033** - SenderId\
+    \ start date in the future: <parameter> \n * **4034** - SenderId end date in the past: <parameter>\
+    \ \n * **4035** - Invalid sender ID state: <parameter> \n * **4036** - Invalid sender ID ownership:\
+    \ <parameter> \n * **4037** - <parameter> forbidden for attachment in state: <parameter>"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 1
+- status: 403
+  title: "Forbidden. The user does not have permission to access the specified resource.\n  * **403**\
+    \ - Forbidden - Access to this resource is not allowed with the current application token\n  * **SCG_ERROR_4030**\
+    \ - Forbidden          \n  * **SCG_ERROR_4031** - Attachment <parameter> was not found neither in\
+    \ cache nor in database            \n  * **SCG_ERROR_4032** - Attachment <parameter> is in incorrect\
+    \ state\n    <parameter>                       \n  * **SCG_ERROR_4033** - SenderId start date in the\
+    \ future: <parameter>           \n  * **SCG_ERROR_4034** - SenderId end date in the past: <parameter>\
+    \           \n  * **SCG_ERROR_4035** - Invalid sender ID state: <parameter>          \n  * **SCG_ERROR_4036**\
+    \ - Invalid sender ID ownership: <parameter>           \n  * **SCG_ERROR_4037** - <parameter> forbidden\
+    \ for attachment in state: <parameter>"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 1
+- status: 403
+  title: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403**\
+    \ - Forbidden - Access to this resource is not allowed with the current application token\n  * **SCG_ERROR_4030**\
+    \ - Forbidden          \n  * **SCG_ERROR_4031** - Attachment <parameter> was not found neither in\
+    \ cache nor in database            \n  * **SCG_ERROR_4032** - Attachment <parameter> is in incorrect\
+    \ state\n    <parameter>                       \n  * **SCG_ERROR_4033** - SenderId start date in the\
+    \ future: <parameter>           \n  * **SCG_ERROR_4034** - SenderId end date in the past: <parameter>\
+    \           \n  * **SCG_ERROR_4035** - Invalid sender ID state: <parameter>          \n  * **SCG_ERROR_4036**\
+    \ - Invalid sender ID ownership: <parameter>           \n  * **SCG_ERROR_4037** - <parameter> forbidden\
+    \ for attachment in state: <parameter>"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 6
+- status: 403
+  title: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403**\
+    \ - Forbidden - Access to this resource is not allowed with the current application token \n  * **SCG_ERROR_4030**\
+    \ - Forbidden          \n  * **SCG_ERROR_4031** - Attachment <parameter> was not found neither in\
+    \ cache nor in database            \n  * **SCG_ERROR_4032** - Attachment <parameter> is in incorrect\
+    \ state    <parameter>                      \n * **SCG_ERROR_4033** - SenderId start date in the future:\
+    \ <parameter>           \n  * **SCG_ERROR_4034** - SenderId end date in the past: <parameter>    \
+    \       \n  * **SCG_ERROR_4035** - Invalid sender ID state: <parameter>          \n  * **SCG_ERROR_4036**\
+    \ - Invalid sender ID ownership: <parameter>           \n  * **SCG_ERROR_4037** - <parameter> forbidden\
+    \ for attachment in state: <parameter>"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 1
+- status: 404
+  title: "Not found. The requested resource could not be found.\n* **404** - Error message contains details\
+    \ about the missing resource - Requested resource not found  \n* **4040** - Resource you are trying\
+    \ to fetch not found for <parameter>          \n* **4041** - Resource you are trying to update cannot\
+    \ be found for <parameter>        \n* **4042** - No mdn is found       \n* **4043** - The language\
+    \ code <language> is not found among the languages supported by Google Translate        \n* **4044**\
+    \ - Non-shortcode senderId is found.                 \n* **4045** - No sender id matches with recipient\
+    \ country.        \n* **4046** - Access token expired"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 5
+- status: 404
+  title: "Not found. The requested resource could not be found.\n* **404** - Error message contains details\
+    \ about the missing resource - Requested resource not found  \n* **4040** - Resource you are trying\
+    \ to fetch not found for <parameter>          \n* **4041** - Resource you are trying to update cannot\
+    \ be found for <parameter>        \n* **4042** - No mdn is found       \n* **4043** - The language\
+    \ code <language> is not found among the languages supported by Google Translate        \n* **4044**\
+    \ - Non-shortcode senderId is found.                 \n* **4045** - No sender id matches with recipient\
+    \ country.        \n* **4046** - Access token expired n"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 2
+- status: 404
+  title: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains\
+    \ details about the missing resource - Requested resource not found"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 132
+- status: 404
+  title: "Not found. The requested resource could not be found. \n * **404** - Error message contains\
+    \ details about the missing resource - Requested resource not found \n * **4040** - Resource you are\
+    \ trying to fetch not found for <parameter> \n * **4041** - Resource you are trying to update cannot\
+    \ be found for <parameter> \n * **4042** - No mdn is found \n * **4043** - The language code <language>\
+    \ is not found among the languages supported by Google Translate \n * **4044** - Non-shortcode senderId\
+    \ is found. \n * **4045** - No sender id matches with recipient country. \n * **4046** - Access token\
+    \ expired"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 1
+- status: 404
+  title: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains\
+    \ details about the missing resource - Requested resource not found\n  * **SCG_ERROR_4040**  - Resource\
+    \ you are trying to fetch not found for <parameter>          \n  * **SCG_ERROR_4041**  -  Resource\
+    \ you are trying to update cannot be found for <parameter>        \n  * **SCG_ERROR_4043**  -  The\
+    \ language code <language> is not found among the languages supported by Google Translate        \n\
+    \  * **SCG_ERROR_4045**  -  No sender id matches with recipient country.        \n  * **SCG_ERROR_4046**\
+    \  - Access token expired"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 8
+- status: 409
+  title: "Conflict. The request could not be completed due to a conflict with the current state of the\
+    \ target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource\
+    \ and retry.\n  * **1011** - Error message contains details about the key being violated - Unique\
+    \ key constraint violated\n  * **4090** - The access token could not be updated because resource is\
+    \ being updated"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 8
+- status: 409
+  title: "Conflict. The request could not be completed due to a conflict with the current state of the\
+    \ target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource\
+    \ and retry.\n  * **1011** - Error message contains details about the key being violated - Unique\
+    \ key constraint violated"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 127
+- status: 409
+  title: "Conflict. The request could not be completed due to a conflict with the current state of the\
+    \ target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource\
+    \ and retry.\n  * **1011** - Error message contains details about the key being violated - Unique\
+    \ key constraint violated\n  * **SCG_ERROR_4090** - The access token could not be updated because\
+    \ resource is being updated"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 8
+- status: 422
+  title: "Unprocessable Entity\n  * **4220** - Attachment content could not be downloaded from the provided\
+    \ URL. The error message is <error message>"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 8
+- status: 422
+  title: "Unprocessable Entity\n  * **SCG_ERROR_4220** - Attachment content could not be downloaded from\
+    \ the provided URL. The error message is <error message>"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 8
+- status: 500
+  title: "Server Error. An error has been encountered while processing this request.\n* **500** - Server\
+    \ Error - Internal server error. Please report\n* **5000** - Unexpected Server Error\n* **5001** -\
+    \ Unexpected Non Retriable Server Error          \n* **5002** - Message type restriction not implemented\
+    \ for: <messageType>            \n* **5003** - Error redirecting to proxy: <parameter>           \
+    \           \n* **5004** - Error downloading attachment from storage: <parameter>"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 6
+- status: 500
+  title: "Server Error. An error has been encountered while processing this request.\n* **500** - Server\
+    \ Error - Internal server error. Please report\n* **5000** - Unexpected Server Error\n* **5001** -\
+    \ Unexpected Non Retriable Server Error          \n* **5002** - Message type restriction not implemented\
+    \ for: <messageType>            \n* **5003** - Error redirecting to proxy: <parameter>           \
+    \           \n* **5004** - Error downloading attachment from storage: <parameter> n"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 1
+- status: 500
+  title: "Server Error. An error has been encountered while processing this request.\n\n  * **500** -\
+    \ Server Error - Internal server error. Please report"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 132
+- status: 500
+  title: "Server Error. An error has been encountered while processing this request. \n * **500** - Server\
+    \ Error - Internal server error. Please report \n * **5000** - Unexpected Server Error \n * **5001**\
+    \ - Unexpected Non Retriable Server Error \n * **5002** - Message type restriction not implemented\
+    \ for: <messageType> \n * **5003** - Error redirecting to proxy: <parameter> \n * **5004** - Error\
+    \ downloading attachment from storage: <parameter>"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 1
+- status: 500
+  title: "Server Error. An error has been encountered while processing this request.\n  * **500** - Server\
+    \ Error - Internal server error. Please report \n  * **SCG_ERROR_5000** - Unexpected Server Error\n\
+    \  * **SCG_ERROR_5002** - Message type restriction not implemented for: <messageType>            \n\
+    \  * **SCG_ERROR_5003** - Error redirecting to proxy: <parameter>                      \n  * **SCG_ERROR_5004**\
+    \ - Error downloading attachment from storage: <parameter>"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 1
+- status: 500
+  title: "Server Error. An error has been encountered while processing this request.\n\n  * **500** -\
+    \ Server Error - Internal server error. Please report\n  * **SCG_ERROR_5000** - Unexpected Server\
+    \ Error\n  * **SCG_ERROR_5002** - Message type restriction not implemented for: <messageType>    \
+    \        \n  * **SCG_ERROR_5003** - Error redirecting to proxy: <parameter>                      \n\
+    \  * **SCG_ERROR_5004** - Error downloading attachment from storage: <parameter>"
+  source_spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  occurrences: 7
+- status: 400
+  title: 'Bad Request.
+
+
+    Possible Error Codes:
+
+    * **NIS04000001** - Invalid Phone format - Non-retryable error code - **Suggested action:** Number
+    format should be corrected to be in E.164 format, i.e. +1XXXXXXXX70
+
+    * **NIS04000001** - Phone number attribute missing in the request - Non-retryable error code. - **Suggested
+    action:** update request to include phone number
+
+    * **NIS04000002** - Invalid Feature - Non-retryable error code - **Suggested action:** change the
+    feature value to be a supported value such as fs5 (or) fs2 (or) fs23 (or) fs1.
+
+    * **NIS04000003** - Canadian Number, Further authorization is required - Non-retryable error code  -
+    **Suggested action:** Please work with your Customer Support Executive to get Canadian numbers enabled.
+    .'
+  source_spec: openapi/syniverse-phone-number-verification-openapi.yml
+  occurrences: 1
+- status: 401
+  title: 'Unauthorized. The request requires user authentication.
+
+
+    Possible Error Codes:
+
+    * **NIS04010001** - Unauthorized - Non-retryable error code -
+
+    **Suggested actions:** please check the CompanyID is correct and the Bearer Token is valid.'
+  source_spec: openapi/syniverse-phone-number-verification-openapi.yml
+  occurrences: 1
+- status: 403
+  title: 'Forbidden. The user does not have permission to access the specified resource.
+
+
+    Possible Error Codes:
+
+    * **NIS04030001** - Forbidden operation - Non-retryable error code -  **Suggested Action:** Please
+    check you are not using a PUT, or DELETE operation
+
+
+    * **NIS04000003** - Invalid parameters provided. Please check the documentation for valid values -
+    Non-retryable error code -  **Suggested action:** Please check the parameter values against the documentation
+    and correct as needed.'
+  source_spec: openapi/syniverse-phone-number-verification-openapi.yml
+  occurrences: 1
+- status: 404
+  title: "Wrong URL is specified. \n**Suggested action:** Please check and correct the URL to match the\
+    \ PNV Lookup API specification\n\n    Example :\n    \n    <am:fault xmlns:am=\\\"http:xxx/xxx\\\"\
+    >\n      <am:code>404</am:code>\n      <am:type>Status report</am:type>\n      <am:message>Runtime\
+    \ Error</am:message>\n      <am:description>No matching resource found for given API Request</am:description>\n\
+    \    </am:fault>"
+  source_spec: openapi/syniverse-phone-number-verification-openapi.yml
+  occurrences: 1
+- status: 405
+  title: "Below error throws when the HTTP method set is not POST.\n**Suggested action:** Set HTTP method\
+    \ to POST.\n\n    Example :\n    \n    <am:fault xmlns:am=\"http:xxx/xxx\\\">\n    <am:code>405</am:code>\n\
+    \    <am:type>Status report</am:type>\n    <am:message>Runtime Error</am:message>\n    <am:description>Method\
+    \ not allowed for given API resource</am:description>\n    </am:fault>"
+  source_spec: openapi/syniverse-phone-number-verification-openapi.yml
+  occurrences: 1
+- status: 500
+  title: 'Server Error. An error has been encountered while processing this request.
+
+
+    Possible Error Codes:
+
+    * **NIS05000001** - Internal Server Error - Retryable error code. **Suggested action:** if problems
+    keeps re-occurring contact customer support.'
+  source_spec: openapi/syniverse-phone-number-verification-openapi.yml
+  occurrences: 1
+- status: 503
+  title: "Service Unavailable. \n\nN.B. No Error code or description are provided for this error.\n  \n\
+    \  **Suggested action:** Please check for any communcation related to service maintenace (or) contact\
+    \ customer support."
+  source_spec: openapi/syniverse-phone-number-verification-openapi.yml
+  occurrences: 1
+- status: 400
+  title: Malformed request submitted.
+  source_spec: openapi/syniverse-right-party-verification-openapi.yml
+  occurrences: 1
+  schema: errorResponse2
+- status: 500
+  title: Internal system error.
+  source_spec: openapi/syniverse-right-party-verification-openapi.yml
+  occurrences: 1
+- status: 400
+  title: Bad Request
+  source_spec: openapi/syniverse-token-management-openapi.yml
+  occurrences: 1
+- status: 500
+  title: Internal Server Error
+  source_spec: openapi/syniverse-token-management-openapi.yml
+  occurrences: 1

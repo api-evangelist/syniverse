@@ -1,0 +1,174 @@
+generated: '2026-07-25'
+method: derived
+source: >-
+  openapi/syniverse-omni-channel-messaging-openapi.yml (72 paths / 148 operations,
+  75 named definitions), openapi/syniverse-10dlc-openapi.yml,
+  openapi/syniverse-multi-factor-authentication-openapi.yml — entities taken from the
+  resource paths and tags, relationships from id-reference fields declared on the
+  schemas and from the nested sub-resource paths.
+summary: >-
+  The Syniverse Communication Gateway data model has three clusters that meet at the
+  Sender ID. Messaging is a two-level send model — a Message Request fans out into
+  one Message per recipient — decorated by Channels, Templates, Attachments and
+  Keywords. Contacts are a first-class CRM-ish cluster (Contact, Contact Group,
+  consent/address status, access tokens, fast-access rules) that messaging targets.
+  Voice is a parallel cluster (Call, Bridge, Conference, Conference Member, Digits
+  Collector). Everything hangs off an Application, which is the credential and
+  entitlement boundary. 10DLC campaign registration is a separate service whose
+  Campaign owns Longcodes and Number Pools, and it is joined to messaging only
+  loosely through the campaign_id carried on Messages and Keywords.
+entities:
+- name: Application
+  path: null
+  description: >-
+    The registered SDC application. Owns the consumer key/secret and access token and
+    is the tenancy boundary — application_id appears on Message Requests and as a
+    filter across list operations.
+  id_field: application_id
+- name: Sender ID
+  path: /messaging/sender_ids
+  description: A provisioned sending address (short code, long code, alphanumeric or channel-backed sender).
+  fields: [parent_id, class_id, type_id]
+- name: Channel
+  path: /messaging/channels
+  description: A logical sending surface that groups one or more Sender IDs; the unit the quickstart test channel uses.
+- name: Message Request
+  path: /messaging/message_requests/
+  description: A single send instruction addressed to one or more recipients or contact groups.
+  fields: [application_id, campaign_id, external_id]
+- name: Message
+  path: /messaging/messages
+  description: >-
+    One materialised message to one recipient, MT or MO, carrying the delivery state
+    machine (CREATED, SENT, DELIVERED, READ, CONVERTED, FAILED, EXPIRED, SCHEDULED,
+    TEST, PAUSED, DELETED for MT; RECEIVED, PROCESSED, DELETED for MO).
+  fields: [conversation_id, campaign_id, external_id, call_ids]
+- name: Scheduled Message Request
+  path: /messaging/message_requests/scheduled/{MessageRequest_Scheduled_ID}
+  description: A message request queued for future submission.
+- name: Message Template
+  path: /messaging/message_templates
+  description: Reusable message body with substitution values.
+- name: Attachment
+  path: /messaging/attachments
+  description: Binary media for MMS/RCS, with separate content and access-token sub-resources.
+- name: Keyword
+  path: /messaging/keywords
+  description: Inbound keyword rule bound to a sender and campaign.
+  fields: [sender_id, campaign_id]
+- name: Contact
+  path: /contacts
+  description: An addressable end user, with access tokens, application tokens and fast-access rules.
+  fields: [external_id]
+- name: Contact Group
+  path: /contact_groups
+  description: A named collection of Contacts used as a send target.
+  fields: [external_id]
+- name: Contact Address Status
+  path: /consent/contact_address_statuses
+  description: Consent / opt-out state for a contact address, including the optout operation and address history.
+  fields: [sender_id]
+- name: Access Token
+  path: /access_tokens
+  description: Scoped token issued against a resource.
+  fields: [resource_id]
+- name: Call
+  path: /calling/calls
+  description: An outbound or inbound voice call, with play_tts, play_audio and play_dtmf actions.
+  fields: [external_id, bridge_id]
+- name: Bridge
+  path: /calling/bridges
+  description: A bridge joining two or more calls.
+- name: Conference
+  path: /calling/conferences
+  description: A multi-party conference with members and media playback actions.
+  fields: [external_id]
+- name: Conference Member
+  path: /calling/conferences/{Conference_ID}/members
+  description: A participant in a conference, bound to a call.
+  fields: [external_id, call_id]
+- name: Digits Collector
+  path: /calling/calls/{Call_ID}/digits_collector
+  description: DTMF collection attached to an in-progress call.
+- name: Application Script
+  path: /assistant/communication_applications/applications/scripts
+  description: A communication-application script.
+- name: Application Instance
+  path: /assistant/communication_applications/instances
+  description: A running instance of a communication application, bound to a script and sender.
+  fields: [script_id, sender_id]
+- name: Application Instance Session
+  path: /assistant/communication_applications/instances/{Application_Instance_ID}/sessions
+  description: A session within an application instance, optionally bound to a call.
+  fields: [call_id, processor_id]
+- name: Connector
+  path: /connect/connectors
+  description: A channel connector (Facebook Messenger, WeChat, WhatsApp) bound to a sender.
+  fields: [external_id, sender_id]
+- name: Sender Import Job
+  path: /sender_ids_import
+  description: Bulk sender-address import, with input and receipts attachments.
+  fields: [import_attachment_id, receipts_attachment_id]
+- name: Contact Import / Export / Group Job
+  path: null
+  description: Bulk contact jobs referencing contact groups and attachments.
+  fields: [contact_group_id, import_attachment_id, source_group_id, target_group_id]
+- name: Campaign (10DLC)
+  path: /engage/tendlc-services/v2/campaigns
+  description: A registered US 10DLC campaign; owns longcodes and number-pool associations.
+  source: openapi/syniverse-10dlc-openapi.yml
+- name: Longcode (10DLC)
+  path: /engage/tendlc-services/v2/campaigns/{campaignId}/longcodes/{longcode}
+  description: A 10-digit long code attached to a campaign.
+- name: Number Pool (10DLC)
+  path: /engage/tendlc-services/v2/campaigns/{campaignId}/pools/{numberPoolId}
+  description: A pool of numbers associated to a campaign by pool type.
+- name: MFA Application
+  path: /applications
+  description: A Multi-Factor Authentication application defining token type, length, validity and delivery methods.
+  source: openapi/syniverse-multi-factor-authentication-openapi.yml
+- name: MFA User
+  path: /applications/{Application_ID}/users
+  description: An end user associated to an MFA application, with associate, validate and login_start actions.
+relationships:
+- {from: Message Request, to: Message, type: has_many, via: message_request_id, evidence: 'GET /messaging/message_requests/{MessageRequest_ID}/messages'}
+- {from: Message Request, to: Application, type: belongs_to, via: application_id}
+- {from: Message, to: Campaign, type: belongs_to, via: campaign_id}
+- {from: Channel, to: Sender ID, type: has_many, via: sender_ids, evidence: 'GET /messaging/channels/{Channel_ID}/sender_ids'}
+- {from: Sender ID, to: Sender ID, type: belongs_to, via: parent_id}
+- {from: Message, to: Attachment, type: has_many, via: attachments, evidence: 'GET /messaging/messages/{Message_ID}/attachments'}
+- {from: Keyword, to: Sender ID, type: belongs_to, via: sender_id}
+- {from: Keyword, to: Campaign, type: belongs_to, via: campaign_id}
+- {from: Contact Group, to: Contact, type: has_many, via: contact_id, evidence: 'GET /contact_groups/{Group_ID}/contacts'}
+- {from: Contact, to: Access Token, type: has_many, via: Contact_Access_Token_Id, evidence: 'GET /contacts/{Contact_ID}/access_tokens/{Contact_Access_Token_Id}'}
+- {from: Contact, to: Contact Application Token, type: has_many, via: Contact_Application_Token_Id}
+- {from: Contact Address Status, to: Sender ID, type: belongs_to, via: sender_id}
+- {from: Contact Import, to: Contact Group, type: belongs_to, via: contact_group_id}
+- {from: Contact Import, to: Attachment, type: belongs_to, via: import_attachment_id}
+- {from: Contact Export, to: Contact Group, type: belongs_to, via: contact_group_id}
+- {from: Contact Group Job, to: Contact Group, type: belongs_to, via: source_group_id}
+- {from: Contact Group Job, to: Contact Group, type: belongs_to, via: target_group_id}
+- {from: Call, to: Bridge, type: belongs_to, via: bridge_id}
+- {from: Bridge, to: Call, type: has_many, via: call_id, evidence: 'GET /calling/bridges/{Bridge_ID}/calls'}
+- {from: Conference, to: Conference Member, type: has_many, via: Member_ID}
+- {from: Conference Member, to: Call, type: belongs_to, via: call_id}
+- {from: Digits Collector, to: Call, type: belongs_to, via: Call_ID}
+- {from: Application Instance, to: Application Script, type: belongs_to, via: script_id}
+- {from: Application Instance, to: Sender ID, type: belongs_to, via: sender_id}
+- {from: Application Instance Session, to: Application Instance, type: belongs_to, via: Application_Instance_ID}
+- {from: Application Instance Session, to: Call, type: belongs_to, via: call_id}
+- {from: Connector, to: Sender ID, type: belongs_to, via: sender_id}
+- {from: Sender Import Job, to: Attachment, type: belongs_to, via: import_attachment_id}
+- {from: Access Token, to: resource, type: belongs_to, via: resource_id}
+- {from: Message, to: Call, type: has_many, via: call_ids}
+- {from: Campaign (10DLC), to: Longcode (10DLC), type: has_many, via: longcode}
+- {from: Campaign (10DLC), to: Number Pool (10DLC), type: has_many, via: numberPoolId}
+- {from: MFA Application, to: MFA User, type: has_many, via: User_ID}
+id_conventions:
+  style: opaque URL-safe base64-ish string identifiers
+  example: 1KJPMkuHQkair_o15etpmg
+  note: >-
+    No typed id prefixes (no cus_/msg_ style namespacing). Identifiers are opaque and
+    only distinguishable by the resource path they came from. external_id is a
+    customer-supplied correlation field present on most top-level entities.
+render: null

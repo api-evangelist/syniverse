@@ -1,0 +1,70 @@
+generated: '2026-07-25'
+method: generated
+source: >-
+  Generated from the eleven published Syniverse OpenAPI/Swagger definitions in openapi/,
+  the SDC documentation and support knowledge base, and the conventions/, errors/,
+  rate-limits/, sandbox/ and asyncapi/ artifacts in this repo. No provider-published
+  Agent Skills or AGENTS.md exist for Syniverse.
+note: >-
+  The SCG, Multi-Factor Authentication, Messaging Trust, RPV and ATO definitions declare
+  no operationIds, so those skills ground every step in the verbatim HTTP method + path
+  from the definition. Only the 10DLC v2, Phone Number Verification and 10DLC v1 specs
+  declare real operationIds; those are named directly.
+skills:
+- file: syniverse-send-sms-message.md
+  name: Send an SMS or MMS with the Syniverse Communication Gateway
+  api: openapi/syniverse-omni-channel-messaging-openapi.yml
+  operations:
+  - POST /messaging/message_requests/
+  - GET /messaging/message_requests/{MessageRequest_ID}
+  - GET /messaging/message_requests/{MessageRequest_ID}/messages
+  - GET /messaging/messages/{Message_ID}
+  - GET /messaging/channels
+  - GET /messaging/sender_ids
+- file: syniverse-verify-phone-number.md
+  name: Verify a phone number before you message it
+  api: openapi/syniverse-phone-number-verification-openapi.yml
+  operations:
+  - POST_lookup
+  - POST /v1/simCheck
+  - POST /v2/match
+- file: syniverse-register-10dlc-campaign-numbers.md
+  name: Provision numbers on a US 10DLC campaign
+  api: openapi/syniverse-10dlc-openapi.yml
+  operations:
+  - getCampaigns
+  - getCampaign
+  - create10DLCNumberV2
+  - delete10DLCNumberV2
+  - campaignWithNumberPoolAssociationV2
+  - campaignWithNumberPoolRemovalV2
+  - suspendCampaign
+  - resumeCampaign
+- file: syniverse-send-otp-and-validate.md
+  name: Deliver and validate a one-time passcode
+  api: openapi/syniverse-multi-factor-authentication-openapi.yml
+  operations:
+  - POST /applications
+  - POST /applications/{Application_ID}/users/{User_ID}/associate
+  - POST /applications/{Application_ID}/users/{User_ID}/login_start
+  - POST /applications/{Application_ID}/users/{User_ID}/validate
+- file: syniverse-refresh-sdc-access-token.md
+  name: Keep an SDC application access token valid
+  api: openapi/syniverse-token-management-openapi.yml
+  operations:
+  - GET /saop-rest-data/v1/apptoken-refresh
+- file: syniverse-screen-messaging-for-spam.md
+  name: Screen inbound messaging traffic for spam and abuse
+  api: openapi/syniverse-messaging-trust-resolve-openapi.yml
+  operations:
+  - POST /v1/txt/resolve
+  - POST /v1/mms/resolve
+  - POST /spam/report
+- file: syniverse-subscribe-to-events.md
+  name: Subscribe to Syniverse events instead of polling
+  api: null
+  operations:
+  - GET /topics
+  - POST /topic-subscriptions
+  - POST /delivery-configurations
+  - GET /event-deliveries

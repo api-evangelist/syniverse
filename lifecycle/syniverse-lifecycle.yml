@@ -1,0 +1,85 @@
+generated: '2026-07-25'
+method: searched
+source: >-
+  https://sdcdocumentation.syniverse.com/ (API reference sections and the published
+  definition files), https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference,
+  https://sdcdocumentation.syniverse.com/index.php/reporting/api-standards, plus live
+  probes for a status page on 2026-07-25
+summary: >-
+  Syniverse versions in the URI path and retires a major version by moving its
+  documentation into an explicitly labelled deprecated section — the 10DLC v1 API
+  still has a published Swagger definition under "API Version 1 (Deprecated)". What
+  it does not publish is a written deprecation or sunset policy, an SLA, RFC 8594
+  Deprecation/Sunset header support, or a public status page. status.syniverse.com
+  does not resolve and /status on the corporate site is a 404; incident and uptime
+  communication happens through the support portal and account teams, not a public
+  status surface.
+versioning:
+  scheme: uri-path
+  docs: https://sdcdocumentation.syniverse.com/index.php/reporting/api-standards
+  current_by_service:
+  - {service: SCG omni-channel messaging, version: v1, path: /scg-external-api/api/v1}
+  - {service: Multi-Factor Authentication, version: v1, path: /scg-external-api/api/v1}
+  - {service: Phone Number Verification, version: v3, path: /numberidentity/v3}
+  - {service: 10DLC, version: v2 (spec 2.3), path: /engage/tendlc-services/v2}
+  - {service: 10DLC Number Pool, version: v1, path: /engage/tendlc-services/v1, deprecated: true}
+  - {service: Event Subscription Service, version: v1, path: /ess/v1}
+  - {service: Messaging Trust Resolve, version: v1, path: /api/v1}
+  - {service: Right Party Verification, version: v2, path: /v2/match}
+  - {service: Account Takeover Detection, version: v1, path: /v1/simCheck}
+  - {service: SDC Access Token Management, version: v1, path: /saop-rest-data/v1}
+  - {service: Whitelisting Service, version: v1}
+published_definition_revisions:
+  note: >-
+    Derived from the revision markers Syniverse carries in the filenames of the
+    definitions it publishes on the documentation host. This is the closest thing
+    to a changelog the platform exposes — there is no dated changelog or release-notes
+    page anywhere on developer.syniverse.com, sdcdocumentation.syniverse.com or the
+    support knowledge base.
+  revisions:
+  - {service: SCG omni-channel messaging, revision: v83, dated: '2025-10-31', file: sms_mms_2025-10-31_v83.yaml}
+  - {service: 10DLC, revision: v2.3 External, dated: '2025-12-04', file: 10DLC_API_Spec_v2.3-External_2025_12_04.yaml}
+  - {service: Messaging Trust Resolve, revision: V8, dated: '2025-05-12', file: Messaging_Trust_Resolve_2025_05_12_V8.yaml}
+  - {service: Messaging Trust Spam Datafeed, revision: V4, dated: '2025-05-12', file: Messaging_Trust_Datafeed_2025_05_12_V4.yaml}
+  - {service: Phone Number Verification, revision: v2, dated: '2023-08-10', file: pnv_snl_10Aug23v2.yaml}
+  - {service: Multi-Factor Authentication, revision: v8, dated: null, file: test_smfa_api_v8.yaml}
+  - {service: Right Party Verification, revision: v1 (API 4.3), dated: null, file: RPV_API_Reference_Guide_v1.yaml}
+  - {service: Account Takeover Detection, revision: v1 (API 4.3), dated: null, file: ATO_API_Reference_Guide_v1.yaml}
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  practice: >-
+    Superseded majors are kept published under a documentation section explicitly
+    titled "API Version 1 (Deprecated)". No sunset date, migration window or
+    notification commitment is published.
+  deprecated_surfaces:
+  - api: Syniverse 10DLC Number Pool API v1
+    spec: openapi/syniverse-10dlc-number-pool-openapi.yml
+    docs: https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+    superseded_by: openapi/syniverse-10dlc-openapi.yml
+    operations:
+    - create10DLCNumberUsingPOST
+    - delete10DLCNumberUsingDELETE
+    - campaignWithNumberPoolAssociationUsingPOST
+    - campaignWithNumberPoolRemovalUsingDELETE
+deprecated_operations: []
+sla:
+  url: null
+  uptime_target: null
+  note: No public SLA or uptime commitment is published for the Developer Community APIs.
+status_page:
+  url: null
+  probes:
+  - {url: 'https://status.syniverse.com/', result: DNS does not resolve}
+  - {url: 'https://trust.syniverse.com/', result: DNS does not resolve}
+  - {url: 'https://www.syniverse.com/status', status: 404}
+  note: >-
+    No public status page. Operational communication runs through the support portal
+    at https://sdcsupport.syniverse.com/hc/en-us.
+token_lifecycle:
+  initial_access_token_ttl: 1 hour
+  after_first_regeneration: no expiry
+  refresh: GET /saop-rest-data/v1/apptoken-refresh
+  docs: https://sdcdocumentation.syniverse.com/index.php/reporting/security

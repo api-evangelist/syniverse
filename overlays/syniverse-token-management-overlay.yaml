@@ -1,0 +1,22 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Syniverse SDC Application Access Token Management API
+  version: 1.0.0
+extends: openapi/syniverse-token-management-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: syniverse
+    x-apievangelist-source: openapi/syniverse-token-management-openapi.yml
+    x-apievangelist-artifacts:
+      authentication: authentication/syniverse-authentication.yml
+      conventions: conventions/syniverse-conventions.yml
+      errors: errors/syniverse-error-codes.yml
+      lifecycle: lifecycle/syniverse-lifecycle.yml
+      rate_limits: rate-limits/syniverse-rate-limits.yml
+      sandbox: sandbox/syniverse-sandbox.yml
+      events: asyncapi/syniverse-event-manager-webhooks.yml
+      data_model: data-model/syniverse-data-model.yml
+      agentic_access: agentic-access/syniverse-agentic-access.yml
+    x-apievangelist-idempotency: false
+    x-apievangelist-error-format: proprietary (error_code / error_description) — not RFC 9457

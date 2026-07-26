@@ -1,0 +1,88 @@
+generated: '2026-07-25'
+method: searched
+source: >-
+  https://sdcdocumentation.syniverse.com/index.php/reporting/event-manager/overview,
+  https://sdcdocumentation.syniverse.com/index.php/reporting/event-manager/resources,
+  https://sdcdocumentation.syniverse.com/index.php/reporting/event-manager/user-guide
+spec_type: null
+asyncapi_published: false
+docs: https://sdcdocumentation.syniverse.com/index.php/reporting/event-manager/overview
+api_base_url: https://api.syniverse.com/ess/v1
+summary: >-
+  Syniverse's event surface is Event Manager, exposed as the Event Subscription
+  Service (ESS) API. It is a subscribe-then-deliver model rather than a per-resource
+  webhook registration: a customer subscribes an application to a topic, creates a
+  delivery configuration describing where and how events should land, and Syniverse
+  pushes matching events to that endpoint over REST — either near real time or
+  aggregated on a cron schedule into JSON files. Delivery attempts are themselves
+  queryable resources, which is unusually observable for a CPaaS webhook layer. No
+  AsyncAPI document is published; the API is documented as a rendered RAML console
+  with no machine-readable definition available for download, so this artifact
+  captures the event catalog rather than a harvested spec.
+delivery:
+  protocols: [REST]
+  formats: [JSON, XML]
+  modes:
+  - {mode: near-real-time, description: Events pushed to a customer endpoint as they occur}
+  - {mode: scheduled, description: Events aggregated into JSON files on a simple or cron schedule}
+  throttling: Optional rate limiting on a delivery configuration, expressed as events per minute
+  authentication_to_customer_endpoint:
+  - {type: NONE, description: No authentication}
+  - {type: BASIC, description: HTTP Basic username/password}
+  - {type: OAUTH, description: 'OAuth 2.0 — client_credentials, password or refresh_token'}
+  delivery_states: [SUCCESS, PENDING, RETRY, FAILED]
+  tracking_endpoint: '/event-deliveries/{EVT_ID}:{DEL_CFG_ID}/tracking'
+topics:
+- topic: SCG-Message
+  domain: Omni-channel messaging
+  event_types:
+  - {name: message_state_change, description: 'Message delivery state transition (CREATED, SENT, DELIVERED, READ, CONVERTED, FAILED, EXPIRED)'}
+  - {name: mo_message_received, description: Inbound (mobile originated) message received}
+- topic: NIS-Events
+  domain: Number identity
+  event_types:
+  - {name: porting_event, description: Monitored phone number was ported to another carrier}
+  - {name: deactivation_event, description: Monitored phone number was deactivated}
+- topic: MSS-Messages
+  domain: Media Storage Service
+  event_types:
+  - {name: event_file_complete, description: File operation completed}
+- topic: SCG-Voice-Call
+  domain: Voice
+  event_types:
+  - {name: call state events, description: Telephony call state transitions}
+  - {name: DTMF events, description: DTMF digit signals collected during a call}
+- topic: ABA-Messages
+  domain: Batch Automation
+  event_types:
+  - {name: batch job lifecycle events, description: Batch job state transitions}
+resources:
+- /topics
+- /topic-subscriptions
+- /subscriptions
+- /dump-subscriptions
+- /delivery-configurations
+- /delivery-configurations/{del-config-id}
+- /event-types
+- /event-deliveries
+- /event-delivery-attempts
+- /handled-event-deliveries
+- /event-buffer-files
+- /dictionaries
+- /authentication
+- /tracking
+- /summary
+- /mdn
+failure_codes:
+  note: >-
+    Asynchronous message failures are delivered through this channel as numeric
+    failure codes on message_state_change events.
+  catalog: errors/syniverse-error-codes.yml
+machine_readable_definition:
+  asyncapi: false
+  openapi: false
+  raml_console: https://sdcdocumentation.syniverse.com/index.php/reporting/event-manager/resources
+  note: >-
+    The ESS API is the one Syniverse Developer Community product with no downloadable
+    definition. Eleven other services publish OpenAPI or Swagger; this one is a
+    rendered RAML console only. Nothing was fabricated to fill the gap.

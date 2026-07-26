@@ -1,0 +1,144 @@
+generated: '2026-07-25'
+method: searched
+source: >-
+  Maven Central (search.maven.org), npm registry, PyPI, RubyGems, Packagist, NuGet
+  and the Syniverse GitHub organization (https://github.com/Syniverse), probed
+  2026-07-25.
+summary: >-
+  Syniverse ships first-party client libraries for the Syniverse Communication
+  Gateway (SCG) messaging API, but the registry-published surface is much smaller
+  than the GitHub surface. Only the Java/Android SDKs are published to Maven
+  Central under the com.syniverse.sdk group, and only the Cordova push plugin is
+  published to npm under the @syniverse scope. Every other language binding
+  (Python, PHP, Ruby, C#, C++, Objective-C) is source-only on GitHub with no
+  registry artifact. Nothing is published to PyPI, RubyGems, Packagist or NuGet.
+  The published libraries are old — the newest Maven artifact dates to 2021 and
+  the newest npm release to 2017 — while the OpenAPI definitions they wrap carry
+  2025 and 2026 revision dates, so the SDK layer trails the contract layer.
+packages:
+- language: java
+  registry: maven-central
+  name: com.syniverse.sdk:scg-messaging-api
+  version: 2.2.3.1060
+  url: https://central.sonatype.com/artifact/com.syniverse.sdk/scg-messaging-api
+  install: 'implementation "com.syniverse.sdk:scg-messaging-api:2.2.3.1060"'
+  official: true
+  released: '2021-02-09'
+  source: https://github.com/Syniverse/Messaging-Java
+  note: Java SDK for the SCG messaging APIs. Six versions published, 2020-2021.
+- language: java
+  registry: maven-central
+  name: com.syniverse.sdk:scg-messaging-android-api
+  version: 1.0.2.950
+  url: https://central.sonatype.com/artifact/com.syniverse.sdk/scg-messaging-android-api
+  install: 'implementation "com.syniverse.sdk:scg-messaging-android-api:1.0.2.950"'
+  official: true
+  released: '2020-10-22'
+  note: Android build of the SCG messaging SDK.
+- language: javascript
+  registry: npm
+  name: '@syniverse/cordova-plugin-scg-push'
+  version: 1.0.3
+  url: https://www.npmjs.com/package/@syniverse/cordova-plugin-scg-push
+  install: cordova plugin add @syniverse/cordova-plugin-scg-push
+  official: true
+  released: '2017-08-18'
+  source: https://github.com/Syniverse/Push-Notification-SDK
+  note: >-
+    Cordova plugin wrapping the SCG Push Notification SDK. Published under the
+    @syniverse npm scope and pointing at the Syniverse GitHub repo.
+source_only_libraries:
+- language: javascript
+  name: Messaging-Node.js
+  url: https://github.com/Syniverse/Messaging-Node.js
+  official: true
+  registry: null
+  updated: '2023-04-17'
+- language: php
+  name: Messaging-PHP
+  url: https://github.com/Syniverse/Messaging-PHP
+  official: true
+  registry: null
+  updated: '2023-04-19'
+- language: python
+  name: Messaging-Python
+  url: https://github.com/Syniverse/Messaging-Python
+  official: true
+  registry: null
+  updated: '2018-10-08'
+- language: java
+  name: Messaging-Java
+  url: https://github.com/Syniverse/Messaging-Java
+  official: true
+  registry: maven-central
+  updated: '2022-11-16'
+- language: cpp
+  name: Messaging-C-Plus-Plus
+  url: https://github.com/Syniverse/Messaging-C-Plus-Plus
+  official: true
+  registry: null
+  updated: '2017-08-21'
+- language: csharp
+  name: Messaging-C-Sharp
+  url: https://github.com/Syniverse/Messaging-C-Sharp
+  official: true
+  registry: null
+  updated: '2017-09-06'
+- language: ruby
+  name: Messaging-Ruby
+  url: https://github.com/Syniverse/Messaging-Ruby
+  official: true
+  registry: null
+  updated: '2017-08-21'
+- language: objective-c
+  name: Push-Notification-SDK
+  url: https://github.com/Syniverse/Push-Notification-SDK
+  official: true
+  registry: npm
+  updated: '2017-11-10'
+quickstarts:
+- name: QuickStart-SendSMS-Python
+  url: https://github.com/Syniverse/QuickStart-SendSMS-Python
+- name: QuickStart-PhoneNumberVerification-Python
+  url: https://github.com/Syniverse/QuickStart-PhoneNumberVerification-Python
+  updated: '2026-04-01'
+- name: QuickStart-BatchNumberLookup-Python
+  url: https://github.com/Syniverse/QuickStart-BatchNumberLookup-Python
+  updated: '2026-04-01'
+- name: QuickStart-BatchNumberMonitoring-Python
+  url: https://github.com/Syniverse/QuickStart-BatchNumberMonitoring-Python
+  updated: '2026-04-01'
+- name: QuickStart-BatchAutomation-Java
+  url: https://github.com/Syniverse/QuickStart-BatchAutomation-Java
+- name: Example-CheckNumberThenSendSMS-Python
+  url: https://github.com/Syniverse/Example-CheckNumberThenSendSMS-Python
+- name: Example-SDC-Token-Refresh
+  url: https://github.com/Syniverse/Example-SDC-Token-Refresh
+  note: Java and Python 2/3 examples for regenerating an expired SDC access token.
+- name: Example-2WaySMS-TextBot-Python
+  url: https://github.com/Syniverse/Example-2WaySMS-TextBot-Python
+- name: Example-BatchOutputFileDownload-Python
+  url: https://github.com/Syniverse/Example-BatchOutputFileDownload-Python
+- name: Example-BatchOutputFileDownload-Java
+  url: https://github.com/Syniverse/Example-BatchOutputFileDownload-Java
+- name: Voice-and-Messaging-Sample-Curls
+  url: https://github.com/Syniverse/Voice-and-Messaging-Sample-Curls
+registries_probed:
+- registry: maven-central
+  query: syniverse
+  hits: 2
+- registry: npm
+  query: syniverse
+  hits: 1
+- registry: pypi
+  query: syniverse / syniverse-scg / syniverse-sdk
+  hits: 0
+- registry: rubygems
+  query: syniverse
+  hits: 0
+- registry: packagist
+  query: syniverse
+  hits: 0
+- registry: nuget
+  query: syniverse
+  hits: 0

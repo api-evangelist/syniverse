@@ -1,0 +1,115 @@
+generated: '2026-07-25'
+method: searched
+source: >-
+  Derived from the securitySchemes/securityDefinitions across openapi/syniverse-10dlc-number-pool-openapi.yml,
+  openapi/syniverse-10dlc-openapi.yml, openapi/syniverse-messaging-trust-datafeed-openapi.yml,
+  openapi/syniverse-messaging-trust-resolve-openapi.yml, openapi/syniverse-phone-number-verification-openapi.yml
+  and openapi/syniverse-whitelisting-service-openapi.json, then upgraded from the published
+  Syniverse Developer Community security and quickstart documentation.
+docs:
+- https://sdcdocumentation.syniverse.com/index.php/reporting/security
+- https://sdcdocumentation.syniverse.com/index.php/omni-channel/getting-started/sms-mms-quickstart
+- https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+summary:
+  model: >-
+    A single SDC application access token, presented as an HTTP bearer token, is the
+    dominant credential across the entire Syniverse Developer Community estate. Syniverse
+    describes the model as OAuth 2.0 (RFC 6749) with bearer tokens (RFC 6750), but there
+    is no authorization endpoint, no scope surface and no discovery document — in practice
+    it is a long-lived application credential, not an OAuth authorization flow. True
+    client-credentials OAuth appears on exactly one product family (Messaging Trust), and
+    a legacy implicit flow is declared on the Whitelisting Service.
+  types: [apiKey, http, oauth2]
+  api_key_in: [header]
+  oauth2_flows: [clientCredentials, implicit]
+  primary_header: 'Authorization: Bearer {SDC application access token}'
+  scopes_published: false
+  openid_connect: false
+  mtls: false
+  ciba: false
+credentials:
+  issued_per: registered SDC application
+  components: [consumer key, consumer secret, access token]
+  initial_access_token_ttl: 1 hour
+  after_first_regeneration: does not expire
+  regeneration: unlimited — regenerate as often as needed
+  rotation:
+    access_token: >-
+      Regenerate via GET /saop-rest-data/v1/apptoken-refresh. A compromised access token
+      does not require a new application.
+    consumer_key_secret: >-
+      No rotation path. A compromised consumer key or secret requires creating an entirely
+      new application with fresh credentials.
+  expiry_signal: 'SCG_ERROR_4046 — "Access token expired" (HTTP 404)'
+transport:
+  https_only: true
+  tls_version: TLS 1.2 (stated as the currently supported standard)
+schemes:
+- name: Bearer
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Use Bearer {Syniverse SDC Application Token} for example "Bearer aaaaa-aabb-bbaa-bbbbbb"
+  sources:
+  - openapi/syniverse-10dlc-number-pool-openapi.yml
+- name: SyniverseToken
+  type: http
+  scheme: bearer
+  bearerFormat: SDC
+  sources:
+  - openapi/syniverse-10dlc-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/syniverse-phone-number-verification-openapi.yml
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.mt1.messaging-trust.syniverse.com/oauth2/token
+    scopes: 0
+  sources:
+  - openapi/syniverse-messaging-trust-datafeed-openapi.yml
+  - openapi/syniverse-messaging-trust-resolve-openapi.yml
+  note: >-
+    The only true OAuth 2.0 client-credentials surface. No scopes are declared. The token
+    host does not resolve in public DNS — it is a customer-provisioned surface.
+- name: default
+  type: oauth2
+  flows:
+  - flow: implicit
+    authorizationUrl: https://beta.api.syniverse.com/token
+    scopes: 0
+  sources:
+  - openapi/syniverse-whitelisting-service-openapi.json
+  note: >-
+    Legacy WSO2 gateway declaration pointing at a beta host. The implicit flow is
+    deprecated by OAuth 2.0 Security Best Current Practice; treat this declaration as
+    stale rather than as guidance.
+undeclared_surfaces:
+- api: Syniverse Omni-Channel Messaging (SCG)
+  spec: openapi/syniverse-omni-channel-messaging-openapi.yml
+  note: >-
+    The Swagger declares no securityDefinitions at all, but the gateway enforces auth —
+    an anonymous GET to /scg-external-api/api/v1/messaging/message_requests returns 401.
+    The quickstart documents the same Authorization: Bearer header used everywhere else.
+- api: Syniverse Multi-Factor Authentication
+  spec: openapi/syniverse-multi-factor-authentication-openapi.yml
+  note: No securityDefinitions declared; same SDC bearer-token model per the documentation.
+- api: Right Party Verification / Account Takeover Detection
+  spec: openapi/syniverse-right-party-verification-openapi.yml, openapi/syniverse-account-takeover-detection-openapi.yml
+  note: No securitySchemes declared in either definition; both publish a sandbox host only.
+inbound_authentication:
+  context: Event Manager delivering events to a customer endpoint
+  options: [NONE, BASIC, 'OAUTH (client_credentials, password, refresh_token)']
+  payload_signing: false
+  note: >-
+    Syniverse does not sign event payloads — there is no HMAC signature header. Endpoint
+    authentication is the only verification mechanism available to a webhook consumer.
+discovery:
+  openid_configuration: 404 on every host
+  oauth_authorization_server: 404 on every host
+  oauth_protected_resource: 404 on every host
+  see_also: well-known/syniverse-well-known.yml
