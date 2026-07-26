@@ -1,0 +1,262 @@
+openapi: 3.0.0
+info:
+  version: '4.3'
+  title:  Syniverse Account Takeover Detection API
+  description:  Syniverse Account Takeover Detection API.
+servers:
+  - url: https://mobileidsandbox.syniverse.com/cigateway/id
+paths:
+  /v1/simCheck:
+    post:
+      tags:
+        - Detect
+      summary: Account Takeover Detection
+      description: An API that allows an enterpise to check if the end user MSISDN-to-SIM pairing has changed within a preconfigured window. The window is defined in hours and is configured at the time of onboarding by Syniverse Implementation Team. Call forwarding can also be checked for the MSISDN, if desired. Possible values include:<br>Y = SIM changed or call forwarding is enabled, if configured<br>N = SIM not changed and call forwarding disabled, if configured<br>Error -5061 = Insufficient information to determine response
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/CommonContentTypeHeader'
+        - $ref: '#/components/parameters/CommonAcceptHeader'
+        - $ref: '#/components/parameters/RequestTime'
+      requestBody:
+        description: The basic body required to obtain a SIM change date response.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/simCheckRequest'
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/simCheckSuccessResponse'
+              examples:
+                SIM changed:
+                  value:
+                    results:
+                      correlationId: 984681AFDB698C67
+                      responseId: 6496849684CBAF87A9
+                      changeDetected: 'Y'
+                  description: Response if the MSISDN-to-SIM pairing has changed.
+                  summary: SIM changed
+                SIM not changed:
+                  value:
+                    results:
+                      correlationId: 984681AFDB698C67
+                      responseId: 6496849684CBAF87B0
+                      changeDetected: 'N'
+                  description: Response if MSISDN-to-SIM pairing has not changed.
+                  summary: SIM not changed
+        '400':
+          description: Malformed request submitted, or insufficient data to make a determination.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/simCheckErrorResponse'
+        '500':
+          description: Internal system error.
+components:
+  parameters:
+    CommonAcceptHeader:
+      name: Accept
+      in: header
+      required: true
+      example: application/json
+      description: Media type for the response. Only application/json is supported.
+      schema:
+        type: string
+        default: application/json
+    CommonContentTypeHeader:
+      name: Content-Type
+      in: header
+      required: true
+      example: application/json
+      description: Media type sent in the request. Only application/json is supported.
+      schema:
+        type: string
+        default: application/json
+    RequestTime:
+      name: RequestTime
+      in: header
+      required: true
+      example: '2020-09-24T09:33:43+00:00'
+      description: Current date time when request is sent.
+      schema:
+        type: string
+        format: date-time
+        description: Use RFC3339 format e.g. 2020-09-24T09:33:43+00:00
+        example: '2020-09-24T09:33:43+00:00'
+        default: '2020-09-24T09:33:43+00:00'
+    Authorization:
+      name: Authorization
+      in: header
+      required: true
+      description: The security key to use for ATO & RPV APIs.
+      schema:
+        type: string
+        default: y5jBqXWLzEF4OgK61EbJ4jbEesmxE5No
+  schemas:
+    simCheckRequest:
+      properties:
+        merchantId:
+          description: Your merchant ID that will be provided to you during onboarding.
+          example: 02200013919FB4
+          default: 02200013919FB4
+          type: string
+          maxLength: 30
+        subMerchantId:
+          description: Used by resellers, an ID that is assigned to the end merchant.
+          example: ''
+          default: ''
+          type: string
+          maxLength: 30
+        consentId:
+          description: Unique ID for the consent that is traceable if consent audit is required.
+          type: string
+          maxLength: 128
+          example: 9783471AFDB69NH34
+          default: 9783471AFDB69NH34
+        consentTimeStamp:
+          description: The time stamp that the consentId was generated. Format must be as date time RFC3339.
+          type: string
+          example: '2020-08-20T12:00:57+00:00'
+          default: '2020-08-20T12:00:57+00:00'
+          format: date-time
+        msisdn:
+          type: string
+          example: '+14444445555'
+          default: '+14444445555'
+          description: The MSISDN of the user that you want to check. Number to be provided in E.164 format.
+        correlationId:
+          description: A nonce used by the enterprise that is unique to this transaction.
+          type: string
+          minLength: 8
+          maxLength: 80
+          example: 984681AFDB698C67
+          default: 984681AFDB698C67
+      required:
+        - merchantId
+        - consentId
+        - msisdn
+        - correlationId
+        - consentTimeStamp
+    simCheckSuccessResponse:
+      properties:
+        results:
+          type: object
+          properties:
+            correlationId:
+              description: A nonce used by the enterprise that is unique to this transaction.
+              type: string
+              minLength: 8
+              maxLength: 80
+              example: 984681AFDB698C67
+            responseId:
+              description: A nonce used by Syniverse that is unique to this transaction.
+              type: string
+              maxLength: 30
+              example: 6496849684CBAF87A9
+            changeDetected:
+              description: An indication of if the MSISDN-to-SIM pairing has changed within the preconfigured window or call forwarding is enabled, if configured for use for the enterprise.
+              type: string
+              maxLength: 5
+              enum:
+                - 'Y'
+                - 'N'
+              example: 'Y'
+    simCheckErrorResponse:
+      properties:
+        error:
+          type: object
+          properties:
+            correlationId:
+              description: A nonce used by the enterprise that is unique to this transaction.
+              type: string
+              minLength: 8
+              maxLength: 80
+              example: 984681AFDB698C67
+            responseId:
+              description: A nonce used by Syniverse that is unique to this transaction.
+              type: string
+              maxLength: 30
+              example: 6496849684CBAF87H1
+            code:
+              description: A Syniverse code regarding the error. Refer to the API guide for a complete list.
+              type: string
+              example: '-5061'
+            description:
+              description: Description of code.
+              type: string
+              maxLength: 256
+              example: Insufficient information to determine a response.
+    errorResponse1:
+      properties:
+        error:
+          type: object
+          properties:
+            correlationId:
+              description: A nonce used by the enterprise that is unique to this transaction.
+              type: string
+              minLength: 8
+              maxLength: 80
+              example: 984681AFDB698C67
+            referenceId:
+              description: A nonce used by Syniverse that is unique to this transaction.
+              type: string
+              maxLength: 30
+              example: 6496849684CBAF87A9
+            code:
+              description: A Syniverse` code regarding the error. Refer to the API guide for a complete list.
+              type: string
+              example: '-5003'
+            description:
+              description: Description of code.
+              type: string
+              maxLength: 256
+              example: A required parameter is missing.
+    errorResponse2:
+      properties:
+        error:
+          type: object
+          properties:
+            correlationId:
+              description: A nonce used by the enterprise that is unique to this transaction.
+              type: string
+              minLength: 8
+              maxLength: 80
+              example: 984681AFDB698C67
+            responseId:
+              description: A nonce used by Syniverse that is unique to this transaction.
+              type: string
+              maxLength: 30
+              example: 6496849684CBAF87A9
+            code:
+              description: A Syniverse code regarding the error. Refer to the API guide for a complete list.
+              type: string
+              example: '-5003'
+            description:
+              description: Description of code.
+              type: string
+              maxLength: 256
+              example: A required parameter is missing.
+    errorResponse3:
+      properties:
+        error:
+          type: object
+          properties:
+            correlationId:
+              description: A nonce used by the enterprise that is unique to this transaction.
+              type: string
+              minLength: 8
+              maxLength: 80
+              example: 984681AFDB698C67
+            code:
+              description: A Syniverse code regarding the error. Refer to the API guide for a complete list.
+              type: string
+              example: '-5003'
+            description:
+              description: Description of code.
+              type: string
+              maxLength: 256
+              example: A required parameter is missing.

@@ -1,0 +1,126 @@
+openapi: 3.0.1
+info:
+  title: MT Spam Datafeed
+  description: Spam reporting API suite
+  version: 1.0.0
+servers:
+  - url: https://api.mt1.messaging-trust.syniverse.com/api/v1
+security:
+  - OAuth2: []
+paths:
+  /spam/report:
+    post:
+      tags:
+        - reports
+      summary: Submit spam reports
+      description: Submit a list of spam reports
+      requestBody:
+        description: List of spam reports
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/endpoint.SpamReportRequest'
+        required: true
+      responses:
+        '202':
+          description: Accepted
+          headers:
+            x-request-id:
+              description: example value - 94bf014e-580b-49ba-b86e-c2fc0920204d
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/endpoint.SpamReportResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/endpoint.SpamReportError'
+        '404':
+          description: Not Found
+          content: {}
+        '415':
+          description: Unsupported Media Type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/endpoint.SpamReportError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/endpoint.SpamReportError'
+      x-codegen-request-body-name: reports
+components:
+  schemas:
+    endpoint.Report:
+      required:
+        - message
+        - report_id
+        - report_ts
+        - sender
+        - source
+      type: object
+      properties:
+        message:
+          type: string
+          example: Hello, activate your account at www.hackz.ai today!
+        protocol:
+          type: string
+          example: SMS
+        receipt_ts:
+          type: string
+          example: '2006-01-02T15:04:05.000Z'
+        report_id:
+          type: string
+          example: SPM_RPT_1
+        report_ts:
+          type: string
+          example: '2006-01-02T15:04:05.000Z'
+        sender:
+          type: string
+          example: '+12125551212'
+        source:
+          type: string
+          example: '7727'
+      description: Spam report information
+    endpoint.SpamReportError:
+      type: object
+      properties:
+        batch_id:
+          type: string
+          example: 588de77e-5055-49f6-91de-441d672a0f9c
+        error:
+          type: string
+          example: error description
+    endpoint.SpamReportRequest:
+      required:
+        - reports
+      type: object
+      properties:
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/endpoint.Report'
+      description: List of spam reports
+    endpoint.SpamReportResponse:
+      type: object
+      properties:
+        batch_id:
+          type: string
+          example: 588de77e-5055-49f6-91de-441d672a0f9c
+        count:
+          type: integer
+          example: 10
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.mt1.messaging-trust.syniverse.com/oauth2/token
+          scopes: {}
+x-original-swagger-version: '2.0'

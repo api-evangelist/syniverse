@@ -1,0 +1,118 @@
+openapi: 3.0.0
+info:
+  title: SDC Application Access Token Management
+  description: API enables regeneration of an access token associated with an SDC
+    application.
+  version: "1.0"
+servers:
+- url: /
+paths:
+  /saop-rest-data/v1/apptoken-refresh:
+    get:
+      tags:
+      - Regenerate access token
+      summary: Regenerate access token associated with an SDC application.
+      description: Regenerate access token associated with a SDC application. After
+        the access token is successfully regenerated, the current access token will
+        get invalidated immediately near real-time i.e. API calls will fail with the
+        old access token. If the API is invoked with a validity period within the
+        range of the current access token's expiration period then the current access
+        token will be returned as response.
+      parameters:
+      - name: consumerkey
+        in: query
+        description: Consumer key is required authentication for regenerating the
+          access token associated with an SDC application and is available via the
+          developer.syniverse.com portal under the “Auth Keys” section for the application.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: consumersecret
+        in: query
+        description: Consumer secret is required authentication for regenerating the
+          access token associated with an SDC application and is available via the
+          developer.syniverse.com portal under the “Auth Keys” section for the application.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: oldtoken
+        in: query
+        description: Current access token associated with a SDC applicaton that needs
+          to be regenerated.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: validity
+        in: query
+        description: Validity period for the regenerated access token specified in
+          seconds. Valid range is '900 - 9999999999999999999' seconds. Specify validity
+          period as '0' value to regenerate an access token that does not expire.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                successful operation:
+                  value:
+                    accessToken: b1624ffb-7360-375c-91a5-955cee069970
+                    validityTime: 1000
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                old token is not in query param:
+                  value:
+                    errorCode: 1
+                    moreInfo: Current access token is missing as input parameter.
+                    userMsg: Current access token is a required input parameter.
+                validity is not in the range:
+                  value:
+                    errorCode: 1
+                    moreInfo: Incorrect format specified for validity period of the
+                      access token.
+                    userMsg: Validity parameter must be specified as a numeric value
+                      greater than or equal to zero.
+                consumer key is not in query param:
+                  value:
+                    errorCode: 1
+                    moreInfo: Consumer key is missing as input parameter.
+                    userMsg: Consumer key is a required input parameter.
+                consumer secret is not in query param:
+                  value:
+                    errorCode: 1
+                    moreInfo: Consumer secret is missing as input parameter.
+                    userMsg: Consumer secret is a required input parameter.
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                If consumer key or  consumer secret is not valid:
+                  value:
+                    errorCode: 1
+                    moreInfo: System error received during access token regeneration.
+                    userMsg: Contact Syniverse support for resolution of the system
+                      error recieved for access token regeneration.
+components:
+  schemas: {}

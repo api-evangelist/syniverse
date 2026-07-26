@@ -1,0 +1,1955 @@
+swagger: '2.0'
+info:
+  title: SCG API
+  description: Synivere Communication Gateway API
+  version: "1.0.0"
+host: api.syniverse.com
+schemes:
+  - https
+basePath: /scg-external-api/api/v1
+produces:
+  - application/json
+paths:
+  /applications:
+    get:
+      summary: Returns the list of applications
+      tags:
+        - Application
+      description:
+          "  Returns the list of applications"
+      parameters:
+        - in: query
+          name: id
+          type: string
+          description: |
+            Unique id of the sender class
+        - in: query
+          name: name
+          type: string
+          description: |
+            The name of the appication.
+        - in: query
+          name: auth_code_length
+          type: number
+          description: |
+            The length of the authentication token that will be used for authentication.
+        - in: query
+          name: auth_token_type
+          type: string
+          description: |
+            NUMERIC, ALPHANUMERIC, ALPHA, COMPLEX
+        - in: query
+          name: auth_token_validity_duration
+          type: number
+          description: |
+            The number of seconds that the authentication token should remain valid.
+        - in: query
+          name: auth_token_prefix
+          type: string
+          description: |
+            A prefix that will be included with each authentiation token.
+        - in: query
+          name: auth_token_delivery_methods
+          type: string
+          description: |
+            SMS
+        - in: query
+          name: message_from
+          type: string
+          description: |
+            The SCG sender ID to be used when sending authentication token messages for this appication.
+        - in: query
+          name: created_date
+          type: string
+          description: |
+            The date the resource was created
+        - in: query
+          name: last_updated_date
+          type: string
+          description: |
+            The data the resource was last changed
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: object
+            properties:
+              list:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      description: |
+                        Unique id of the sender class
+                      type: string
+                    name:
+                      description: |
+                        The name of the appication.
+                      type: string
+                    description:
+                      description: |
+                        The description for the Application.
+                      type: string
+                    auth_code_length:
+                      description: |
+                        The length of the authentication token that will be used for authentication.
+                      type: number
+                    auth_token_type:
+                      description: |
+                        NUMERIC, ALPHANUMERIC, ALPHA, COMPLEX
+                      type: string
+                    auth_token_validity_duration:
+                      description: |
+                        The number of seconds that the authentication token should remain valid.
+                      type: number
+                    auth_token_prefix:
+                      description: |
+                        A prefix that will be included with each authentiation token.
+                      type: string
+                    auth_token_delivery_methods:
+                      description: |
+                        SMS
+                      type: string
+                    associate_template:
+                      description: |
+                        An inline template or template id to be used to send mdn assosiation validation code. If empty a default template will be used
+                      type: string
+                    display_name:
+                      description: |
+                        String to be used as value of $display_name parameter in validation and login templates
+                      type: string
+                    login_template:
+                      description: |
+                        An inline template or template id to be used to send login validation code. If empty a default template will be used
+                      type: string
+                    message_from:
+                      description: |
+                        The SCG sender ID to be used when sending authentication token messages for this appication.
+                      type: string
+                    created_date:
+                      description: |
+                        The date the resource was created
+                      type: string
+                    last_updated_date:
+                      description: |
+                        The data the resource was last changed
+                      type: string
+                    version_number:
+                      description: |
+                        An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimisitic locking
+                      type: integer
+          
+        400:
+          description: | 
+            Bad Request.  The request could not be understood by the server.
+            
+              * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        401:
+          description: | 
+            Unauthorized. The request requires user authentication.
+            
+              * **401** - Unauthorized - Provided authentication data is invalid or insufficient
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        500:
+          description: | 
+            Server Error. An error has been encountered while processing this request.
+            
+              * **500** - Server Error - Internal server error. Please report
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        402:
+          description: | 
+            Payment Required.
+            
+              * **402** - Insufficient credit - The account does not have sufficeint funds for this operation
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        403:
+          description: | 
+            Forbidden. The user does not have permission to access the specified resource.
+            
+              * **403** - Forbidden - Access to this resource is not allowed with the current application token
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        404:
+          description: | 
+            Not found. The requested resource could not be found.
+            
+              * **404** - The Error message provides details about the missing resource - Requested resource not found
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        429:
+          description: | 
+            Too Many Requests. The user has sent too many requests in a given amount of time.
+            
+              * **2004** - User sent too many requests - User sent too many requests.
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        409:
+          description: | 
+            Conflict. The request could not be completed due to a conflict with the current state of the target resource.
+            
+              * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.
+              * **1011** - The Error message provides details about the key being violated - Unique key constraint violated
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+    post:
+      summary: Creates a new application
+      tags:
+        - Application
+      description:
+          "  Creates a new application"
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: Application
+          schema:
+            type: object
+            properties:
+              name:
+                description: |
+                  The name of the appication.
+                type: string
+              description:
+                description: |
+                  The description for the Application.
+                type: string
+              auth_code_length:
+                description: |
+                  The length of the authentication token that will be used for authentication.
+                type: number
+              auth_token_type:
+                description: |
+                  NUMERIC, ALPHANUMERIC, ALPHA, COMPLEX
+                type: string
+              auth_token_validity_duration:
+                description: |
+                  The number of seconds that the authentication token should remain valid.
+                type: number
+              auth_token_prefix:
+                description: |
+                  A prefix that will be included with each authentiation token.
+                type: string
+              auth_token_delivery_methods:
+                description: |
+                  SMS
+                type: string
+              associate_template:
+                description: |
+                  An inline template or template id to be used to send mdn assosiation validation code. If empty a default template will be used
+                type: string
+              display_name:
+                description: |
+                  String to be used as value of $display_name parameter in validation and login templates
+                type: string
+              login_template:
+                description: |
+                  An inline template or template id to be used to send login validation code. If empty a default template will be used
+                type: string
+              message_from:
+                description: |
+                  The SCG sender ID to be used when sending authentication token messages for this appication.
+                type: string
+      
+      responses:
+        200:
+          description: Successful operation
+          schema: 
+            type: object
+            properties:
+              id: 
+                description: The identifier for the newly created resource.
+                type: string
+          
+        400:
+          description: | 
+            Bad Request.  The request could not be understood by the server.
+            
+              * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        401:
+          description: | 
+            Unauthorized. The request requires user authentication.
+            
+              * **401** - Unauthorized - Provided authentication data is invalid or insufficient
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        500:
+          description: | 
+            Server Error. An error has been encountered while processing this request.
+            
+              * **500** - Server Error - Internal server error. Please report
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        402:
+          description: | 
+            Payment Required.
+            
+              * **402** - Insufficient credit - The account does not have sufficeint funds for this operation
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        403:
+          description: | 
+            Forbidden. The user does not have permission to access the specified resource.
+            
+              * **403** - Forbidden - Access to this resource is not allowed with the current application token
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        404:
+          description: | 
+            Not found. The requested resource could not be found.
+            
+              * **404** - The Error message provides details about the missing resource - Requested resource not found
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        429:
+          description: | 
+            Too Many Requests. The user has sent too many requests in a given amount of time.
+            
+              * **2004** - User sent too many requests - User sent too many requests.
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        409:
+          description: | 
+            Conflict. The request could not be completed due to a conflict with the current state of the target resource.
+            
+              * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.
+              * **1011** - The Error message provides details about the key being violated - Unique key constraint violated
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+  /'applications/{Application_ID}':
+    get:
+      summary: Returns the current version of the specified Application
+      tags:
+        - Application
+      description:
+          "  Returns the current version of the specified Application"
+      parameters:
+        - in: path
+          name: Application_ID
+          type: string
+          required: true
+          description: The Application ID for this resource.
+        - in: query
+          name: id
+          type: string
+          description: |
+            Unique id of the sender class
+        - in: query
+          name: name
+          type: string
+          description: |
+            The name of the appication.
+        - in: query
+          name: auth_code_length
+          type: number
+          description: |
+            The length of the authentication token that will be used for authentication.
+        - in: query
+          name: auth_token_type
+          type: string
+          description: |
+            NUMERIC, ALPHANUMERIC, ALPHA, COMPLEX
+        - in: query
+          name: auth_token_validity_duration
+          type: number
+          description: |
+            The number of seconds that the authentication token should remain valid.
+        - in: query
+          name: auth_token_prefix
+          type: string
+          description: |
+            A prefix that will be included with each authentiation token.
+        - in: query
+          name: auth_token_delivery_methods
+          type: string
+          description: |
+            SMS
+        - in: query
+          name: message_from
+          type: string
+          description: |
+            The SCG sender ID to be used when sending authentication token messages for this appication.
+        - in: query
+          name: created_date
+          type: string
+          description: |
+            The date the resource was created
+        - in: query
+          name: last_updated_date
+          type: string
+          description: |
+            The data the resource was last changed
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: object
+            properties:
+              id:
+                description: |
+                  Unique id of the sender class
+                type: string
+              name:
+                description: |
+                  The name of the appication.
+                type: string
+              description:
+                description: |
+                  The description for the Application.
+                type: string
+              auth_code_length:
+                description: |
+                  The length of the authentication token that will be used for authentication.
+                type: number
+              auth_token_type:
+                description: |
+                  NUMERIC, ALPHANUMERIC, ALPHA, COMPLEX
+                type: string
+              auth_token_validity_duration:
+                description: |
+                  The number of seconds that the authentication token should remain valid.
+                type: number
+              auth_token_prefix:
+                description: |
+                  A prefix that will be included with each authentiation token.
+                type: string
+              auth_token_delivery_methods:
+                description: |
+                  SMS
+                type: string
+              associate_template:
+                description: |
+                  An inline template or template id to be used to send mdn assosiation validation code. If empty a default template will be used
+                type: string
+              display_name:
+                description: |
+                  String to be used as value of $display_name parameter in validation and login templates
+                type: string
+              login_template:
+                description: |
+                  An inline template or template id to be used to send login validation code. If empty a default template will be used
+                type: string
+              message_from:
+                description: |
+                  The SCG sender ID to be used when sending authentication token messages for this appication.
+                type: string
+              created_date:
+                description: |
+                  The date the resource was created
+                type: string
+              last_updated_date:
+                description: |
+                  The data the resource was last changed
+                type: string
+              version_number:
+                description: |
+                  An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimisitic locking
+                type: integer
+          
+        400:
+          description: | 
+            Bad Request.  The request could not be understood by the server.
+            
+              * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        401:
+          description: | 
+            Unauthorized. The request requires user authentication.
+            
+              * **401** - Unauthorized - Provided authentication data is invalid or insufficient
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        500:
+          description: | 
+            Server Error. An error has been encountered while processing this request.
+            
+              * **500** - Server Error - Internal server error. Please report
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        402:
+          description: | 
+            Payment Required.
+            
+              * **402** - Insufficient credit - The account does not have sufficeint funds for this operation
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        403:
+          description: | 
+            Forbidden. The user does not have permission to access the specified resource.
+            
+              * **403** - Forbidden - Access to this resource is not allowed with the current application token
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        404:
+          description: | 
+            Not found. The requested resource could not be found.
+            
+              * **404** - The Error message provides details about the missing resource - Requested resource not found
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        429:
+          description: | 
+            Too Many Requests. The user has sent too many requests in a given amount of time.
+            
+              * **2004** - User sent too many requests - User sent too many requests.
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        409:
+          description: | 
+            Conflict. The request could not be completed due to a conflict with the current state of the target resource.
+            
+              * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.
+              * **1011** - The Error message provides details about the key being violated - Unique key constraint violated
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+    delete:
+      summary: Deletes the Application resource with the specified ID
+      tags:
+        - Application
+      description:
+          "  Deletes the Application resource with the specified ID"
+      parameters:
+        - in: path
+          name: Application_ID
+          type: string
+          required: true
+          description: The Application ID for this resource.
+      responses:
+        204:
+          description: Successful operation.  No Content in reponse.
+        400:
+          description: | 
+            Bad Request.  The request could not be understood by the server.
+            
+              * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        401:
+          description: | 
+            Unauthorized. The request requires user authentication.
+            
+              * **401** - Unauthorized - Provided authentication data is invalid or insufficient
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        500:
+          description: | 
+            Server Error. An error has been encountered while processing this request.
+            
+              * **500** - Server Error - Internal server error. Please report
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        402:
+          description: | 
+            Payment Required.
+            
+              * **402** - Insufficient credit - The account does not have sufficeint funds for this operation
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        403:
+          description: | 
+            Forbidden. The user does not have permission to access the specified resource.
+            
+              * **403** - Forbidden - Access to this resource is not allowed with the current application token
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        404:
+          description: | 
+            Not found. The requested resource could not be found.
+            
+              * **404** - The Error message provides details about the missing resource - Requested resource not found
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        429:
+          description: | 
+            Too Many Requests. The user has sent too many requests in a given amount of time.
+            
+              * **2004** - User sent too many requests - User sent too many requests.
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        409:
+          description: | 
+            Conflict. The request could not be completed due to a conflict with the current state of the target resource.
+            
+              * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.
+              * **1011** - The Error message provides details about the key being violated - Unique key constraint violated
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+  /applications/{Application_ID}/users:
+    get:
+      summary: Returns the list of Users
+      tags:
+        - User
+      description:
+          "  Returns the list of Users"
+      parameters:
+        - in: path
+          name: Application_ID
+          type: string
+          required: true
+          description: The Application ID for this resource.
+        - in: query
+          name: id
+          type: string
+          description: |
+            Customer Supplied User ID
+        - in: query
+          name: status
+          type: string
+          description: |
+            The status of the MDN.  The possible values are: INITIAL, VALIDATION PENDING, VALIDATED
+        - in: query
+          name: created_date
+          type: string
+          description: |
+            The date the resource was created
+        - in: query
+          name: last_updated_date
+          type: string
+          description: |
+            The data the resource was last changed
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: object
+            properties:
+              list:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      description: |
+                        Customer Supplied User ID
+                      type: string
+                    user_address:
+                      description: |
+                        human readable description of the sender address type
+                      type: string
+                    status:
+                      description: |
+                        The status of the MDN.  The possible values are: INITIAL, VALIDATION PENDING, VALIDATED
+                      type: string
+                    created_date:
+                      description: |
+                        The date the resource was created
+                      type: string
+                    last_updated_date:
+                      description: |
+                        The data the resource was last changed
+                      type: string
+                    version_number:
+                      description: |
+                        An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimisitic locking
+                      type: integer
+          
+        400:
+          description: | 
+            Bad Request.  The request could not be understood by the server.
+            
+              * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        401:
+          description: | 
+            Unauthorized. The request requires user authentication.
+            
+              * **401** - Unauthorized - Provided authentication data is invalid or insufficient
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        500:
+          description: | 
+            Server Error. An error has been encountered while processing this request.
+            
+              * **500** - Server Error - Internal server error. Please report
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        402:
+          description: | 
+            Payment Required.
+            
+              * **402** - Insufficient credit - The account does not have sufficeint funds for this operation
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        403:
+          description: | 
+            Forbidden. The user does not have permission to access the specified resource.
+            
+              * **403** - Forbidden - Access to this resource is not allowed with the current application token
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        404:
+          description: | 
+            Not found. The requested resource could not be found.
+            
+              * **404** - The Error message provides details about the missing resource - Requested resource not found
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        429:
+          description: | 
+            Too Many Requests. The user has sent too many requests in a given amount of time.
+            
+              * **2004** - User sent too many requests - User sent too many requests.
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        409:
+          description: | 
+            Conflict. The request could not be completed due to a conflict with the current state of the target resource.
+            
+              * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.
+              * **1011** - The Error message provides details about the key being violated - Unique key constraint violated
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+  /'applications/{Application_ID}/users/{User_ID}':
+    get:
+      summary: Returns the current version of the specified User.
+      tags:
+        - User
+      description:
+          "  Returns the current version of the specified User."
+      parameters:
+        - in: path
+          name: Application_ID
+          type: string
+          required: true
+          description: The Application ID for this resource.
+        - in: path
+          name: User_ID
+          type: string
+          required: true
+          description: The User ID for this resource.
+        - in: query
+          name: id
+          type: string
+          description: |
+            Customer Supplied User ID
+        - in: query
+          name: status
+          type: string
+          description: |
+            The status of the MDN.  The possible values are: INITIAL, VALIDATION PENDING, VALIDATED
+        - in: query
+          name: created_date
+          type: string
+          description: |
+            The date the resource was created
+        - in: query
+          name: last_updated_date
+          type: string
+          description: |
+            The data the resource was last changed
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: object
+            properties:
+              id:
+                description: |
+                  Customer Supplied User ID
+                type: string
+              user_address:
+                description: |
+                  human readable description of the sender address type
+                type: string
+              status:
+                description: |
+                  The status of the MDN.  The possible values are: INITIAL, VALIDATION PENDING, VALIDATED
+                type: string
+              created_date:
+                description: |
+                  The date the resource was created
+                type: string
+              last_updated_date:
+                description: |
+                  The data the resource was last changed
+                type: string
+              version_number:
+                description: |
+                  An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimisitic locking
+                type: integer
+          
+        400:
+          description: | 
+            Bad Request.  The request could not be understood by the server.
+            
+              * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        401:
+          description: | 
+            Unauthorized. The request requires user authentication.
+            
+              * **401** - Unauthorized - Provided authentication data is invalid or insufficient
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        500:
+          description: | 
+            Server Error. An error has been encountered while processing this request.
+            
+              * **500** - Server Error - Internal server error. Please report
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        402:
+          description: | 
+            Payment Required.
+            
+              * **402** - Insufficient credit - The account does not have sufficeint funds for this operation
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        403:
+          description: | 
+            Forbidden. The user does not have permission to access the specified resource.
+            
+              * **403** - Forbidden - Access to this resource is not allowed with the current application token
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        404:
+          description: | 
+            Not found. The requested resource could not be found.
+            
+              * **404** - The Error message provides details about the missing resource - Requested resource not found
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        429:
+          description: | 
+            Too Many Requests. The user has sent too many requests in a given amount of time.
+            
+              * **2004** - User sent too many requests - User sent too many requests.
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        409:
+          description: | 
+            Conflict. The request could not be completed due to a conflict with the current state of the target resource.
+            
+              * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.
+              * **1011** - The Error message provides details about the key being violated - Unique key constraint violated
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+    delete:
+      summary: Deletes the User resource with the specified ID
+      tags:
+        - User
+      description:
+          "  Deletes the User resource with the specified ID"
+      parameters:
+        - in: path
+          name: Application_ID
+          type: string
+          required: true
+          description: The Application ID for this resource.
+        - in: path
+          name: User_ID
+          type: string
+          required: true
+          description: The User ID for this resource.
+      responses:
+        204:
+          description: Successful operation.  No Content in reponse.
+        400:
+          description: | 
+            Bad Request.  The request could not be understood by the server.
+            
+              * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        401:
+          description: | 
+            Unauthorized. The request requires user authentication.
+            
+              * **401** - Unauthorized - Provided authentication data is invalid or insufficient
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        500:
+          description: | 
+            Server Error. An error has been encountered while processing this request.
+            
+              * **500** - Server Error - Internal server error. Please report
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        402:
+          description: | 
+            Payment Required.
+            
+              * **402** - Insufficient credit - The account does not have sufficeint funds for this operation
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        403:
+          description: | 
+            Forbidden. The user does not have permission to access the specified resource.
+            
+              * **403** - Forbidden - Access to this resource is not allowed with the current application token
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        404:
+          description: | 
+            Not found. The requested resource could not be found.
+            
+              * **404** - The Error message provides details about the missing resource - Requested resource not found
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        429:
+          description: | 
+            Too Many Requests. The user has sent too many requests in a given amount of time.
+            
+              * **2004** - User sent too many requests - User sent too many requests.
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        409:
+          description: | 
+            Conflict. The request could not be completed due to a conflict with the current state of the target resource.
+            
+              * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.
+              * **1011** - The Error message provides details about the key being violated - Unique key constraint violated
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+  /'applications/{Application_ID}/users/{User_ID}/associate':
+    post:
+      summary: Associates an user address (MDN or whatever) with the User.  Also creates and sends a validation token to the end user. The post body will contain the user address (MDN, etc.).
+      tags:
+        - User
+      description:
+          "  Associates an user address (MDN or whatever) with the User.  Also creates and sends a validation token to the end user. The post body will contain the user address (MDN, etc.)."
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          name: Application_ID
+          type: string
+          required: true
+          description: The Application ID for this resource.
+        - in: path
+          name: User_ID
+          type: string
+          required: true
+          description: The User ID for this resource.
+        - in: body
+          name: Associate
+          schema:
+            type: object
+            properties:
+              display_name:
+                description: |
+                  If present overrides display_name in the application on per request basis.
+                type: string
+      
+      responses:
+        204:
+          description: Successful operation.  No Content in reponse.
+        400:
+          description: | 
+            Bad Request.  The request could not be understood by the server.
+            
+              * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        401:
+          description: | 
+            Unauthorized. The request requires user authentication.
+            
+              * **401** - Unauthorized - Provided authentication data is invalid or insufficient
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        500:
+          description: | 
+            Server Error. An error has been encountered while processing this request.
+            
+              * **500** - Server Error - Internal server error. Please report
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        402:
+          description: | 
+            Payment Required.
+            
+              * **402** - Insufficient credit - The account does not have sufficeint funds for this operation
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        403:
+          description: | 
+            Forbidden. The user does not have permission to access the specified resource.
+            
+              * **403** - Forbidden - Access to this resource is not allowed with the current application token
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        404:
+          description: | 
+            Not found. The requested resource could not be found.
+            
+              * **404** - The Error message provides details about the missing resource - Requested resource not found
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        429:
+          description: | 
+            Too Many Requests. The user has sent too many requests in a given amount of time.
+            
+              * **2004** - User sent too many requests - User sent too many requests.
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        409:
+          description: | 
+            Conflict. The request could not be completed due to a conflict with the current state of the target resource.
+            
+              * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.
+              * **1011** - The Error message provides details about the key being violated - Unique key constraint violated
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+    delete:
+      summary: Removes the association with this User.
+      tags:
+        - User
+      description:
+          "  Removes the association with this User."
+      parameters:
+        - in: path
+          name: Application_ID
+          type: string
+          required: true
+          description: The Application ID for this resource.
+        - in: path
+          name: User_ID
+          type: string
+          required: true
+          description: The User ID for this resource.
+      responses:
+        204:
+          description: Successful operation.  No Content in reponse.
+        400:
+          description: | 
+            Bad Request.  The request could not be understood by the server.
+            
+              * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        401:
+          description: | 
+            Unauthorized. The request requires user authentication.
+            
+              * **401** - Unauthorized - Provided authentication data is invalid or insufficient
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        500:
+          description: | 
+            Server Error. An error has been encountered while processing this request.
+            
+              * **500** - Server Error - Internal server error. Please report
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        402:
+          description: | 
+            Payment Required.
+            
+              * **402** - Insufficient credit - The account does not have sufficeint funds for this operation
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        403:
+          description: | 
+            Forbidden. The user does not have permission to access the specified resource.
+            
+              * **403** - Forbidden - Access to this resource is not allowed with the current application token
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        404:
+          description: | 
+            Not found. The requested resource could not be found.
+            
+              * **404** - The Error message provides details about the missing resource - Requested resource not found
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        429:
+          description: | 
+            Too Many Requests. The user has sent too many requests in a given amount of time.
+            
+              * **2004** - User sent too many requests - User sent too many requests.
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        409:
+          description: | 
+            Conflict. The request could not be completed due to a conflict with the current state of the target resource.
+            
+              * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.
+              * **1011** - The Error message provides details about the key being violated - Unique key constraint violated
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+  /'applications/{Application_ID}/users/{User_ID}/validate':
+    post:
+      summary: Validates the association or login process using the last supplied validation code.  The post body will contain the validation code.
+      tags:
+        - User
+      description:
+          "  Validates the association or login process using the last supplied validation code.  The post body will contain the validation code."
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          name: Application_ID
+          type: string
+          required: true
+          description: The Application ID for this resource.
+        - in: path
+          name: User_ID
+          type: string
+          required: true
+          description: The User ID for this resource.
+      responses:
+        204:
+          description: Successful operation.  No Content in reponse.
+        400:
+          description: | 
+            Bad Request.  The request could not be understood by the server.
+            
+              * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        401:
+          description: | 
+            Unauthorized. The request requires user authentication.
+            
+              * **401** - Unauthorized - Provided authentication data is invalid or insufficient
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        500:
+          description: | 
+            Server Error. An error has been encountered while processing this request.
+            
+              * **500** - Server Error - Internal server error. Please report
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        402:
+          description: | 
+            Payment Required.
+            
+              * **402** - Insufficient credit - The account does not have sufficeint funds for this operation
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        403:
+          description: | 
+            Forbidden. The user does not have permission to access the specified resource.
+            
+              * **403** - Forbidden - Access to this resource is not allowed with the current application token
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        404:
+          description: | 
+            Not found. The requested resource could not be found.
+            
+              * **404** - The Error message provides details about the missing resource - Requested resource not found
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        429:
+          description: | 
+            Too Many Requests. The user has sent too many requests in a given amount of time.
+            
+              * **2004** - User sent too many requests - User sent too many requests.
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        409:
+          description: | 
+            Conflict. The request could not be completed due to a conflict with the current state of the target resource.
+            
+              * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.
+              * **1011** - The Error message provides details about the key being violated - Unique key constraint violated
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+  /'applications/{Application_ID}/users/{User_ID}/login_start':
+    post:
+      summary: Creates and sends a MFA  validation code to the end user.   The POST body will contain the validation method with SMS as default.
+      tags:
+        - User
+      description:
+          "  Creates and sends a MFA  validation code to the end user.   The POST body will contain the validation method with SMS as default."
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          name: Application_ID
+          type: string
+          required: true
+          description: The Application ID for this resource.
+        - in: path
+          name: User_ID
+          type: string
+          required: true
+          description: The User ID for this resource.
+        - in: body
+          name: Login Start
+          schema:
+            type: object
+            properties:
+              display_name:
+                description: |
+                  If present overrides display_name in the application on per request basis.
+                type: string
+      
+      responses:
+        204:
+          description: Successful operation.  No Content in reponse.
+        400:
+          description: | 
+            Bad Request.  The request could not be understood by the server.
+            
+              * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        401:
+          description: | 
+            Unauthorized. The request requires user authentication.
+            
+              * **401** - Unauthorized - Provided authentication data is invalid or insufficient
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        500:
+          description: | 
+            Server Error. An error has been encountered while processing this request.
+            
+              * **500** - Server Error - Internal server error. Please report
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        402:
+          description: | 
+            Payment Required.
+            
+              * **402** - Insufficient credit - The account does not have sufficeint funds for this operation
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        403:
+          description: | 
+            Forbidden. The user does not have permission to access the specified resource.
+            
+              * **403** - Forbidden - Access to this resource is not allowed with the current application token
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        404:
+          description: | 
+            Not found. The requested resource could not be found.
+            
+              * **404** - The Error message provides details about the missing resource - Requested resource not found
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        429:
+          description: | 
+            Too Many Requests. The user has sent too many requests in a given amount of time.
+            
+              * **2004** - User sent too many requests - User sent too many requests.
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          
+        409:
+          description: | 
+            Conflict. The request could not be completed due to a conflict with the current state of the target resource.
+            
+              * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.
+              * **1011** - The Error message provides details about the key being violated - Unique key constraint violated
+              * **2003** - User MDN not validated - The user's MDN must have been validated. MDN should be validated before login.
+            
+          schema:
+            properties:
+              error_code:
+                description: The error code for this error.
+                type: string
+              error_description:
+                description: A human readable description of the error.
+                type: string
+          

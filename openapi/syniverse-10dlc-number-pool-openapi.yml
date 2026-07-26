@@ -1,0 +1,199 @@
+swagger: '2.0'
+info:
+  description: This Service enables the Enterprise Customer to Add/Delete 10DLC numbers as well as Number Pools to Campaigns. The backend systems of this api will perform automatic MNO (Mobile Carrier) provisionning as required.
+  version: '1.2'
+  title: 'Syniverse 10DLC Provissioning API'
+host: 'api.syniverse.com'
+schemes:
+  - https
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: 'Use Bearer {Syniverse SDC Application Token} for example "Bearer aaaaa-aabb-bbaa-bbbbbb"'
+tags:
+  - name: 10DLC v1
+    description: 'Initial 10DLC Number to Campaign Association Management'
+  - name: 10DLC v1 Number Pools
+    description: 'Enhanced 10DLC Number Pool to Campaign Association Management'
+paths:
+  '/engage/tendlc-services/v1/campaigns/{campaignId}/longcodes/{longcode}':
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - 10DLC v1
+      summary: Addition of 10DLC number to the registered campaign
+      description: 'Syniverse is required to update some MNO A2P platforms with the new added number for a given campaign, this enables  customers to manage  individual number to campaign associations when the numbers are NOT part of a number pool'
+      operationId: create10DLCNumberUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: campaignId
+          in: path
+          description: campaignId
+          required: true
+          type: string
+        - name: longcode
+          in: path
+          description: longcode
+          required: true
+          type: string
+        - name: int-appId
+          in: header
+          description: int-appId for syniverse internal use only.
+          required: false
+          type: string
+        - name: int-companyId
+          in: header
+          description: int-companyId  for syniverse internal use only.
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Request recieved
+          schema:
+            type: string
+        '401':
+          description: You are not authorized to view the resource
+        '404':
+          description: The resource you were trying to reach is not found
+      deprecated: false
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - 10DLC v1
+      summary: Deletion of 10DLC number from the registered campaign
+      description: 'Syniverse is required to update MNOs A2P platforms and remove the number for a given campaign, this enables  customers to manage  individual number to campaign associations when the numbers are NOT part of a number pool'
+      operationId: delete10DLCNumberUsingDELETE
+      produces:
+        - application/json
+      parameters:
+        - name: campaignId
+          in: path
+          description: campaignId
+          required: true
+          type: string
+        - name: longcode
+          in: path
+          description: longcode
+          required: true
+          type: string
+        - name: int-appId
+          in: header
+          description: int-appId for syniverse internal use only.
+          required: false
+          type: string
+        - name: int-companyId
+          in: header
+          description: int-companyId  for syniverse internal use only.
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Request recieved
+          schema:
+            type: string
+        '401':
+          description: You are not authorized to view the resource
+        '404':
+          description: The resource you were trying to reach is not found
+      deprecated: false
+  '/engage/tendlc-services/v1/campaigns/{campaignId}/pools/{numberPoolId}/types/{numberPoolType}':
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - 10DLC v1 Number Pools
+      summary: Association of Campaign  with the Number Pool
+      description: 'Syniverse is required to update some MNO A2P platforms with the new Number Pool for a given campaign, enabling   customers to better manage campaigns with large groups of numbers. Number pools require carrier approvals and this API currently covers  2 types SubId and CampaignId.'
+      operationId: campaignWithNumberPoolAssociationUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: campaignId
+          in: path
+          description: campaignId
+          required: true
+          type: string
+        - name: numberPoolId
+          in: path
+          description: 'Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)'
+          required: true
+          type: string
+        - name: numberPoolType
+          in: path
+          description: Type of Number Pool based on SubId or based on Campaign Id; Indicative
+          required: true
+          type: string
+          enum: ['subId','campaignId']
+        - name: int-appId
+          in: header
+          description: int-appId for syniverse internal use only.
+          required: false
+          type: string
+        - name: int-companyId
+          in: header
+          description: int-companyId for syniverse internal use only.
+          required: false
+          type: string
+
+      responses:
+        '200':
+          description: Request recieved
+          schema:
+            type: string
+        '401':
+          description: You are not authorized to view the resource
+        '404':
+          description: The resource you were trying to reach is not found
+      deprecated: false
+  '/engage/tendlc-services/v1/campaigns/{campaignId}/pools/{numberPoolId}':
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - 10DLC v1 Number Pools
+      summary: Removal of the Association of the Number pool from the Campaign
+      operationId: campaignWithNumberPoolRemovalUsingDELETE
+      produces:
+        - application/json
+      parameters:
+        - name: campaignId
+          in: path
+          description: campaignId
+          required: true
+          type: string
+        - name: numberPoolId
+          in: path
+          description: 'Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)'
+          required: true
+          type: string
+        - name: int-appId
+          in: header
+          description: int-appId for syniverse internal use only.
+          required: false
+          type: string
+        - name: int-companyId
+          in: header
+          description: int-companyId for syniverse internal use only.
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Request recieved
+          schema:
+            type: string
+        '401':
+          description: You are not authorized to view the resource
+        '404':
+          description: The resource you were trying to reach is not found
+      deprecated: false
+  
+ 

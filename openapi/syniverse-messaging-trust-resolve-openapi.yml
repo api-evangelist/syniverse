@@ -1,0 +1,219 @@
+openapi: 3.0.1
+info:
+  title: Messaging Trust Resolve
+  description: Messaging Trust Resolver API suite
+  version: 1.0.0
+servers:
+  - url: https://api.mt1.messaging-trust.syniverse.com/api
+security:
+  - OAuth2: []
+paths:
+  /v1/mms/resolve:
+    post:
+      tags:
+        - MMS Resolver API
+      summary:  Processes messaging containing media and resolves the messages to a disposition. Supports two content types - application/json and message/rfc822. Please refer to the mm4 protocol guide for binary content with message/rfc822 content type.
+      
+      requestBody:
+        description: Processes media message and resolves the messages to a disposition.
+         
+        
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/endpoint.MMSResolveRequestJson'
+          message/rfc822:
+            schema:
+              $ref: '#/components/schemas/endpoint.MMSResolveRequestMm4'
+        required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            x-request-id:
+              description: example value - 94bf014e-580b-49ba-b86e-c2fc0920204d
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/endpoint.MMSResolveResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/endpoint.FilterResponseError'
+        '404':
+          description: Not Found
+          content: {}
+        '415':
+          description: Unsupported Media Type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/endpoint.FilterResponseError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/endpoint.FilterResponseError'
+      x-codegen-request-body-name: body
+  /v1/txt/resolve:
+    post:
+      tags:
+        - Text Resolver API
+      summary: Resolves text messages to a disposition
+      requestBody:
+        description: Resolves text messages to a disposition
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/endpoint.TextResolveRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            x-request-id:
+              description: example value - 94bf014e-580b-49ba-b86e-c2fc0920204d
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/endpoint.TextResolveResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/endpoint.FilterResponseError'
+        '404':
+          description: Not Found
+          content: {}
+        '415':
+          description: Unsupported Media Type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/endpoint.FilterResponseError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/endpoint.FilterResponseError'
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    endpoint.FilterResponseError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: error description
+    endpoint.MMSResolveRequestJson:
+      required:
+        - message
+      type: object
+      properties:
+        sender:
+          $ref: '#/components/schemas/endpoint.Address'
+        recepient:
+          $ref: '#/components/schemas/endpoint.Address'
+        message:
+          type: string
+          example: 'Hello, activate your account at www.hackz.ai today! '
+      description: MMS Resolve Request
+      example:
+         {
+                   "sender": {
+                     "number": "+12125551212"
+                  
+                    },
+                
+                "recipient":
+                {
+            
+              "number": "+9165551212"
+              
+            } ,
+          
+              "message": "X-Mms-MMS-Version: 1.0\nFrom: +22222222222/TYPE=PLMN\nDate: Thu, 21 Mar 2024 13:46:53 +0000\nTo: +33333333333/TYPE=PLMN\nX-Mms-Delivery-Report: Yes\nSubject:\nContent-Type: multipart/related;  type=\"application/smil\"; start=\"<presentation>\"; boundary=b4f412fa2728097d4d3a6881fc7d778380b1014e51433f0ca801318bc226\nX-Mms-Message-ID: 2a8a1d8976c36b526ee5dd2670de8f70\nMessage-ID: 881fc7d778380b1014e5143\nX-Mms-3GPP-MMS-Version: 5.5.0\nX-Mms-Originator-System: system-user@mms-ip.telnyx.com\nX-Mms-Message-Type: MM4_forward.REQ\nX-Mms-Ack-Request: Yes\nSender: +22222222222@mms-ip.telnyx.com\nX-Mms-Transaction-ID: c3a302d87c355cadf676c7e3a945fe83\n\n\n--b4f412fa2728097d4d3a6881fc7d778380b1014e51433f0ca801318bc226\nContent-Id: <presentation>\nContent-Transfer-Encoding: base64\nContent-Type: application/smil; charset=utf-8\n\nPHNtaWw+PGhlYWQ+PGxheW91dD4KPHJlZ2lvbiBpZD0iVGV4dCIgdG9wPSI3MCUiIGxlZnQ9IjAl\nIiBoZWlnaHQ9IjMwJSIgd2lkdGg9IjEwMCUiIGZpdD0ic2Nyb2xsIi8+CjxyZWdpb24gaWQ9Iklt\nYWdlIiB0b3A9IjAlIiBsZWZ0PSIwJSIgaGVpZ2h0PSI3MCUiIHdpZHRoPSIxMDAlIiBmaXQ9Im1l\nZXQiLz4KPC9sYXlvdXQ+PC9oZWFkPjxib2R5Pgo8cGFyPjx0ZXh0IHJlZ2lvbj0iVGV4dCIgc3Jj\nPSJjaWQ6dGV4dC50eHQiLz48L3Bhcj4KPC9ib2R5Pjwvc21pbD4K\n\n--b4f412fa2728097d4d3a6881fc7d778380b1014e51433f0ca801318bc226\nContent-Id: text.txt\nContent-Location: text.txt\nContent-Transfer-Encoding: BASE64\nContent-Type: text/plain; charset=utf-8\n\nSGV5IFdhcnJlbiwgVGhpcyBpcyBKdWxpdXMgZnJvbSBQZXJmb3JtYW5jZSBHb2xmLiBXZSBoYXZl\nIGEgMi1kYXkgZ29sZiBzY2hvb2wgbmVhciB5b3UhISAKCkluIHRoZXNlIGltbWVyc2l2ZSAyLTMt\nZGF5IGdvbGYgY2FtcCBleHBlcmllbmNlcywgeW91IHdpbGwgd29yayAxOjEgYW5kIGluIHNtYWxs\nIGdyb3VwcyB3aXRoIG91ciBQR0EtbGV2ZWwgY29hY2hlcyBsaWtlIE1hcnRpbiBDaHVjaywgSmVm\nZiBSaXR0ZXIsIEFuZHJldyBSaWNlLCBhbmQgUmljayBTbWl0aCwganVzdCB0byBuYW1lIGEgZmV3\nIC4gCgpJZiB5b3UncmUgaW50ZXJlc3RlZCBpbiBhdHRlbmRpbmcsIHJlcGx5IFlFUywgYW5kIEkn\nbGwgY2FsbCB5b3UgdG8gZ2l2ZSB5b3UgbW9yZSBpbmZvcm1hdGlvbiBvbiBob3cgdG8gZ2V0IGlu\ndm9sdmVkIHdpdGggdGhlc2UgY2FtcHMu\n\n--b4f412fa2728097d4d3a6881fc7d778380b1014e51433f0ca801318bc226--\n"
+      
+      }
+
+    endpoint.MMSResolveRequestMm4:
+      
+      type: string
+      format: binary
+      example:
+        "To: +19165551212/TYPE=PLMN
+        From: +18135551212/TYPE=PLMN
+        Content-Type: multipart/mixed;boundary=30b0aba7-81dd-45dd-8ea5-f07ef96bebe9
+        Message-ID: 0F92DBFD-3FC8-41E9-A529-DC4A13AEE48B
+        X-Mms-Message-ID: \"some-message-for-test\"
+        Mime-Version: 1.0
+        --30b0aba7-81dd-45dd-8ea5-f07ef96bebe9
+        Content-Transfer-Encoding: quoted-printable
+        Content-Type: text/plain; charset=us-ascii
+        Mime-Version: 1.0
+        Check out this announcement about what CL~PA is doing for you: https://trycurapa.com/acLjf8lbep39 reply STOP to opt out
+        --30b0aba7-81dd-45dd-8ea5-f07ef96bebe9--
+        EOF"
+                
+                
+
+
+    endpoint.MMSResolveResponse:
+      type: object
+      properties:
+        disposition:
+          type: string
+          example: block
+          enum:
+            - allow
+            - block
+    endpoint.TextResolveRequest:
+      required:
+        - message
+      type: object
+      properties:
+        sender:
+          $ref: '#/components/schemas/endpoint.Address'
+        recepient:
+          $ref: '#/components/schemas/endpoint.Address'
+        message:
+          type: string
+          example: 'Hello, activate your account at www.hackz.ai today! '
+      description: Text Resolve Request
+      example: 
+         { "sender": { "number": "+15712617625" }, "message": "Hello, activate your account at www.hackz.ai today!" }
+    endpoint.TextResolveResponse:
+      type: object
+      properties:
+        disposition:
+          type: string
+          example: block
+          enum:
+            - allow
+            - block
+
+    endpoint.Address:
+      required:
+        - number
+      type: object
+      properties:
+        number:
+          type: string
+          example: '+12125551212'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.mt1.messaging-trust.syniverse.com/oauth2/token
+          scopes: {}
+x-original-swagger-version: '2.0'

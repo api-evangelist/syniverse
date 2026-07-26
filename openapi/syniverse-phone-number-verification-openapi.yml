@@ -1,0 +1,257 @@
+openapi: 3.0.0
+info:
+  title: PNV
+  version: 1.0.0
+  description: >
+    The purpose of this specification is to describe the Syniverse Phone Number
+    Verification(PNV) service capabilities, core concepts, and API set. The PNV
+    offers a rich suite of RESTful APIs that allow lookup of salient phone
+    number data, batch lookup of number data, scheduling of number lookup and
+    proactive monitoring of numbers of interest for changes to critical
+    attributes. Number lookup returns salient attributes of a phone number e.g.,
+    validity, country, carrier, deactivation and disconnection details). 
+    
+    
+    The lookup and response can be tailored by specifying a feature set. Different feature sets provide different sets of information, i.e. feature set 2 provides standard routing information, and feature set 5 provides additional information on when a phone number was last disconnected. See the User Guide for more information on the different feature sets.
+servers:
+  - url: https://api.syniverse.com/numberidentity/v3
+paths:
+  /lookup:
+    post:
+      security:
+        - bearerAuth: [] 
+      parameters:
+      - name: ext_trx_id
+        in: header
+        description: 
+          This is the unique identifier sent by the customer in the request header to track the request/response chain. The value of this attribute is extracted from the header of the POST request.
+        required: false
+        schema:
+            type: string
+      - name: ext_reseller_cust_id
+        in: header
+        description: 
+          This attribute represents the customer of our customer using the service. The value is extracted from the POST request header.
+        required: false
+        schema :
+            type: string  
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                title: PNV
+                type: object
+                properties:
+                  numberidentity:
+                    type: string
+                  SucessResponse:
+                    type: object
+                    properties:
+                      number:
+                        type: string
+                        example: +1XXXXXXXX70
+                      validity:
+                        type: string
+                        example: true
+                      carrier_id:
+                        type: string
+                        example: 1234
+                      carrier_name:
+                        type: string
+                        example: SPRINT PCS
+                      number_type:
+                        type: string
+                        example: M
+                      country_iso_code:
+                        type: string
+                        example: USA
+                      country:
+                        type: string
+                        example: United States
+                      carrier_mcc:
+                        type: string
+                        example: 123
+                      carrier_mnc:
+                        type: string
+                        example: 214
+                      last_known_event:
+                        type: string
+                        example: Disconnect
+                      previous_carrier_id:
+                        type: string
+                      previous_carrier_name:
+                        type: string
+                      disconnect_date:
+                        type: string
+                        format: date-time
+                        example: 2018-08-10T00:00Z
+                      tracking_id:
+                        type: string
+                  tracking_id:        
+                    type: string
+                    example: "101580180391472739483159"
+                  ext_trx_id:
+                    type: string
+                    example: "string"
+                  ext_reseller_cust_id:
+                    type: string
+                    example: "string"
+        '400':
+          description: >
+            Bad Request.
+
+
+            Possible Error Codes:
+
+            * **NIS04000001** - Invalid Phone format - Non-retryable error code - **Suggested action:** Number format should be corrected to be in E.164 format, i.e. +1XXXXXXXX70
+
+            * **NIS04000001** - Phone number attribute missing in the request -
+            Non-retryable error code.
+            - **Suggested action:** update request to include phone number
+
+            * **NIS04000002** - Invalid Feature - Non-retryable error code -
+            **Suggested action:** change the feature value to be a supported value such as fs5 (or) fs2 (or) fs23 (or) fs1.
+
+            * **NIS04000003** - Canadian Number, Further authorization is required - Non-retryable error code 
+            - **Suggested action:** Please work with your Customer Support Executive to get Canadian numbers enabled. .
+          content:
+            application/json:
+              schema:
+                title: Error Response
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                    example: NIS04000001
+                  error_description:
+                    type: string
+                    example: Invalid Phone format - Non-retryable error code
+        '401':
+          description: |
+            Unauthorized. The request requires user authentication.
+
+            Possible Error Codes:
+            * **NIS04010001** - Unauthorized - Non-retryable error code -
+            **Suggested actions:** please check the CompanyID is correct and the Bearer Token is valid. 
+          content:
+            application/json:
+              schema:
+                title: Error Response
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                    example: NIS04010001
+                  error_description:
+                    type: string
+                    example: Unauthorized - Non-retryable error code
+        '403':
+          description: >
+            Forbidden. The user does not have permission to access the specified
+            resource.
+
+
+            Possible Error Codes:
+
+            * **NIS04030001** - Forbidden operation - Non-retryable error code - 
+            **Suggested Action:** Please check you are not using a PUT, or DELETE operation
+
+
+            * **NIS04000003** - Invalid parameters provided. Please check the
+            documentation for valid values - Non-retryable error code - 
+            **Suggested action:** Please check the parameter values against the documentation and correct as needed. 
+          content:
+            application/json:
+              schema:
+                title: Error Response
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                    example: NIS04030001
+                  error_description:
+                    type: string
+                    example: Forbidden operation - Non-retryable error code
+        '404':
+          description: >
+            Wrong URL is specified. 
+            
+            **Suggested action:** Please check and correct the URL to match the PNV Lookup API specification
+
+                Example :
+                
+                <am:fault xmlns:am=\"http:xxx/xxx\">
+                  <am:code>404</am:code>
+                  <am:type>Status report</am:type>
+                  <am:message>Runtime Error</am:message>
+                  <am:description>No matching resource found for given API Request</am:description>
+                </am:fault>
+        '405':
+          description: >
+            Below error throws when the HTTP method set is not POST.
+            
+            **Suggested action:** Set HTTP method to POST.
+
+                Example :
+                
+                <am:fault xmlns:am="http:xxx/xxx\">
+                <am:code>405</am:code>
+                <am:type>Status report</am:type>
+                <am:message>Runtime Error</am:message>
+                <am:description>Method not allowed for given API resource</am:description>
+                </am:fault>                
+        '500':
+          description: >
+            Server Error. An error has been encountered while processing this
+            request.
+
+
+            Possible Error Codes:
+
+            * **NIS05000001** - Internal Server Error - Retryable error code. **Suggested action:** if problems keeps re-occurring contact customer support.
+            
+          content:
+            application/json:
+              schema:
+                title: Error Response
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                    example: NIS05000001
+                  error_description:
+                    type: string
+                    example: Internal Server Error - Retryable error code
+        '503':
+          description: |
+            Service Unavailable. 
+            
+            N.B. No Error code or description are provided for this error.
+              
+              **Suggested action:** Please check for any communcation related to service maintenace (or) contact customer support.
+      description: '  Returns all information on the phone number including validity, number type, carrier identifier, carrier name, country, porting detail,  deactivation details, mcc, and mnc. Values returned depend on the feature set selected in request and any optional parameters included in the request.'
+      operationId: POST_lookup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+              example: {'phone_number':'+1XXXXXXXX70','feature':'fs5'}
+        required: false
+    parameters: []
+components:
+  schemas: {}
+  responses: {}
+  parameters: {}
+  examples: {}
+  requestBodies: {}
+  headers: {}
+  securitySchemes:
+    bearerAuth:       # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT  # optional, arbitrary value for documentation purposes
+  links: {}
+  callbacks: {}

@@ -1,0 +1,440 @@
+aid: syniverse
+name: Syniverse
+review:
+  question: Does Syniverse publish a real, self-serve public developer surface, and what is its CAMARA / GSMA Open Gateway posture?
+  answer: true
+  date: '2026-07-25'
+  reviewer: API Evangelist
+  homeMarket: United States
+  tier: wholesale-messaging
+  gated: false
+findings:
+  summary: |
+    Syniverse is split down the middle, and both halves are visible from the outside.
+
+    Its mobility business — inter-carrier roaming, IPX network and signaling, 5G SEPP,
+    clearing and settlement, global SIM, satellite roaming, mobile policy control — is
+    carrier-facing and sales-led. Nothing in it is documented as a public API; every path
+    into it ends at a contact-sales form.
+
+    Its messaging business is the opposite and is genuinely API-native. The Syniverse
+    Developer Community (SDC) at https://developer.syniverse.com/ (HTTP 200) is a real
+    self-serve developer portal, not a login wall and not a marketing page: it advertises
+    "GET YOUR FREE API KEY", offers signup, and the quickstart hands you a working public
+    US test channel ID and a curl command against a live gateway. Product documentation
+    lives on a second host, https://sdcdocumentation.syniverse.com/ (HTTP 200), which
+    renders eleven downloadable OpenAPI/Swagger definitions through Redoc. The API gateway
+    itself is live and enforcing auth — an anonymous GET to
+    https://api.syniverse.com/scg-external-api/api/v1/messaging/message_requests returned
+    HTTP 401.
+
+    One caveat on portal probing: developer.syniverse.com is an AngularJS single-page app
+    with a catch-all route, so arbitrary paths (including /openapi.json and /swagger.json)
+    return HTTP 200 with the SPA HTML shell. Only the root and the documentation host carry
+    real content. No spec is served from developer.syniverse.com itself.
+  developerPortal:
+    url: https://developer.syniverse.com/
+    status: 200
+    real: true
+    note: >-
+      Genuine self-serve portal. Free API key, self-signup, public test channel, trial account
+      with number whitelisting. Postpaid accounts require a Syniverse representative, but nothing
+      blocks a developer from reading docs, signing up, and calling the API.
+    loginURL: https://developer.syniverse.com/sdc-ui/applications
+  documentationHost:
+    url: https://sdcdocumentation.syniverse.com/
+    status: 200
+    platform: concrete5 8.5.4, Redoc for OpenAPI rendering, RAML console for the Event Manager API
+  probes:
+  - url: https://www.syniverse.com/
+    status: 200
+  - url: https://developer.syniverse.com/
+    status: 200
+  - url: https://developers.syniverse.com/
+    status: 0
+    note: DNS does not resolve
+  - url: https://docs.syniverse.com/
+    status: 0
+    note: DNS does not resolve
+  - url: https://api.syniverse.com/
+    status: 404
+    note: Host resolves and answers; it is the live API gateway, no root document
+  - url: https://api.syniverse.com/scg-external-api/api/v1/messaging/message_requests
+    status: 401
+    note: Live gateway rejecting an anonymous request — confirms the documented base URL
+  - url: https://www.syniverse.com/developer
+    status: 404
+  - url: https://www.syniverse.com/developers
+    status: 404
+  - url: https://www.syniverse.com/api
+    status: 404
+  - url: https://opengateway.syniverse.com/
+    status: 0
+    note: DNS does not resolve
+  - url: https://www.syniverse.com/opengateway
+    status: 404
+  - url: https://api.syniverse.com/.well-known/openid-configuration
+    status: 404
+  - url: https://api.syniverse.com/.well-known/oauth-authorization-server
+    status: 404
+  - url: https://developer.syniverse.com/openapi.json
+    status: 200
+    note: SPA catch-all returning HTML, not a spec — rejected
+  - url: https://developer.syniverse.com/swagger.json
+    status: 200
+    note: SPA catch-all returning HTML, not a spec — rejected
+  downloadableSpecs:
+    count: 11
+    verified: true
+    note: >-
+      Every file below was fetched anonymously on 2026-07-25, returned HTTP 200, and was parsed
+      and confirmed to be a real OpenAPI 3.x or Swagger 2.0 document with a paths object. All are
+      stored verbatim in openapi/.
+    specs:
+    - file: openapi/syniverse-omni-channel-messaging-openapi.yml
+      source: https://sdcdocumentation.syniverse.com/application/files/8417/6192/3408/sms_mms_2025-10-31_v83.yaml
+      renderedAt: https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+      status: 200
+      fetched: '2026-07-25'
+      format: Swagger 2.0
+      title: SCG API 1.0.0
+      paths: 72
+      operations: 148
+      host: api.syniverse.com
+      basePath: /scg-external-api/api/v1
+    - file: openapi/syniverse-multi-factor-authentication-openapi.yml
+      source: https://sdcdocumentation.syniverse.com/application/files/1615/6536/4585/test_smfa_api_v8.yaml
+      renderedAt: https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+      status: 200
+      fetched: '2026-07-25'
+      format: Swagger 2.0
+      title: SCG API 1.0.0
+      paths: 7
+      operations: 11
+    - file: openapi/syniverse-phone-number-verification-openapi.yml
+      source: https://sdcdocumentation.syniverse.com/application/files/6516/9229/7297/pnv_snl_10Aug23v2.yaml
+      renderedAt: https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+      status: 200
+      fetched: '2026-07-25'
+      format: OpenAPI 3.0.0
+      title: PNV 1.0.0
+      paths: 1
+      operations: 1
+      server: https://api.syniverse.com/numberidentity/v3
+    - file: openapi/syniverse-right-party-verification-openapi.yml
+      source: https://sdcdocumentation.syniverse.com/application/files/3016/3231/7930/RPV_API_Reference_Guide_v1.yaml
+      renderedAt: https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+      status: 200
+      fetched: '2026-07-25'
+      format: OpenAPI 3.0.0
+      title: Syniverse Right Party Verification API 4.3
+      paths: 1
+      operations: 1
+      server: https://mobileidsandbox.syniverse.com/cigateway/id
+      note: Published definition points at a sandbox host, not a production host.
+    - file: openapi/syniverse-account-takeover-detection-openapi.yml
+      source: https://sdcdocumentation.syniverse.com/application/files/5016/3231/7826/ATO_API_Reference_Guide_v1.yaml
+      renderedAt: https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+      status: 200
+      fetched: '2026-07-25'
+      format: OpenAPI 3.0.0
+      title: Syniverse Account Takeover Detection API 4.3
+      paths: 1
+      operations: 1
+      server: https://mobileidsandbox.syniverse.com/cigateway/id
+      note: POST /v1/simCheck. Sandbox host in the published definition.
+    - file: openapi/syniverse-messaging-trust-resolve-openapi.yml
+      source: https://sdcdocumentation.syniverse.com/application/files/5217/4708/4689/Messaging_Trust_Resolve_2025_05_12_V8.yaml
+      renderedAt: https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+      status: 200
+      fetched: '2026-07-25'
+      format: OpenAPI 3.0.1
+      title: Messaging Trust Resolve 1.0.0
+      paths: 2
+      operations: 2
+      server: https://api.mt1.messaging-trust.syniverse.com/api
+    - file: openapi/syniverse-messaging-trust-datafeed-openapi.yml
+      source: https://sdcdocumentation.syniverse.com/application/files/8717/4708/2760/Messaging_Trust_Datafeed_2025_05_12_V4.yaml
+      renderedAt: https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+      status: 200
+      fetched: '2026-07-25'
+      format: OpenAPI 3.0.1
+      title: MT Spam Datafeed 1.0.0
+      paths: 1
+      operations: 1
+      server: https://api.mt1.messaging-trust.syniverse.com/api/v1
+    - file: openapi/syniverse-10dlc-openapi.yml
+      source: https://sdcdocumentation.syniverse.com/application/files/5717/6486/2871/10DLC_API_Spec_v2.3-External_2025_12_04.yaml
+      renderedAt: https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+      status: 200
+      fetched: '2026-07-25'
+      format: OpenAPI 3.0.1
+      title: 10DLC v2.3
+      paths: 9
+      operations: 11
+      server: https://api.syniverse.com
+    - file: openapi/syniverse-10dlc-number-pool-openapi.yml
+      source: https://sdcdocumentation.syniverse.com/application/files/9916/2584/4820/10DLC_Number_Pool.yaml
+      renderedAt: https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+      status: 200
+      fetched: '2026-07-25'
+      format: Swagger 2.0
+      title: Syniverse 10DLC Provissioning API 1.2
+      paths: 3
+      operations: 4
+      note: Published under an explicitly deprecated v1 section of the docs.
+    - file: openapi/syniverse-whitelisting-service-openapi.json
+      source: https://sdcdocumentation.syniverse.com/application/files/1815/6986/9604/Whitelisting_Service-v1.json
+      renderedAt: https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+      status: 200
+      fetched: '2026-07-25'
+      format: Swagger 2.0
+      title: Whitelisting_Service v1
+      paths: 3
+      operations: 6
+    - file: openapi/syniverse-token-management-openapi.yml
+      source: https://sdcdocumentation.syniverse.com/application/files/7215/7615/8929/SDC-TokenRefresh-v1.YAML
+      renderedAt: https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+      status: 200
+      fetched: '2026-07-25'
+      format: OpenAPI 3.0.0
+      title: SDC Application Access Token Management 1.0
+      paths: 1
+      operations: 1
+  camara:
+    posture: >-
+      GSMA Open Gateway CHANNEL PARTNER plus an announced Aduna integration — press-release
+      posture only. Nothing CAMARA-shaped is documented or callable on the Syniverse Developer
+      Community today.
+    apisWithRealEvidence: []
+    apisNamedInAnnouncementsOnly:
+    - Number Verification
+    - SIM Swap
+    - Device Location
+    - Quality on Demand
+    detail: |
+      Syniverse is not a mobile network operator, so it is not a CAMARA API source. It reaches
+      network APIs as a channel:
+
+      1. On 2025-04-29 Syniverse announced it had joined the GSMA Open Gateway initiative as
+         "one of Open Gateway's newest channel partners", naming device location, SIM swap
+         detection, number verification and quality on demand as the capabilities enterprises
+         can reach through the initiative.
+         Source: https://www.syniverse.com/news/syniverse-joins-gsma-open-gateway-to-expand-enterprise-access-to-mobile
+      2. On 2025-06-18 Syniverse and Aduna — the Ericsson-and-carrier joint venture that
+         aggregates CAMARA APIs commercially — announced Syniverse would integrate with Aduna's
+         unified API platform, naming SIM Swap, Number Verification and Device Location. The
+         wording is forward-looking ("seeks to offer", "will broaden the reach") with no GA date.
+         Source: https://adunaglobal.com/resources/news-syniverse-to-team-up-with-aduna-to-expand-access-to-network-apis/
+
+      A press release is not an implementation. As of 2026-07-25 there is no CAMARA API on the
+      SDC portal: no CAMARA-named product page, no CAMARA OpenAPI in the documentation, no
+      /camara path, opengateway.syniverse.com does not resolve, and /opengateway on the corporate
+      site is a 404. Grepping all eleven harvested specs for "camara", "CIBA", "backchannel",
+      "open gateway", "sim swap", "number verification", "device location" and "quality on
+      demand" returned zero matches.
+
+      What Syniverse does ship is its own functionally adjacent identity family, published years
+      before CAMARA and structured nothing like it: Account Takeover Detection (POST /v1/simCheck,
+      a SIM-swap-adjacent risk signal), Right Party Verification (POST /v2/match, KYC-match
+      adjacent) and Phone Number Verification (POST /lookup, number status/porting). These are
+      Syniverse-proprietary contracts on Syniverse hosts, not CAMARA specifications.
+    openGatewayMember: true
+    openGatewayRole: channel partner (not an operator; Syniverse has no mobile network of its own)
+    adunaChannel: announced 2025-06-18, integration not evidenced as live
+  tmForum:
+    conformanceFound: false
+    note: >-
+      No TM Forum Open API conformance certification for Syniverse was found in this review, and
+      no TMF-numbered API (TMF620, TMF622, TMF641 or otherwise) appears anywhere in the public
+      documentation or in the eleven harvested specs. Syniverse's BSS-adjacent products
+      (clearing and settlement, billing and charging evolution, mobile profile management) are
+      sold as carrier services, not as certified TM Forum interfaces.
+  threeGPP:
+    nefOrScefSurface: false
+    note: >-
+      Syniverse operates IPX, signaling, 5G SEPP (Security Edge Protection Proxy) and 5G roaming
+      for satellite as carrier infrastructure products, all described on www.syniverse.com/mobility/
+      as sales-led solutions. No NEF or SCEF exposure endpoint, no network-slicing API and no
+      edge/MEC API is publicly documented.
+  auth:
+    model: Bearer access token issued per registered SDC application
+    detail: |
+      The dominant scheme across the SCG, 10DLC and identity APIs is an SDC application access
+      token presented as "Authorization: Bearer {token}". The 10DLC v2.3 spec declares it as
+      http/bearer with bearerFormat "SDC"; the deprecated 10DLC v1 spec declares it as an apiKey
+      in the Authorization header with the literal description "Use Bearer {Syniverse SDC
+      Application Token}". Phone Number Verification declares http/bearer with bearerFormat JWT.
+      Token lifecycle is itself an API: GET /saop-rest-data/v1/apptoken-refresh regenerates an
+      application's access token.
+    oauth2: |
+      True OAuth2 client-credentials appears only on the Messaging Trust family, with tokenUrl
+      https://api.mt1.messaging-trust.syniverse.com/oauth2/token and empty declared scopes. The
+      Whitelisting Service spec declares a legacy OAuth2 implicit flow against
+      https://beta.api.syniverse.com/token. The Event Manager can also act as an OAuth2 client
+      against the customer's own endpoint (client_credentials, password or refresh_token) when
+      delivering events outbound.
+    ciba: false
+    cibaNote: >-
+      CIBA (Client-Initiated Backchannel Authentication), which CAMARA specifies for
+      network-based authorization, does NOT appear anywhere — not in any of the eleven specs, not
+      in the documentation. Consistent with a provider that channels network APIs rather than
+      terminating them.
+    wellKnown: >-
+      Neither /.well-known/openid-configuration nor /.well-known/oauth-authorization-server is
+      served on api.syniverse.com (both HTTP 404). No OIDC discovery document was found.
+  webhooks:
+    present: true
+    productName: Event Manager / Event Subscription Service (ESS)
+    apiBaseURL: https://api.syniverse.com/ess/v1
+    documentation: https://sdcdocumentation.syniverse.com/index.php/reporting/event-manager/overview
+    delivery:
+    - Near real-time REST delivery to a customer endpoint
+    - Scheduled delivery to JSON files on a simple or cron schedule
+    inboundAuthOptions:
+    - None
+    - Basic Auth
+    - OAuth 2.0 (client_credentials, password or refresh_token)
+    resources:
+    - /topics
+    - /topic-subscriptions
+    - /subscriptions
+    - /dump-subscriptions
+    - /delivery-configurations
+    - /delivery-configurations/{del-config-id}
+    - /event-types
+    - /event-deliveries
+    - /event-delivery-attempts
+    - /handled-event-deliveries
+    - /event-buffer-files
+    - /dictionaries
+    - /authentication
+    - /tracking
+    - /summary
+    - /mdn
+    asyncapi: false
+    note: >-
+      Real event catalog covering message delivery receipts and phone-number status changes
+      (porting, deactivation, disconnect). Documented as a rendered RAML console; no
+      machine-readable AsyncAPI or OpenAPI file for ESS was found for download.
+  sdks:
+    githubOrganization: https://github.com/Syniverse
+    firstParty: true
+    packages:
+    - Messaging-Node.js (JavaScript)
+    - Messaging-PHP (PHP)
+    - Messaging-Python (Python)
+    - Messaging-Java (Java)
+    - Messaging-C-Plus-Plus (C++)
+    - Messaging-C-Sharp (C#)
+    - Messaging-Ruby (Ruby)
+    - Push-Notification-SDK (Objective-C)
+    quickstarts:
+    - QuickStart-SendSMS-Python
+    - QuickStart-PhoneNumberVerification-Python
+    - QuickStart-BatchNumberLookup-Python
+    - QuickStart-BatchNumberMonitoring-Python
+    - QuickStart-BatchAutomation-Java
+    - Example-CheckNumberThenSendSMS-Python
+    - Example-SDC-Token-Refresh
+    - Voice-and-Messaging-Sample-Curls
+    note: >-
+      Source-only SDKs on GitHub. No registry-published first-party package was found on npm,
+      PyPI, Maven or NuGet. Most SDK repos were last updated between 2017 and 2021; only the
+      Python quickstarts saw 2026 commits. The SDK layer is stale relative to the specs, which
+      carry 2025 and 2026 revision dates.
+  otherSurfaces:
+    postmanWorkspace: none found
+    graphql: none found
+    grpc: none found
+    mcp: none found
+  productFamily:
+    messaging (public, self-serve):
+    - SMS & MMS
+    - RCS Business Messaging
+    - WhatsApp Business
+    - Social Messaging (Facebook Messenger, WeChat)
+    - Push Notification
+    - Voice
+    - 10DLC campaign registration
+    - Messaging Trust (spam resolution and reporting)
+    - Multi-Factor Authentication
+    - Phone Number Verification
+    - Right Party Verification
+    - Account Takeover Detection
+    - Event Manager (webhooks)
+    mobility (carrier-facing, no public API):
+    - Roaming and evolved mobility (3G to VoLTE)
+    - 5G roaming and 5G SEPP
+    - IPX network and signaling
+    - Clearing and settlement
+    - Billing and charging evolution
+    - Global SIM
+    - Satellite and 5G roaming for satellite
+    - Mobile policy control center
+    - Private wireless network
+    - Mobile profile management
+  transports:
+  - protocol: REST
+    scheme: https
+    baseURL: https://api.syniverse.com/scg-external-api/api/v1
+    documented: true
+  - protocol: REST
+    scheme: https
+    baseURL: https://api.syniverse.com/numberidentity/v3
+    documented: true
+  - protocol: REST
+    scheme: https
+    baseURL: https://api.syniverse.com/engage/tendlc-services/v2
+    documented: true
+  - protocol: REST
+    scheme: https
+    baseURL: https://api.syniverse.com/ess/v1
+    documented: true
+  - protocol: REST
+    scheme: https
+    baseURL: https://api.mt1.messaging-trust.syniverse.com/api
+    documented: true
+  - protocol: REST
+    scheme: https
+    baseURL: https://mobileidsandbox.syniverse.com/cigateway/id
+    documented: true
+    note: Sandbox host as published in the RPV and ATO definitions.
+  - protocol: Webhook
+    scheme: https
+    documented: true
+    note: Outbound near-real-time REST event delivery via Event Manager.
+  - protocol: WebSocket
+    scheme: wss
+    documented: false
+    note: No WebSocket surface is documented anywhere in the Syniverse Developer Community.
+sources:
+- url: https://developer.syniverse.com/
+  type: DeveloperPortal
+  status: 200
+  note: Syniverse Developer Community landing page; free API key and signup calls to action.
+- url: https://sdcdocumentation.syniverse.com/
+  type: Documentation
+  status: 200
+  note: Product guides, quickstarts, API references and all eleven downloadable specs.
+- url: https://sdcdocumentation.syniverse.com/index.php/omni-channel/getting-started/sms-mms-quickstart
+  type: Documentation
+  status: 200
+  note: Documents base URL, bearer-token auth, public US test channel and trial whitelisting.
+- url: https://sdcdocumentation.syniverse.com/index.php/reporting/event-manager/resources
+  type: APIReference
+  status: 200
+  note: Event Subscription Service API console; base URL https://api.syniverse.com/ess/v1.
+- url: https://github.com/Syniverse
+  type: GitHubOrganization
+  status: 200
+  note: Twenty first-party SDK, quickstart and example repositories.
+- url: https://www.syniverse.com/mobility/
+  type: Website
+  note: Carrier-side product estate — roaming, IPX, signaling, 5G SEPP, satellite. No public APIs.
+- url: https://www.syniverse.com/news/syniverse-joins-gsma-open-gateway-to-expand-enterprise-access-to-mobile
+  type: News
+  note: 2025-04-29 — Syniverse joins GSMA Open Gateway as a channel partner.
+- url: https://adunaglobal.com/resources/news-syniverse-to-team-up-with-aduna-to-expand-access-to-network-apis/
+  type: News
+  note: 2025-06-18 — Syniverse to integrate with Aduna's aggregated network API platform.

@@ -1,0 +1,376 @@
+openapi: 3.0.0
+info:
+  version: '4.3'
+  title: Syniverse Right Party Verification API
+  description: Syniverse Right Party Verification API.
+servers:
+  - url: https://mobileidsandbox.syniverse.com/cigateway/id
+paths:
+  /v2/match:
+    post:
+      tags:
+        - Match
+      summary: Right Party Verification
+      description: An API that allows an enterprise to check if the identity provided by the user matches what is on record with a mobile carrier or an authoritative source. The match score each individual attribute can range from -1 to 10. Below are the defintions:<br>10 = Exact match<br>9 = High partial math<br>5 = Partial match<br>0 = No match<br>-1 = Data not available
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/CommonContentTypeHeader'
+        - $ref: '#/components/parameters/CommonAcceptHeader'
+        - $ref: '#/components/parameters/RequestTime'
+      requestBody:
+        description: The basic body required to submit for a Right Party Verification response.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/matchRequest'
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/matchSuccessResponse'
+        '400':
+          description: Malformed request submitted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse2'
+        '500':
+          description: Internal system error.
+ 
+components:
+  parameters:
+    CommonAcceptHeader:
+      name: Accept
+      in: header
+      required: true
+      example: application/json
+      description: Media type for the response. Only application/json is supported.
+      schema:
+        type: string
+        default: application/json
+    CommonContentTypeHeader:
+      name: Content-Type
+      in: header
+      required: true
+      example: application/json
+      description: Media type sent in the request. Only application/json is supported.
+      schema:
+        type: string
+        default: application/json
+    RequestTime:
+      name: RequestTime
+      in: header
+      required: true
+      example: '2020-09-24T09:33:43+00:00'
+      description: Current date time when request is sent.
+      schema:
+        type: string
+        format: date-time
+        description: Use RFC3339 format e.g. 2020-09-24T09:33:43+00:00
+        example: '2020-09-24T09:33:43+00:00'
+        default: '2020-09-24T09:33:43+00:00'
+    Authorization:
+      name: Authorization
+      in: header
+      required: true
+      description: The security key to use for ATO & RPV APIs.
+      schema:
+        type: string
+        default: y5jBqXWLzEF4OgK61EbJ4jbEesmxE5No
+  schemas:
+  
+    matchRequest:
+      type: object
+      properties:
+        merchantId:
+          description: Your merchant ID that will be provided to you during onboarding.
+          example: 02200013919FB4
+          default: 02200013919FB4
+          type: string
+          maxLength: 30
+        subMerchantId:
+          description: Used by resellers, an ID that is assigned to the end merchant.
+          example: ''
+          default: ''
+          type: string
+          maxLength: 30
+        consentId:
+          description: Unique ID for the consent that is traceable if consent audit is required.
+          type: string
+          maxLength: 128
+          example: 9783471AFDB69NH34
+          default: 9783471AFDB69NH34
+        consentTimeStamp:
+          description: The time stamp that the consentId was generated. Format must be as date time RFC3339.
+          type: string
+          example: '2020-08-20T12:00:57+00:00'
+          default: '2020-08-20T12:00:57+00:00'
+          format: date-time
+        msisdn:
+          type: string
+          example: '+14444441333'
+          default: '+14444441333'
+          description: The MSISDN of the user that you want to check. Number to be provided in E.164 format.
+        correlationId:
+          description: A nonce used by the merchant that is unique to this transaction.
+          type: string
+          minLength: 8
+          maxLength: 80
+          example: 984681AFDB698C67
+          default: 984681AFDB698C67
+        firstName:
+          description: Consumer First Name.
+          type: string
+          maxLength: 128
+          example: Michael
+          default: Michael
+        lastName:
+          description: Consumer Last Name.
+          type: string
+          maxLength: 128
+          example: Johnson
+          default: Johnson
+        address1:
+          description: Consumer Address Line 1.
+          type: string
+          maxLength: 256
+          example: 3701 Ashwood Dr
+          default: 3701 Ashwood Dr
+        address2:
+          description: Consumer Address Line 1.
+          type: string
+          maxLength: 256
+          example: Apt 20
+          default: Apt 20
+        city:
+          description: Consumer City.
+          type: string
+          maxLength: 128
+          example: Council Bluffs
+          default: Council Bluffs
+        state:
+          description: Consumer State.
+          type: string
+          maxLength: 128
+          example: IA
+          default: IA
+        postalCode:
+          description: Consumer Postal or Zip Code.
+          type: string
+          maxLength: 10
+          example: '51501'
+          default: '51501'
+        countryCode:
+          description: Consumer Country. Two letter country ISO code values only.
+          type: string
+          maxLength: 2
+          example: US
+          default: US
+        nationalId:
+          description: Consumer National ID (If Used).
+          type: string
+          maxLength: 128
+          default: '345678901'
+          example: '345678901'
+        dateOfBirth:
+          description: Consumer DOB in YYYYMMDD format.
+          type: string
+          maxLength: 8
+          default: '19800303'
+          example: '19800303'
+      required:
+        - merchantId
+        - msisdn
+        - correlationId
+        - consentId
+        - consentTimeStamp
+    matchSuccessResponse:
+      properties:
+        results:
+          type: object
+          properties:
+            correlationId:
+              description: A nonce used by the enterprise that is unique to this transaction.
+              type: string
+              minLength: 8
+              maxLength: 80
+              example: 984681AFDB698C67
+            responseId:
+              description: A nonce used by Syniverse that is unique to this transaction.
+              type: string
+              maxLength: 30
+              example: 6496849684CBAF87A7
+            firstNameScore:
+              description: First Name Score.
+              type: string
+              enum:
+                - '10'
+                - '9'
+                - '5'
+                - '0'
+                - '-1'
+              example: '10'
+            lastNameScore:
+              description: Last Name Score.
+              type: string
+              enum:
+                - '10'
+                - '9'
+                - '5'
+                - '0'
+                - '-1'
+              example: '10'
+            streetAddressScore:
+              description: Address Score.
+              type: string
+              enum:
+                - '10'
+                - '9'
+                - '5'
+                - '0'
+                - '-1'
+              example: '10'
+            cityScore:
+              description: City Score
+              type: string
+              enum:
+                - '10'
+                - '9'
+                - '5'
+                - '0'
+                - '-1'
+              example: '10'
+            stateScore:
+              description: City Score
+              type: string
+              enum:
+                - '10'
+                - '9'
+                - '5'
+                - '0'
+                - '-1'
+              example: '10'
+            postalCodeScore:
+              description: Postal Code Score.
+              type: string
+              enum:
+                - '10'
+                - '9'
+                - '5'
+                - '0'
+                - '-1'
+              example: '0'
+            countryCodeScore:
+              description: Country Code Score.
+              type: string
+              enum:
+                - '10'
+                - '9'
+                - '5'
+                - '0'
+                - '-1'
+              example: '10'
+            dateOfBirthScore:
+              description: DOB Score.
+              type: string
+              enum:
+                - '10'
+                - '9'
+                - '5'
+                - '0'
+                - '-1'
+              example: '10'
+            nationalIdScore:
+              description: Score of National ID (If available).
+              type: string
+              enum:
+                - '10'
+                - '9'
+                - '5'
+                - '0'
+                - '-1'
+              example: '0'
+            dataSource:
+              description: What was used to match the information.
+              type: string
+              example: CARRIER
+              enum:
+                - CARRIER
+                - THIRD PARTY
+            identityScore:
+              description: A single score that indicates the overall level of match between Syniverse's data sources and end-user data sent in the enterprise request. 100 indicates strong match and 0 indicates complete mismatch.
+              type: string
+              example: '90'
+    errorResponse1:
+      properties:
+        error:
+          type: object
+          properties:
+            correlationId:
+              description: A nonce used by the enterprise that is unique to this transaction.
+              type: string
+              minLength: 8
+              maxLength: 80
+              example: 984681AFDB698C67
+            referenceId:
+              description: A nonce used by Syniverse that is unique to this transaction.
+              type: string
+              maxLength: 30
+              example: 6496849684CBAF87A9
+            code:
+              description: A Syniverse code regarding the error. Refer to the API guide for a complete list.
+              type: string
+              example: '-5003'
+            description:
+              description: Description of code.
+              type: string
+              maxLength: 256
+              example: A required parameter is missing.
+    errorResponse2:
+      properties:
+        error:
+          type: object
+          properties:
+            correlationId:
+              description: A nonce used by the enterprise that is unique to this transaction.
+              type: string
+              minLength: 8
+              maxLength: 80
+              example: 984681AFDB698C67
+            responseId:
+              description: A nonce used by Syniverse that is unique to this transaction.
+              type: string
+              maxLength: 30
+              example: 6496849684CBAF87A9
+            code:
+              description: A Syniverse code regarding the error. Refer to the API guide for a complete list.
+              type: string
+              example: '-5003'
+            description:
+              description: Description of code.
+              type: string
+              maxLength: 256
+              example: A required parameter is missing.
+    errorResponse3:
+      properties:
+        error:
+          type: object
+          properties:
+            correlationId:
+              description: A nonce used by the enterprise that is unique to this transaction.
+              type: string
+              minLength: 8
+              maxLength: 80
+              example: 984681AFDB698C67
+            code:
+              description: A Syniverse code regarding the error. Refer to the API guide for a complete list.
+              type: string
+              example: '-5003'
+            description:
+              description: Description of code.
+              type: string
+              maxLength: 256
+              example: A required parameter is missing.

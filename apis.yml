@@ -1,0 +1,298 @@
+aid: syniverse
+url: https://raw.githubusercontent.com/api-evangelist/syniverse/refs/heads/main/apis.yml
+name: Syniverse
+kind: company
+description: >-
+  Syniverse is a United States headquartered wholesale telecommunications company that sits
+  between mobile network operators rather than in front of consumers. Its mobility business runs
+  inter-carrier roaming, IPX network and signaling, 5G SEPP, clearing and settlement, global SIM
+  and satellite roaming for carriers, and none of that carrier-side estate is exposed as a public
+  API. Its messaging business is the opposite: an A2P/CPaaS aggregator selling SMS, MMS, RCS,
+  WhatsApp, push, voice, 10DLC campaign registration, messaging trust/anti-spam and mobile
+  identity services to enterprises, and it is published through a genuine self-serve developer
+  portal, the Syniverse Developer Community (SDC), where anyone can sign up for a free API key,
+  read the docs, and download eleven Redoc-rendered OpenAPI/Swagger definitions. On network APIs
+  Syniverse is a channel, not a source — it joined GSMA Open Gateway in April 2025 as a channel
+  partner and announced an integration with Aduna in June 2025, but no CAMARA-defined API is
+  documented or callable on its developer portal today.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Telecommunications
+- United States
+- CPaaS
+- Messaging
+- SMS
+- Roaming
+- IPX
+- Wholesale
+- Identity Verification
+- SIM Swap
+- 10DLC
+- Open Gateway
+- Network APIs
+- Aggregator
+created: '2026-07-25'
+modified: '2026-07-25'
+specificationVersion: '0.19'
+apis:
+- aid: syniverse:syniverse-omni-channel-messaging-api
+  name: Syniverse Omni-Channel Messaging API (SCG)
+  description: >-
+    The Syniverse Communication Gateway (SCG) API — the core of the Syniverse Developer Community
+    platform. 72 documented paths and 148 operations covering message requests, messages,
+    scheduled messages, message templates, sender IDs, channels, contacts and contact groups,
+    attachments, keywords, calls, bridges, conferences and application instances, for SMS, MMS,
+    RCS, Facebook Messenger, WeChat, WhatsApp, push and voice.
+  humanURL: https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Messaging
+  - SMS
+  - MMS
+  - RCS
+  - Voice
+  - Push
+  properties:
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: OpenAPI
+    url: openapi/syniverse-omni-channel-messaging-openapi.yml
+- aid: syniverse:syniverse-multi-factor-authentication-api
+  name: Syniverse Multi-Factor Authentication API
+  description: >-
+    Generates and validates one-time passwords and delivers customized tokens over SMS, voice or
+    push to verify an end user. Documented as part of the SCG API surface with application, user,
+    associate, validate and login_start operations.
+  humanURL: https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Authentication
+  - Multi-Factor Authentication
+  - One-Time Password
+  properties:
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: OpenAPI
+    url: openapi/syniverse-multi-factor-authentication-openapi.yml
+- aid: syniverse:syniverse-phone-number-verification-api
+  name: Syniverse Phone Number Verification API
+  description: >-
+    Single-number lookup service that returns the current carrier, line type and status of a
+    phone number so an enterprise can detect ported, deactivated, disconnected or reassigned
+    numbers. Batch file lookup and proactive number monitoring are offered alongside it through
+    Batch Automation and the Event Manager.
+  humanURL: https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  baseURL: https://api.syniverse.com/numberidentity/v3
+  tags:
+  - Phone Number Verification
+  - Number Lookup
+  - Identity Verification
+  properties:
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: OpenAPI
+    url: openapi/syniverse-phone-number-verification-openapi.yml
+- aid: syniverse:syniverse-right-party-verification-api
+  name: Syniverse Right Party Verification API
+  description: >-
+    A single POST /v2/match operation that returns match scores comparing an end user's asserted
+    identity against Syniverse-sourced mobile data. This is Syniverse's own identity-matching API,
+    not the CAMARA KYC Match specification. The published definition points at a sandbox host.
+  humanURL: https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  baseURL: https://mobileidsandbox.syniverse.com/cigateway/id
+  tags:
+  - Identity Verification
+  - Fraud Prevention
+  - KYC
+  properties:
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: OpenAPI
+    url: openapi/syniverse-right-party-verification-openapi.yml
+- aid: syniverse:syniverse-account-takeover-detection-api
+  name: Syniverse Account Takeover Detection API
+  description: >-
+    A single POST /v1/simCheck operation that reports whether an end user's mobile channel has had
+    recent SIM changes or call forwarding enabled, as an account-takeover risk signal. Functionally
+    adjacent to CAMARA SIM Swap but published as Syniverse's own definition, on a sandbox host,
+    with no CAMARA schema or naming.
+  humanURL: https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  baseURL: https://mobileidsandbox.syniverse.com/cigateway/id
+  tags:
+  - Fraud Prevention
+  - SIM Swap
+  - Account Takeover
+  properties:
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: OpenAPI
+    url: openapi/syniverse-account-takeover-detection-openapi.yml
+- aid: syniverse:syniverse-messaging-trust-resolve-api
+  name: Syniverse Messaging Trust Resolve API
+  description: >-
+    Resolves inbound text and MMS traffic to a disposition — the spam and messaging-abuse
+    classification service sold to messaging operators and enterprises. Two operations,
+    /v1/txt/resolve and /v1/mms/resolve, secured with OAuth2 client credentials.
+  humanURL: https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  baseURL: https://api.mt1.messaging-trust.syniverse.com/api
+  tags:
+  - Messaging Trust
+  - Anti-Spam
+  - Content Classification
+  properties:
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: OpenAPI
+    url: openapi/syniverse-messaging-trust-resolve-openapi.yml
+- aid: syniverse:syniverse-messaging-trust-spam-datafeed-api
+  name: Syniverse Messaging Trust Spam Datafeed API
+  description: >-
+    Submits spam reports into the Messaging Trust datafeed via a single POST /spam/report
+    operation, secured with OAuth2 client credentials against the Messaging Trust token endpoint.
+  humanURL: https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  baseURL: https://api.mt1.messaging-trust.syniverse.com/api/v1
+  tags:
+  - Messaging Trust
+  - Spam Reporting
+  - Anti-Fraud
+  properties:
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: OpenAPI
+    url: openapi/syniverse-messaging-trust-datafeed-openapi.yml
+- aid: syniverse:syniverse-10dlc-api
+  name: Syniverse 10DLC API
+  description: >-
+    US 10DLC (10-digit long code) campaign provisioning — create, retrieve, suspend and resume
+    campaigns, attach and detach long codes and number pools, and manage AT&T DCA campaigns and
+    application addresses. Version 2.3 of the external specification, secured with a bearer SDC
+    application token.
+  humanURL: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  baseURL: https://api.syniverse.com/engage/tendlc-services/v2
+  tags:
+  - 10DLC
+  - Campaign Registration
+  - Messaging
+  properties:
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: OpenAPI
+    url: openapi/syniverse-10dlc-openapi.yml
+- aid: syniverse:syniverse-10dlc-number-pool-api
+  name: Syniverse 10DLC Number Pool API (v1, deprecated)
+  description: >-
+    The deprecated version 1 of the 10DLC provisioning API, still published in the SDC
+    documentation under an explicitly deprecated section. Adds and removes 10DLC long codes and
+    number pool associations for a registered campaign.
+  humanURL: https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  baseURL: https://api.syniverse.com/engage/tendlc-services/v1
+  tags:
+  - 10DLC
+  - Number Pools
+  - Deprecated
+  properties:
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: OpenAPI
+    url: openapi/syniverse-10dlc-number-pool-openapi.yml
+- aid: syniverse:syniverse-whitelisting-service-api
+  name: Syniverse Whitelisting Service API
+  description: >-
+    Developer Community gateway service for managing whitelists of entities and transactions,
+    used to allow trial-account destination numbers and similar platform-level allow lists. Six
+    operations across whitelist, entity and transaction resources.
+  humanURL: https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  tags:
+  - Platform
+  - Whitelisting
+  - Account Management
+  properties:
+  - type: APIReference
+    url: https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: OpenAPI
+    url: openapi/syniverse-whitelisting-service-openapi.json
+- aid: syniverse:syniverse-access-token-management-api
+  name: Syniverse SDC Application Access Token Management API
+  description: >-
+    Regenerates the access token associated with an SDC application via
+    GET /saop-rest-data/v1/apptoken-refresh. This is the token-lifecycle piece of the Syniverse
+    Developer Community bearer-token auth model.
+  humanURL: https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+  tags:
+  - Authentication
+  - Token Management
+  - Platform
+  properties:
+  - type: APIReference
+    url: https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+  - type: OpenAPI
+    url: openapi/syniverse-token-management-openapi.yml
+- aid: syniverse:syniverse-event-subscription-service-api
+  name: Syniverse Event Subscription Service API (Event Manager)
+  description: >-
+    The webhook and event layer of the Syniverse Developer Community. The Event Subscription
+    Service (ESS) API manages topics, topic-subscriptions, delivery-configurations,
+    event-types, event-deliveries, event-delivery-attempts and event-buffer-files, driving
+    scheduled or near-real-time REST delivery of message delivery receipts and phone-number
+    status change events to a customer endpoint, with None, Basic Auth or OAuth 2.0 on the
+    receiving side. Documented as a rendered RAML console; no downloadable machine-readable
+    definition was found.
+  humanURL: https://sdcdocumentation.syniverse.com/index.php/reporting/event-manager/overview
+  baseURL: https://api.syniverse.com/ess/v1
+  tags:
+  - Webhooks
+  - Events
+  - Notifications
+  properties:
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/reporting/event-manager/overview
+  - type: APIReference
+    url: https://sdcdocumentation.syniverse.com/index.php/reporting/event-manager/resources
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/reporting/event-manager/user-guide
+common:
+- type: Website
+  url: https://www.syniverse.com/
+- type: DeveloperPortal
+  url: https://developer.syniverse.com/
+- type: Documentation
+  url: https://sdcdocumentation.syniverse.com/
+- type: SignUp
+  url: https://developer.syniverse.com/home.html#apis
+- type: GitHubOrganization
+  url: https://github.com/Syniverse
+- type: Support
+  url: https://sdcsupport.syniverse.com/hc/en-us
+- type: Blog
+  url: https://www.syniverse.com/blog
+- type: News
+  url: https://www.syniverse.com/news-and-events
+- type: LinkedIn
+  url: https://www.linkedin.com/company/syniverse
+- type: Contact
+  url: https://www.syniverse.com/contact/general-inquiries
+- type: Legal
+  url: https://www.syniverse.com/legal/
+- type: Privacy
+  url: https://www.syniverse.com/privacy/
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
