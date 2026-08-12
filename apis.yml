@@ -296,6 +296,8 @@ apis:
   - type: Documentation
     url: https://sdcdocumentation.syniverse.com/index.php/reporting/event-manager/user-guide
 common:
+- type: MCPServer
+  url: mcp/syniverse-mcp.yml
 - type: AgenticAccess
   url: agentic-access/syniverse-agentic-access.yml
 - type: DomainSecurity
