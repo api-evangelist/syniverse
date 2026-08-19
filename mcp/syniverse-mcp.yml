@@ -1,31 +1,22 @@
 generated: '2026-07-25'
 method: derived
-source: >-
-  openapi/syniverse-omni-channel-messaging-openapi.yml, openapi/syniverse-10dlc-openapi.yml,
-  openapi/syniverse-phone-number-verification-openapi.yml,
-  openapi/syniverse-account-takeover-detection-openapi.yml,
-  openapi/syniverse-right-party-verification-openapi.yml,
-  openapi/syniverse-messaging-trust-resolve-openapi.yml,
-  openapi/syniverse-multi-factor-authentication-openapi.yml
+source: openapi/syniverse-omni-channel-messaging-openapi.yml, openapi/syniverse-10dlc-openapi.yml, openapi/syniverse-phone-number-verification-openapi.yml,
+  openapi/syniverse-account-takeover-detection-openapi.yml, openapi/syniverse-right-party-verification-openapi.yml,
+  openapi/syniverse-messaging-trust-resolve-openapi.yml, openapi/syniverse-multi-factor-authentication-openapi.yml
 status: candidate
-summary: >-
-  No official hosted, remote or local Model Context Protocol server was found for
-  Syniverse — nothing on developer.syniverse.com, nothing in the SDC documentation,
-  nothing in the Syniverse GitHub organization, nothing in the npm/MCP registries.
-  The tool set below is DERIVED from the published Syniverse OpenAPI/Swagger
-  operations as a proposal for an agent-facing surface. It is not published by
-  Syniverse. Each tool names the exact method + path it would bind to; the SCG
-  definition declares no operationIds, so the method+path pair is the only stable
-  identifier the contract offers.
+summary: No official hosted, remote or local Model Context Protocol server was found for Syniverse — nothing
+  on developer.syniverse.com, nothing in the SDC documentation, nothing in the Syniverse GitHub organization,
+  nothing in the npm/MCP registries. The tool set below is DERIVED from the published Syniverse OpenAPI/Swagger
+  operations as a proposal for an agent-facing surface. It is not published by Syniverse. Each tool names
+  the exact method + path it would bind to; the SCG definition declares no operationIds, so the method+path
+  pair is the only stable identifier the contract offers.
 server: null
 transport: null
 auth:
   type: http
   scheme: bearer
   header: 'Authorization: Bearer {SDC application access token}'
-  note: >-
-    Messaging Trust tools would instead need an OAuth 2.0 client-credentials token from
-    https://api.mt1.messaging-trust.syniverse.com/oauth2/token.
+  note: Messaging Trust tools would instead need an OAuth 2.0 client-credentials token from https://api.mt1.messaging-trust.syniverse.com/oauth2/token.
 candidate_tools:
 - name: send_message
   maps_to: POST /scg-external-api/api/v1/messaging/message_requests
@@ -111,7 +102,8 @@ candidate_tools:
 - name: check_sim_swap
   maps_to: POST /cigateway/id/v1/simCheck
   spec: openapi/syniverse-account-takeover-detection-openapi.yml
-  description: Report recent SIM change or call-forwarding activity on a mobile number as an account-takeover risk signal.
+  description: Report recent SIM change or call-forwarding activity on a mobile number as an account-takeover
+    risk signal.
 - name: match_identity
   maps_to: POST /cigateway/id/v2/match
   spec: openapi/syniverse-right-party-verification-openapi.yml
@@ -169,7 +161,10 @@ candidate_tools:
 coverage:
   candidate_tools: 30
   rest_operations_total: 187
-  note: >-
-    Deliberately a marquee subset, not a 1:1 wrapper of all 187 operations. The full
-    operation inventory and its agent-access classification live in
-    agentic-access/syniverse-agentic-access.yml.
+  note: Deliberately a marquee subset, not a 1:1 wrapper of all 187 operations. The full operation inventory
+    and its agent-access classification live in agentic-access/syniverse-agentic-access.yml.
+deployment:
+  mode: none
+  verified: derived
+  checked: '2026-08-12'
+  source: catalog MCP census

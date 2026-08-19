@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Syniverse Account Takeover Detection API",
+    "version": "4.3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Detect",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Account Takeover Detection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mobileidsandbox.syniverse.com/cigateway/id/v1/simCheck",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Accept",
+                "value": "application/json"
+              },
+              {
+                "name": "RequestTime",
+                "value": "2020-09-24T09:33:43+00:00"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "An API that allows an enterpise to check if the end user MSISDN-to-SIM pairing has changed within a preconfigured window. The window is defined in hours and is configured at the time of onboarding by Syniverse Implementation Team. Call forwarding can also be checked for the MSISDN, if desired. Possible values include:<br>Y = SIM changed or call forwarding is enabled, if configured<br>N = SIM not changed and call forwarding disabled, if configured<br>Error -5061 = Insufficient information to dete"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

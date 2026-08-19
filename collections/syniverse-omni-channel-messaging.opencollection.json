@@ -1,0 +1,4390 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SCG API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sender ID",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the list of matching sender addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/messaging/sender_ids",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "unique id of the sender address\n"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "name of the sender address\n"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "represents the sender address status. Following values are allowed:\n- PENDING_IMPLEMENTATION\n- IMPLEMENTED\n- ACTIVE\n- INACTIVE\n- BROKEN\n- PENDING_DELETE\n- PENDING_CONFIRMATION\n\nFor each sender address that require provisioning, when a sender address is requested, the initial status will be 'pending implementation'\n"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "The country that the sender address can be used to send messages to. This field will contain ISO country code. The value is managed by Syniverse and not editable by the customer.\n"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the application that has created the resource\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The date the resource was created\n"
+              }
+            ]
+          },
+          "docs": "  Retrieve the list of matching sender addresses"
+        },
+        {
+          "info": {
+            "name": "Creates a Sender ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messaging/sender_ids"
+          },
+          "docs": "  Creates a Sender ID"
+        },
+        {
+          "info": {
+            "name": "Delete the list of matching sender addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/messaging/sender_ids",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "unique id of the sender address\n"
+              },
+              {
+                "name": "parent_id",
+                "value": "",
+                "type": "query",
+                "description": "for shared short codes, this is a reference to the system  sender id that is associated with this preprovisioned address.  Whenever a customer wants to use a preprovisioned, shared code, the parent sender address id will indicate the sender id that was used to create customer version of the sender id\n"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "name of the sender address\n"
+              },
+              {
+                "name": "ownership",
+                "value": "",
+                "type": "query",
+                "description": "this field determines the ownership category of a shortcode. Applies only for SMS type of sender id's. Following values are allowed:\n- PRIVATE -> represents a short code that is private for use by one company only\n- SHARED -> represents a short code that is owned by Syniverse and where multiple customers can use it. When a customer wants to use a SHARED sender id, a new PRIVATE sender address will be created with parent sender id set to the SHARED sender id\n- PREPROVISIONED -> represents an address that is owned by Syniverse and can be selected by a customer. Upon a customer selecting a preprovisioned sender address, new sender id document as a copy of the PREPROVISIONED document is created, with state PRIVATE and parent_id pointing the original PREPROVISIONED sender address. The PREPROVISIONED sender address changes ownership to PURCHASED. Once the PRIVATE sender address, pointing to the PURCHASED is deleted, the PURCHASED sender changes its ownership back to PREPROVISIONED.\n- PURCHASED -> PREPROVISIONED sender address, currently occupied by a customer.\n"
+              },
+              {
+                "name": "class_id",
+                "value": "",
+                "type": "query",
+                "description": "reference to the sender address class that determines the priority and throughput of the configured sender id\n"
+              },
+              {
+                "name": "type_id",
+                "value": "",
+                "type": "query",
+                "description": "reference the sender address type that determines the data types allowed on the sender id and identifies the gateway used to deliver the messages\n"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "represents the sender address status. Following values are allowed:\n- PENDING_IMPLEMENTATION\n- IMPLEMENTED\n- ACTIVE\n- INACTIVE\n- BROKEN\n- PENDING_DELETE\n- PENDING_CONFIRMATION\n\nFor each sender address that require provisioning, when a sender address is requested, the initial status will be 'pending implementation'\n"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "The country that the sender address can be used to send messages to. This field will contain ISO country code. The value is managed by Syniverse and not editable by the customer.\n"
+              },
+              {
+                "name": "consent_managed_by",
+                "value": "",
+                "type": "query",
+                "description": "Possible values: USER, SCG or SCG_UNSOLICITED_OPT_OUT. Default is USER\n"
+              },
+              {
+                "name": "capabilities",
+                "value": "",
+                "type": "query",
+                "description": "Message types allowed on the sender ids from of this type: SMS, MMS, VOICE, WhatsApp etc.\n"
+              },
+              {
+                "name": "check_white_list",
+                "value": "",
+                "type": "query",
+                "description": "If set, sending via this sender ID is limited to recipients present in the customer's white list.\n"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the application that has created the resource\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The date the resource was created\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "for shared short codes, this is a reference to the system  sender id that is associated with this preprovisioned address.  Whenever a customer wants to use a preprovisioned, shared code, the parent sender address id will indicate the sender id that was us\n"
+              },
+              {
+                "name": "register_number",
+                "value": "",
+                "type": "query",
+                "description": "When the 'register_number' can be set to 'true' or 'false'. When set to 'true', this instructs SCG to register a Telephone number with the appropriate Operator or Registration entity.\n"
+              }
+            ]
+          },
+          "docs": "  Delete the list of matching sender addresses"
+        },
+        {
+          "info": {
+            "name": "Purchase a Sender Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'messaging/sender_ids/purchase'"
+          },
+          "docs": "  Purchase a Sender Address"
+        },
+        {
+          "info": {
+            "name": "Retrieve a specified Sender ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'messaging/sender_ids/:Sender_ID'",
+            "params": [
+              {
+                "name": "Sender_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Sender ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Retrieve a specified Sender ID"
+        },
+        {
+          "info": {
+            "name": "Update a Sender ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'messaging/sender_ids/:Sender_ID'",
+            "params": [
+              {
+                "name": "Sender_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Sender ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Update a Sender ID"
+        },
+        {
+          "info": {
+            "name": "Delete a Sender ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'messaging/sender_ids/:Sender_ID'",
+            "params": [
+              {
+                "name": "Sender_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Sender ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete a Sender ID "
+        },
+        {
+          "info": {
+            "name": "Retrieve the list of matching Sender addresses with the filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/messaging/sender_ids/list",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Name to search for, can include partial matches of the sender name.\n"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of sender addresses which matches the name"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Channel",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List available Private Channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/messaging/channels",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The channel identifier, allocated by SCG when channel is created\n"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "User Specified Name of the Channel\n"
+              },
+              {
+                "name": "priority",
+                "value": "",
+                "type": "query",
+                "description": "Determines the channel priority: high, normal or low. SCG will deliver to target system first for messages in high priority channels, then normal and at the end low priority. Message size does not affect the message priority\n"
+              },
+              {
+                "name": "description",
+                "value": "",
+                "type": "query",
+                "description": "Description of the Channel\n"
+              },
+              {
+                "name": "ownership",
+                "value": "",
+                "type": "query",
+                "description": "SHARED/PRIVATE/PUBLIC\n"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the application that has created the resource\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The date the resource was created\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The data the resource was last changed\n"
+              }
+            ]
+          },
+          "docs": "  List available Private Channels"
+        },
+        {
+          "info": {
+            "name": "Create a Private Channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messaging/channels"
+          },
+          "docs": "  Create a Private Channel"
+        },
+        {
+          "info": {
+            "name": "Retrieve a specified Channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'messaging/channels/:Channel_ID'",
+            "params": [
+              {
+                "name": "Channel_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Channel ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Retrieve a specified Channel"
+        },
+        {
+          "info": {
+            "name": "Update a channel ID with attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'messaging/channels/:Channel_ID'",
+            "params": [
+              {
+                "name": "Channel_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Channel ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Update a channel ID with attributes"
+        },
+        {
+          "info": {
+            "name": "Replaces the specific Channel ID. All mandatory fields must be present.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/'messaging/channels/:Channel_ID'",
+            "params": [
+              {
+                "name": "Channel_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Channel ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Replaces the specific Channel ID. All mandatory fields must be present."
+        },
+        {
+          "info": {
+            "name": "Delete a specified Private Channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'messaging/channels/:Channel_ID'",
+            "params": [
+              {
+                "name": "Channel_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Channel ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete a specified Private Channel"
+        },
+        {
+          "info": {
+            "name": "List Sender IDs associated with a Channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'messaging/channels/:Channel_ID/sender_ids'",
+            "params": [
+              {
+                "name": "Channel_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Channel ID for this resource."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "unique id of the sender address\n"
+              },
+              {
+                "name": "parent_id",
+                "value": "",
+                "type": "query",
+                "description": "for shared short codes, this is a reference to the system  sender id that is associated with this preprovisioned address.  Whenever a customer wants to use a preprovisioned, shared code, the parent sender address id will indicate the sender id that was used to create customer version of the sender id\n"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "name of the sender address\n"
+              },
+              {
+                "name": "ownership",
+                "value": "",
+                "type": "query",
+                "description": "this field determines the ownership category of a shortcode. Applies only for SMS type of sender id's. Following values are allowed:\n- PRIVATE -> represents a short code that is private for use by one company only\n- SHARED -> represents a short code that is owned by Syniverse and where multiple customers can use it. When a customer wants to use a SHARED sender id, a new PRIVATE sender address will be created with parent sender id set to the SHARED sender id\n- PREPROVISIONED -> represents an address that is owned by Syniverse and can be selected by a customer. Upon a customer selecting a preprovisioned sender address, new sender id document as a copy of the PREPROVISIONED document is created, with state PRIVATE and parent_id pointing the original PREPROVISIONED sender address. The PREPROVISIONED sender address changes ownership to PURCHASED. Once the PRIVATE sender address, pointing to the PURCHASED is deleted, the PURCHASED sender changes its ownership back to PREPROVISIONED.\n- PURCHASED -> PREPROVISIONED sender address, currently occupied by a customer.\n"
+              },
+              {
+                "name": "class_id",
+                "value": "",
+                "type": "query",
+                "description": "reference to the sender address class that determines the priority and throughput of the configured sender id\n"
+              },
+              {
+                "name": "type_id",
+                "value": "",
+                "type": "query",
+                "description": "reference the sender address type that determines the data types allowed on the sender id and identifies the gateway used to deliver the messages\n"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "represents the sender address status. Following values are allowed:\n- PENDING_IMPLEMENTATION\n- IMPLEMENTED\n- ACTIVE\n- INACTIVE\n- BROKEN\n- PENDING_DELETE\n- PENDING_CONFIRMATION\n\nFor each sender address that require provisioning, when a sender address is requested, the initial status will be 'pending implementation'\n"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "The country that the sender address can be used to send messages to. This field will contain ISO country code. The value is managed by Syniverse and not editable by the customer.\n"
+              },
+              {
+                "name": "consent_managed_by",
+                "value": "",
+                "type": "query",
+                "description": "Possible values: USER, SCG or SCG_UNSOLICITED_OPT_OUT. Default is USER\n"
+              },
+              {
+                "name": "capabilities",
+                "value": "",
+                "type": "query",
+                "description": "Message types allowed on the sender ids from of this type: SMS, MMS, VOICE, WhatsApp etc.\n"
+              },
+              {
+                "name": "check_white_list",
+                "value": "",
+                "type": "query",
+                "description": "If set, sending via this sender ID is limited to recipients present in the customer's white list.\n"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the application that has created the resource\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The date the resource was created\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "for shared short codes, this is a reference to the system  sender id that is associated with this preprovisioned address.  Whenever a customer wants to use a preprovisioned, shared code, the parent sender address id will indicate the sender id that was us\n"
+              },
+              {
+                "name": "register_number",
+                "value": "",
+                "type": "query",
+                "description": "When the 'register_number' can be set to 'true' or 'false'. When set to 'true', this instructs SCG to register a Telephone number with the appropriate Operator or Registration entity.\n"
+              }
+            ]
+          },
+          "docs": "  List Sender IDs associated with a Channel"
+        },
+        {
+          "info": {
+            "name": "Add sender_id(s) to a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'messaging/channels/:Channel_ID/sender_ids'",
+            "params": [
+              {
+                "name": "Channel_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Channel ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Add sender_id(s) to a channel"
+        },
+        {
+          "info": {
+            "name": "Removes the senderId from channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'messaging/channels/:channel_ID/sender_ids/:sender_ID'",
+            "params": [
+              {
+                "name": "channel_ID",
+                "value": "",
+                "type": "path",
+                "description": "The channel ID for this resource."
+              },
+              {
+                "name": "sender_ID",
+                "value": "",
+                "type": "path",
+                "description": "The sender ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Removes the senderId from channel"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Message Request",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve all message requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/messaging/message_requests/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier for the message request\n"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The from attribute is the channel Id or Sender Id over/from which the message is to be sent.\n-To= send from a sender ID, the ID should be prefixed with 'sender_id:'.   \n-To send from a channel the ID should be prefixed with 'channel:'.\n example: channel:1KJPMkuHQkair_o15etpmg"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "For MT messages this will be a list of one or more recipient addresses, contact ids, contact group ids\nexample\n"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "The status of the message request:\n- SUBMITTED\n- ACCEPTED\n- REJECTED\n- PREPARING (while in the preparing state, the recipient cont may increase with time i.e. SCG will keep track of the preparing step to allow polling on the resource to have user see progress)\n- TRANSMITTING (while in the transmission state, the sent count will be updates as the messages are being sent)\n- COMPLETED\n- PAUSED (SCG will go into this state after preparing if pause flag is set)\n- CANCELED  (cancel can be requested at any time)\nNOTE: to resume paused messages, the status should be updated by customer from PAUSED to TRANSMITTING\n"
+              },
+              {
+                "name": "test_message_flag",
+                "value": "",
+                "type": "query",
+                "description": "This is a test mode flag for performing basic functional tests. If this flag is set to 'true' then this will be processed and Out bound messages will be created but the messages will not be delivered to a handset.\n"
+              },
+              {
+                "name": "pause_before_transmit",
+                "value": "",
+                "type": "query",
+                "description": "This is a flag that tells SCG to generate the messages but not to deliver them.\n"
+              },
+              {
+                "name": "pause_expiry_time",
+                "value": "",
+                "type": "query",
+                "description": "This is the timestamp after which all paused messages will expire and will be removed from the outbound queue. The maximum expiry time is 24h. If application creates a message request with Integer pause expiry time, the message request will fail\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "For a MT sent via this API, this indicates the time when the API was called to request message delivery.  For a MO message, this is the point in time when the SCG was notified of the inbound message from the operator network/mediate channel.\n"
+              },
+              {
+                "name": "sent_date",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp when the message was submitted to downstream system for delivery.\nExample: \"2023-05-24T23:24:37.464Z\"  \n"
+              },
+              {
+                "name": "delivered_date",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp when the message has been delivered, corresponds to DR date.\nExample: \"2023-05-24T23:24:37.464Z\"\n"
+              }
+            ]
+          },
+          "docs": "  Retrieve all message requests"
+        },
+        {
+          "info": {
+            "name": "Send a Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messaging/message_requests/"
+          },
+          "docs": "  Send a Message"
+        },
+        {
+          "info": {
+            "name": "Retrieve message requests using a message request Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'messaging/message_requests/:MessageRequest_ID'",
+            "params": [
+              {
+                "name": "MessageRequest_ID",
+                "value": "",
+                "type": "path",
+                "description": "The MessageRequest ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Retrieve message requests using a message request Id"
+        },
+        {
+          "info": {
+            "name": "Delete a message request",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'messaging/message_requests/:MessageRequest_ID'",
+            "params": [
+              {
+                "name": "MessageRequest_ID",
+                "value": "",
+                "type": "path",
+                "description": "The MessageRequest ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete a message request"
+        },
+        {
+          "info": {
+            "name": "Retrieve messages using a Message request Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'messaging/message_requests/:MessageRequest_ID/messages'",
+            "params": [
+              {
+                "name": "MessageRequest_ID",
+                "value": "",
+                "type": "path",
+                "description": "The MessageRequest ID for this resource."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier\n"
+              },
+              {
+                "name": "message_request_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique id of the associated message request resource.\n"
+              },
+              {
+                "name": "external_transaction_ids",
+                "value": "",
+                "type": "query",
+                "description": "This is list of id-s (one for every fragment) issued for this message by the downstream messaging system.\n"
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Message direction: MO for received messages and MT sent messages\n"
+              },
+              {
+                "name": "from_address",
+                "value": "",
+                "type": "query",
+                "description": "The sender address.\n"
+              },
+              {
+                "name": "to_address",
+                "value": "",
+                "type": "query",
+                "description": "The recipient address.\n"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "The status of the message to this recipient.  \nValid values for MT messages are:\n- CREATED (message was created and is in the queue of SCG)\n- SENT (message was sent to the outbound delivery system)\n- DELIVERED (message was delivered to end-device of the user)\n- READ (message was read by the user)\n- CONVERTED (message was converted i.e. end user took action upon message)\n- FAILED (message delivery failed)\n- EXPIRED (message was too old to be sent)\n- SCHEDULED (message is created but not submitted for sending)\n- TEST (message was created but the request was a test request)\n- PAUSED (message was created but the request was to pause before delivery)\n- DELETED \nSCG will automatically set the status of the message to converted when the message contains a 'tracked' URL and the link was clicked by the recipient.\nAlternatively the customer also externally can track conversion and could update the message status put applying the PUT method and specifying status = CONVERTED and the conversion timestamp\nValid values for MO Messages are:\n- RECEIVED (received at SCG)\n- PROCESSED (when the customer has accessed the message and updated the status)\n- DELETED (when the message was deleted by the customer)\n"
+              },
+              {
+                "name": "sent_date",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp when the message was submitted to downstream system for delivery\n"
+              },
+              {
+                "name": "delivered_date",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp when the message has been delivered, corresponds to DR date.\n"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The message type (SMS, MMS, PSH, FB)\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp when the message was created, which corresponds to the time when the bulk message POST was done by the client.\n"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The from attribute is the channel Id or Sender Id over/from which the message is to be sent.\n-To send from a sender ID, the ID should be prefixed with 'sender_id:'.   \n-To send from a channel the ID should be prefixed with 'channel:'.\n"
+              },
+              {
+                "name": "pause_before_transmit",
+                "value": "",
+                "type": "query",
+                "description": "This is a flag that tells SCG to generate the messages but not to deliver them.\n"
+              },
+              {
+                "name": "pause_expiry_time",
+                "value": "",
+                "type": "query",
+                "description": "This is the timestamp after which all paused messages will expire and will be removed from the outbound queue. The maximum expiry time is 24h. If application creates a message request with Integer pause expiry time, the message request will fail\n"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Recipient address or contact id.\n"
+              }
+            ]
+          },
+          "docs": "  Retrieve messages using a Message request Id"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scheduled Message Request",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete a scheduled message request",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'messaging/message_requests/scheduled/:MessageRequest_Scheduled_ID'",
+            "params": [
+              {
+                "name": "MessageRequest_Scheduled_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Scheduled MessageRequest ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete a scheduled message request"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Message",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/messaging/messages",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier\n"
+              },
+              {
+                "name": "message_request_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique id of the associated message request resource.\n"
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Message direction: MO for received messages and MT sent messages\n"
+              },
+              {
+                "name": "from_address",
+                "value": "",
+                "type": "query",
+                "description": "The sender address.\n"
+              },
+              {
+                "name": "to_address",
+                "value": "",
+                "type": "query",
+                "description": "The recipient address.\n"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "The status of the message to this recipient.  \nValid values for MT messages are:\n- CREATED (message was created and is in the queue of SCG)\n- SENT (message was sent to the outbound delivery system)\n- DELIVERED (message was delivered to end-device of the user)\n- READ (message was read by the user)\n- CONVERTED (message was converted i.e. end user took action upon message)\n- FAILED (message delivery failed)\n- EXPIRED (message was too old to be sent)\n- SCHEDULED (message is created but not submitted for sending)\n- TEST (message was created but the request was a test request)\n- PAUSED (message was created but the request was to pause before delivery)\n- DELETED \nSCG will automatically set the status of the message to converted when the message contains a 'tracked' URL and the link was clicked by the recipient.\nAlternatively the customer also externally can track conversion and could update the message status put applying the PUT method and specifying status = CONVERTED and the conversion timestamp\nValid values for MO Messages are:\n- RECEIVED (received at SCG)\n- PROCESSED (when the customer has accessed the message and updated the status)\n- DELETED (when the message was deleted by the customer)\n"
+              },
+              {
+                "name": "sent_date",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp when the message was submitted to downstream system for delivery.\nExample: \"2023-05-24T23:24:37.464Z\"  \n"
+              },
+              {
+                "name": "delivered_date",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp when the message has been delivered, corresponds to DR date.\nExample: \"2023-05-24T23:24:37.464Z\"\n"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The message type (SMS, MMS, PSH, FB)\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp when the message was created, which corresponds to the time when the bulk message POST was done by the client.\nExample: 2023-03-20T14:14:14.672Z\n"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The from attribute is the channel Id or Sender Id over/from which the message is to be sent.\n-To send from a sender ID, the ID should be prefixed with 'sender_id:'.   \n-To send from a channel the ID should be prefixed with 'channel:'.\n  example: channel:1KJPMkuHQkair_o15etpmg"
+              },
+              {
+                "name": "pause_before_transmit",
+                "value": "",
+                "type": "query",
+                "description": "This is a flag that tells SCG to generate the messages but not to deliver them.\n"
+              },
+              {
+                "name": "pause_expiry_time",
+                "value": "",
+                "type": "query",
+                "description": "This is the timestamp after which all paused messages will expire and will be removed from the outbound queue. The maximum expiry time is 24h. If application creates a message request with Integer pause expiry time, the message request will fail\n"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Recipient address or contact id.\nexample: fyX3rO7eL48xj2HNXNWIu4\n"
+              }
+            ]
+          },
+          "docs": "  Retrieve messages  "
+        },
+        {
+          "info": {
+            "name": "Send a Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messaging/messages"
+          },
+          "docs": "  Send a Message"
+        },
+        {
+          "info": {
+            "name": "Returns current version of the specified message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'messaging/messages/:Message_ID'",
+            "params": [
+              {
+                "name": "Message_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Message ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Returns current version of the specified message"
+        },
+        {
+          "info": {
+            "name": "Update Message Status to DELETED",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'messaging/messages/:Message_ID'",
+            "params": [
+              {
+                "name": "Message_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Message ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Update Message Status to DELETED"
+        },
+        {
+          "info": {
+            "name": "Returns a list of matching attachments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'messaging/messages/:Message_ID/attachments'",
+            "params": [
+              {
+                "name": "Message_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Message ID for this resource."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier\n"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the attachment (e.g. it's filename or other non-generated identifier)  The value of this field should be unique for a given message.\n"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The MIME type of the attachment (if known)\n"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The size, in bytes, of the attachment body\n"
+              },
+              {
+                "name": "filename",
+                "value": "",
+                "type": "query",
+                "description": "Original file name of the attachment\n"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "CREATED, UPLOADED\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "For a MT message (one which was sent via this API), this indicates the time when the API was called to request message delivery.  For a MO message, this is the point in time when the SCG was notified of the inbound message from the operator network/mediation channel.\nexample:2023-03-20T14:14:14.672Z\n"
+              }
+            ]
+          },
+          "docs": "  Returns a list of matching attachments"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scheduled Message",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete a scheduled message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'messaging/messages/scheduled/:Message_Scheduled_ID'",
+            "params": [
+              {
+                "name": "Message_Scheduled_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Scheduled Message ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete a scheduled message"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Attachment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a new attachment resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/messaging/attachments",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier\n"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the attachment (e.g. it's filename or other non-generated identifier)  The value of this field should be unique for a given message.\n"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The MIME type of the attachment (if known)\n"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The size, in bytes, of the attachment body\n"
+              },
+              {
+                "name": "filename",
+                "value": "",
+                "type": "query",
+                "description": "Original file name of the attachment\n"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "CREATED, UPLOADED\n"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the application that has created the resource\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "For a MT message (one which was sent via this API), this indicates the time when the API was called to request message delivery.  For a MO message, this is the point in time when the SCG was notified of the inbound message from the operator network/mediation channel.\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The data the resource was last changed\n"
+              }
+            ]
+          },
+          "docs": "  Creates a new attachment resource"
+        },
+        {
+          "info": {
+            "name": "Creates a new attachment resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messaging/attachments"
+          },
+          "docs": "  Creates a new attachment resource"
+        },
+        {
+          "info": {
+            "name": "Returns the current version of the specified Attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'messaging/attachments/:Attachment_ID'",
+            "params": [
+              {
+                "name": "Attachment_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Attachment ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Returns the current version of the specified Attachment"
+        },
+        {
+          "info": {
+            "name": "Update a specific attachment id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'messaging/attachments/:Attachment_ID'",
+            "params": [
+              {
+                "name": "Attachment_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Attachment ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Update a specific attachment id "
+        },
+        {
+          "info": {
+            "name": "Delete an attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'messaging/attachments/:Attachment_ID'",
+            "params": [
+              {
+                "name": "Attachment_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Attachment ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete an attachment"
+        },
+        {
+          "info": {
+            "name": "Create a new access token for an attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'messaging/attachments/:Attachment_ID/access_tokens'",
+            "params": [
+              {
+                "name": "Attachment_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Attachment ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Create a new access token for an attachment"
+        },
+        {
+          "info": {
+            "name": "Returns the current version of the specified Attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'messaging/attachments/:Attachment_ID/content'",
+            "params": [
+              {
+                "name": "Attachment_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Attachment ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Returns the current version of the specified Attachment"
+        },
+        {
+          "info": {
+            "name": "Uploads data to an attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'messaging/attachments/:Attachment_ID/content'",
+            "params": [
+              {
+                "name": "Attachment_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Attachment ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Uploads data to an attachment"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Message Template",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve all Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/messaging/message_templates",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The identifier\n"
+              },
+              {
+                "name": "designation",
+                "value": "",
+                "type": "query",
+                "description": "The template is used either for VALIDATOR or as an actual TEMPLATE.\nVALIDATOR type templates will be associated with a sender id and any message that is submitted to a sender ID that has some VALIDATOR templates associated with it will be checked against the template.\nTEMPLATE type templates are used to send messages. in such case the message request body will indicate with template to apply and the message processing will use the template body and apply conversion of applicable keywords to create the actual message body.\nNOTE: validator type templates can not be modified by the customer where the message template is associated with a shared sender id\n"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the template.\n"
+              },
+              {
+                "name": "pattern",
+                "value": "",
+                "type": "query",
+                "description": "template pattern can be used to enforce compliancy of the message body with the submitted program brief. The template pattern allows also to use the templates to form the message body by using the template pattern and replacing the keywords in the pattern with the values of submitted keywords in the message send from the sender id\n"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the application that has created the resource\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The date the resource was created\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The data the resource was last changed\n"
+              }
+            ]
+          },
+          "docs": "  Retrieve all Templates"
+        },
+        {
+          "info": {
+            "name": "Create a Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messaging/message_templates"
+          },
+          "docs": "  Create a Template"
+        },
+        {
+          "info": {
+            "name": "Returns the current version of the specified Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'messaging/message_templates/:Template_ID'",
+            "params": [
+              {
+                "name": "Template_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Template ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Returns the current version of the specified Template"
+        },
+        {
+          "info": {
+            "name": "Update a Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'messaging/message_templates/:Template_ID'",
+            "params": [
+              {
+                "name": "Template_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Template ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Update a Template"
+        },
+        {
+          "info": {
+            "name": "Replaces the specific template ID. All mandatory fields must be present.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/'messaging/message_templates/:Template_ID'",
+            "params": [
+              {
+                "name": "Template_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Template ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Replaces the specific template ID. All mandatory fields must be present."
+        },
+        {
+          "info": {
+            "name": "Delete a Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'messaging/message_templates/:Template_ID'",
+            "params": [
+              {
+                "name": "Template_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Template ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete a Template"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Keywords",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the list of all keywords",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/messaging/keywords",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "unique keyword id\n"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "name of the keyword\n"
+              },
+              {
+                "name": "value",
+                "value": "",
+                "type": "query",
+                "description": "the keyword. For example 'SPORTS'. The keyword can be expressed in form of a regular expression. POSIX Extended syntax is supported.\n"
+              },
+              {
+                "name": "case",
+                "value": "",
+                "type": "query",
+                "description": "SENSITIVE/INSENSITIVE specifies whether the keyword is case sensitive or not. default is not case sensitive.\n"
+              },
+              {
+                "name": "sender_id",
+                "value": "",
+                "type": "query",
+                "description": "The sender id on which the keyword is valid. When this is empty, any sender id associated with the given customer will be sensitive to this keyword\n"
+              },
+              {
+                "name": "valid_from",
+                "value": "",
+                "type": "query",
+                "description": "the date range for which the keyword is valid\n"
+              },
+              {
+                "name": "valid_to",
+                "value": "",
+                "type": "query",
+                "description": "the date range for which the keyword is valid\n"
+              },
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "query",
+                "description": "The campaign id\n"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "the type of the keyword:\n- RESERVED: those are the platform specific keywords that can not be used by customer in any campaign. Those keywords will always exist, the company will never need to add them\n- COMPANY: company specific keywords\n"
+              },
+              {
+                "name": "actions",
+                "value": "",
+                "type": "query",
+                "description": "actions to be applied when the keyword has been received. Multiple actions can be specified. The various actions should be separated by a coma or space:\n- OPTOUT -> mark the user as explicitly opted out (and forward message to Consent Manager)\n- OPTIN > mark the user as explicitly opted in (and forward message to Consent Manager)\n- STORE -> no action, just record in user profile\n"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the application that has created the resource\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The creation date of the object.\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The last modification date of the object.\n"
+              }
+            ]
+          },
+          "docs": "  Returns the list of all keywords "
+        },
+        {
+          "info": {
+            "name": "Create a new keyword",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messaging/keywords"
+          },
+          "docs": "  Create a new keyword"
+        },
+        {
+          "info": {
+            "name": "Retrieve a specific keyword",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'messaging/keywords/:Keyword_ID'",
+            "params": [
+              {
+                "name": "Keyword_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Keyword ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Retrieve a specific keyword"
+        },
+        {
+          "info": {
+            "name": "Update a keyword",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'messaging/keywords/:Keyword_ID'",
+            "params": [
+              {
+                "name": "Keyword_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Keyword ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Update a keyword"
+        },
+        {
+          "info": {
+            "name": "Replace the keyword",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/'messaging/keywords/:Keyword_ID'",
+            "params": [
+              {
+                "name": "Keyword_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Keyword ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Replace the keyword"
+        },
+        {
+          "info": {
+            "name": "Deletes specified keyword",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'messaging/keywords/:Keyword_ID'",
+            "params": [
+              {
+                "name": "Keyword_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Keyword ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Deletes specified keyword"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Call",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the list of Calls",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/calling/calls",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier for this resource.\n"
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique Id assigned by the application.\n"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The Sender ID associated with this call.\n"
+              },
+              {
+                "name": "from_address",
+                "value": "",
+                "type": "query",
+                "description": "The address associated with the Sender Id.\n"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The called party's address.\n"
+              },
+              {
+                "name": "to_address",
+                "value": "",
+                "type": "query",
+                "description": "The address that was used by the system for the called party.  When the 'to' field specifies something other than the address (e.g. contact ID) then this field will contain the actual address that was used.\n"
+              },
+              {
+                "name": "answer_timeout",
+                "value": "",
+                "type": "query",
+                "description": "The number of miliseconds that the service will wait for an answer.\n"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "The call's state:\n- STARTED - The call is being setup.\n- ACTIVE - The call is in progress.\n- REJECTED - The called party did not answer.\n- COMPLETED - The call is complete.\n"
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "The direction of the call:\n- IN - This was an incoming call.\n- OUT - This was an outgoing call.\n"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "The time the call was started.\n"
+              },
+              {
+                "name": "answer_time",
+                "value": "",
+                "type": "query",
+                "description": "The time the call was answered.\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The date the resource was created\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The data the resource was last changed\n"
+              }
+            ]
+          },
+          "docs": "  Returns the list of Calls"
+        },
+        {
+          "info": {
+            "name": "Make a Call",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/calling/calls"
+          },
+          "docs": "  Make a Call"
+        },
+        {
+          "info": {
+            "name": "Returns the current version of the specified Call",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'calling/calls/:Call_ID'",
+            "params": [
+              {
+                "name": "Call_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Call ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Returns the current version of the specified Call"
+        },
+        {
+          "info": {
+            "name": "Update a Call",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'calling/calls/:Call_ID'",
+            "params": [
+              {
+                "name": "Call_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Call ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Update a Call"
+        },
+        {
+          "info": {
+            "name": "Deletes the Call resource with the specified ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'calling/calls/:Call_ID'",
+            "params": [
+              {
+                "name": "Call_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Call ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Deletes the Call resource with the specified ID"
+        },
+        {
+          "info": {
+            "name": "Play DTMF tones",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'calling/calls/:call_id/play_dtmf'",
+            "params": [
+              {
+                "name": "call_id",
+                "value": "",
+                "type": "path",
+                "description": "The call_id for this resource."
+              }
+            ]
+          },
+          "docs": "  Play DTMF tones"
+        },
+        {
+          "info": {
+            "name": "Play Text to Speech",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'calling/calls/:call_id/play_tts'",
+            "params": [
+              {
+                "name": "call_id",
+                "value": "",
+                "type": "path",
+                "description": "The call_id for this resource."
+              }
+            ]
+          },
+          "docs": "  Play Text to Speech. When voice parameter is present, no language or gender parameters are accepted."
+        },
+        {
+          "info": {
+            "name": "Play an audio file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'calling/calls/:call_id/play_audio'",
+            "params": [
+              {
+                "name": "call_id",
+                "value": "",
+                "type": "path",
+                "description": "The call_id for this resource."
+              }
+            ]
+          },
+          "docs": "  Play an audio file."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Bridge",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the list of Bridges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/calling/bridges",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier for this resource.\n"
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique Id assigned by the application.\n"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "The bridge state:\n- CREATED - The Bridge has been created.\n- ACTIVE - The Bridge is active.\n- HOLD - The Bridge in on hold.\n- COMPLETED - The Bridge has been completed and is no longer active.\n- ERROR - The bridge failed to be created or was ended due to an error.\n"
+              },
+              {
+                "name": "completed_time - date",
+                "value": "",
+                "type": "query",
+                "description": "The time that the Bridge was completed.\n"
+              },
+              {
+                "name": "activated_time - date",
+                "value": "",
+                "type": "query",
+                "description": "The time that the bridge was activated.\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The date the resource was created\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The data the resource was last changed\n"
+              }
+            ]
+          },
+          "docs": "  Returns the list of Bridges"
+        },
+        {
+          "info": {
+            "name": "Create a new Bridge Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/calling/bridges"
+          },
+          "docs": "  Create a new Bridge Resource"
+        },
+        {
+          "info": {
+            "name": "Returns the current version of the specified Bridge",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'calling/bridges/:Bridge_ID'",
+            "params": [
+              {
+                "name": "Bridge_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Bridge ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Returns the current version of the specified Bridge"
+        },
+        {
+          "info": {
+            "name": "Update a Bridge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'calling/bridges/:Bridge_ID'",
+            "params": [
+              {
+                "name": "Bridge_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Bridge ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Update a Bridge"
+        },
+        {
+          "info": {
+            "name": "Deletes the Bridge resource with the specified ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'calling/bridges/:Bridge_ID'",
+            "params": [
+              {
+                "name": "Bridge_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Bridge ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Deletes the Bridge resource with the specified ID"
+        },
+        {
+          "info": {
+            "name": "Returns a list of Voice Call resources.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'calling/bridges/:Bridge_ID/calls'",
+            "params": [
+              {
+                "name": "Bridge_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Bridge ID for this resource."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier for this resource.\n"
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique Id assigned by the application.\n"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The Sender ID associated with this call.\n"
+              },
+              {
+                "name": "from_address",
+                "value": "",
+                "type": "query",
+                "description": "The address associated with the Sender Id.\n"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The called party's address.\n"
+              },
+              {
+                "name": "to_address",
+                "value": "",
+                "type": "query",
+                "description": "The address that was used by the system for the called party.  When the 'to' field specifies something other than the address (e.g. contact ID) then this field will contain the actual address that was used.\n"
+              },
+              {
+                "name": "answer_timeout",
+                "value": "",
+                "type": "query",
+                "description": "The number of miliseconds that the service will wait for an answer.\n"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "The call's state:\n- STARTED - The call is being setup.\n- ACTIVE - The call is in progress.\n- REJECTED - The called party did not answer.\n- COMPLETED - The call is complete.\n"
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "The direction of the call:\n- IN - This was an incoming call.\n- OUT - This was an outgoing call.\n"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "The time the call was started.\n"
+              },
+              {
+                "name": "answer_time",
+                "value": "",
+                "type": "query",
+                "description": "The time the call was answered.\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The date the resource was created\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The data the resource was last changed\n"
+              }
+            ]
+          },
+          "docs": "  Returns a list of Voice Call resources."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Conference",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a  list of Conferences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/calling/conferences",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier for this resource.\n"
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique Id assigned by the application.\n"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The calling party's address.\n"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "The conference's state:\n - created (the conference is created but has no members)\n - active (the conference is active and has members)\n - completed (the conference is completed and has no members)\n"
+              },
+              {
+                "name": "created_time",
+                "value": "",
+                "type": "query",
+                "description": "The date the conference was created.\n"
+              }
+            ]
+          },
+          "docs": "  Retrieve a  list of Conferences"
+        },
+        {
+          "info": {
+            "name": "Create a Conference",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/calling/conferences"
+          },
+          "docs": "  Create a Conference"
+        },
+        {
+          "info": {
+            "name": "Retrieve a specified Conference",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'calling/conferences/:Conference_ID'",
+            "params": [
+              {
+                "name": "Conference_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Conference ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Retrieve a specified Conference"
+        },
+        {
+          "info": {
+            "name": "Update conference state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'calling/conferences/:Conference_ID'",
+            "params": [
+              {
+                "name": "Conference_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Conference ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Update conference state"
+        },
+        {
+          "info": {
+            "name": "Deletes the Conference resource with the specified ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'calling/conferences/:Conference_ID'",
+            "params": [
+              {
+                "name": "Conference_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Conference ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Deletes the Conference resource with the specified ID"
+        },
+        {
+          "info": {
+            "name": "Play the specified text using text to speech.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'calling/conferences/:Conference_ID/play_tts'",
+            "params": [
+              {
+                "name": "Conference_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Conference ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Play the specified text using text to speech."
+        },
+        {
+          "info": {
+            "name": "Play a specified audio file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'calling/conferences/:Conference_ID/play_audio'",
+            "params": [
+              {
+                "name": "Conference_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Conference ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Play a specified audio file."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ConferenceMember",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve ConferenceMembers for the specified Conference",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/calling/conferences/:Conference_ID/members",
+            "params": [
+              {
+                "name": "Conference_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Conference ID for this resource."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier for this resource.\n"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "The conference member's state:\n - active (the member is active)\n - completed (the member is completed)\n"
+              }
+            ]
+          },
+          "docs": "  Retrieve ConferenceMembers for the specified Conference"
+        },
+        {
+          "info": {
+            "name": "Create a new ConferenceMember",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/calling/conferences/:Conference_ID/members",
+            "params": [
+              {
+                "name": "Conference_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Conference ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Create a new ConferenceMember "
+        },
+        {
+          "info": {
+            "name": "Retrieve a  specified ConferenceMember",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'calling/conferences/:Conference_ID/members/:Member_ID'",
+            "params": [
+              {
+                "name": "Conference_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Conference ID for this resource."
+              },
+              {
+                "name": "Member_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Conference Memeber ID"
+              }
+            ]
+          },
+          "docs": "  Retrieve a  specified ConferenceMember"
+        },
+        {
+          "info": {
+            "name": "Update member info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'calling/conferences/:Conference_ID/members/:Member_ID'",
+            "params": [
+              {
+                "name": "Conference_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Conference ID for this resource."
+              },
+              {
+                "name": "Member_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Member ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Update member info"
+        },
+        {
+          "info": {
+            "name": "Delete the ConferenceMember resource with a specified ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'calling/conferences/:Conference_ID/members/:Member_ID'",
+            "params": [
+              {
+                "name": "Conference_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Conference ID for this resource."
+              },
+              {
+                "name": "Member_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Member ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete the ConferenceMember resource with a specified ID"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Digits Collector",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all digit collectors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/calling/calls/:Call_ID/digits_collector",
+            "params": [
+              {
+                "name": "Call_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Call ID for this resource."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique id of the digits collector\n"
+              }
+            ]
+          },
+          "docs": "  List all digit collectors"
+        },
+        {
+          "info": {
+            "name": "Create digits collector",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/calling/calls/:Call_ID/digits_collector",
+            "params": [
+              {
+                "name": "Call_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Call ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Create digits collector. When voice parameter is present, no gender or locale parameters are accepted."
+        },
+        {
+          "info": {
+            "name": "Retrieve a specific digits collector",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'calling/calls/:Call_ID/digits_collector/:Collector_ID'",
+            "params": [
+              {
+                "name": "Call_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Call ID for this resource."
+              },
+              {
+                "name": "Collector_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Collector ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Retrieve a specific digits collector"
+        },
+        {
+          "info": {
+            "name": "Delete a specified resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'calling/calls/:Call_ID/digits_collector/:Collector_ID'",
+            "params": [
+              {
+                "name": "Call_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Call ID for this resource."
+              },
+              {
+                "name": "Collector_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Collector ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete a specified resource"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contact",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all matching Contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/contacts",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier, allocated by SCG at the time of contact creation\n"
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "query",
+                "description": "the id of the contact at the customer system. Can be used by customer to update the contacts\n"
+              },
+              {
+                "name": "first_name",
+                "value": "",
+                "type": "query",
+                "description": "First name of customer\n"
+              },
+              {
+                "name": "last_name",
+                "value": "",
+                "type": "query",
+                "description": "Last name of customer\n"
+              },
+              {
+                "name": "birth_date",
+                "value": "",
+                "type": "query",
+                "description": "Customer birth date. YYYY-MM-DD\n"
+              },
+              {
+                "name": "first_acquisition_date",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp of the first customer acquisition - i.e. the date when the customer has been for the first time opted in to any program\n"
+              },
+              {
+                "name": "last_acquisition_date",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp of the last customer acquisition i.e. the date when the customer has for the last time sent an optin keyword or performed a doubleoptin\n"
+              },
+              {
+                "name": "primary_mdn",
+                "value": "",
+                "type": "query",
+                "description": "The primary phone number of the customer. This is the number used to track the double optin for the customer\n"
+              },
+              {
+                "name": "primary_addr_line1",
+                "value": "",
+                "type": "query",
+                "description": "Details of customers primary address\n"
+              },
+              {
+                "name": "primary_addr_line2",
+                "value": "",
+                "type": "query",
+                "description": "Details of customers primary address\n"
+              },
+              {
+                "name": "primary_addr_city",
+                "value": "",
+                "type": "query",
+                "description": "Details of customers primary address\n"
+              },
+              {
+                "name": "primary_addr_zip",
+                "value": "",
+                "type": "query",
+                "description": "ZIP code of the customer primary address\n"
+              },
+              {
+                "name": "primary_addr_state",
+                "value": "",
+                "type": "query",
+                "description": "Details of customers primary address\n"
+              },
+              {
+                "name": "primary_email_addr",
+                "value": "",
+                "type": "query",
+                "description": "Customers primary email address\n"
+              },
+              {
+                "name": "primary_addr_country",
+                "value": "",
+                "type": "query",
+                "description": "Customer primary address country\n"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the application that has created the resource\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The date the resource was created\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The data the resource was last changed\n"
+              }
+            ]
+          },
+          "docs": "  List all matching Contacts"
+        },
+        {
+          "info": {
+            "name": "Create a new Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/contacts"
+          },
+          "docs": "  Create a new Contact "
+        },
+        {
+          "info": {
+            "name": "List a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'contacts/:Contact_ID'",
+            "params": [
+              {
+                "name": "Contact_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Contact ID for this resource."
+              }
+            ]
+          },
+          "docs": "  List a Contact"
+        },
+        {
+          "info": {
+            "name": "Update a specific contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'contacts/:Contact_ID'",
+            "params": [
+              {
+                "name": "Contact_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Contact ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Update a specific contact"
+        },
+        {
+          "info": {
+            "name": "Replace a specific contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/'contacts/:Contact_ID'",
+            "params": [
+              {
+                "name": "Contact_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Contact ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Replace a specific contact"
+        },
+        {
+          "info": {
+            "name": "Delete a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'contacts/:Contact_ID'",
+            "params": [
+              {
+                "name": "Contact_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Contact ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete a Contact "
+        },
+        {
+          "info": {
+            "name": "Create a new contact access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'contacts/:Contact_ID/access_tokens'",
+            "params": [
+              {
+                "name": "Contact_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Contact ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Create a new contact access token "
+        },
+        {
+          "info": {
+            "name": "Return a Contact Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'contacts/:Contact_ID/access_tokens/:Contact_Access_Token_Id'",
+            "params": [
+              {
+                "name": "Contact_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Contact ID for this resource."
+              },
+              {
+                "name": "Contact_Access_Token_Id",
+                "value": "",
+                "type": "path",
+                "description": "The Contact Access Token Id for this resource."
+              }
+            ]
+          },
+          "docs": "  Return a Contact Access Token"
+        },
+        {
+          "info": {
+            "name": "Delete a Contact Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'contacts/:Contact_ID/access_tokens/:Contact_Access_Token_Id'",
+            "params": [
+              {
+                "name": "Contact_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Contact ID for this resource."
+              },
+              {
+                "name": "Contact_Access_Token_Id",
+                "value": "",
+                "type": "path",
+                "description": "The Contact Access Token Id for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete a Contact Access Token "
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contact Application Token",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return a list of matching Contact Application Tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/contacts/:Contact_ID/application_tokens",
+            "params": [
+              {
+                "name": "Contact_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Contact ID for this resource."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier, allocated by SCG at the time of contact Application Token creation\n"
+              },
+              {
+                "name": "sender_id_address",
+                "value": "",
+                "type": "query",
+                "description": "The address of the sender Id that is associated with this application.\n"
+              },
+              {
+                "name": "message_delivery_provider",
+                "value": "",
+                "type": "query",
+                "description": "The code that indicates the message devliery provider (e.g. APN, GCN)\n"
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "The token the user, application and device.\n"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the application that has created the resource\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The date the resource was created\n"
+              },
+              {
+                "name": "last_update_date",
+                "value": "",
+                "type": "query",
+                "description": "The data the resource was last changed\n"
+              }
+            ]
+          },
+          "docs": "  Return a list of matching Contact Application Tokens"
+        },
+        {
+          "info": {
+            "name": "Create a new contact application token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/contacts/:Contact_ID/application_tokens",
+            "params": [
+              {
+                "name": "Contact_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Contact ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Create a new contact application token "
+        },
+        {
+          "info": {
+            "name": "Return a Contact Application Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'contacts/:Contact_ID/application_tokens/:Contact_Application_Token_Id'",
+            "params": [
+              {
+                "name": "Contact_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Contact ID for this resource."
+              },
+              {
+                "name": "Contact_Application_Token_Id",
+                "value": "",
+                "type": "path",
+                "description": "The Contact Application Token Id for this resource."
+              }
+            ]
+          },
+          "docs": "  Return a Contact Application Token"
+        },
+        {
+          "info": {
+            "name": "Update a contact application token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'contacts/:Contact_ID/application_tokens/:Contact_Application_Token_Id'",
+            "params": [
+              {
+                "name": "Contact_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Contact ID for this resource."
+              },
+              {
+                "name": "Contact_Application_Token_Id",
+                "value": "",
+                "type": "path",
+                "description": "The Contact Application Token Id for this resource."
+              }
+            ]
+          },
+          "docs": "  Update a contact application token"
+        },
+        {
+          "info": {
+            "name": "Delete a Contact Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'contacts/:Contact_ID/application_tokens/:Contact_Application_Token_Id'",
+            "params": [
+              {
+                "name": "Contact_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Contact ID for this resource."
+              },
+              {
+                "name": "Contact_Application_Token_Id",
+                "value": "",
+                "type": "path",
+                "description": "The Contact Application Token Id for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete a Contact Application "
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Fast Access",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return a list of matching Fast Access Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/contacts/fast_access",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique id of a mapping rule\n"
+              },
+              {
+                "name": "target_attribute",
+                "value": "",
+                "type": "query",
+                "description": "The name in the contact resource this mapping applies to: fast_access_1 .. fast_access_20.\n"
+              },
+              {
+                "name": "target_attribute_name",
+                "value": "",
+                "type": "query",
+                "description": "The friendly name of the fast access attribute. The corresponding attribute will appear under the fast_access sb-object of the contact object. The name must be used for all contact updates. It can be used with filters like fast_access.<name>\nIf not provided, the corresponding attribute will appear in the contact and filter criteria as is.\n"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the application that has created the resource\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The date the resource was created\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The data the resource was last changed\n"
+              }
+            ]
+          },
+          "docs": "  Return a list of matching Fast Access Rules"
+        },
+        {
+          "info": {
+            "name": "Create a new Fast Access Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/contacts/fast_access"
+          },
+          "docs": "  Create a new Fast Access Rule"
+        },
+        {
+          "info": {
+            "name": "Return a specified Fast Access Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'contacts/fast_access/:Rule_ID'",
+            "params": [
+              {
+                "name": "Rule_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Rule ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Return a specified Fast Access Rule"
+        },
+        {
+          "info": {
+            "name": "Update a Fast Access Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'contacts/fast_access/:Rule_ID'",
+            "params": [
+              {
+                "name": "Rule_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Rule ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Update a Fast Access Rule"
+        },
+        {
+          "info": {
+            "name": "Delete a Fast Access Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'contacts/fast_access/:Rule_ID'",
+            "params": [
+              {
+                "name": "Rule_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Rule ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete a Fast Access Rule"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contact Group",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List a Contact group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/contact_groups",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier of the contact group\n"
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "query",
+                "description": "Customer supplied id of the contact group\n"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "A name for the group\n"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The group type: \n- DYNAMIC: meaning the list of members associated with the group is calculated dynamically whenever the group is referenced by applying the CRITERIA to the customer contact list\n- STATIC: meaning the list of members is determined at the time of contact group creation and hence static. Customers will be also able to add or remove contacts from a STATIC group by accessing the contacts list associated with the group\n"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Processing\nReady\n"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the application that has created the resource\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The creation date of the object.\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The last modification date of the object.\n"
+              }
+            ]
+          },
+          "docs": "  List a Contact group"
+        },
+        {
+          "info": {
+            "name": "Create a Contact Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/contact_groups"
+          },
+          "docs": "  Create a Contact Group"
+        },
+        {
+          "info": {
+            "name": "Return a specified Contact Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'contact_groups/:Group_ID'",
+            "params": [
+              {
+                "name": "Group_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Group ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Return a specified Contact Group"
+        },
+        {
+          "info": {
+            "name": "Update a Contact group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'contact_groups/:Group_ID'",
+            "params": [
+              {
+                "name": "Group_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Group ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Update a Contact group"
+        },
+        {
+          "info": {
+            "name": "Replace a specified group ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/'contact_groups/:Group_ID'",
+            "params": [
+              {
+                "name": "Group_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Group ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Replace a specified group ID"
+        },
+        {
+          "info": {
+            "name": "Delete a Contact Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'contact_groups/:Group_ID'",
+            "params": [
+              {
+                "name": "Group_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Group ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete a Contact Group"
+        },
+        {
+          "info": {
+            "name": "Return the list of contacts associated with the contact group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'contact_groups/:Group_ID/contacts'",
+            "params": [
+              {
+                "name": "Group_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Group ID for this resource."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier, allocated by SCG at the time of contact creation\n"
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "query",
+                "description": "the id of the contact at the customer system. Can be used by customer to update the contacts\n"
+              },
+              {
+                "name": "first_name",
+                "value": "",
+                "type": "query",
+                "description": "First name of customer\n"
+              },
+              {
+                "name": "last_name",
+                "value": "",
+                "type": "query",
+                "description": "Last name of customer\n"
+              },
+              {
+                "name": "birth_date",
+                "value": "",
+                "type": "query",
+                "description": "Customer birth date. YYYY-MM-DD\n"
+              },
+              {
+                "name": "first_acquisition_date",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp of the first customer acquisition - i.e. the date when the customer has been for the first time opted in to any program\n"
+              },
+              {
+                "name": "last_acquisition_date",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp of the last customer acquisition i.e. the date when the customer has for the last time sent an optin keyword or performed a doubleoptin\n"
+              },
+              {
+                "name": "primary_mdn",
+                "value": "",
+                "type": "query",
+                "description": "The primary phone number of the customer. This is the number used to track the double optin for the customer\n"
+              },
+              {
+                "name": "primary_addr_line1",
+                "value": "",
+                "type": "query",
+                "description": "Details of customers primary address\n"
+              },
+              {
+                "name": "primary_addr_line2",
+                "value": "",
+                "type": "query",
+                "description": "Details of customers primary address\n"
+              },
+              {
+                "name": "primary_addr_city",
+                "value": "",
+                "type": "query",
+                "description": "Details of customers primary address\n"
+              },
+              {
+                "name": "primary_addr_zip",
+                "value": "",
+                "type": "query",
+                "description": "ZIP code of the customer primary address\n"
+              },
+              {
+                "name": "primary_addr_state",
+                "value": "",
+                "type": "query",
+                "description": "Details of customers primary address\n"
+              },
+              {
+                "name": "primary_email_addr",
+                "value": "",
+                "type": "query",
+                "description": "Customers primary email address\n"
+              },
+              {
+                "name": "primary_addr_country",
+                "value": "",
+                "type": "query",
+                "description": "Customer primary address country\n"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the application that has created the resource\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The date the resource was created\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The data the resource was last changed\n"
+              }
+            ]
+          },
+          "docs": "  Return the list of contacts associated with the contact group. "
+        },
+        {
+          "info": {
+            "name": "Add a contact to a static contact group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'contact_groups/:Group_ID/contacts'",
+            "params": [
+              {
+                "name": "Group_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Group ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Add a contact to a static contact group"
+        },
+        {
+          "info": {
+            "name": "Remove Contact from a Static Contact group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'contact_groups/:Group_ID/contacts/:Contact_ID'",
+            "params": [
+              {
+                "name": "Group_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Group ID for this resource."
+              },
+              {
+                "name": "Contact_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Contact ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Remove Contact from a Static Contact group "
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contact Address Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Contact Address Statues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/consent/contact_address_statuses",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier, allocated by SCG at the time of address creation. This is a combination of an address type/value and sender id.\nSCG will allocate a new address_status_id for any message sent or received from a new combination of sender id and address value/type\n"
+              },
+              {
+                "name": "address_type",
+                "value": "",
+                "type": "query",
+                "description": "The address type: MDN (for phone numbers), EMAIL, SOCIAL, PUSH (...)\n"
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "The actual value of the address. For SMS/MMS this will be the MDN.\n"
+              },
+              {
+                "name": "sender_id",
+                "value": "",
+                "type": "query",
+                "description": "the sender id accociated with the address type/value\n"
+              },
+              {
+                "name": "consent_status",
+                "value": "",
+                "type": "query",
+                "description": "this is the current optin status for the specific address / sender id. The possible values are:\n- NONE (no optin or optout message received from the address on the specific sender id)\n- OPTIN (user has explicitly opted in to the sender id)\n- OPTOUT (user has explicitly opted out of the sender id)\n- BLACKLIST (blacklisted address - will be treated as explicit OPTOUT)\n- WHITELIST (whitelisted address - will be treated as explicit OPTIN)\nNOTE: Whitelisted or blacklisted status can not be overwritten by the end-user by sending messages to the sender id. Such users can be only un-listed by changing the optin-status explicitly put POST to address status ID\n"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the application that has created the resource\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The creation date of the object.\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The last modification date of the object.\n"
+              }
+            ]
+          },
+          "docs": "  Retrieve Contact Address Statues"
+        },
+        {
+          "info": {
+            "name": "Create a new Contact Address Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/consent/contact_address_statuses"
+          },
+          "docs": "  Create a new Contact Address Status "
+        },
+        {
+          "info": {
+            "name": "Returns the current version of the specified Contact Address Status History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'consent/contact_address_statuses/:AddressStatus_ID'",
+            "params": [
+              {
+                "name": "AddressStatus_ID",
+                "value": "",
+                "type": "path",
+                "description": "The AddressStatus ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Returns the current version of the specified Contact Address Status History"
+        },
+        {
+          "info": {
+            "name": "Create a new Address Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'consent/contact_address_statuses/:AddressStatus_ID'",
+            "params": [
+              {
+                "name": "AddressStatus_ID",
+                "value": "",
+                "type": "path",
+                "description": "The AddressStatus ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Create a new Address Status"
+        },
+        {
+          "info": {
+            "name": "Delete a Contact Address Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'consent/contact_address_statuses/:AddressStatus_ID'",
+            "params": [
+              {
+                "name": "AddressStatus_ID",
+                "value": "",
+                "type": "path",
+                "description": "The AddressStatus ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete a Contact Address Status "
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contact Address Status Optout",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update Contact Address Status to OPTOUT",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/consent/contact_address_statuses/optout"
+          },
+          "docs": "  Update Contact Address Status to OPTOUT "
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contact Address History",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List a Contact Address History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/consent/contact_address_history",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier, allocated by SCG at the time of the history record creation.\n"
+              },
+              {
+                "name": "msisdn",
+                "value": "",
+                "type": "query",
+                "description": "The value of the contact's address. For SMS/MMS this will be the MDN.\n"
+              },
+              {
+                "name": "sender_id",
+                "value": "",
+                "type": "query",
+                "description": "The sender id that MO/MT message was sent to/from\n"
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query",
+                "description": "The source of the contact's consent status information:\n- MESSAGE - when the consent status has changed as a result of a MO message sent by the contact (SCG managed consent)\n- CARRIER  - when a blacklist file was provided by a carrier and loaded in\n- COMPANY - when the user of SCG has supplied the information (USER managed consent)\n"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "The new consent status of the contact\n"
+              },
+              {
+                "name": "timestamp",
+                "value": "",
+                "type": "query",
+                "description": "Timestamp indicating when the MO message that triggered the consent status change was received\n"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "The body of the actual MO message that triggered the consent status change\n"
+              },
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword detected by the application\n"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the application that has created the resource\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The creation date of the object.\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The last modification date of the object.\n"
+              }
+            ]
+          },
+          "docs": "  List a Contact Address History "
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Access Token",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the list of matching AccessTokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/access_tokens",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique id of the token\n"
+              },
+              {
+                "name": "expiry_time",
+                "value": "",
+                "type": "query",
+                "description": "The UTC timestamp after which the token is no Integer valid.\n"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the application that has created the resource\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp when the resource was created.\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp the resource was last changed\n"
+              }
+            ]
+          },
+          "docs": "  Returns the list of matching AccessTokens"
+        },
+        {
+          "info": {
+            "name": "Create a new access token for the given resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/access_tokens"
+          },
+          "docs": "  Create a new access token for the given resource"
+        },
+        {
+          "info": {
+            "name": "Returns the current version of the AccessToken associated with the provided ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'access_tokens/:AccessToken_ID'",
+            "params": [
+              {
+                "name": "AccessToken_ID",
+                "value": "",
+                "type": "path",
+                "description": "The AccessToken ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Returns the current version of the AccessToken associated with the provided ID"
+        },
+        {
+          "info": {
+            "name": "Delete an AccessToken associated with a provided ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'access_tokens/:AccessToken_ID'",
+            "params": [
+              {
+                "name": "AccessToken_ID",
+                "value": "",
+                "type": "path",
+                "description": "The AccessToken ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete an AccessToken associated with a provided ID"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Auto Alias History",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return a list of available auto alias history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/assistant/auto_alias/history"
+          },
+          "docs": "  Return a list of available auto alias history"
+        },
+        {
+          "info": {
+            "name": "Create resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'assistant/auto_alias/history/:Auto_Alias_History_ID'",
+            "params": [
+              {
+                "name": "Auto_Alias_History_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Auto Alias History ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Create resource"
+        },
+        {
+          "info": {
+            "name": "Delete specified resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'assistant/auto_alias/history/:Auto_Alias_History_ID'",
+            "params": [
+              {
+                "name": "Auto_Alias_History_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Auto Alias History ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete specified resource"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Auto Alias Message Request",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create message request to an alias",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/assistant/auto_alias/message_requests"
+          },
+          "docs": "  Create message request to an alias"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Application Script",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the list of matching Application Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/assistant/communication_applications/applications/scripts",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "unique id\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The creation date of the object.\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The last modification date of the object.\n"
+              }
+            ]
+          },
+          "docs": "  Retrieve the list of matching Application Script"
+        },
+        {
+          "info": {
+            "name": "Create a new Application Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/assistant/communication_applications/applications/scripts"
+          },
+          "docs": "  Create a new Application Script "
+        },
+        {
+          "info": {
+            "name": "Retrieve a specified Application Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'assistant/communication_applications/applications/scripts/:Application_Script_ID'",
+            "params": [
+              {
+                "name": "Application_Script_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application Script ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Retrieve a specified Application Script"
+        },
+        {
+          "info": {
+            "name": "Update an application script",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/'assistant/communication_applications/applications/scripts/:Application_Script_ID'",
+            "params": [
+              {
+                "name": "Application_Script_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application Script ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Update an application script"
+        },
+        {
+          "info": {
+            "name": "Delete an Application Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'assistant/communication_applications/applications/scripts/:Application_Script_ID'",
+            "params": [
+              {
+                "name": "Application_Script_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application Script ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete an Application Script "
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Application Instance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the list of matching Application Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/assistant/communication_applications/instances",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "unique job id\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The last modification date of the object.\n"
+              }
+            ]
+          },
+          "docs": "  Retrieve the list of matching Application Instance"
+        },
+        {
+          "info": {
+            "name": "Create a new Application Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/assistant/communication_applications/instances"
+          },
+          "docs": "  Create a new Application Instance "
+        },
+        {
+          "info": {
+            "name": "Retrieve a specified  Application Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'assistant/communication_applications/instances/:Application_Instance_ID'",
+            "params": [
+              {
+                "name": "Application_Instance_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application Instance ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Retrieve a specified  Application Instance"
+        },
+        {
+          "info": {
+            "name": "Update an Application Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/'assistant/communication_applications/instances/:Application_Instance_ID'",
+            "params": [
+              {
+                "name": "Application_Instance_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application Instance ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Update an Application Instance"
+        },
+        {
+          "info": {
+            "name": "Delete an Application Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'assistant/communication_applications/instances/:Application_Instance_ID'",
+            "params": [
+              {
+                "name": "Application_Instance_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application Instance ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete an Application Instance "
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Application Instance Session",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the list of matching Application Instance Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/assistant/communication_applications/instances/:Application_Instance_ID/sessions",
+            "params": [
+              {
+                "name": "Application_Instance_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application Instance ID for this resource."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "unique job id\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The last modification date of the object.\n"
+              }
+            ]
+          },
+          "docs": "  Retrieve the list of matching Application Instance Session"
+        },
+        {
+          "info": {
+            "name": "Create a new Application Instance Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/assistant/communication_applications/instances/:Application_Instance_ID/sessions",
+            "params": [
+              {
+                "name": "Application_Instance_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application Instance ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Create a new Application Instance Session"
+        },
+        {
+          "info": {
+            "name": "Retrieve the current version of the specified  Application Instance Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'assistant/communication_applications/instances/:Application_Instance_ID/sessions/:Application_Instance_Session_ID'",
+            "params": [
+              {
+                "name": "Application_Instance_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application Instance ID for this resource."
+              },
+              {
+                "name": "Application_Instance_Session_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application Instance Session ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Retrieve the current version of the specified  Application Instance Session"
+        },
+        {
+          "info": {
+            "name": "Update an  Application Instance Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/'assistant/communication_applications/instances/:Application_Instance_ID/sessions/:Application_Instance_Session_ID'",
+            "params": [
+              {
+                "name": "Application_Instance_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application Instance ID for this resource."
+              },
+              {
+                "name": "Application_Instance_Session_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application Instance Session ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Update an  Application Instance Session"
+        },
+        {
+          "info": {
+            "name": "Delete an Application Instance Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'assistant/communication_applications/instances/:Application_Instance_ID/sessions/:Application_Instance_Session_ID'",
+            "params": [
+              {
+                "name": "Application_Instance_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application Instance ID for this resource."
+              },
+              {
+                "name": "Application_Instance_Session_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application Instance Session ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete an Application Instance Session "
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Application Processor Results",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new Application Processor Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/assistant/communication_applications/instances/:Application_Instance_ID/sessions/:Application_Instance_Session_ID/processor_results",
+            "params": [
+              {
+                "name": "Application_Instance_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application Instance ID for this resource."
+              },
+              {
+                "name": "Application_Instance_Session_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application Instance Session ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Create a new Application Processor Results"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Connector",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all matching Connectors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/connect/connectors",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier, allocated by SCG at the time of Connector creation\n"
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the Connector at the customer system. Can be used by customer to update the Connectors\n"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of the customer (bot) side API this connector will use. Currently supported values:\n\n  * AZURE_BOT_DIRECT_LINE - Microsoft Azure Bot Framework Direct Line API\n"
+              },
+              {
+                "name": "sender_id",
+                "value": "",
+                "type": "query",
+                "description": "\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The date the resource was created\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The data the resource was last changed\n"
+              },
+              {
+                "name": "version_number",
+                "value": "",
+                "type": "query",
+                "description": "An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking\n"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the application that has created the resource\n"
+              }
+            ]
+          },
+          "docs": "  List all matching Connectors"
+        },
+        {
+          "info": {
+            "name": "Create a new Connector",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/connect/connectors"
+          },
+          "docs": "  Create a new Connector"
+        },
+        {
+          "info": {
+            "name": "List a Connector",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'connect/connectors/:Connector_ID'",
+            "params": [
+              {
+                "name": "Connector_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Connector ID for this resource."
+              }
+            ]
+          },
+          "docs": "  List a Connector"
+        },
+        {
+          "info": {
+            "name": "Update a specific Connector",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'connect/connectors/:Connector_ID'",
+            "params": [
+              {
+                "name": "Connector_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Connector ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Update a specific Connector"
+        },
+        {
+          "info": {
+            "name": "Delete a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'connect/connectors/:Connector_ID'",
+            "params": [
+              {
+                "name": "Connector_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Connector ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete a Contact "
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sender Import Job",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Sender Import Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sender_ids_import",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "unique job id\n"
+              }
+            ]
+          },
+          "docs": "  List Sender Import Jobs"
+        },
+        {
+          "info": {
+            "name": "Create sender id import job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/sender_ids_import"
+          },
+          "docs": "  Create sender id import job"
+        },
+        {
+          "info": {
+            "name": "Details of Sender Import Job with specified id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'sender_ids_import/:import_ID'",
+            "params": [
+              {
+                "name": "import_ID",
+                "value": "",
+                "type": "path",
+                "description": "The import ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Details of Sender Import Job with specified id"
+        },
+        {
+          "info": {
+            "name": "Admin approves a specified import",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'sender_ids_import/:import_ID'",
+            "params": [
+              {
+                "name": "import_ID",
+                "value": "",
+                "type": "path",
+                "description": "The import ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Admin approves a specified import"
+        },
+        {
+          "info": {
+            "name": "Delete a Sender Import Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'sender_ids_import/:import_ID'",
+            "params": [
+              {
+                "name": "import_ID",
+                "value": "",
+                "type": "path",
+                "description": "The import ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Delete a Sender Import Job "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,425 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SCG API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Application",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the list of applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique id of the sender class\n"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the appication.\n"
+              },
+              {
+                "name": "auth_code_length",
+                "value": "",
+                "type": "query",
+                "description": "The length of the authentication token that will be used for authentication.\n"
+              },
+              {
+                "name": "auth_token_type",
+                "value": "",
+                "type": "query",
+                "description": "NUMERIC, ALPHANUMERIC, ALPHA, COMPLEX\n"
+              },
+              {
+                "name": "auth_token_validity_duration",
+                "value": "",
+                "type": "query",
+                "description": "The number of seconds that the authentication token should remain valid.\n"
+              },
+              {
+                "name": "auth_token_prefix",
+                "value": "",
+                "type": "query",
+                "description": "A prefix that will be included with each authentiation token.\n"
+              },
+              {
+                "name": "auth_token_delivery_methods",
+                "value": "",
+                "type": "query",
+                "description": "SMS\n"
+              },
+              {
+                "name": "message_from",
+                "value": "",
+                "type": "query",
+                "description": "The SCG sender ID to be used when sending authentication token messages for this appication.\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The date the resource was created\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The data the resource was last changed\n"
+              }
+            ]
+          },
+          "docs": "  Returns the list of applications"
+        },
+        {
+          "info": {
+            "name": "Creates a new application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/applications"
+          },
+          "docs": "  Creates a new application"
+        },
+        {
+          "info": {
+            "name": "Returns the current version of the specified Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'applications/:Application_ID'",
+            "params": [
+              {
+                "name": "Application_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application ID for this resource."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique id of the sender class\n"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the appication.\n"
+              },
+              {
+                "name": "auth_code_length",
+                "value": "",
+                "type": "query",
+                "description": "The length of the authentication token that will be used for authentication.\n"
+              },
+              {
+                "name": "auth_token_type",
+                "value": "",
+                "type": "query",
+                "description": "NUMERIC, ALPHANUMERIC, ALPHA, COMPLEX\n"
+              },
+              {
+                "name": "auth_token_validity_duration",
+                "value": "",
+                "type": "query",
+                "description": "The number of seconds that the authentication token should remain valid.\n"
+              },
+              {
+                "name": "auth_token_prefix",
+                "value": "",
+                "type": "query",
+                "description": "A prefix that will be included with each authentiation token.\n"
+              },
+              {
+                "name": "auth_token_delivery_methods",
+                "value": "",
+                "type": "query",
+                "description": "SMS\n"
+              },
+              {
+                "name": "message_from",
+                "value": "",
+                "type": "query",
+                "description": "The SCG sender ID to be used when sending authentication token messages for this appication.\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The date the resource was created\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The data the resource was last changed\n"
+              }
+            ]
+          },
+          "docs": "  Returns the current version of the specified Application"
+        },
+        {
+          "info": {
+            "name": "Deletes the Application resource with the specified ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'applications/:Application_ID'",
+            "params": [
+              {
+                "name": "Application_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Deletes the Application resource with the specified ID"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the list of Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:Application_ID/users",
+            "params": [
+              {
+                "name": "Application_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application ID for this resource."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Customer Supplied User ID\n"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "The status of the MDN.  The possible values are: INITIAL, VALIDATION PENDING, VALIDATED\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The date the resource was created\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The data the resource was last changed\n"
+              }
+            ]
+          },
+          "docs": "  Returns the list of Users"
+        },
+        {
+          "info": {
+            "name": "Returns the current version of the specified User.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/'applications/:Application_ID/users/:User_ID'",
+            "params": [
+              {
+                "name": "Application_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application ID for this resource."
+              },
+              {
+                "name": "User_ID",
+                "value": "",
+                "type": "path",
+                "description": "The User ID for this resource."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Customer Supplied User ID\n"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "The status of the MDN.  The possible values are: INITIAL, VALIDATION PENDING, VALIDATED\n"
+              },
+              {
+                "name": "created_date",
+                "value": "",
+                "type": "query",
+                "description": "The date the resource was created\n"
+              },
+              {
+                "name": "last_updated_date",
+                "value": "",
+                "type": "query",
+                "description": "The data the resource was last changed\n"
+              }
+            ]
+          },
+          "docs": "  Returns the current version of the specified User."
+        },
+        {
+          "info": {
+            "name": "Deletes the User resource with the specified ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'applications/:Application_ID/users/:User_ID'",
+            "params": [
+              {
+                "name": "Application_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application ID for this resource."
+              },
+              {
+                "name": "User_ID",
+                "value": "",
+                "type": "path",
+                "description": "The User ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Deletes the User resource with the specified ID"
+        },
+        {
+          "info": {
+            "name": "Associates an user address (MDN or whatever) with the User.  Also creates and sends a validation token to the end user. The post body will contain the user address (MDN, etc.).",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'applications/:Application_ID/users/:User_ID/associate'",
+            "params": [
+              {
+                "name": "Application_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application ID for this resource."
+              },
+              {
+                "name": "User_ID",
+                "value": "",
+                "type": "path",
+                "description": "The User ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Associates an user address (MDN or whatever) with the User.  Also creates and sends a validation token to the end user. The post body will contain the user address (MDN, etc.)."
+        },
+        {
+          "info": {
+            "name": "Removes the association with this User.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/'applications/:Application_ID/users/:User_ID/associate'",
+            "params": [
+              {
+                "name": "Application_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application ID for this resource."
+              },
+              {
+                "name": "User_ID",
+                "value": "",
+                "type": "path",
+                "description": "The User ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Removes the association with this User."
+        },
+        {
+          "info": {
+            "name": "Validates the association or login process using the last supplied validation code.  The post body will contain the validation code.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'applications/:Application_ID/users/:User_ID/validate'",
+            "params": [
+              {
+                "name": "Application_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application ID for this resource."
+              },
+              {
+                "name": "User_ID",
+                "value": "",
+                "type": "path",
+                "description": "The User ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Validates the association or login process using the last supplied validation code.  The post body will contain the validation code."
+        },
+        {
+          "info": {
+            "name": "Creates and sends a MFA  validation code to the end user.   The POST body will contain the validation method with SMS as default.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/'applications/:Application_ID/users/:User_ID/login_start'",
+            "params": [
+              {
+                "name": "Application_ID",
+                "value": "",
+                "type": "path",
+                "description": "The Application ID for this resource."
+              },
+              {
+                "name": "User_ID",
+                "value": "",
+                "type": "path",
+                "description": "The User ID for this resource."
+              }
+            ]
+          },
+          "docs": "  Creates and sends a MFA  validation code to the end user.   The POST body will contain the validation method with SMS as default."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

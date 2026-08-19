@@ -1,0 +1,172 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Syniverse 10DLC Provissioning API",
+    "version": "1.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "10DLC v1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Addition of 10DLC number to the registered campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/engage/tendlc-services/v1/campaigns/:campaignId/longcodes/:longcode",
+            "headers": [
+              {
+                "name": "int-appId",
+                "value": ""
+              },
+              {
+                "name": "int-companyId",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "campaignId"
+              },
+              {
+                "name": "longcode",
+                "value": "",
+                "type": "path",
+                "description": "longcode"
+              }
+            ]
+          },
+          "docs": "Syniverse is required to update some MNO A2P platforms with the new added number for a given campaign, this enables  customers to manage  individual number to campaign associations when the numbers are NOT part of a number pool"
+        },
+        {
+          "info": {
+            "name": "Deletion of 10DLC number from the registered campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/engage/tendlc-services/v1/campaigns/:campaignId/longcodes/:longcode",
+            "headers": [
+              {
+                "name": "int-appId",
+                "value": ""
+              },
+              {
+                "name": "int-companyId",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "campaignId"
+              },
+              {
+                "name": "longcode",
+                "value": "",
+                "type": "path",
+                "description": "longcode"
+              }
+            ]
+          },
+          "docs": "Syniverse is required to update MNOs A2P platforms and remove the number for a given campaign, this enables  customers to manage  individual number to campaign associations when the numbers are NOT part of a number pool"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "10DLC v1 Number Pools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Association of Campaign  with the Number Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/engage/tendlc-services/v1/campaigns/:campaignId/pools/:numberPoolId/types/:numberPoolType",
+            "headers": [
+              {
+                "name": "int-appId",
+                "value": ""
+              },
+              {
+                "name": "int-companyId",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "campaignId"
+              },
+              {
+                "name": "numberPoolId",
+                "value": "",
+                "type": "path",
+                "description": "Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+              },
+              {
+                "name": "numberPoolType",
+                "value": "",
+                "type": "path",
+                "description": "Type of Number Pool based on SubId or based on Campaign Id; Indicative"
+              }
+            ]
+          },
+          "docs": "Syniverse is required to update some MNO A2P platforms with the new Number Pool for a given campaign, enabling   customers to better manage campaigns with large groups of numbers. Number pools require carrier approvals and this API currently covers  2 types SubId and CampaignId."
+        },
+        {
+          "info": {
+            "name": "Removal of the Association of the Number pool from the Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/engage/tendlc-services/v1/campaigns/:campaignId/pools/:numberPoolId",
+            "headers": [
+              {
+                "name": "int-appId",
+                "value": ""
+              },
+              {
+                "name": "int-companyId",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "campaignId"
+              },
+              {
+                "name": "numberPoolId",
+                "value": "",
+                "type": "path",
+                "description": "Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+              }
+            ]
+          },
+          "docs": "Removal of the Association of the Number pool from the Campaign"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

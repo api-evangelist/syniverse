@@ -1,0 +1,339 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "10DLC",
+    "version": "2.3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get multiple campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.syniverse.com/engage/tendlc-services/v2/campaigns",
+            "params": [
+              {
+                "name": "page",
+                "value": "0",
+                "type": "query",
+                "description": "Page number, begins from 0, default = 0"
+              },
+              {
+                "name": "size",
+                "value": "10",
+                "type": "query",
+                "description": "Size items on page, default = 10"
+              }
+            ]
+          },
+          "docs": "Get campaigns"
+        },
+        {
+          "info": {
+            "name": "Get campaign by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.syniverse.com/engage/tendlc-services/v2/campaigns/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "Id",
+                "type": "path",
+                "description": "Campaign Id"
+              }
+            ]
+          },
+          "docs": "Get campaign details"
+        },
+        {
+          "info": {
+            "name": "Suspending deployed campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.syniverse.com/engage/tendlc-services/v2/campaigns/:campaignId/suspend",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Customer can suspend the deployed campaign"
+        },
+        {
+          "info": {
+            "name": "Resuming suspended campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.syniverse.com/engage/tendlc-services/v2/campaigns/:campaignId/resume",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Customer can resume the suspended campaign"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "10DLC Number Pools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Association of Campaign  with the Number Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.syniverse.com/engage/tendlc-services/v2/campaigns/:campaignId/pools/:numberPoolId/types/:numberPoolType",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "numberPoolId",
+                "value": "",
+                "type": "path",
+                "description": "Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+              },
+              {
+                "name": "numberPoolType",
+                "value": "",
+                "type": "path",
+                "description": "Type of Number Pool based on SubId or based on Campaign Id; Indicative"
+              }
+            ]
+          },
+          "docs": "Association of Campaign  with the Number Pool"
+        },
+        {
+          "info": {
+            "name": "Removal of the Association of the Number pool with Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.syniverse.com/engage/tendlc-services/v2/campaigns/:campaignId/pools/:numberPoolId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "numberPoolId",
+                "value": "",
+                "type": "path",
+                "description": "Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+              }
+            ]
+          },
+          "docs": "Removal of the Association of the Number pool with Campaign"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "10DLC LongCodes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get application address by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.syniverse.com/engage/tendlc-services/v2/campaigns/:campaignId/longcodes/:longcode",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "Id",
+                "type": "path",
+                "description": "Campaign Id value"
+              },
+              {
+                "name": "longcode",
+                "value": "Id",
+                "type": "path",
+                "description": "Longcode value"
+              }
+            ]
+          },
+          "docs": "Get application address details"
+        },
+        {
+          "info": {
+            "name": "Addition of 10DLC number to the registered campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.syniverse.com/engage/tendlc-services/v2/campaigns/:campaignId/longcodes/:longcode",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "longcode",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Syniverse is required to update T-Mobile SDG platform with the new added number for a given campaign"
+        },
+        {
+          "info": {
+            "name": "Deletion of 10DLC number from the registered campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.syniverse.com/engage/tendlc-services/v2/campaigns/:campaignId/longcodes/:longcode",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "longcode",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Syniverse is required to update T-Mobile SDG platform with the deleted number for a given campaign"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ATT DCA Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get ATT Campaign by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.syniverse.com/engage/tendlc-services/v2/campaigns/att/:campaignId",
+            "headers": [
+              {
+                "name": "int-appId",
+                "value": ""
+              },
+              {
+                "name": "int-companyId",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "Id",
+                "type": "path",
+                "description": "Campaign Id"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get ATT Campaign details"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "10DLC ATT",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get ATT Application address by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.syniverse.com/engage/tendlc-services/v2/att/application-address/:applicationAddress",
+            "headers": [
+              {
+                "name": "int-appId",
+                "value": ""
+              },
+              {
+                "name": "int-companyId",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicationAddress",
+                "value": "Id",
+                "type": "path",
+                "description": "Application address value"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get ATT Application address details"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

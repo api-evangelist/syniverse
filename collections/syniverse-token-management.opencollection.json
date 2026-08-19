@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SDC Application Access Token Management",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Regenerate access token",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Regenerate access token associated with an SDC application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/saop-rest-data/v1/apptoken-refresh",
+            "params": [
+              {
+                "name": "consumerkey",
+                "value": "",
+                "type": "query",
+                "description": "Consumer key is required authentication for regenerating the access token associated with an SDC application and is available via the developer.syniverse.com portal under the “Auth Keys” section for the application."
+              },
+              {
+                "name": "consumersecret",
+                "value": "",
+                "type": "query",
+                "description": "Consumer secret is required authentication for regenerating the access token associated with an SDC application and is available via the developer.syniverse.com portal under the “Auth Keys” section for the application."
+              },
+              {
+                "name": "oldtoken",
+                "value": "",
+                "type": "query",
+                "description": "Current access token associated with a SDC applicaton that needs to be regenerated."
+              },
+              {
+                "name": "validity",
+                "value": "",
+                "type": "query",
+                "description": "Validity period for the regenerated access token specified in seconds. Valid range is '900 - 9999999999999999999' seconds. Specify validity period as '0' value to regenerate an access token that does not expire."
+              }
+            ]
+          },
+          "docs": "Regenerate access token associated with a SDC application. After the access token is successfully regenerated, the current access token will get invalidated immediately near real-time i.e. API calls will fail with the old access token. If the API is invoked with a validity period within the range of the current access token's expiration period then the current access token will be returned as response."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

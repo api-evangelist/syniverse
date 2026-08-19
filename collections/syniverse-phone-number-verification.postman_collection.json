@@ -1,0 +1,581 @@
+{
+  "item": [
+    {
+      "id": "17840a16-71a4-41fd-99f5-7ddbc82e3878",
+      "name": "POST lookup",
+      "request": {
+        "name": "POST lookup",
+        "description": {
+          "content": "  Returns all information on the phone number including validity, number type, carrier identifier, carrier name, country, porting detail,  deactivation details, mcc, and mnc. Values returned depend on the feature set selected in request and any optional parameters included in the request.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "lookup"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "This is the unique identifier sent by the customer in the request header to track the request/response chain. The value of this attribute is extracted from the header of the POST request.",
+            "key": "ext_trx_id",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "This attribute represents the customer of our customer using the service. The value is extracted from the POST request header.",
+            "key": "ext_reseller_cust_id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{bearerToken}}"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "<string>",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "2cc6aa5f-9ae3-4f76-8e69-35bfbbf55b72",
+          "name": "Successful operation",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "lookup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "disabled": false,
+                "description": "This is the unique identifier sent by the customer in the request header to track the request/response chain. The value of this attribute is extracted from the header of the POST request.",
+                "key": "ext_trx_id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "This attribute represents the customer of our customer using the service. The value is extracted from the POST request header.",
+                "key": "ext_reseller_cust_id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"numberidentity\": \"string\",\n  \"SucessResponse\": {\n    \"number\": \"+1XXXXXXXX70\",\n    \"validity\": \"string\",\n    \"carrier_id\": \"string\",\n    \"carrier_name\": \"SPRINT PCS\",\n    \"number_type\": \"M\",\n    \"country_iso_code\": \"USA\",\n    \"country\": \"United States\",\n    \"carrier_mcc\": \"string\",\n    \"carrier_mnc\": \"string\",\n    \"last_known_event\": \"Disconnect\",\n    \"previous_carrier_id\": \"string\",\n    \"previous_carrier_name\": \"string\",\n    \"disconnect_date\": \"2009-03-30T08:14:29.917Z\",\n    \"tracking_id\": \"string\"\n  },\n  \"tracking_id\": \"101580180391472739483159\",\n  \"ext_trx_id\": \"string\",\n  \"ext_reseller_cust_id\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "974ae00e-0a36-4007-b858-860e7a414f26",
+          "name": "Bad Request.\n\nPossible Error Codes:\n* **NIS04000001** - Invalid Phone format - Non-retryable error code - **Suggested action:** Number format should be corrected to be in E.164 format, i.e. +1XXXXXXXX70\n* **NIS04000001** - Phone number attribute missing in the request - Non-retryable error code. - **Suggested action:** update request to include phone number\n* **NIS04000002** - Invalid Feature - Non-retryable error code - **Suggested action:** change the feature value to be a supported value such as fs5 (or) fs2 (or) fs23 (or) fs1.\n* **NIS04000003** - Canadian Number, Further authorization is required - Non-retryable error code  - **Suggested action:** Please work with your Customer Support Executive to get Canadian numbers enabled. .\n",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "lookup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "disabled": false,
+                "description": "This is the unique identifier sent by the customer in the request header to track the request/response chain. The value of this attribute is extracted from the header of the POST request.",
+                "key": "ext_trx_id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "This attribute represents the customer of our customer using the service. The value is extracted from the POST request header.",
+                "key": "ext_reseller_cust_id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error_code\": \"NIS04000001\",\n  \"error_description\": \"Invalid Phone format - Non-retryable error code\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "bba55d7d-9d8f-47cf-8747-75bcac5c1963",
+          "name": "Unauthorized. The request requires user authentication.\n\nPossible Error Codes:\n* **NIS04010001** - Unauthorized - Non-retryable error code -\n**Suggested actions:** please check the CompanyID is correct and the Bearer Token is valid. \n",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "lookup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "disabled": false,
+                "description": "This is the unique identifier sent by the customer in the request header to track the request/response chain. The value of this attribute is extracted from the header of the POST request.",
+                "key": "ext_trx_id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "This attribute represents the customer of our customer using the service. The value is extracted from the POST request header.",
+                "key": "ext_reseller_cust_id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error_code\": \"NIS04010001\",\n  \"error_description\": \"Unauthorized - Non-retryable error code\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "08248539-b838-4ae4-a6ae-9eda8197d33c",
+          "name": "Forbidden. The user does not have permission to access the specified resource.\n\nPossible Error Codes:\n* **NIS04030001** - Forbidden operation - Non-retryable error code -  **Suggested Action:** Please check you are not using a PUT, or DELETE operation\n\n* **NIS04000003** - Invalid parameters provided. Please check the documentation for valid values - Non-retryable error code -  **Suggested action:** Please check the parameter values against the documentation and correct as needed. \n",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "lookup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "disabled": false,
+                "description": "This is the unique identifier sent by the customer in the request header to track the request/response chain. The value of this attribute is extracted from the header of the POST request.",
+                "key": "ext_trx_id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "This attribute represents the customer of our customer using the service. The value is extracted from the POST request header.",
+                "key": "ext_reseller_cust_id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error_code\": \"NIS04030001\",\n  \"error_description\": \"Forbidden operation - Non-retryable error code\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "f2bf41e8-087c-40c7-8f9d-38d974d562cc",
+          "name": "Wrong URL is specified. \n**Suggested action:** Please check and correct the URL to match the PNV Lookup API specification\n\n    Example :\n    \n    <am:fault xmlns:am=\\\"http:xxx/xxx\\\">\n      <am:code>404</am:code>\n      <am:type>Status report</am:type>\n      <am:message>Runtime Error</am:message>\n      <am:description>No matching resource found for given API Request</am:description>\n    </am:fault>\n",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "lookup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "disabled": false,
+                "description": "This is the unique identifier sent by the customer in the request header to track the request/response chain. The value of this attribute is extracted from the header of the POST request.",
+                "key": "ext_trx_id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "This attribute represents the customer of our customer using the service. The value is extracted from the POST request header.",
+                "key": "ext_reseller_cust_id",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "0edfcb03-ecfd-45dc-b804-f181bf6af111",
+          "name": "Below error throws when the HTTP method set is not POST.\n**Suggested action:** Set HTTP method to POST.\n\n    Example :\n    \n    <am:fault xmlns:am=\"http:xxx/xxx\\\">\n    <am:code>405</am:code>\n    <am:type>Status report</am:type>\n    <am:message>Runtime Error</am:message>\n    <am:description>Method not allowed for given API resource</am:description>\n    </am:fault>                \n",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "lookup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "disabled": false,
+                "description": "This is the unique identifier sent by the customer in the request header to track the request/response chain. The value of this attribute is extracted from the header of the POST request.",
+                "key": "ext_trx_id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "This attribute represents the customer of our customer using the service. The value is extracted from the POST request header.",
+                "key": "ext_reseller_cust_id",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Method Not Allowed",
+          "code": 405,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "9069cbe8-c1c0-492b-bce1-1ce9b069c780",
+          "name": "Server Error. An error has been encountered while processing this request.\n\nPossible Error Codes:\n* **NIS05000001** - Internal Server Error - Retryable error code. **Suggested action:** if problems keeps re-occurring contact customer support.\n",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "lookup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "disabled": false,
+                "description": "This is the unique identifier sent by the customer in the request header to track the request/response chain. The value of this attribute is extracted from the header of the POST request.",
+                "key": "ext_trx_id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "This attribute represents the customer of our customer using the service. The value is extracted from the POST request header.",
+                "key": "ext_reseller_cust_id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error_code\": \"NIS05000001\",\n  \"error_description\": \"Internal Server Error - Retryable error code\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ab3c928c-cd79-44c7-99e3-da2dd403252c",
+          "name": "Service Unavailable. \n\nN.B. No Error code or description are provided for this error.\n  \n  **Suggested action:** Please check for any communcation related to service maintenace (or) contact customer support.\n",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "lookup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "disabled": false,
+                "description": "This is the unique identifier sent by the customer in the request header to track the request/response chain. The value of this attribute is extracted from the header of the POST request.",
+                "key": "ext_trx_id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "This attribute represents the customer of our customer using the service. The value is extracted from the POST request header.",
+                "key": "ext_reseller_cust_id",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.syniverse.com/numberidentity/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d00371c9-dcba-4270-b479-adfb9d9efd2e",
+    "name": "PNV",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The purpose of this specification is to describe the Syniverse Phone Number Verification(PNV) service capabilities, core concepts, and API set. The PNV offers a rich suite of RESTful APIs that allow lookup of salient phone number data, batch lookup of number data, scheduling of number lookup and proactive monitoring of numbers of interest for changes to critical attributes. Number lookup returns salient attributes of a phone number e.g., validity, country, carrier, deactivation and disconnection details). \n\nThe lookup and response can be tailored by specifying a feature set. Different feature sets provide different sets of information, i.e. feature set 2 provides standard routing information, and feature set 5 provides additional information on when a phone number was last disconnected. See the User Guide for more information on the different feature sets.\n",
+      "type": "text/plain"
+    }
+  }
+}

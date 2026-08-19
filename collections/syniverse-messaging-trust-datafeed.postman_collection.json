@@ -1,0 +1,356 @@
+{
+  "item": [
+    {
+      "id": "f3c86f0c-0599-4931-9b7d-fba6b2e12f50",
+      "name": "reports",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4adc3146-bdaa-44c9-bec4-a58f9f319d2d",
+          "name": "Submit spam reports",
+          "request": {
+            "name": "Submit spam reports",
+            "description": {
+              "content": "Submit a list of spam reports",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "spam",
+                "report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reports\": [\n    {\n      \"message\": \"<string>\",\n      \"report_id\": \"<string>\",\n      \"report_ts\": \"<string>\",\n      \"sender\": \"<string>\",\n      \"source\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"receipt_ts\": \"<string>\"\n    },\n    {\n      \"message\": \"<string>\",\n      \"report_id\": \"<string>\",\n      \"report_ts\": \"<string>\",\n      \"sender\": \"<string>\",\n      \"source\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"receipt_ts\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c16e9b72-5e82-4d91-8576-56d046cca229",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "spam",
+                    "report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reports\": [\n    {\n      \"message\": \"Hello, activate your account at www.hackz.ai today!\",\n      \"report_id\": \"SPM_RPT_1\",\n      \"report_ts\": \"2006-01-02T15:04:05.000Z\",\n      \"sender\": \"+12125551212\",\n      \"source\": \"7727\",\n      \"protocol\": \"SMS\",\n      \"receipt_ts\": \"2006-01-02T15:04:05.000Z\"\n    },\n    {\n      \"message\": \"Hello, activate your account at www.hackz.ai today!\",\n      \"report_id\": \"SPM_RPT_1\",\n      \"report_ts\": \"2006-01-02T15:04:05.000Z\",\n      \"sender\": \"+12125551212\",\n      \"source\": \"7727\",\n      \"protocol\": \"SMS\",\n      \"receipt_ts\": \"2006-01-02T15:04:05.000Z\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "example value - 94bf014e-580b-49ba-b86e-c2fc0920204d",
+                  "key": "x-request-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batch_id\": \"588de77e-5055-49f6-91de-441d672a0f9c\",\n  \"count\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a0863c0-8a38-4cfc-bc4a-7bb169b4078d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "spam",
+                    "report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reports\": [\n    {\n      \"message\": \"Hello, activate your account at www.hackz.ai today!\",\n      \"report_id\": \"SPM_RPT_1\",\n      \"report_ts\": \"2006-01-02T15:04:05.000Z\",\n      \"sender\": \"+12125551212\",\n      \"source\": \"7727\",\n      \"protocol\": \"SMS\",\n      \"receipt_ts\": \"2006-01-02T15:04:05.000Z\"\n    },\n    {\n      \"message\": \"Hello, activate your account at www.hackz.ai today!\",\n      \"report_id\": \"SPM_RPT_1\",\n      \"report_ts\": \"2006-01-02T15:04:05.000Z\",\n      \"sender\": \"+12125551212\",\n      \"source\": \"7727\",\n      \"protocol\": \"SMS\",\n      \"receipt_ts\": \"2006-01-02T15:04:05.000Z\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batch_id\": \"588de77e-5055-49f6-91de-441d672a0f9c\",\n  \"error\": \"error description\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32214d5e-69d9-44e9-b0c3-9bf59ad375dd",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "spam",
+                    "report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reports\": [\n    {\n      \"message\": \"Hello, activate your account at www.hackz.ai today!\",\n      \"report_id\": \"SPM_RPT_1\",\n      \"report_ts\": \"2006-01-02T15:04:05.000Z\",\n      \"sender\": \"+12125551212\",\n      \"source\": \"7727\",\n      \"protocol\": \"SMS\",\n      \"receipt_ts\": \"2006-01-02T15:04:05.000Z\"\n    },\n    {\n      \"message\": \"Hello, activate your account at www.hackz.ai today!\",\n      \"report_id\": \"SPM_RPT_1\",\n      \"report_ts\": \"2006-01-02T15:04:05.000Z\",\n      \"sender\": \"+12125551212\",\n      \"source\": \"7727\",\n      \"protocol\": \"SMS\",\n      \"receipt_ts\": \"2006-01-02T15:04:05.000Z\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9055bca9-93cc-41d1-9cd5-8810a0ede934",
+              "name": "Unsupported Media Type",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "spam",
+                    "report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reports\": [\n    {\n      \"message\": \"Hello, activate your account at www.hackz.ai today!\",\n      \"report_id\": \"SPM_RPT_1\",\n      \"report_ts\": \"2006-01-02T15:04:05.000Z\",\n      \"sender\": \"+12125551212\",\n      \"source\": \"7727\",\n      \"protocol\": \"SMS\",\n      \"receipt_ts\": \"2006-01-02T15:04:05.000Z\"\n    },\n    {\n      \"message\": \"Hello, activate your account at www.hackz.ai today!\",\n      \"report_id\": \"SPM_RPT_1\",\n      \"report_ts\": \"2006-01-02T15:04:05.000Z\",\n      \"sender\": \"+12125551212\",\n      \"source\": \"7727\",\n      \"protocol\": \"SMS\",\n      \"receipt_ts\": \"2006-01-02T15:04:05.000Z\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batch_id\": \"588de77e-5055-49f6-91de-441d672a0f9c\",\n  \"error\": \"error description\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "252e7c05-802a-4784-9be6-df1b2a28c117",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "spam",
+                    "report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reports\": [\n    {\n      \"message\": \"Hello, activate your account at www.hackz.ai today!\",\n      \"report_id\": \"SPM_RPT_1\",\n      \"report_ts\": \"2006-01-02T15:04:05.000Z\",\n      \"sender\": \"+12125551212\",\n      \"source\": \"7727\",\n      \"protocol\": \"SMS\",\n      \"receipt_ts\": \"2006-01-02T15:04:05.000Z\"\n    },\n    {\n      \"message\": \"Hello, activate your account at www.hackz.ai today!\",\n      \"report_id\": \"SPM_RPT_1\",\n      \"report_ts\": \"2006-01-02T15:04:05.000Z\",\n      \"sender\": \"+12125551212\",\n      \"source\": \"7727\",\n      \"protocol\": \"SMS\",\n      \"receipt_ts\": \"2006-01-02T15:04:05.000Z\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batch_id\": \"588de77e-5055-49f6-91de-441d672a0f9c\",\n  \"error\": \"error description\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.mt1.messaging-trust.syniverse.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.mt1.messaging-trust.syniverse.com/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6f5bb0d0-13a8-4306-be50-650f5c76c8b7",
+    "name": "MT Spam Datafeed",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Spam reporting API suite",
+      "type": "text/plain"
+    }
+  }
+}

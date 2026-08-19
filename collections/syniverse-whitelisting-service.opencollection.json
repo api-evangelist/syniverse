@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Whitelisting_Service",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "whitelist",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get_whitelist/{WHITELIST_ID}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/whitelist/:WHITELIST_ID",
+            "params": [
+              {
+                "name": "WHITELIST_ID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "post_whitelist/{WHITELIST_ID}",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/whitelist/:WHITELIST_ID",
+            "params": [
+              {
+                "name": "WHITELIST_ID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_whitelist/{WHITELIST_ID}/{ENTITY_ID}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/whitelist/:WHITELIST_ID/:ENTITY_ID",
+            "params": [
+              {
+                "name": "WHITELIST_ID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ENTITY_ID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "delete_whitelist/{WHITELIST_ID}/{ENTITY_ID}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/whitelist/:WHITELIST_ID/:ENTITY_ID",
+            "params": [
+              {
+                "name": "WHITELIST_ID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ENTITY_ID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_whitelist/{WHITELIST_ID}/{ENTITY_ID}/{TRANSACTION_ID}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/whitelist/:WHITELIST_ID/:ENTITY_ID/:TRANSACTION_ID",
+            "params": [
+              {
+                "name": "WHITELIST_ID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ENTITY_ID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "TRANSACTION_ID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "post_whitelist/{WHITELIST_ID}/{ENTITY_ID}/{TRANSACTION_ID}",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/whitelist/:WHITELIST_ID/:ENTITY_ID/:TRANSACTION_ID",
+            "params": [
+              {
+                "name": "WHITELIST_ID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ENTITY_ID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "TRANSACTION_ID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

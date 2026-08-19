@@ -1,0 +1,1292 @@
+{
+  "item": [
+    {
+      "id": "196938ba-35de-462f-aac5-198aca9299ac",
+      "name": "10DLC v1",
+      "description": {
+        "content": "Initial 10DLC Number to Campaign Association Management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6cbd28de-0809-4e08-906b-a7698160b723",
+          "name": "Addition of 10DLC number to the registered campaign",
+          "request": {
+            "name": "Addition of 10DLC number to the registered campaign",
+            "description": {
+              "content": "Syniverse is required to update some MNO A2P platforms with the new added number for a given campaign, this enables  customers to manage  individual number to campaign associations when the numbers are NOT part of a number pool",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engage",
+                "tendlc-services",
+                "v1",
+                "campaigns",
+                ":campaignId",
+                "longcodes",
+                ":longcode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) campaignId"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "longcode",
+                  "description": "(Required) longcode"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "int-appId for syniverse internal use only.",
+                "key": "int-appId",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "int-companyId  for syniverse internal use only.",
+                "key": "int-companyId",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "44c77a5c-19df-4663-9b10-f94f7d60802a",
+              "name": "Request recieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v1",
+                    "campaigns",
+                    ":campaignId",
+                    "longcodes",
+                    ":longcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) campaignId"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "longcode",
+                      "description": "(Required) longcode"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-appId for syniverse internal use only.",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-companyId  for syniverse internal use only.",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab75b964-8241-4216-bbc7-7ed9c1ef5539",
+              "name": "You are not authorized to view the resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v1",
+                    "campaigns",
+                    ":campaignId",
+                    "longcodes",
+                    ":longcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) campaignId"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "longcode",
+                      "description": "(Required) longcode"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-appId for syniverse internal use only.",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-companyId  for syniverse internal use only.",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3f79a32e-e970-4892-8b49-c1beb738cc2d",
+              "name": "The resource you were trying to reach is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v1",
+                    "campaigns",
+                    ":campaignId",
+                    "longcodes",
+                    ":longcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) campaignId"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "longcode",
+                      "description": "(Required) longcode"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-appId for syniverse internal use only.",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-companyId  for syniverse internal use only.",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0231694e-3527-4ecc-b58b-29048368b7ef",
+          "name": "Deletion of 10DLC number from the registered campaign",
+          "request": {
+            "name": "Deletion of 10DLC number from the registered campaign",
+            "description": {
+              "content": "Syniverse is required to update MNOs A2P platforms and remove the number for a given campaign, this enables  customers to manage  individual number to campaign associations when the numbers are NOT part of a number pool",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engage",
+                "tendlc-services",
+                "v1",
+                "campaigns",
+                ":campaignId",
+                "longcodes",
+                ":longcode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) campaignId"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "longcode",
+                  "description": "(Required) longcode"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "int-appId for syniverse internal use only.",
+                "key": "int-appId",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "int-companyId  for syniverse internal use only.",
+                "key": "int-companyId",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "24177f84-4e5f-4a8c-9fda-98ee83b2516e",
+              "name": "Request recieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v1",
+                    "campaigns",
+                    ":campaignId",
+                    "longcodes",
+                    ":longcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) campaignId"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "longcode",
+                      "description": "(Required) longcode"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-appId for syniverse internal use only.",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-companyId  for syniverse internal use only.",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc459097-08d5-4505-9199-5874fe600272",
+              "name": "You are not authorized to view the resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v1",
+                    "campaigns",
+                    ":campaignId",
+                    "longcodes",
+                    ":longcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) campaignId"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "longcode",
+                      "description": "(Required) longcode"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-appId for syniverse internal use only.",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-companyId  for syniverse internal use only.",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8f20c452-5ac5-4731-a705-3d9772cef17d",
+              "name": "The resource you were trying to reach is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v1",
+                    "campaigns",
+                    ":campaignId",
+                    "longcodes",
+                    ":longcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) campaignId"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "longcode",
+                      "description": "(Required) longcode"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-appId for syniverse internal use only.",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-companyId  for syniverse internal use only.",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f5d973da-800b-4a21-afe1-48cc447b9583",
+      "name": "10DLC v1 Number Pools",
+      "description": {
+        "content": "Enhanced 10DLC Number Pool to Campaign Association Management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b5667098-5806-4bdd-bb14-f4101f05cb84",
+          "name": "Association of Campaign  with the Number Pool",
+          "request": {
+            "name": "Association of Campaign  with the Number Pool",
+            "description": {
+              "content": "Syniverse is required to update some MNO A2P platforms with the new Number Pool for a given campaign, enabling   customers to better manage campaigns with large groups of numbers. Number pools require carrier approvals and this API currently covers  2 types SubId and CampaignId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engage",
+                "tendlc-services",
+                "v1",
+                "campaigns",
+                ":campaignId",
+                "pools",
+                ":numberPoolId",
+                "types",
+                ":numberPoolType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) campaignId"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "numberPoolId",
+                  "description": "(Required) Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "numberPoolType",
+                  "description": "(Required) Type of Number Pool based on SubId or based on Campaign Id; Indicative"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "int-appId for syniverse internal use only.",
+                "key": "int-appId",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "int-companyId for syniverse internal use only.",
+                "key": "int-companyId",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "558c49af-bfc4-4a52-81ad-1a2ea3e91fad",
+              "name": "Request recieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v1",
+                    "campaigns",
+                    ":campaignId",
+                    "pools",
+                    ":numberPoolId",
+                    "types",
+                    ":numberPoolType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) campaignId"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolId",
+                      "description": "(Required) Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolType",
+                      "description": "(Required) Type of Number Pool based on SubId or based on Campaign Id; Indicative"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-appId for syniverse internal use only.",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-companyId for syniverse internal use only.",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4f07b2f-606e-4cf1-b484-29d0e6f46654",
+              "name": "You are not authorized to view the resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v1",
+                    "campaigns",
+                    ":campaignId",
+                    "pools",
+                    ":numberPoolId",
+                    "types",
+                    ":numberPoolType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) campaignId"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolId",
+                      "description": "(Required) Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolType",
+                      "description": "(Required) Type of Number Pool based on SubId or based on Campaign Id; Indicative"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-appId for syniverse internal use only.",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-companyId for syniverse internal use only.",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6b7bee44-74df-4fae-9604-093036010216",
+              "name": "The resource you were trying to reach is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v1",
+                    "campaigns",
+                    ":campaignId",
+                    "pools",
+                    ":numberPoolId",
+                    "types",
+                    ":numberPoolType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) campaignId"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolId",
+                      "description": "(Required) Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolType",
+                      "description": "(Required) Type of Number Pool based on SubId or based on Campaign Id; Indicative"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-appId for syniverse internal use only.",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-companyId for syniverse internal use only.",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3451b49b-516f-4e5b-a3c2-a80a879bd6c1",
+          "name": "Removal of the Association of the Number pool from the Campaign",
+          "request": {
+            "name": "Removal of the Association of the Number pool from the Campaign",
+            "description": {},
+            "url": {
+              "path": [
+                "engage",
+                "tendlc-services",
+                "v1",
+                "campaigns",
+                ":campaignId",
+                "pools",
+                ":numberPoolId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) campaignId"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "numberPoolId",
+                  "description": "(Required) Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "int-appId for syniverse internal use only.",
+                "key": "int-appId",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "int-companyId for syniverse internal use only.",
+                "key": "int-companyId",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ea315d51-7819-4c97-9921-b4a338518f8b",
+              "name": "Request recieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v1",
+                    "campaigns",
+                    ":campaignId",
+                    "pools",
+                    ":numberPoolId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) campaignId"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolId",
+                      "description": "(Required) Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-appId for syniverse internal use only.",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-companyId for syniverse internal use only.",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da9b9f23-69ce-4ce5-813c-4f9fc4fef128",
+              "name": "You are not authorized to view the resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v1",
+                    "campaigns",
+                    ":campaignId",
+                    "pools",
+                    ":numberPoolId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) campaignId"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolId",
+                      "description": "(Required) Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-appId for syniverse internal use only.",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-companyId for syniverse internal use only.",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9ea32973-becd-40bd-9b49-769542911e79",
+              "name": "The resource you were trying to reach is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v1",
+                    "campaigns",
+                    ":campaignId",
+                    "pools",
+                    ":numberPoolId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) campaignId"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolId",
+                      "description": "(Required) Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-appId for syniverse internal use only.",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "int-companyId for syniverse internal use only.",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.syniverse.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1f26e3d5-579c-4a89-a9fe-19dfaf0db288",
+    "name": "Syniverse 10DLC Provissioning API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This Service enables the Enterprise Customer to Add/Delete 10DLC numbers as well as Number Pools to Campaigns. The backend systems of this api will perform automatic MNO (Mobile Carrier) provisionning as required.",
+      "type": "text/plain"
+    }
+  }
+}

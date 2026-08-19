@@ -1,0 +1,3984 @@
+{
+  "item": [
+    {
+      "id": "cc7837de-5364-4b94-b902-dfcb13e577f4",
+      "name": "Campaigns",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2ba13302-3949-4511-a8b1-feffdb805caf",
+          "name": "Get multiple campaigns",
+          "request": {
+            "name": "Get multiple campaigns",
+            "description": {
+              "content": "Get campaigns",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engage",
+                "tendlc-services",
+                "v2",
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Page number, begins from 0, default = 0"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10",
+                  "description": "Size items on page, default = 10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "018e8ac1-535e-431a-be9b-41e3afbcd106",
+              "name": "Request received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"Request received\",\n  \"status\": \"403 FORBIDDEN\",\n  \"timestamp\": \"1956-09-24T21:48:04.333Z\",\n  \"data\": {\n    \"totalPages\": 8394,\n    \"totalElements\": 906,\n    \"size\": 7515,\n    \"content\": [\n      {\n        \"campaignId\": \"string\",\n        \"status\": \"string\",\n        \"brandId\": \"string\",\n        \"customerActorId\": \"string\",\n        \"cspId\": \"string\",\n        \"policy\": \"string\",\n        \"useCase\": \"string\",\n        \"subUseCase\": \"string\",\n        \"msgServiceType\": \"string\",\n        \"insertedTime\": \"string\",\n        \"updatedTime\": \"string\",\n        \"firstDeployedTime\": \"string\",\n        \"applicationAddresses\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"campaignId\": \"string\",\n        \"status\": \"string\",\n        \"brandId\": \"string\",\n        \"customerActorId\": \"string\",\n        \"cspId\": \"string\",\n        \"policy\": \"string\",\n        \"useCase\": \"string\",\n        \"subUseCase\": \"string\",\n        \"msgServiceType\": \"string\",\n        \"insertedTime\": \"string\",\n        \"updatedTime\": \"string\",\n        \"firstDeployedTime\": \"string\",\n        \"applicationAddresses\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"number\": 6822,\n    \"sort\": {\n      \"empty\": false,\n      \"unsorted\": true,\n      \"sorted\": true\n    },\n    \"first\": true,\n    \"last\": true,\n    \"numberOfElements\": 9838,\n    \"pageable\": {\n      \"offset\": 514,\n      \"sort\": {\n        \"empty\": true,\n        \"unsorted\": false,\n        \"sorted\": true\n      },\n      \"pageNumber\": 2338,\n      \"pageSize\": 7585,\n      \"paged\": false,\n      \"unpaged\": false\n    },\n    \"empty\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10f11f56-d50b-49db-ae11-f5aff99c2eae",
+              "name": "You are not authorized to view the resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"You are not authorized to view the resource\",\n  \"status\": \"410 GONE\",\n  \"timestamp\": \"1953-08-16T21:23:02.757Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f847cabc-39b0-4d1d-ae1a-628da0459713",
+              "name": "Request already completed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 409,\n  \"message\": \"Request already completed.\",\n  \"status\": \"412 PRECONDITION_FAILED\",\n  \"timestamp\": \"1951-02-05T19:16:00.547Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7aabb762-e4e5-4226-bfd9-ebbeb42e43e1",
+              "name": "Unsupported Event Type Received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 422,\n  \"message\": \"Unsupport Event Type Recieved\",\n  \"status\": \"307 TEMPORARY_REDIRECT\",\n  \"timestamp\": \"1972-01-23T20:58:54.402Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e5d984b-7666-4cef-a45a-2210c279051d",
+          "name": "Get campaign by ID",
+          "request": {
+            "name": "Get campaign by ID",
+            "description": {
+              "content": "Get campaign details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engage",
+                "tendlc-services",
+                "v2",
+                "campaigns",
+                ":campaignId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "Id",
+                  "key": "campaignId",
+                  "description": "(Required) Campaign Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "811ceaa0-2846-404f-843c-f256759379ed",
+              "name": "Request received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Id",
+                      "key": "campaignId",
+                      "description": "(Required) Campaign Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"Request received\",\n  \"status\": \"304 NOT_MODIFIED\",\n  \"timestamp\": \"1964-04-15T14:57:46.960Z\",\n  \"data\": {\n    \"campaignId\": \"string\",\n    \"status\": \"string\",\n    \"brandId\": \"string\",\n    \"customerActorId\": \"string\",\n    \"cspId\": \"string\",\n    \"policy\": \"string\",\n    \"useCase\": \"string\",\n    \"subUseCase\": \"string\",\n    \"msgServiceType\": \"string\",\n    \"insertedTime\": \"string\",\n    \"updatedTime\": \"string\",\n    \"firstDeployedTime\": \"string\",\n    \"applicationAddresses\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb67d261-386e-44cb-8ef6-3ec5c093c5c0",
+              "name": "You are not authorized to view the resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Id",
+                      "key": "campaignId",
+                      "description": "(Required) Campaign Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"You are not authorized to view the resource\",\n  \"status\": \"410 GONE\",\n  \"timestamp\": \"1953-08-16T21:23:02.757Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e532e864-a376-4377-9471-b2437db24671",
+              "name": "Campaign Id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Id",
+                      "key": "campaignId",
+                      "description": "(Required) Campaign Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"Campaign Id does not exist\",\n  \"status\": \"412 PRECONDITION_FAILED\",\n  \"timestamp\": \"1967-01-12T18:55:02.182Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9dfc22a-0f62-44df-87ef-50c07e4c48ab",
+          "name": "Suspending deployed campaign",
+          "request": {
+            "name": "Suspending deployed campaign",
+            "description": {
+              "content": "Customer can suspend the deployed campaign",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engage",
+                "tendlc-services",
+                "v2",
+                "campaigns",
+                ":campaignId",
+                "suspend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1fdc54e4-bc62-4298-b48c-d6f7b67980cf",
+              "name": "Request received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"Request received\",\n  \"status\": \"201 CREATED\",\n  \"timestamp\": \"2023-11-27T19:22:49.122Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ba3b0c1-d5f6-4ad3-8058-4b3f0f1cdecf",
+              "name": "Request already in Progress.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 202,\n  \"message\": \"Request already in Progress.\",\n  \"status\": \"419 INSUFFICIENT_SPACE_ON_RESOURCE\",\n  \"timestamp\": \"2019-04-22T12:43:52.169Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76393d6d-1c44-4422-9b78-56d3d7fa56f7",
+              "name": "[Suspend operation is not allowed as campaign is already removed,Campaign suspend duplicate request,Campaign Deployed request in progress. Please retry after some time,Campaign remove request in progress,Suspend operation is not allowed as campaign is being removed,Campaign is not Deployed. Please retry after some time]",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Suspend operation is not allowed as campaign is already removed\",\n  \"status\": \"BAD_REQUEST\",\n  \"timestamp\": \"06-07-2022 01:53:10\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71dc062f-6893-4cdd-8c16-d74c1860cce8",
+              "name": "You are not authorized to view the resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"You are not authorized to view the resource\",\n  \"status\": \"410 GONE\",\n  \"timestamp\": \"1953-08-16T21:23:02.757Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06654ad7-05f5-4ce6-8774-d0cfaac9eddb",
+              "name": "[Campaign suspend duplicate request]",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Campaign suspend duplicate request\",\n  \"status\": \"BAD_REQUEST\",\n  \"timestamp\": \"06-07-2022 01:53:10\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0ff14bb-7b76-4cfe-be4e-95490aa8606a",
+              "name": "Internal Error Occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Error Occurred\",\n  \"status\": \"428 PRECONDITION_REQUIRED\",\n  \"timestamp\": \"2009-12-23T21:32:47.668Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3497b745-e5db-4383-9b7a-672c4bdbbdd3",
+          "name": "Resuming suspended campaign",
+          "request": {
+            "name": "Resuming suspended campaign",
+            "description": {
+              "content": "Customer can resume the suspended campaign",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engage",
+                "tendlc-services",
+                "v2",
+                "campaigns",
+                ":campaignId",
+                "resume"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c0fbaa3-8d00-4098-8bec-8a0f93164894",
+              "name": "Request received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"Request received\",\n  \"status\": \"201 CREATED\",\n  \"timestamp\": \"2023-11-27T19:22:49.122Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa8a0210-67eb-47d1-9d03-c797494a3e89",
+              "name": "Request already in Progress.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 202,\n  \"message\": \"Request already in Progress.\",\n  \"status\": \"419 INSUFFICIENT_SPACE_ON_RESOURCE\",\n  \"timestamp\": \"2019-04-22T12:43:52.169Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa62f9ef-ae6b-48ba-bf61-5001a9f81a84",
+              "name": "[Resume operation is not allowed as campaign is already removed,Campaign does not exist,Campaign Deployed request in progress .,Campaign resume request is invalid, Campaign remove request in progress,Campaign resume request is invalid, Campaign remove request in progress,Campaign resume request is invalid, Campaign Deployed request in progress,Suspend Request Already in progress,Campaign resume request is invalid, the Campaign is already in deployed state]",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Resume operation is not allowed as campaign is already removed\",\n  \"status\": \"BAD_REQUEST\",\n  \"timestamp\": \"06-07-2022 01:53:10\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb70032e-54a2-4e21-a72c-35f067b80552",
+              "name": "You are not authorized to view the resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"You are not authorized to view the resource\",\n  \"status\": \"410 GONE\",\n  \"timestamp\": \"1953-08-16T21:23:02.757Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e534838d-43f0-41eb-b962-257d55cfd20b",
+              "name": "Request already completed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 409,\n  \"message\": \"Request already completed.\",\n  \"status\": \"412 PRECONDITION_FAILED\",\n  \"timestamp\": \"1951-02-05T19:16:00.547Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0afe4746-dc3c-40e8-aaa2-782bddcde1fa",
+              "name": "Internal Error Occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Error Occurred\",\n  \"status\": \"428 PRECONDITION_REQUIRED\",\n  \"timestamp\": \"2009-12-23T21:32:47.668Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2fa18bb3-af95-4d26-8e49-700cc0284c4c",
+      "name": "10DLC Number Pools",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c9481647-9ceb-4930-a71e-b3835910c71f",
+          "name": "Association of Campaign  with the Number Pool",
+          "request": {
+            "name": "Association of Campaign  with the Number Pool",
+            "description": {},
+            "url": {
+              "path": [
+                "engage",
+                "tendlc-services",
+                "v2",
+                "campaigns",
+                ":campaignId",
+                "pools",
+                ":numberPoolId",
+                "types",
+                ":numberPoolType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "numberPoolId",
+                  "description": "(Required) Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "numberPoolType",
+                  "description": "(Required) Type of Number Pool based on SubId or based on Campaign Id; Indicative"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e478c0b5-0541-4219-b6a4-a9dcf05ded42",
+              "name": "Request received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "pools",
+                    ":numberPoolId",
+                    "types",
+                    ":numberPoolType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolId",
+                      "description": "(Required) Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolType",
+                      "description": "(Required) Type of Number Pool based on SubId or based on Campaign Id; Indicative"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"Request received\",\n  \"status\": \"201 CREATED\",\n  \"timestamp\": \"2023-11-27T19:22:49.122Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75ad5f34-742a-4277-b79c-962b5cc68e0f",
+              "name": "Request already in Progress.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "pools",
+                    ":numberPoolId",
+                    "types",
+                    ":numberPoolType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolId",
+                      "description": "(Required) Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolType",
+                      "description": "(Required) Type of Number Pool based on SubId or based on Campaign Id; Indicative"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 202,\n  \"message\": \"Request already in Progress.\",\n  \"status\": \"419 INSUFFICIENT_SPACE_ON_RESOURCE\",\n  \"timestamp\": \"2019-04-22T12:43:52.169Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24b31d25-bd44-4f94-a619-ae5ec8a09fd4",
+              "name": "[Request failed. Daily quota exceeded, Number Pool cannot be added as it is already associated with another campaign, Number Pool cannot be deleted as it is not associated to the campaign, Number Pool cannot be added to campaign. Limit exceeded, Number Pool cannot be added/delete as Campaign is not Deployed., NNID invalid, Number Pool type is invalid,  Number pool does not match with campaign , Number pool does not match with campaign]",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "pools",
+                    ":numberPoolId",
+                    "types",
+                    ":numberPoolType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolId",
+                      "description": "(Required) Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolType",
+                      "description": "(Required) Type of Number Pool based on SubId or based on Campaign Id; Indicative"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Request failed. Daily quota exceeded\",\n  \"status\": \"BAD_REQUEST\",\n  \"timestamp\": \"06-07-2022 01:53:10\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e518961-8d2e-428c-bae3-0a8a7ab15f6e",
+              "name": "You are not authorized to view the resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "pools",
+                    ":numberPoolId",
+                    "types",
+                    ":numberPoolType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolId",
+                      "description": "(Required) Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolType",
+                      "description": "(Required) Type of Number Pool based on SubId or based on Campaign Id; Indicative"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"Request received\",\n  \"status\": \"201 CREATED\",\n  \"timestamp\": \"2023-11-27T19:22:49.122Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d54a894-6fda-405e-9a3e-87e681c362f4",
+              "name": "Request already completed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "pools",
+                    ":numberPoolId",
+                    "types",
+                    ":numberPoolType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolId",
+                      "description": "(Required) Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolType",
+                      "description": "(Required) Type of Number Pool based on SubId or based on Campaign Id; Indicative"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 409,\n  \"message\": \"Request already completed.\",\n  \"status\": \"412 PRECONDITION_FAILED\",\n  \"timestamp\": \"1951-02-05T19:16:00.547Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90ea2d6b-ef72-400b-8d2b-bed1a6c25539",
+          "name": "Removal of the Association of the Number pool with Campaign",
+          "request": {
+            "name": "Removal of the Association of the Number pool with Campaign",
+            "description": {},
+            "url": {
+              "path": [
+                "engage",
+                "tendlc-services",
+                "v2",
+                "campaigns",
+                ":campaignId",
+                "pools",
+                ":numberPoolId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "numberPoolId",
+                  "description": "(Required) Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "146283f4-c568-42a5-954d-0f696b8a79dc",
+              "name": "Request received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "pools",
+                    ":numberPoolId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolId",
+                      "description": "(Required) Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"Request received\",\n  \"status\": \"201 CREATED\",\n  \"timestamp\": \"2023-11-27T19:22:49.122Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47205b81-e244-4b68-8107-ddfc1d637b2c",
+              "name": "Request already in Progress.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "pools",
+                    ":numberPoolId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolId",
+                      "description": "(Required) Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 202,\n  \"message\": \"Request already in Progress.\",\n  \"status\": \"419 INSUFFICIENT_SPACE_ON_RESOURCE\",\n  \"timestamp\": \"2019-04-22T12:43:52.169Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a745ba21-6dd1-4bb0-a284-61d77260fcab",
+              "name": "[Request failed. Daily quota exceeded,   Number Pool cannot be deleted as it is not associated to the campaign, Number Pool cannot be added/delete as Campaign is not Deployed., NNID invalid, Number pool does not match with campaign.]",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "pools",
+                    ":numberPoolId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolId",
+                      "description": "(Required) Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Request failed. Daily quota exceeded\",\n  \"status\": \"BAD_REQUEST\",\n  \"timestamp\": \"06-07-2022 01:53:10\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50d63428-8e82-4ffb-a211-fbd6cda74d0c",
+              "name": "Request already completed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "pools",
+                    ":numberPoolId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numberPoolId",
+                      "description": "(Required) Number Pool Id that represents the Number Pool. Depending on the number pool type, it will be <br/> USE: <br/>  -  **{CampaignID}-{NNID}** for CampaignId Nmber Pool Type (exmple: CYYYYYY-999000) <br /> -  **{SubID}-{NNID}** for SubId Nmber Pool Type. (example CUST_SYN1-999000)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 409,\n  \"message\": \"Request already completed.\",\n  \"status\": \"412 PRECONDITION_FAILED\",\n  \"timestamp\": \"1951-02-05T19:16:00.547Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "849eed18-c10e-4769-932c-86b62f74e3e3",
+      "name": "10DLC LongCodes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c947ad3d-fcad-4f7f-898a-77fc7c89d819",
+          "name": "Get application address by Id",
+          "request": {
+            "name": "Get application address by Id",
+            "description": {
+              "content": "Get application address details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engage",
+                "tendlc-services",
+                "v2",
+                "campaigns",
+                ":campaignId",
+                "longcodes",
+                ":longcode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "Id",
+                  "key": "campaignId",
+                  "description": "(Required) Campaign Id value"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "Id",
+                  "key": "longcode",
+                  "description": "(Required) Longcode value"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c0b078d-7dcc-4647-8c8f-9ac7ff544871",
+              "name": "Request received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "longcodes",
+                    ":longcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Id",
+                      "key": "campaignId",
+                      "description": "(Required) Campaign Id value"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Id",
+                      "key": "longcode",
+                      "description": "(Required) Longcode value"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"Request received\",\n  \"status\": \"506 VARIANT_ALSO_NEGOTIATES\",\n  \"timestamp\": \"2013-04-09T20:25:45.603Z\",\n  \"data\": {\n    \"applicationAddress\": \"string\",\n    \"campaignId\": \"string\",\n    \"action\": \"string\",\n    \"appId\": \"string\",\n    \"addressType\": \"string\",\n    \"companyId\": \"string\",\n    \"status\": \"string\",\n    \"insertedTime\": \"string\",\n    \"updatedTime\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64b51f89-9389-45ce-924a-1b73cf6f793b",
+              "name": "You are not authorized to view the resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "longcodes",
+                    ":longcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Id",
+                      "key": "campaignId",
+                      "description": "(Required) Campaign Id value"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Id",
+                      "key": "longcode",
+                      "description": "(Required) Longcode value"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"You are not authorized to view the resource\",\n  \"status\": \"410 GONE\",\n  \"timestamp\": \"1953-08-16T21:23:02.757Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea91fac7-6221-4080-8236-b022d81d7a81",
+              "name": "Longcode does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "longcodes",
+                    ":longcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Id",
+                      "key": "campaignId",
+                      "description": "(Required) Campaign Id value"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Id",
+                      "key": "longcode",
+                      "description": "(Required) Longcode value"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"Longcode does not exist\",\n  \"status\": \"511 NETWORK_AUTHENTICATION_REQUIRED\",\n  \"timestamp\": \"2014-05-11T01:11:59.513Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd4ba031-a49e-4b52-91ff-d4a24fb31b71",
+          "name": "Addition of 10DLC number to the registered campaign",
+          "request": {
+            "name": "Addition of 10DLC number to the registered campaign",
+            "description": {
+              "content": "Syniverse is required to update T-Mobile SDG platform with the new added number for a given campaign",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engage",
+                "tendlc-services",
+                "v2",
+                "campaigns",
+                ":campaignId",
+                "longcodes",
+                ":longcode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "longcode",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ffe3da0-fbde-444a-bfe1-aaa7d0edb571",
+              "name": "Request received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "longcodes",
+                    ":longcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "longcode",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"Request received\",\n  \"status\": \"201 CREATED\",\n  \"timestamp\": \"2023-11-27T19:22:49.122Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9090972-2efe-4f25-8321-9b7ceea8ad10",
+              "name": "Request already in Progress.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "longcodes",
+                    ":longcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "longcode",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 202,\n  \"message\": \"Request already in Progress.\",\n  \"status\": \"419 INSUFFICIENT_SPACE_ON_RESOURCE\",\n  \"timestamp\": \"2019-04-22T12:43:52.169Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78102a0c-26fb-4235-84e7-ec51fd4b38e9",
+              "name": "[Request failed. Daily quota exceeded, Longcode cannot be added/deleted as it is already associated with another campaign., Longcode cannot be added to campaign. Limit exceeded, Longcode cannot be added/deleted as Campaign is not Deployed.,Invalid Longcode. Longcode must be a number., Invalid Longcode. Longcode must be 11 digits and must start with country code 1.]",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "longcodes",
+                    ":longcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "longcode",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Request failed. Daily quota exceeded\",\n  \"status\": \"BAD_REQUEST\",\n  \"timestamp\": \"06-07-2022 01:53:10\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d283c267-fd7b-4d56-9e2d-a876a8671307",
+              "name": "You are not authorized to view the resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "longcodes",
+                    ":longcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "longcode",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"You are not authorized to view the resource\",\n  \"status\": \"410 GONE\",\n  \"timestamp\": \"1953-08-16T21:23:02.757Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5408b4e-9677-416e-a0fe-da19e23929e7",
+              "name": "Request already completed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "longcodes",
+                    ":longcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "longcode",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 409,\n  \"message\": \"Request already completed.\",\n  \"status\": \"412 PRECONDITION_FAILED\",\n  \"timestamp\": \"1951-02-05T19:16:00.547Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6540c823-f11c-40ca-bd1f-0618c488e20f",
+          "name": "Deletion of 10DLC number from the registered campaign",
+          "request": {
+            "name": "Deletion of 10DLC number from the registered campaign",
+            "description": {
+              "content": "Syniverse is required to update T-Mobile SDG platform with the deleted number for a given campaign",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engage",
+                "tendlc-services",
+                "v2",
+                "campaigns",
+                ":campaignId",
+                "longcodes",
+                ":longcode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "longcode",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5e656d3d-01dc-4e83-b7fd-de5b23d57080",
+              "name": "Request received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "longcodes",
+                    ":longcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "longcode",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"Request received\",\n  \"status\": \"201 CREATED\",\n  \"timestamp\": \"2023-11-27T19:22:49.122Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb35bec1-8a1c-45b7-8dac-369bf1cf3d88",
+              "name": "Request already in Progress.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "longcodes",
+                    ":longcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "longcode",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 202,\n  \"message\": \"Request already in Progress.\",\n  \"status\": \"419 INSUFFICIENT_SPACE_ON_RESOURCE\",\n  \"timestamp\": \"2019-04-22T12:43:52.169Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14262fda-bb96-439a-8ba7-e3a786b26412",
+              "name": "[Request failed. Daily quota exceeded, Longcode cannot be added/deleted as it is already associated with another campaign., Longcode cannot be deleted as it is not associated with campaign., Longcode cannot be added/deleted as Campaign is not Deployed.,Invalid Longcode. Longcode must be a number., Invalid Longcode. Longcode must be 11 digits and must start with country code 1.]",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "longcodes",
+                    ":longcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "longcode",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Request failed. Daily quota exceeded\",\n  \"status\": \"BAD_REQUEST\",\n  \"timestamp\": \"06-07-2022 01:53:10\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a073664-06c4-49cd-a5ec-914af4ec2a43",
+              "name": "You are not authorized to view the resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "longcodes",
+                    ":longcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "longcode",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"You are not authorized to view the resource\",\n  \"status\": \"410 GONE\",\n  \"timestamp\": \"1953-08-16T21:23:02.757Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5abe9a2e-f384-44a6-b1fe-c49e83c7dbd6",
+              "name": "Request already completed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    ":campaignId",
+                    "longcodes",
+                    ":longcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "longcode",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 409,\n  \"message\": \"Request already completed.\",\n  \"status\": \"412 PRECONDITION_FAILED\",\n  \"timestamp\": \"1951-02-05T19:16:00.547Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f969cc7a-de8f-4826-a519-4b5b6b15ed0a",
+      "name": "ATT DCA Campaigns",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f563f2d8-199d-42bc-b41e-cd8861ed6d42",
+          "name": "Get ATT Campaign by ID",
+          "request": {
+            "name": "Get ATT Campaign by ID",
+            "description": {
+              "content": "Get ATT Campaign details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engage",
+                "tendlc-services",
+                "v2",
+                "campaigns",
+                "att",
+                ":campaignId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "Id",
+                  "key": "campaignId",
+                  "description": "(Required) Campaign Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "int-appId",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "int-companyId",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25ba2ffa-2a28-462d-ac2f-05f7c4a7ddb8",
+              "name": "Request received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    "att",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Id",
+                      "key": "campaignId",
+                      "description": "(Required) Campaign Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"Request received\",\n  \"status\": \"415 UNSUPPORTED_MEDIA_TYPE\",\n  \"timestamp\": \"1974-03-29T23:19:35.586Z\",\n  \"data\": {\n    \"campaignId\": \"string\",\n    \"status\": \"string\",\n    \"brandId\": \"string\",\n    \"customerActorId\": \"string\",\n    \"cspId\": \"string\",\n    \"policy\": \"string\",\n    \"useCase\": \"string\",\n    \"subUseCase\": \"string\",\n    \"messageClass\": \"string\",\n    \"msgServiceType\": \"string\",\n    \"insertedTime\": \"string\",\n    \"updatedTime\": \"string\",\n    \"firstDeployedTime\": \"string\",\n    \"errorLog\": [\n      {\n        \"insertedTime\": \"string\",\n        \"essPayLoadV1\": \"string\",\n        \"essPayLoadV2\": \"string\",\n        \"essEventIdV1\": \"string\",\n        \"essEventIdV2\": \"string\",\n        \"soapResponseCode\": \"string\",\n        \"soapResponse\": \"string\",\n        \"attResponseCode\": \"string\",\n        \"attResponse\": \"string\"\n      },\n      {\n        \"insertedTime\": \"string\",\n        \"essPayLoadV1\": \"string\",\n        \"essPayLoadV2\": \"string\",\n        \"essEventIdV1\": \"string\",\n        \"essEventIdV2\": \"string\",\n        \"soapResponseCode\": \"string\",\n        \"soapResponse\": \"string\",\n        \"attResponseCode\": \"string\",\n        \"attResponse\": \"string\"\n      }\n    ],\n    \"applicationAddresses\": [\n      {\n        \"applicationAddress\": \"string\",\n        \"status\": \"string\",\n        \"updatedTime\": \"string\"\n      },\n      {\n        \"applicationAddress\": \"string\",\n        \"status\": \"string\",\n        \"updatedTime\": \"string\"\n      }\n    ],\n    \"enumTracker\": \"string\",\n    \"retry\": \"string\",\n    \"subId\": \"string\",\n    \"campaignLogs\": [\n      {\n        \"attLogDetails\": {\n          \"insertedTime\": \"string\",\n          \"essPayLoadV1\": \"string\",\n          \"essPayLoadV2\": \"string\",\n          \"essEventIdV1\": \"string\",\n          \"essEventIdV2\": \"string\",\n          \"soapResponseCode\": \"string\",\n          \"soapResponse\": \"string\",\n          \"attResponseCode\": \"string\",\n          \"attResponse\": \"string\"\n        },\n        \"eventType\": \"string\",\n        \"status\": \"string\",\n        \"tcrResponseCode\": \"string\",\n        \"tcrResponse\": \"string\",\n        \"essResponse\": \"string\",\n        \"essTimeStamp\": \"string\"\n      },\n      {\n        \"attLogDetails\": {\n          \"insertedTime\": \"string\",\n          \"essPayLoadV1\": \"string\",\n          \"essPayLoadV2\": \"string\",\n          \"essEventIdV1\": \"string\",\n          \"essEventIdV2\": \"string\",\n          \"soapResponseCode\": \"string\",\n          \"soapResponse\": \"string\",\n          \"attResponseCode\": \"string\",\n          \"attResponse\": \"string\"\n        },\n        \"eventType\": \"string\",\n        \"status\": \"string\",\n        \"tcrResponseCode\": \"string\",\n        \"tcrResponse\": \"string\",\n        \"essResponse\": \"string\",\n        \"essTimeStamp\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90581ba5-00f0-4280-a682-2cca9daacb05",
+              "name": "Bad Request Received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    "att",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Id",
+                      "key": "campaignId",
+                      "description": "(Required) Campaign Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request Received\",\n  \"status\": \"407 PROXY_AUTHENTICATION_REQUIRED\",\n  \"timestamp\": \"2002-07-16T07:24:17.640Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89ed48f2-e621-48d9-bcd5-10cbd6a31a14",
+              "name": "You are not authorized to view the resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    "att",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Id",
+                      "key": "campaignId",
+                      "description": "(Required) Campaign Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"You are not authorized to view the resource\",\n  \"status\": \"410 GONE\",\n  \"timestamp\": \"1953-08-16T21:23:02.757Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b79b1142-36d3-4502-bab5-8bfee7d441b9",
+              "name": "Campaign Id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    "att",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Id",
+                      "key": "campaignId",
+                      "description": "(Required) Campaign Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"Campaign Id does not exist\",\n  \"status\": \"412 PRECONDITION_FAILED\",\n  \"timestamp\": \"1967-01-12T18:55:02.182Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b2d923c-4983-4e1c-82db-0d80206980e1",
+              "name": "Internal Error Occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "campaigns",
+                    "att",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Id",
+                      "key": "campaignId",
+                      "description": "(Required) Campaign Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Error Occurred\",\n  \"status\": \"428 PRECONDITION_REQUIRED\",\n  \"timestamp\": \"2009-12-23T21:32:47.668Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8fb6c423-64b0-4142-9ecc-5f154fb03e94",
+      "name": "10DLC ATT",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c442e962-c51a-4ef1-8493-f31faebe6469",
+          "name": "Get ATT Application address by Id",
+          "request": {
+            "name": "Get ATT Application address by Id",
+            "description": {
+              "content": "Get ATT Application address details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engage",
+                "tendlc-services",
+                "v2",
+                "att",
+                "application-address",
+                ":applicationAddress"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "Id",
+                  "key": "applicationAddress",
+                  "description": "(Required) Application address value"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "int-appId",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "int-companyId",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "642c5a15-692a-41a6-acb6-ae0325b25580",
+              "name": "Request received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "att",
+                    "application-address",
+                    ":applicationAddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Id",
+                      "key": "applicationAddress",
+                      "description": "(Required) Application address value"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"Request received\",\n  \"status\": \"408 REQUEST_TIMEOUT\",\n  \"timestamp\": \"1984-08-03T23:12:40.620Z\",\n  \"data\": {\n    \"applicationAddress\": \"string\",\n    \"campaignId\": \"string\",\n    \"action\": \"string\",\n    \"appId\": \"string\",\n    \"addressType\": \"string\",\n    \"companyId\": \"string\",\n    \"status\": \"string\",\n    \"insertedTime\": \"string\",\n    \"updatedTime\": \"string\",\n    \"errorLog\": [\n      {\n        \"insertedTime\": \"string\",\n        \"essPayLoadV1\": \"string\",\n        \"essPayLoadV2\": \"string\",\n        \"essEventIdV1\": \"string\",\n        \"essEventIdV2\": \"string\",\n        \"soapResponseCode\": \"string\",\n        \"soapResponse\": \"string\",\n        \"attResponseCode\": \"string\",\n        \"attResponse\": \"string\"\n      },\n      {\n        \"insertedTime\": \"string\",\n        \"essPayLoadV1\": \"string\",\n        \"essPayLoadV2\": \"string\",\n        \"essEventIdV1\": \"string\",\n        \"essEventIdV2\": \"string\",\n        \"soapResponseCode\": \"string\",\n        \"soapResponse\": \"string\",\n        \"attResponseCode\": \"string\",\n        \"attResponse\": \"string\"\n      }\n    ],\n    \"retry\": \"string\",\n    \"applicationAddressLogs\": [\n      {\n        \"attLogDetails\": {\n          \"insertedTime\": \"string\",\n          \"essPayLoadV1\": \"string\",\n          \"essPayLoadV2\": \"string\",\n          \"essEventIdV1\": \"string\",\n          \"essEventIdV2\": \"string\",\n          \"soapResponseCode\": \"string\",\n          \"soapResponse\": \"string\",\n          \"attResponseCode\": \"string\",\n          \"attResponse\": \"string\"\n        },\n        \"action\": \"string\",\n        \"requestTimeStamp\": \"string\",\n        \"status\": \"string\",\n        \"essResponse\": \"string\",\n        \"essTimeStamp\": \"string\"\n      },\n      {\n        \"attLogDetails\": {\n          \"insertedTime\": \"string\",\n          \"essPayLoadV1\": \"string\",\n          \"essPayLoadV2\": \"string\",\n          \"essEventIdV1\": \"string\",\n          \"essEventIdV2\": \"string\",\n          \"soapResponseCode\": \"string\",\n          \"soapResponse\": \"string\",\n          \"attResponseCode\": \"string\",\n          \"attResponse\": \"string\"\n        },\n        \"action\": \"string\",\n        \"requestTimeStamp\": \"string\",\n        \"status\": \"string\",\n        \"essResponse\": \"string\",\n        \"essTimeStamp\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4e8c19e-fd32-408d-8652-caf6a8c49a6b",
+              "name": "Bad Request Received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "att",
+                    "application-address",
+                    ":applicationAddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Id",
+                      "key": "applicationAddress",
+                      "description": "(Required) Application address value"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request Received\",\n  \"status\": \"407 PROXY_AUTHENTICATION_REQUIRED\",\n  \"timestamp\": \"2002-07-16T07:24:17.640Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "469aa05a-e0bd-462c-a051-0a8bc8de09dd",
+              "name": "You are not authorized to view the resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "att",
+                    "application-address",
+                    ":applicationAddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Id",
+                      "key": "applicationAddress",
+                      "description": "(Required) Application address value"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"You are not authorized to view the resource\",\n  \"status\": \"410 GONE\",\n  \"timestamp\": \"1953-08-16T21:23:02.757Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3a9a693-9991-4fb3-888b-090f0340c6e2",
+              "name": "Longcode does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "att",
+                    "application-address",
+                    ":applicationAddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Id",
+                      "key": "applicationAddress",
+                      "description": "(Required) Application address value"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"Longcode does not exist\",\n  \"status\": \"511 NETWORK_AUTHENTICATION_REQUIRED\",\n  \"timestamp\": \"2014-05-11T01:11:59.513Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63d25573-313f-4c78-a31c-f4bdc394cdc1",
+              "name": "Internal Error Occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage",
+                    "tendlc-services",
+                    "v2",
+                    "att",
+                    "application-address",
+                    ":applicationAddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Id",
+                      "key": "applicationAddress",
+                      "description": "(Required) Application address value"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-appId",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "int-companyId",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Error Occurred\",\n  \"status\": \"428 PRECONDITION_REQUIRED\",\n  \"timestamp\": \"2009-12-23T21:32:47.668Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.syniverse.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c465bb82-2bc3-47c8-a4a9-6dd91d1878ea",
+    "name": "10DLC",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This Service enables the Enterprise Customer to Addition/Deletion of the 10DLC number and Number Pool",
+      "type": "text/plain"
+    }
+  }
+}

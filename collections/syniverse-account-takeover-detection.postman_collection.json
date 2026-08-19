@@ -1,0 +1,287 @@
+{
+  "item": [
+    {
+      "id": "f3821ba5-5d09-429f-8506-b639786ddff9",
+      "name": "Detect",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9c2e3731-40dc-4ee6-9fe6-08c31c4e80aa",
+          "name": "Account Takeover Detection",
+          "request": {
+            "name": "Account Takeover Detection",
+            "description": {
+              "content": "An API that allows an enterpise to check if the end user MSISDN-to-SIM pairing has changed within a preconfigured window. The window is defined in hours and is configured at the time of onboarding by Syniverse Implementation Team. Call forwarding can also be checked for the MSISDN, if desired. Possible values include:<br>Y = SIM changed or call forwarding is enabled, if configured<br>N = SIM not changed and call forwarding disabled, if configured<br>Error -5061 = Insufficient information to determine response",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "simCheck"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Current date time when request is sent.",
+                "key": "RequestTime",
+                "value": "2020-09-24T09:33:43+00:00"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"02200013919FB4\",\n  \"consentId\": \"9783471AFDB69NH34\",\n  \"msisdn\": \"+14444445555\",\n  \"correlationId\": \"984681AFDB698C67\",\n  \"consentTimeStamp\": \"2020-08-20T12:00:57+00:00\",\n  \"subMerchantId\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0e9b04c7-50b0-479b-893a-a4d74813c2ae",
+              "name": "Successful operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "simCheck"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The security key to use for ATO & RPV APIs.",
+                    "key": "Authorization",
+                    "value": "y5jBqXWLzEF4OgK61EbJ4jbEesmxE5No"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Media type sent in the request. Only application/json is supported.",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Media type for the response. Only application/json is supported.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Current date time when request is sent.",
+                    "key": "RequestTime",
+                    "value": "2020-09-24T09:33:43+00:00"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"02200013919FB4\",\n  \"consentId\": \"9783471AFDB69NH34\",\n  \"msisdn\": \"+14444445555\",\n  \"correlationId\": \"984681AFDB698C67\",\n  \"consentTimeStamp\": \"2020-08-20T12:00:57+00:00\",\n  \"subMerchantId\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": {\n    \"correlationId\": \"984681AFDB698C67\",\n    \"responseId\": \"6496849684CBAF87A9\",\n    \"changeDetected\": \"Y\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2c7104c-ebd6-437c-8848-b277dce5020b",
+              "name": "Malformed request submitted, or insufficient data to make a determination.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "simCheck"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The security key to use for ATO & RPV APIs.",
+                    "key": "Authorization",
+                    "value": "y5jBqXWLzEF4OgK61EbJ4jbEesmxE5No"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Media type sent in the request. Only application/json is supported.",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Media type for the response. Only application/json is supported.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Current date time when request is sent.",
+                    "key": "RequestTime",
+                    "value": "2020-09-24T09:33:43+00:00"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"02200013919FB4\",\n  \"consentId\": \"9783471AFDB69NH34\",\n  \"msisdn\": \"+14444445555\",\n  \"correlationId\": \"984681AFDB698C67\",\n  \"consentTimeStamp\": \"2020-08-20T12:00:57+00:00\",\n  \"subMerchantId\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"correlationId\": \"984681AFDB698C67\",\n    \"responseId\": \"6496849684CBAF87H1\",\n    \"code\": \"-5061\",\n    \"description\": \"Insufficient information to determine a response.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c73b5b95-cb0f-41bf-9e1e-abb8c30d2f68",
+              "name": "Internal system error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "simCheck"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The security key to use for ATO & RPV APIs.",
+                    "key": "Authorization",
+                    "value": "y5jBqXWLzEF4OgK61EbJ4jbEesmxE5No"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Media type sent in the request. Only application/json is supported.",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Media type for the response. Only application/json is supported.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Current date time when request is sent.",
+                    "key": "RequestTime",
+                    "value": "2020-09-24T09:33:43+00:00"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"02200013919FB4\",\n  \"consentId\": \"9783471AFDB69NH34\",\n  \"msisdn\": \"+14444445555\",\n  \"correlationId\": \"984681AFDB698C67\",\n  \"consentTimeStamp\": \"2020-08-20T12:00:57+00:00\",\n  \"subMerchantId\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://mobileidsandbox.syniverse.com/cigateway/id",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "706b7a50-f05d-4aa7-a84d-e1a3a38dd5ad",
+    "name": "Syniverse Account Takeover Detection API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Syniverse Account Takeover Detection API.",
+      "type": "text/plain"
+    }
+  }
+}

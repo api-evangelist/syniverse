@@ -1,0 +1,287 @@
+{
+  "item": [
+    {
+      "id": "d3105ff0-6563-4c12-b985-d4ede7422fa9",
+      "name": "Match",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6eec2abb-fd7e-4543-bc4a-ff6eefedc7ec",
+          "name": "Right Party Verification",
+          "request": {
+            "name": "Right Party Verification",
+            "description": {
+              "content": "An API that allows an enterprise to check if the identity provided by the user matches what is on record with a mobile carrier or an authoritative source. The match score each individual attribute can range from -1 to 10. Below are the defintions:<br>10 = Exact match<br>9 = High partial math<br>5 = Partial match<br>0 = No match<br>-1 = Data not available",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "match"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Current date time when request is sent.",
+                "key": "RequestTime",
+                "value": "2020-09-24T09:33:43+00:00"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"02200013919FB4\",\n  \"msisdn\": \"+14444441333\",\n  \"correlationId\": \"984681AFDB698C67\",\n  \"consentId\": \"9783471AFDB69NH34\",\n  \"consentTimeStamp\": \"2020-08-20T12:00:57+00:00\",\n  \"subMerchantId\": \"\",\n  \"firstName\": \"Michael\",\n  \"lastName\": \"Johnson\",\n  \"address1\": \"3701 Ashwood Dr\",\n  \"address2\": \"Apt 20\",\n  \"city\": \"Council Bluffs\",\n  \"state\": \"IA\",\n  \"postalCode\": \"51501\",\n  \"countryCode\": \"US\",\n  \"nationalId\": \"345678901\",\n  \"dateOfBirth\": \"19800303\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "91c24a3c-c34d-45d6-8789-1767b4af7e9c",
+              "name": "Successful operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "match"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The security key to use for ATO & RPV APIs.",
+                    "key": "Authorization",
+                    "value": "y5jBqXWLzEF4OgK61EbJ4jbEesmxE5No"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Media type sent in the request. Only application/json is supported.",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Media type for the response. Only application/json is supported.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Current date time when request is sent.",
+                    "key": "RequestTime",
+                    "value": "2020-09-24T09:33:43+00:00"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"02200013919FB4\",\n  \"msisdn\": \"+14444441333\",\n  \"correlationId\": \"984681AFDB698C67\",\n  \"consentId\": \"9783471AFDB69NH34\",\n  \"consentTimeStamp\": \"2020-08-20T12:00:57+00:00\",\n  \"subMerchantId\": \"\",\n  \"firstName\": \"Michael\",\n  \"lastName\": \"Johnson\",\n  \"address1\": \"3701 Ashwood Dr\",\n  \"address2\": \"Apt 20\",\n  \"city\": \"Council Bluffs\",\n  \"state\": \"IA\",\n  \"postalCode\": \"51501\",\n  \"countryCode\": \"US\",\n  \"nationalId\": \"345678901\",\n  \"dateOfBirth\": \"19800303\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": {\n    \"correlationId\": \"984681AFDB698C67\",\n    \"responseId\": \"6496849684CBAF87A7\",\n    \"firstNameScore\": \"10\",\n    \"lastNameScore\": \"10\",\n    \"streetAddressScore\": \"10\",\n    \"cityScore\": \"10\",\n    \"stateScore\": \"10\",\n    \"postalCodeScore\": \"0\",\n    \"countryCodeScore\": \"10\",\n    \"dateOfBirthScore\": \"10\",\n    \"nationalIdScore\": \"0\",\n    \"dataSource\": \"CARRIER\",\n    \"identityScore\": \"90\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d21dbfaa-5ce3-42d2-a0fd-ffbcdf428fc1",
+              "name": "Malformed request submitted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "match"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The security key to use for ATO & RPV APIs.",
+                    "key": "Authorization",
+                    "value": "y5jBqXWLzEF4OgK61EbJ4jbEesmxE5No"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Media type sent in the request. Only application/json is supported.",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Media type for the response. Only application/json is supported.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Current date time when request is sent.",
+                    "key": "RequestTime",
+                    "value": "2020-09-24T09:33:43+00:00"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"02200013919FB4\",\n  \"msisdn\": \"+14444441333\",\n  \"correlationId\": \"984681AFDB698C67\",\n  \"consentId\": \"9783471AFDB69NH34\",\n  \"consentTimeStamp\": \"2020-08-20T12:00:57+00:00\",\n  \"subMerchantId\": \"\",\n  \"firstName\": \"Michael\",\n  \"lastName\": \"Johnson\",\n  \"address1\": \"3701 Ashwood Dr\",\n  \"address2\": \"Apt 20\",\n  \"city\": \"Council Bluffs\",\n  \"state\": \"IA\",\n  \"postalCode\": \"51501\",\n  \"countryCode\": \"US\",\n  \"nationalId\": \"345678901\",\n  \"dateOfBirth\": \"19800303\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"correlationId\": \"984681AFDB698C67\",\n    \"responseId\": \"6496849684CBAF87A9\",\n    \"code\": \"-5003\",\n    \"description\": \"A required parameter is missing.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9e5d5b3-b3d0-4cef-a567-f6a75ef9fe6b",
+              "name": "Internal system error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "match"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The security key to use for ATO & RPV APIs.",
+                    "key": "Authorization",
+                    "value": "y5jBqXWLzEF4OgK61EbJ4jbEesmxE5No"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Media type sent in the request. Only application/json is supported.",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Media type for the response. Only application/json is supported.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Current date time when request is sent.",
+                    "key": "RequestTime",
+                    "value": "2020-09-24T09:33:43+00:00"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"02200013919FB4\",\n  \"msisdn\": \"+14444441333\",\n  \"correlationId\": \"984681AFDB698C67\",\n  \"consentId\": \"9783471AFDB69NH34\",\n  \"consentTimeStamp\": \"2020-08-20T12:00:57+00:00\",\n  \"subMerchantId\": \"\",\n  \"firstName\": \"Michael\",\n  \"lastName\": \"Johnson\",\n  \"address1\": \"3701 Ashwood Dr\",\n  \"address2\": \"Apt 20\",\n  \"city\": \"Council Bluffs\",\n  \"state\": \"IA\",\n  \"postalCode\": \"51501\",\n  \"countryCode\": \"US\",\n  \"nationalId\": \"345678901\",\n  \"dateOfBirth\": \"19800303\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://mobileidsandbox.syniverse.com/cigateway/id",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c03d71f9-9dab-43bc-9640-8a27d6958f0f",
+    "name": "Syniverse Right Party Verification API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Syniverse Right Party Verification API.",
+      "type": "text/plain"
+    }
+  }
+}

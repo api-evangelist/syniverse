@@ -1,0 +1,256 @@
+{
+  "item": [
+    {
+      "id": "46ce486e-6a31-4f9d-a203-81777a91efdd",
+      "name": "Regenerate access token",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "50f748f8-3dbf-4e9c-90ae-7dfba28149a0",
+          "name": "Regenerate access token associated with an SDC application.",
+          "request": {
+            "name": "Regenerate access token associated with an SDC application.",
+            "description": {
+              "content": "Regenerate access token associated with a SDC application. After the access token is successfully regenerated, the current access token will get invalidated immediately near real-time i.e. API calls will fail with the old access token. If the API is invoked with a validity period within the range of the current access token's expiration period then the current access token will be returned as response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saop-rest-data",
+                "v1",
+                "apptoken-refresh"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "consumerkey",
+                  "value": "<string>",
+                  "description": "(Required) Consumer key is required authentication for regenerating the access token associated with an SDC application and is available via the developer.syniverse.com portal under the “Auth Keys” section for the application."
+                },
+                {
+                  "disabled": false,
+                  "key": "consumersecret",
+                  "value": "<string>",
+                  "description": "(Required) Consumer secret is required authentication for regenerating the access token associated with an SDC application and is available via the developer.syniverse.com portal under the “Auth Keys” section for the application."
+                },
+                {
+                  "disabled": false,
+                  "key": "oldtoken",
+                  "value": "<string>",
+                  "description": "(Required) Current access token associated with a SDC applicaton that needs to be regenerated."
+                },
+                {
+                  "disabled": false,
+                  "key": "validity",
+                  "value": "<string>",
+                  "description": "(Required) Validity period for the regenerated access token specified in seconds. Valid range is '900 - 9999999999999999999' seconds. Specify validity period as '0' value to regenerate an access token that does not expire."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "03eafa83-0836-4e76-8719-42e1709f5482",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saop-rest-data",
+                    "v1",
+                    "apptoken-refresh"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "consumerkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "consumersecret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "oldtoken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "validity",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accessToken\": \"b1624ffb-7360-375c-91a5-955cee069970\",\n  \"validityTime\": 1000\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2cdbd761-7f00-47ec-9c4a-d4a374c3adf2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saop-rest-data",
+                    "v1",
+                    "apptoken-refresh"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "consumerkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "consumersecret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "oldtoken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "validity",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 1,\n  \"moreInfo\": \"Current access token is missing as input parameter.\",\n  \"userMsg\": \"Current access token is a required input parameter.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31b42df0-256d-4795-a198-547d5b21b881",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saop-rest-data",
+                    "v1",
+                    "apptoken-refresh"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "consumerkey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "consumersecret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "oldtoken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "validity",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 1,\n  \"moreInfo\": \"System error received during access token regeneration.\",\n  \"userMsg\": \"Contact Syniverse support for resolution of the system error recieved for access token regeneration.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ae71e263-c0fc-424a-b86b-1d8566a8f779",
+    "name": "SDC Application Access Token Management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API enables regeneration of an access token associated with an SDC application.",
+      "type": "text/plain"
+    }
+  }
+}

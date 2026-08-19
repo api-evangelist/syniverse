@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Syniverse Right Party Verification API",
+    "version": "4.3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Match",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Right Party Verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mobileidsandbox.syniverse.com/cigateway/id/v2/match",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Accept",
+                "value": "application/json"
+              },
+              {
+                "name": "RequestTime",
+                "value": "2020-09-24T09:33:43+00:00"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "An API that allows an enterprise to check if the identity provided by the user matches what is on record with a mobile carrier or an authoritative source. The match score each individual attribute can range from -1 to 10. Below are the defintions:<br>10 = Exact match<br>9 = High partial math<br>5 = Partial match<br>0 = No match<br>-1 = Data not available"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

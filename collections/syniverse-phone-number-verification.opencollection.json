@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PNV",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "POST_lookup",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.syniverse.com/numberidentity/v3/lookup",
+        "headers": [
+          {
+            "name": "ext_trx_id",
+            "value": ""
+          },
+          {
+            "name": "ext_reseller_cust_id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "  Returns all information on the phone number including validity, number type, carrier identifier, carrier name, country, porting detail,  deactivation details, mcc, and mnc. Values returned depend on the feature set selected in request and any optional parameters included in the request."
+    }
+  ],
+  "bundled": true
+}
