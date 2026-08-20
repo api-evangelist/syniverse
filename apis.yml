@@ -285,6 +285,10 @@ apis:
   humanURL: https://sdcdocumentation.syniverse.com/index.php/reporting/event-manager/overview
   baseURL: https://api.syniverse.com/ess/v1
   tags:
+  - Webhook
+  - Event
+  - Notification
+  tags_raw:
   - Webhooks
   - Events
   - Notifications
