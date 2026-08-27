@@ -35,253 +35,15 @@ created: '2026-07-25'
 modified: '2026-07-25'
 specificationVersion: '0.23'
 apis:
-- aid: syniverse:syniverse-omni-channel-messaging-api
-  name: Syniverse Omni-Channel Messaging API (SCG)
-  description: >-
-    The Syniverse Communication Gateway (SCG) API — the core of the Syniverse Developer Community
-    platform. 72 documented paths and 148 operations covering message requests, messages,
-    scheduled messages, message templates, sender IDs, channels, contacts and contact groups,
-    attachments, keywords, calls, bridges, conferences and application instances, for SMS, MMS,
-    RCS, Facebook Messenger, WeChat, WhatsApp, push and voice.
-  humanURL: https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
-  baseURL: https://api.syniverse.com/scg-external-api/api/v1
-  tags:
-  - Messaging
-  - SMS
-  - MMS
-  - RCS
-  - Voice
-  - Push
-  properties:
-  - type: Documentation
-    url: https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
-  - type: APIReference
-    url: https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
-  - type: OpenAPI
-    url: openapi/syniverse-omni-channel-messaging-openapi.yml
-  - type: Overlay
-    url: overlays/syniverse-omni-channel-messaging-overlay.yaml
-- aid: syniverse:syniverse-multi-factor-authentication-api
-  name: Syniverse Multi-Factor Authentication API
-  description: >-
-    Generates and validates one-time passwords and delivers customized tokens over SMS, voice or
-    push to verify an end user. Documented as part of the SCG API surface with application, user,
-    associate, validate and login_start operations.
-  humanURL: https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
-  baseURL: https://api.syniverse.com/scg-external-api/api/v1
-  tags:
-  - Authentication
-  - Multi-Factor Authentication
-  - One-Time Password
-  properties:
-  - type: Documentation
-    url: https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
-  - type: APIReference
-    url: https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
-  - type: OpenAPI
-    url: openapi/syniverse-multi-factor-authentication-openapi.yml
-  - type: Overlay
-    url: overlays/syniverse-multi-factor-authentication-overlay.yaml
-- aid: syniverse:syniverse-phone-number-verification-api
-  name: Syniverse Phone Number Verification API
-  description: >-
-    Single-number lookup service that returns the current carrier, line type and status of a
-    phone number so an enterprise can detect ported, deactivated, disconnected or reassigned
-    numbers. Batch file lookup and proactive number monitoring are offered alongside it through
-    Batch Automation and the Event Manager.
-  humanURL: https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
-  baseURL: https://api.syniverse.com/numberidentity/v3
-  tags:
-  - Phone Number Verification
-  - Number Lookup
-  - Identity Verification
-  properties:
-  - type: Documentation
-    url: https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
-  - type: APIReference
-    url: https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
-  - type: OpenAPI
-    url: openapi/syniverse-phone-number-verification-openapi.yml
-  - type: Overlay
-    url: overlays/syniverse-phone-number-verification-overlay.yaml
-- aid: syniverse:syniverse-right-party-verification-api
-  name: Syniverse Right Party Verification API
-  description: >-
-    A single POST /v2/match operation that returns match scores comparing an end user's asserted
-    identity against Syniverse-sourced mobile data. This is Syniverse's own identity-matching API,
-    not the CAMARA KYC Match specification. The published definition points at a sandbox host.
-  humanURL: https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
-  baseURL: https://mobileidsandbox.syniverse.com/cigateway/id
-  tags:
-  - Identity Verification
-  - Fraud Prevention
-  - KYC
-  properties:
-  - type: Documentation
-    url: https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
-  - type: APIReference
-    url: https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
-  - type: OpenAPI
-    url: openapi/syniverse-right-party-verification-openapi.yml
-  - type: Overlay
-    url: overlays/syniverse-right-party-verification-overlay.yaml
-- aid: syniverse:syniverse-account-takeover-detection-api
-  name: Syniverse Account Takeover Detection API
-  description: >-
-    A single POST /v1/simCheck operation that reports whether an end user's mobile channel has had
-    recent SIM changes or call forwarding enabled, as an account-takeover risk signal. Functionally
-    adjacent to CAMARA SIM Swap but published as Syniverse's own definition, on a sandbox host,
-    with no CAMARA schema or naming.
-  humanURL: https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
-  baseURL: https://mobileidsandbox.syniverse.com/cigateway/id
-  tags:
-  - Fraud Prevention
-  - SIM Swap
-  - Account Takeover
-  properties:
-  - type: Documentation
-    url: https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
-  - type: APIReference
-    url: https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
-  - type: OpenAPI
-    url: openapi/syniverse-account-takeover-detection-openapi.yml
-  - type: Overlay
-    url: overlays/syniverse-account-takeover-detection-overlay.yaml
-- aid: syniverse:syniverse-messaging-trust-resolve-api
-  name: Syniverse Messaging Trust Resolve API
-  description: >-
-    Resolves inbound text and MMS traffic to a disposition — the spam and messaging-abuse
-    classification service sold to messaging operators and enterprises. Two operations,
-    /v1/txt/resolve and /v1/mms/resolve, secured with OAuth2 client credentials.
-  humanURL: https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
-  baseURL: https://api.mt1.messaging-trust.syniverse.com/api
-  tags:
-  - Messaging Trust
-  - Anti-Spam
-  - Content Classification
-  properties:
-  - type: Documentation
-    url: https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
-  - type: APIReference
-    url: https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
-  - type: OpenAPI
-    url: openapi/syniverse-messaging-trust-resolve-openapi.yml
-  - type: Overlay
-    url: overlays/syniverse-messaging-trust-resolve-overlay.yaml
-- aid: syniverse:syniverse-messaging-trust-spam-datafeed-api
-  name: Syniverse Messaging Trust Spam Datafeed API
-  description: >-
-    Submits spam reports into the Messaging Trust datafeed via a single POST /spam/report
-    operation, secured with OAuth2 client credentials against the Messaging Trust token endpoint.
-  humanURL: https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
-  baseURL: https://api.mt1.messaging-trust.syniverse.com/api/v1
-  tags:
-  - Messaging Trust
-  - Spam Reporting
-  - Anti-Fraud
-  properties:
-  - type: Documentation
-    url: https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
-  - type: APIReference
-    url: https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
-  - type: OpenAPI
-    url: openapi/syniverse-messaging-trust-datafeed-openapi.yml
-  - type: Overlay
-    url: overlays/syniverse-messaging-trust-datafeed-overlay.yaml
-- aid: syniverse:syniverse-10dlc-api
-  name: Syniverse 10DLC API
-  description: >-
-    US 10DLC (10-digit long code) campaign provisioning — create, retrieve, suspend and resume
-    campaigns, attach and detach long codes and number pools, and manage AT&T DCA campaigns and
-    application addresses. Version 2.3 of the external specification, secured with a bearer SDC
-    application token.
-  humanURL: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
-  baseURL: https://api.syniverse.com/engage/tendlc-services/v2
-  tags:
-  - 10DLC
-  - Campaign Registration
-  - Messaging
-  properties:
-  - type: Documentation
-    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
-  - type: APIReference
-    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
-  - type: OpenAPI
-    url: openapi/syniverse-10dlc-openapi.yml
-  - type: Overlay
-    url: overlays/syniverse-10dlc-overlay.yaml
-- aid: syniverse:syniverse-10dlc-number-pool-api
-  name: Syniverse 10DLC Number Pool API (v1, deprecated)
-  description: >-
-    The deprecated version 1 of the 10DLC provisioning API, still published in the SDC
-    documentation under an explicitly deprecated section. Adds and removes 10DLC long codes and
-    number pool associations for a registered campaign.
-  humanURL: https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
-  baseURL: https://api.syniverse.com/engage/tendlc-services/v1
-  tags:
-  - 10DLC
-  - Number Pools
-  - Deprecated
-  properties:
-  - type: Documentation
-    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
-  - type: APIReference
-    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
-  - type: OpenAPI
-    url: openapi/syniverse-10dlc-number-pool-openapi.yml
-  - type: Overlay
-    url: overlays/syniverse-10dlc-number-pool-overlay.yaml
-- aid: syniverse:syniverse-whitelisting-service-api
-  name: Syniverse Whitelisting Service API
-  description: >-
-    Developer Community gateway service for managing whitelists of entities and transactions,
-    used to allow trial-account destination numbers and similar platform-level allow lists. Six
-    operations across whitelist, entity and transaction resources.
-  humanURL: https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
-  baseURL: https://api.syniverse.com
-  tags:
-  - Platform
-  - Whitelisting
-  - Account Management
-  properties:
-  - type: APIReference
-    url: https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
-  - type: OpenAPI
-    url: openapi/syniverse-whitelisting-service-openapi.json
-  - type: Overlay
-    url: overlays/syniverse-whitelisting-service-overlay.yaml
-- aid: syniverse:syniverse-access-token-management-api
-  name: Syniverse SDC Application Access Token Management API
-  description: >-
-    Regenerates the access token associated with an SDC application via
-    GET /saop-rest-data/v1/apptoken-refresh. This is the token-lifecycle piece of the Syniverse
-    Developer Community bearer-token auth model. Confirmed live on 2026-07-25: both
-    /saop-rest-data/v1/apptoken-refresh and the shorter /apptoken-refresh used by Syniverse's own
-    example code answer on https://api.syniverse.com with
-    {"errorCode":1,"moreInfo":"consumerkey parameter required","userMsg":"consumerkey"}.
-  humanURL: https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
-  baseURL: https://api.syniverse.com
-  tags:
-  - Authentication
-  - Token Management
-  - Platform
-  properties:
-  - type: APIReference
-    url: https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
-  - type: OpenAPI
-    url: openapi/syniverse-token-management-openapi.yml
-  - type: Overlay
-    url: overlays/syniverse-token-management-overlay.yaml
 - aid: syniverse:syniverse-event-subscription-service-api
   name: Syniverse Event Subscription Service API (Event Manager)
   description: >-
-    The webhook and event layer of the Syniverse Developer Community. The Event Subscription
-    Service (ESS) API manages topics, topic-subscriptions, delivery-configurations,
-    event-types, event-deliveries, event-delivery-attempts and event-buffer-files, driving
-    scheduled or near-real-time REST delivery of message delivery receipts and phone-number
-    status change events to a customer endpoint, with None, Basic Auth or OAuth 2.0 on the
-    receiving side. Documented as a rendered RAML console; no downloadable machine-readable
-    definition was found.
+    The webhook and event layer of the Syniverse Developer Community. The Event Subscription Service (ESS)
+    API manages topics, topic-subscriptions, delivery-configurations, event-types, event-deliveries, event-delivery-attempts
+    and event-buffer-files, driving scheduled or near-real-time REST delivery of message delivery receipts
+    and phone-number status change events to a customer endpoint, with None, Basic Auth or OAuth 2.0 on
+    the receiving side. Documented as a rendered RAML console; no downloadable machine-readable definition
+    was found.
   humanURL: https://sdcdocumentation.syniverse.com/index.php/reporting/event-manager/overview
   baseURL: https://api.syniverse.com/ess/v1
   tags:
@@ -299,7 +61,3046 @@ apis:
     url: https://sdcdocumentation.syniverse.com/index.php/reporting/event-manager/resources
   - type: Documentation
     url: https://sdcdocumentation.syniverse.com/index.php/reporting/event-manager/user-guide
+- aid: syniverse:syniverse-10dlc-att-api
+  name: Syniverse 10DLC ATT API
+  description: The 10DLC ATT API from Syniverse — 1 operation(s) for 10dlc att.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - 10DLC ATT
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-10dlc-att-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-10dlc-longcodes-api
+  name: Syniverse 10DLC LongCodes API
+  description: The 10DLC LongCodes API from Syniverse — 1 operation(s) for 10dlc longcodes.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - 10DLC LongCodes
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-10dlc-longcodes-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-10dlc-number-pools-api
+  name: Syniverse 10DLC Number Pools API
+  description: The 10DLC Number Pools API from Syniverse — 2 operation(s) for 10dlc number pools.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - 10DLC Number Pools
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-10dlc-number-pools-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-10dlc-v1-api
+  name: Syniverse 10DLC v1 API
+  description: Initial 10DLC Number to Campaign Association Management
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - 10DLC v1
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-10dlc-v1-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-10dlc-v1-number-pools-api
+  name: Syniverse 10DLC v1 Number Pools API
+  description: Enhanced 10DLC Number Pool to Campaign Association Management
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - 10DLC v1 Number Pools
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-10dlc-v1-number-pools-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-access-token-api
+  name: Syniverse Access Token API
+  description: The Access Token API from Syniverse — 2 operation(s) for access token.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Access Token
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-access-token-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-application-api
+  name: Syniverse Application API
+  description: The Application API from Syniverse — 2 operation(s) for application.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Application
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-application-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-application-instance-api
+  name: Syniverse Application Instance API
+  description: The Application Instance API from Syniverse — 2 operation(s) for application instance.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Application Instance
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-application-instance-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-application-instance-session-api
+  name: Syniverse Application Instance Session API
+  description: >-
+    The Application Instance Session API from Syniverse — 2 operation(s) for application instance session.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Application Instance Session
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-application-instance-session-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-application-processor-results-api
+  name: Syniverse Application Processor Results API
+  description: >-
+    The Application Processor Results API from Syniverse — 1 operation(s) for application processor results.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Application Processor Results
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-application-processor-results-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-application-script-api
+  name: Syniverse Application Script API
+  description: The Application Script API from Syniverse — 2 operation(s) for application script.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Application Script
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-application-script-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-att-dca-campaigns-api
+  name: Syniverse ATT DCA Campaigns API
+  description: The ATT DCA Campaigns API from Syniverse — 1 operation(s) for att dca campaigns.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - ATT DCA Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-att-dca-campaigns-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-attachment-api
+  name: Syniverse Attachment API
+  description: The Attachment API from Syniverse — 4 operation(s) for attachment.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Attachment
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-attachment-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-auto-alias-history-api
+  name: Syniverse Auto Alias History API
+  description: The Auto Alias History API from Syniverse — 2 operation(s) for auto alias history.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Auto Alias History
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-auto-alias-history-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-auto-alias-message-request-api
+  name: Syniverse Auto Alias Message Request API
+  description: >-
+    The Auto Alias Message Request API from Syniverse — 1 operation(s) for auto alias message request.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Auto Alias Message Request
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-auto-alias-message-request-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-bridge-api
+  name: Syniverse Bridge API
+  description: The Bridge API from Syniverse — 3 operation(s) for bridge.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Bridge
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-bridge-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-call-api
+  name: Syniverse Call API
+  description: The Call API from Syniverse — 5 operation(s) for call.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Call
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-call-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-campaigns-api
+  name: Syniverse Campaigns API
+  description: The Campaigns API from Syniverse — 4 operation(s) for campaigns.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-campaigns-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-channel-api
+  name: Syniverse Channel API
+  description: The Channel API from Syniverse — 4 operation(s) for channel.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Channel
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-channel-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-conference-api
+  name: Syniverse Conference API
+  description: The Conference API from Syniverse — 4 operation(s) for conference.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Conference
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-conference-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-conferencemember-api
+  name: Syniverse Conference Member API
+  description: The ConferenceMember API from Syniverse — 2 operation(s) for conferencemember.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - ConferenceMember
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-conferencemember-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-connector-api
+  name: Syniverse Connector API
+  description: The Connector API from Syniverse — 2 operation(s) for connector.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Connector
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-connector-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-contact-address-history-api
+  name: Syniverse Contact Address History API
+  description: >-
+    The Contact Address History API from Syniverse — 1 operation(s) for contact address history.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Contact Address History
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-contact-address-history-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-contact-address-status-api
+  name: Syniverse Contact Address Status API
+  description: >-
+    The Contact Address Status API from Syniverse — 2 operation(s) for contact address status.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Contact Address Status
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-contact-address-status-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-contact-address-status-optout-api
+  name: Syniverse Contact Address Status Optout API
+  description: >-
+    The Contact Address Status Optout API from Syniverse — 1 operation(s) for contact address status optout.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Contact Address Status Optout
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-contact-address-status-optout-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-contact-api
+  name: Syniverse Contact API
+  description: The Contact API from Syniverse — 4 operation(s) for contact.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Contact
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-contact-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-contact-application-token-api
+  name: Syniverse Contact Application Token API
+  description: >-
+    The Contact Application Token API from Syniverse — 2 operation(s) for contact application token.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Contact Application Token
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-contact-application-token-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-contact-group-api
+  name: Syniverse Contact Group API
+  description: The Contact Group API from Syniverse — 4 operation(s) for contact group.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Contact Group
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-contact-group-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-detect-api
+  name: Syniverse Detect API
+  description: The Detect API from Syniverse — 1 operation(s) for detect.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Detect
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-detect-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-digits-collector-api
+  name: Syniverse Digits Collector API
+  description: The Digits Collector API from Syniverse — 2 operation(s) for digits collector.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Digits Collector
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-digits-collector-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-fast-access-api
+  name: Syniverse Fast Access API
+  description: The Fast Access API from Syniverse — 2 operation(s) for fast access.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Fast Access
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-fast-access-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-keywords-api
+  name: Syniverse Keywords API
+  description: The Keywords API from Syniverse — 2 operation(s) for keywords.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Keywords
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-keywords-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-lookup-api
+  name: Syniverse Lookup API
+  description: The Lookup API from Syniverse — 1 operation(s) for lookup.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Lookup
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-lookup-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-match-api
+  name: Syniverse Match API
+  description: The Match API from Syniverse — 1 operation(s) for match.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Match
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-match-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-message-api
+  name: Syniverse Message API
+  description: The Message API from Syniverse — 3 operation(s) for message.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Message
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-message-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-message-request-api
+  name: Syniverse Message Request API
+  description: The Message Request API from Syniverse — 3 operation(s) for message request.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Message Request
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-message-request-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-message-template-api
+  name: Syniverse Message Template API
+  description: The Message Template API from Syniverse — 2 operation(s) for message template.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Message Template
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-message-template-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-mms-resolver-api-api
+  name: Syniverse MMS Resolver API
+  description: The MMS Resolver API API from Syniverse — 1 operation(s) for mms resolver api.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - MMS Resolver API
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-mms-resolver-api-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-regenerate-access-token-api
+  name: Syniverse Regenerate access token API
+  description: >-
+    The Regenerate access token API from Syniverse — 1 operation(s) for regenerate access token.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Regenerate access token
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-regenerate-access-token-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-reports-api
+  name: Syniverse Reports API
+  description: The reports API from Syniverse — 1 operation(s) for reports.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - reports
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-reports-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-scheduled-message-api
+  name: Syniverse Scheduled Message API
+  description: The Scheduled Message API from Syniverse — 1 operation(s) for scheduled message.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Scheduled Message
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-scheduled-message-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-scheduled-message-request-api
+  name: Syniverse Scheduled Message Request API
+  description: >-
+    The Scheduled Message Request API from Syniverse — 1 operation(s) for scheduled message request.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Scheduled Message Request
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-scheduled-message-request-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-sender-id-api
+  name: Syniverse Sender ID API
+  description: The Sender ID API from Syniverse — 4 operation(s) for sender id.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Sender ID
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-sender-id-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-sender-import-job-api
+  name: Syniverse Sender Import Job API
+  description: The Sender Import Job API from Syniverse — 2 operation(s) for sender import job.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Sender Import Job
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-sender-import-job-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-text-resolver-api-api
+  name: Syniverse Text Resolver API
+  description: The Text Resolver API API from Syniverse — 1 operation(s) for text resolver api.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - Text Resolver API
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-text-resolver-api-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-user-api
+  name: Syniverse User API
+  description: The User API from Syniverse — 5 operation(s) for user.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-user-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
+- aid: syniverse:syniverse-whitelist-api
+  name: Syniverse Whitelist API
+  description: The whitelist API from Syniverse — 3 operation(s) for whitelist.
+  humanURL: >-
+    https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  baseURL: https://api.syniverse.com/scg-external-api/api/v1
+  tags:
+  - whitelist
+  properties:
+  - type: OpenAPI
+    url: openapi/syniverse-whitelist-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/omni-channel/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/getting-started/multi-factor-authentication-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/multi-factor-authentication/api-reference/explore-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/getting-started/phone-number-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/phone-number-verification/api-reference/explore-pnv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/getting-started/right-party-verification-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/right-party-verification/api-reference/explore-rpv-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/getting-started/account-takeover-detection-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/account-takeover-detection/api-reference/explore-ato-api-reference
+  - type: Documentation
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/getting-started/messaging-trust-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/messaging-trust-api
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/messaging-trust/api-reference/resolve-api
+  - type: Documentation
+    url: https://sdcdocumentation.syniverse.com/index.php/10-dlc/getting-started/10-dlc-overview
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-reference/api-specification-v23
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/10-dlc/api-version-1-deprecated/explore-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-whitelist-api-reference
+  - type: APIReference
+    url: >-
+      https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
 common:
+- type: Overlay
+  url: overlays/syniverse-omni-channel-messaging-overlay.yaml
+- type: Overlay
+  url: overlays/syniverse-multi-factor-authentication-overlay.yaml
+- type: Overlay
+  url: overlays/syniverse-phone-number-verification-overlay.yaml
+- type: Overlay
+  url: overlays/syniverse-right-party-verification-overlay.yaml
+- type: Overlay
+  url: overlays/syniverse-account-takeover-detection-overlay.yaml
+- type: Overlay
+  url: overlays/syniverse-messaging-trust-resolve-overlay.yaml
+- type: Overlay
+  url: overlays/syniverse-messaging-trust-datafeed-overlay.yaml
+- type: Overlay
+  url: overlays/syniverse-10dlc-overlay.yaml
+- type: Overlay
+  url: overlays/syniverse-10dlc-number-pool-overlay.yaml
+- type: Overlay
+  url: overlays/syniverse-whitelisting-service-overlay.yaml
+- type: Overlay
+  url: overlays/syniverse-token-management-overlay.yaml
 - type: MCPServer
   url: mcp/syniverse-mcp.yml
 - type: AgenticAccess
