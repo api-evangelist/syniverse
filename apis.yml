@@ -15,6 +15,18 @@ description: >-
   Syniverse is a channel, not a source — it joined GSMA Open Gateway in April 2025 as a channel
   partner and announced an integration with Aduna in June 2025, but no CAMARA-defined API is
   documented or callable on its developer portal today.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Telecommunications
@@ -3079,6 +3091,9 @@ apis:
     url: >-
       https://sdcdocumentation.syniverse.com/index.php/developer-community-gateway-services/api-reference/explore-token-management-api-reference
 common:
+- type: CapabilityMap
+  url: capabilities/syniverse-capability-edges.yml
+  name: Syniverse Business Capability Map
 - type: Overlay
   url: overlays/syniverse-omni-channel-messaging-overlay.yaml
 - type: Overlay
