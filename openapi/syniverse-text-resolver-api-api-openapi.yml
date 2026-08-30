@@ -1,0 +1,108 @@
+openapi: 3.2.0
+info:
+  title: Messaging Trust Resolve Text Resolver API
+  description: Messaging Trust Resolver API suite
+  version: 1.0.0
+servers:
+- url: https://api.mt1.messaging-trust.syniverse.com/api
+security:
+- OAuth2: []
+tags:
+- name: Text Resolver API
+paths:
+  /v1/txt/resolve:
+    post:
+      tags:
+      - Text Resolver API
+      summary: Resolves text messages to a disposition
+      requestBody:
+        description: Resolves text messages to a disposition
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/endpoint.TextResolveRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            x-request-id:
+              description: example value - 94bf014e-580b-49ba-b86e-c2fc0920204d
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/endpoint.TextResolveResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/endpoint.FilterResponseError'
+        '404':
+          description: Not Found
+          content: {}
+        '415':
+          description: Unsupported Media Type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/endpoint.FilterResponseError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/endpoint.FilterResponseError'
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    endpoint.TextResolveRequest:
+      required:
+      - message
+      type: object
+      properties:
+        sender:
+          $ref: '#/components/schemas/endpoint.Address'
+        recepient:
+          $ref: '#/components/schemas/endpoint.Address'
+        message:
+          type: string
+          example: 'Hello, activate your account at www.hackz.ai today! '
+      description: Text Resolve Request
+      example:
+        sender:
+          number: '+15712617625'
+        message: Hello, activate your account at www.hackz.ai today!
+    endpoint.Address:
+      required:
+      - number
+      type: object
+      properties:
+        number:
+          type: string
+          example: '+12125551212'
+    endpoint.TextResolveResponse:
+      type: object
+      properties:
+        disposition:
+          type: string
+          example: block
+          enum:
+          - allow
+          - block
+    endpoint.FilterResponseError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: error description
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.mt1.messaging-trust.syniverse.com/oauth2/token
+          scopes: {}
+x-original-swagger-version: '2.0'

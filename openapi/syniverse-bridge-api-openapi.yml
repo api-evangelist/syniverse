@@ -1,0 +1,1027 @@
+openapi: 3.2.0
+info:
+  description: Synivere Communication Gateway API
+  version: 1.0.0
+  title: SCG Bridge API
+servers:
+- url: https://api.syniverse.com/scg-external-api/api/v1
+tags:
+- name: Bridge
+paths:
+  /calling/bridges:
+    get:
+      tags:
+      - Bridge
+      summary: Returns the list of Bridges
+      description: '  Returns the list of Bridges'
+      parameters:
+      - name: id
+        in: query
+        description: 'The unique identifier for this resource.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: external_id
+        in: query
+        description: 'The unique Id assigned by the application.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: state
+        in: query
+        description: 'The bridge state:
+
+          - CREATED - The Bridge has been created.
+
+          - ACTIVE - The Bridge is active.
+
+          - HOLD - The Bridge in on hold.
+
+          - COMPLETED - The Bridge has been completed and is no longer active.
+
+          - ERROR - The bridge failed to be created or was ended due to an error.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: completed_time - date
+        in: query
+        description: 'The time that the Bridge was completed.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: activated_time - date
+        in: query
+        description: 'The time that the bridge was activated.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: created_date
+        in: query
+        description: 'The date the resource was created
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: last_updated_date
+        in: query
+        description: 'The data the resource was last changed
+
+          '
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_12'
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+    post:
+      tags:
+      - Bridge
+      summary: Create a new Bridge Resource
+      description: '  Create a new Bridge Resource'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_3'
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message_2'
+  /'calling/bridges/{Bridge_ID}':
+    get:
+      tags:
+      - Bridge
+      summary: Returns the current version of the specified Bridge
+      description: '  Returns the current version of the specified Bridge'
+      parameters:
+      - name: Bridge_ID
+        in: path
+        description: The Bridge ID for this resource.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_12_list'
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+    post:
+      tags:
+      - Bridge
+      summary: Update a Bridge
+      description: '  Update a Bridge'
+      parameters:
+      - name: Bridge_ID
+        in: path
+        description: The Bridge ID for this resource.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful operation.  No Content in reponse.
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message_3'
+    delete:
+      tags:
+      - Bridge
+      summary: Deletes the Bridge resource with the specified ID
+      description: '  Deletes the Bridge resource with the specified ID'
+      parameters:
+      - name: Bridge_ID
+        in: path
+        description: The Bridge ID for this resource.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful operation.  No Content in reponse.
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+  /'calling/bridges/{Bridge_ID}/calls':
+    get:
+      tags:
+      - Bridge
+      summary: Returns a list of Voice Call resources.
+      description: '  Returns a list of Voice Call resources.'
+      parameters:
+      - name: Bridge_ID
+        in: path
+        description: The Bridge ID for this resource.
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: query
+        description: 'The unique identifier for this resource.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: external_id
+        in: query
+        description: 'The unique Id assigned by the application.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: 'The Sender ID associated with this call.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: from_address
+        in: query
+        description: 'The address associated with the Sender Id.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: 'The called party''s address.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: to_address
+        in: query
+        description: 'The address that was used by the system for the called party.  When the ''to'' field specifies something other than the address (e.g. contact ID) then this field will contain the actual address that was used.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: answer_timeout
+        in: query
+        description: 'The number of miliseconds that the service will wait for an answer.
+
+          '
+        required: false
+        schema:
+          type: integer
+      - name: state
+        in: query
+        description: 'The call''s state:
+
+          - STARTED - The call is being setup.
+
+          - ACTIVE - The call is in progress.
+
+          - REJECTED - The called party did not answer.
+
+          - COMPLETED - The call is complete.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: direction
+        in: query
+        description: 'The direction of the call:
+
+          - IN - This was an incoming call.
+
+          - OUT - This was an outgoing call.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: start_time
+        in: query
+        description: 'The time the call was started.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: answer_time
+        in: query
+        description: 'The time the call was answered.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: created_date
+        in: query
+        description: 'The date the resource was created
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: last_updated_date
+        in: query
+        description: 'The data the resource was last changed
+
+          '
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_11'
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+components:
+  schemas:
+    inline_response_200_11_list:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'The unique identifier for this resource.
+
+            '
+        external_id:
+          type: string
+          description: 'The unique Id assigned by the application.
+
+            '
+        from:
+          type: string
+          description: 'The Sender ID associated with this call.
+
+            '
+        from_address:
+          type: string
+          description: 'The address associated with the Sender Id.
+
+            '
+        to:
+          type: string
+          description: 'The called party''s address.
+
+            '
+        to_address:
+          type: string
+          description: 'The address that was used by the system for the called party.  When the ''to'' field specifies something other than the address (e.g. contact ID) then this field will contain the actual address that was used.
+
+            '
+        answer_timeout:
+          type: integer
+          description: 'The number of miliseconds that the service will wait for an answer.
+
+            '
+        state:
+          type: string
+          description: 'The call''s state:
+
+            - STARTED - The call is being setup.
+
+            - ACTIVE - The call is in progress.
+
+            - REJECTED - The called party did not answer.
+
+            - COMPLETED - The call is complete.
+
+            '
+        direction:
+          type: string
+          description: 'The direction of the call:
+
+            - IN - This was an incoming call.
+
+            - OUT - This was an outgoing call.
+
+            '
+        start_time:
+          type: string
+          description: 'The time the call was started.
+
+            '
+        answer_time:
+          type: string
+          description: 'The time the call was answered.
+
+            '
+        end_time:
+          type: array
+          items:
+            type: string
+        chargeable_duration:
+          type: integer
+          description: 'The call duration in seconds.
+
+            '
+        bridge_id:
+          type: string
+          description: 'The id of the bridge that is associated with this call.
+
+            '
+        failure_code:
+          type: string
+          description: 'The failure code associated with this call if applicable.
+
+            '
+        failure_details:
+          type: integer
+          description: 'The failure message associated with this call if applicable.
+
+            '
+        destination_country:
+          type: string
+          description: 'destination country
+
+            '
+        recording_enabled:
+          type: boolean
+          description: 'enable recording: true or false
+
+            '
+        recordings:
+          type: array
+          items:
+            type: string
+        created_date:
+          type: string
+          description: 'The date the resource was created
+
+            '
+        last_updated_date:
+          type: string
+          description: 'The data the resource was last changed
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+    inline_response_200_12_list:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'The unique identifier for this resource.
+
+            '
+        external_id:
+          type: string
+          description: 'The unique Id assigned by the application.
+
+            '
+        state:
+          type: string
+          description: 'The bridge state:
+
+            - CREATED - The Bridge has been created.
+
+            - ACTIVE - The Bridge is active.
+
+            - HOLD - The Bridge in on hold.
+
+            - COMPLETED - The Bridge has been completed and is no longer active.
+
+            - ERROR - The bridge failed to be created or was ended due to an error.
+
+            '
+        completed_time - date:
+          type: string
+          description: 'The time that the Bridge was completed.
+
+            '
+        activated_time - date:
+          type: string
+          description: 'The time that the bridge was activated.
+
+            '
+        created_date:
+          type: string
+          description: 'The date the resource was created
+
+            '
+        last_updated_date:
+          type: string
+          description: 'The data the resource was last changed
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+    Message_3:
+      type: object
+      required:
+      - call_ids
+      properties:
+        call_ids:
+          type: array
+          description: 'The list of Call IDs for the calls associated with this bridge.
+
+            '
+          items:
+            type: string
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    inline_response_200_11:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_11_list'
+    Message_2:
+      type: object
+      properties:
+        external_id:
+          type: string
+          description: 'The unique Id assigned by the application.
+
+            '
+        call_ids:
+          type: array
+          description: 'The list of Call IDs for the calls associated with this bridge.
+
+            '
+          items:
+            type: string
+    inline_response_200_12:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_12_list'

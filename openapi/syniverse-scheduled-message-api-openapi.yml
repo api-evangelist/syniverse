@@ -1,0 +1,110 @@
+openapi: 3.2.0
+info:
+  description: Synivere Communication Gateway API
+  version: 1.0.0
+  title: SCG Scheduled Message API
+servers:
+- url: https://api.syniverse.com/scg-external-api/api/v1
+tags:
+- name: Scheduled Message
+paths:
+  /'messaging/messages/scheduled/{Message_Scheduled_ID}':
+    delete:
+      tags:
+      - Scheduled Message
+      summary: Delete a scheduled message
+      description: '  Delete a scheduled message'
+      parameters:
+      - name: Message_Scheduled_ID
+        in: path
+        description: The Scheduled Message ID for this resource.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful operation.  No Content in reponse.
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request - Error Message provides information about what's wrong with the request\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.

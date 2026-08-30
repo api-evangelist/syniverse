@@ -1,0 +1,1191 @@
+openapi: 3.2.0
+info:
+  description: Synivere Communication Gateway API
+  version: 1.0.0
+  title: SCG Call API
+servers:
+- url: https://api.syniverse.com/scg-external-api/api/v1
+tags:
+- name: Call
+paths:
+  /calling/calls:
+    get:
+      tags:
+      - Call
+      summary: Returns the list of Calls
+      description: '  Returns the list of Calls'
+      parameters:
+      - name: id
+        in: query
+        description: 'The unique identifier for this resource.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: external_id
+        in: query
+        description: 'The unique Id assigned by the application.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: 'The Sender ID associated with this call.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: from_address
+        in: query
+        description: 'The address associated with the Sender Id.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: 'The called party''s address.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: to_address
+        in: query
+        description: 'The address that was used by the system for the called party.  When the ''to'' field specifies something other than the address (e.g. contact ID) then this field will contain the actual address that was used.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: answer_timeout
+        in: query
+        description: 'The number of miliseconds that the service will wait for an answer.
+
+          '
+        required: false
+        schema:
+          type: integer
+      - name: state
+        in: query
+        description: 'The call''s state:
+
+          - STARTED - The call is being setup.
+
+          - ACTIVE - The call is in progress.
+
+          - REJECTED - The called party did not answer.
+
+          - COMPLETED - The call is complete.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: direction
+        in: query
+        description: 'The direction of the call:
+
+          - IN - This was an incoming call.
+
+          - OUT - This was an outgoing call.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: start_time
+        in: query
+        description: 'The time the call was started.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: answer_time
+        in: query
+        description: 'The time the call was answered.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: created_date
+        in: query
+        description: 'The date the resource was created
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: last_updated_date
+        in: query
+        description: 'The data the resource was last changed
+
+          '
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_11'
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+    post:
+      tags:
+      - Call
+      summary: Make a Call
+      description: '  Make a Call'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_3'
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Call'
+  /'calling/calls/{Call_ID}':
+    get:
+      tags:
+      - Call
+      summary: Returns the current version of the specified Call
+      description: '  Returns the current version of the specified Call'
+      parameters:
+      - name: Call_ID
+        in: path
+        description: The Call ID for this resource.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_11_list'
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+    post:
+      tags:
+      - Call
+      summary: Update a Call
+      description: '  Update a Call'
+      parameters:
+      - name: Call_ID
+        in: path
+        description: The Call ID for this resource.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful operation.  No Content in reponse.
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Call_1'
+    delete:
+      tags:
+      - Call
+      summary: Deletes the Call resource with the specified ID
+      description: '  Deletes the Call resource with the specified ID'
+      parameters:
+      - name: Call_ID
+        in: path
+        description: The Call ID for this resource.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful operation.  No Content in reponse.
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+  /'calling/calls/{call_id}/play_dtmf':
+    post:
+      tags:
+      - Call
+      summary: Play DTMF tones
+      description: '  Play DTMF tones'
+      parameters:
+      - name: call_id
+        in: path
+        description: The call_id for this resource.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful operation.  No Content in reponse.
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TTS_Text'
+  /'calling/calls/{call_id}/play_tts':
+    post:
+      tags:
+      - Call
+      summary: Play Text to Speech
+      description: '  Play Text to Speech. When voice parameter is present, no language or gender parameters are accepted.'
+      parameters:
+      - name: call_id
+        in: path
+        description: The call_id for this resource.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful operation.  No Content in reponse.
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AudioFile'
+  /'calling/calls/{call_id}/play_audio':
+    post:
+      tags:
+      - Call
+      summary: Play an audio file.
+      description: '  Play an audio file.'
+      parameters:
+      - name: call_id
+        in: path
+        description: The call_id for this resource.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful operation.  No Content in reponse.
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AudioFile_1'
+components:
+  schemas:
+    inline_response_200_11_list:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'The unique identifier for this resource.
+
+            '
+        external_id:
+          type: string
+          description: 'The unique Id assigned by the application.
+
+            '
+        from:
+          type: string
+          description: 'The Sender ID associated with this call.
+
+            '
+        from_address:
+          type: string
+          description: 'The address associated with the Sender Id.
+
+            '
+        to:
+          type: string
+          description: 'The called party''s address.
+
+            '
+        to_address:
+          type: string
+          description: 'The address that was used by the system for the called party.  When the ''to'' field specifies something other than the address (e.g. contact ID) then this field will contain the actual address that was used.
+
+            '
+        answer_timeout:
+          type: integer
+          description: 'The number of miliseconds that the service will wait for an answer.
+
+            '
+        state:
+          type: string
+          description: 'The call''s state:
+
+            - STARTED - The call is being setup.
+
+            - ACTIVE - The call is in progress.
+
+            - REJECTED - The called party did not answer.
+
+            - COMPLETED - The call is complete.
+
+            '
+        direction:
+          type: string
+          description: 'The direction of the call:
+
+            - IN - This was an incoming call.
+
+            - OUT - This was an outgoing call.
+
+            '
+        start_time:
+          type: string
+          description: 'The time the call was started.
+
+            '
+        answer_time:
+          type: string
+          description: 'The time the call was answered.
+
+            '
+        end_time:
+          type: array
+          items:
+            type: string
+        chargeable_duration:
+          type: integer
+          description: 'The call duration in seconds.
+
+            '
+        bridge_id:
+          type: string
+          description: 'The id of the bridge that is associated with this call.
+
+            '
+        failure_code:
+          type: string
+          description: 'The failure code associated with this call if applicable.
+
+            '
+        failure_details:
+          type: integer
+          description: 'The failure message associated with this call if applicable.
+
+            '
+        destination_country:
+          type: string
+          description: 'destination country
+
+            '
+        recording_enabled:
+          type: boolean
+          description: 'enable recording: true or false
+
+            '
+        recordings:
+          type: array
+          items:
+            type: string
+        created_date:
+          type: string
+          description: 'The date the resource was created
+
+            '
+        last_updated_date:
+          type: string
+          description: 'The data the resource was last changed
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    AudioFile:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: 'The text to be spoken.
+
+            '
+        language:
+          type: string
+          description: 'The language of the text.
+
+            '
+        gender:
+          type: string
+          description: "The gender of the speaker. \nSupported values are:\n- female\n- male\n"
+        voice:
+          type: string
+          description: 'One of the supported voices.  Voice implies gender and language.
+
+            Supported values are referenced in this page:
+
+            https://sdcsupport.syniverse.com/hc/en-us/articles/360042993153-Customizing-Spoken-Text-on-SCG-Voice-API-with-SSML-tags
+
+            '
+        loopEnabled:
+          type: boolean
+          description: 'If set to ture, tts voice will be looping.
+
+            '
+        loopCount:
+          type: integer
+          description: "number of loop to play the tts voice  \n"
+    inline_response_200_11:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_11_list'
+    Call_1:
+      type: object
+      required:
+      - state
+      properties:
+        state:
+          type: string
+          description: 'The call state can be:
+
+            - STARTED
+
+            - ACTIVE
+
+            - COMPLETED
+
+            '
+    AudioFile_1:
+      type: object
+      required:
+      - source
+      - source_type
+      properties:
+        source_type:
+          type: string
+          description: "This is the type of the source.  \nSupported values are:\n- ATTACHMENT\n- URL\n"
+        source:
+          type: string
+          description: 'The attachment ID or URL value for the audio file.
+
+            '
+    Call:
+      type: object
+      required:
+      - from
+      - to
+      properties:
+        external_id:
+          type: string
+          description: 'The unique Id assigned by the application.
+
+            '
+        from:
+          type: string
+          description: 'The Sender ID associated with this call.
+
+            '
+        to:
+          type: string
+          description: 'The called party''s address.
+
+            '
+        answer_timeout:
+          type: integer
+          description: 'The number of miliseconds that the service will wait for an answer.
+
+            '
+        bridge_id:
+          type: string
+          description: 'the bridge ID to connect the call
+
+            '
+    TTS_Text:
+      type: object
+      required:
+      - dtmfText
+      properties:
+        dtmfText:
+          type: string
+          description: 'The DTFM digits to be played.
+
+            '

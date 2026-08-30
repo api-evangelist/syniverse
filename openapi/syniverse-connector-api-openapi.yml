@@ -1,0 +1,523 @@
+openapi: 3.2.0
+info:
+  description: Synivere Communication Gateway API
+  version: 1.0.0
+  title: SCG Connector API
+servers:
+- url: https://api.syniverse.com/scg-external-api/api/v1
+tags:
+- name: Connector
+paths:
+  /connect/connectors:
+    get:
+      tags:
+      - Connector
+      summary: List all matching Connectors
+      description: '  List all matching Connectors'
+      parameters:
+      - name: id
+        in: query
+        description: 'Unique identifier, allocated by SCG at the time of Connector creation
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: external_id
+        in: query
+        description: 'The id of the Connector at the customer system. Can be used by customer to update the Connectors
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: "The type of the customer (bot) side API this connector will use. Currently supported values:\n\n  * AZURE_BOT_DIRECT_LINE - Microsoft Azure Bot Framework Direct Line API\n"
+        required: false
+        schema:
+          type: string
+      - name: sender_id
+        in: query
+        description: '
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: created_date
+        in: query
+        description: 'The date the resource was created
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: last_updated_date
+        in: query
+        description: 'The data the resource was last changed
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: version_number
+        in: query
+        description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+          '
+        required: false
+        schema:
+          type: integer
+      - name: application_id
+        in: query
+        description: 'ID of the application that has created the resource
+
+          '
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_31'
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request - Error Message provides information about what's wrong with the request\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+    post:
+      tags:
+      - Connector
+      summary: Create a new Connector
+      description: '  Create a new Connector'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_3'
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request - Error Message provides information about what's wrong with the request\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Connector'
+  /'connect/connectors/{Connector_ID}':
+    get:
+      tags:
+      - Connector
+      summary: List a Connector
+      description: '  List a Connector'
+      parameters:
+      - name: Connector_ID
+        in: path
+        description: The Connector ID for this resource.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_31_list'
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request - Error Message provides information about what's wrong with the request\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+    post:
+      tags:
+      - Connector
+      summary: Update a specific Connector
+      description: '  Update a specific Connector'
+      parameters:
+      - name: Connector_ID
+        in: path
+        description: The Connector ID for this resource.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful operation.  No Content in reponse.
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request - Error Message provides information about what's wrong with the request\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Connector_1'
+    delete:
+      tags:
+      - Connector
+      summary: Delete a Contact
+      description: '  Delete a Contact '
+      parameters:
+      - name: Connector_ID
+        in: path
+        description: The Connector ID for this resource.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful operation.  No Content in reponse.
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request - Error Message provides information about what's wrong with the request\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+components:
+  schemas:
+    Connector:
+      type: object
+      properties:
+        external_id:
+          type: string
+          description: 'The id of the Connector at the customer system. Can be used by customer to update the Connectors
+
+            '
+        type:
+          type: string
+          description: "The type of the customer (bot) side API this connector will use. Currently supported values:\n\n  * AZURE_BOT_DIRECT_LINE - Microsoft Azure Bot Framework Direct Line API\n"
+        sender_id:
+          type: string
+          description: '
+
+            '
+        credentials:
+          type: string
+          description: '
+
+            '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    inline_response_200_31_list:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'Unique identifier, allocated by SCG at the time of Connector creation
+
+            '
+        external_id:
+          type: string
+          description: 'The id of the Connector at the customer system. Can be used by customer to update the Connectors
+
+            '
+        type:
+          type: string
+          description: "The type of the customer (bot) side API this connector will use. Currently supported values:\n\n  * AZURE_BOT_DIRECT_LINE - Microsoft Azure Bot Framework Direct Line API\n"
+        sender_id:
+          type: string
+          description: '
+
+            '
+        created_date:
+          type: string
+          description: 'The date the resource was created
+
+            '
+        last_updated_date:
+          type: string
+          description: 'The data the resource was last changed
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+        application_id:
+          type: integer
+          description: 'ID of the application that has created the resource
+
+            '
+    inline_response_200_31:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_31_list'
+    Connector_1:
+      type: object
+      properties:
+        external_id:
+          type: string
+          description: 'The id of the Connector at the customer system. Can be used by customer to update the Connectors
+
+            '
+        type:
+          type: string
+          description: "The type of the customer (bot) side API this connector will use. Currently supported values:\n\n  * AZURE_BOT_DIRECT_LINE - Microsoft Azure Bot Framework Direct Line API\n"
+        sender_id:
+          type: string
+          description: '
+
+            '
+        credentials:
+          type: string
+          description: ''
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '

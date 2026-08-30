@@ -1,0 +1,1301 @@
+openapi: 3.2.0
+info:
+  description: Synivere Communication Gateway API
+  version: 1.0.0
+  title: SCG Message API
+servers:
+- url: https://api.syniverse.com/scg-external-api/api/v1
+tags:
+- name: Message
+paths:
+  /messaging/messages:
+    get:
+      tags:
+      - Message
+      summary: Retrieve messages
+      description: '  Retrieve messages  '
+      parameters:
+      - name: id
+        in: query
+        description: 'Unique identifier
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: message_request_id
+        in: query
+        description: 'The unique id of the associated message request resource.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: direction
+        in: query
+        description: 'Message direction: MO for received messages and MT sent messages
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: from_address
+        in: query
+        description: 'The sender address.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: to_address
+        in: query
+        description: 'The recipient address.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: state
+        in: query
+        description: "The status of the message to this recipient.  \nValid values for MT messages are:\n- CREATED (message was created and is in the queue of SCG)\n- SENT (message was sent to the outbound delivery system)\n- DELIVERED (message was delivered to end-device of the user)\n- READ (message was read by the user)\n- CONVERTED (message was converted i.e. end user took action upon message)\n- FAILED (message delivery failed)\n- EXPIRED (message was too old to be sent)\n- SCHEDULED (message is created but not submitted for sending)\n- TEST (message was created but the request was a test request)\n- PAUSED (message was created but the request was to pause before delivery)\n- DELETED \nSCG will automatically set the status of the message to converted when the message contains a 'tracked' URL and the link was clicked by the recipient.\nAlternatively the customer also externally can track conversion and could update the message status put applying the PUT method and specifying status = CONVERTED and the conversion timestamp\nValid values for MO Messages are:\n- RECEIVED (received at SCG)\n- PROCESSED (when the customer has accessed the message and updated the status)\n- DELETED (when the message was deleted by the customer)\n"
+        required: false
+        schema:
+          type: string
+      - name: sent_date
+        in: query
+        description: "The timestamp when the message was submitted to downstream system for delivery.\nExample: \"2023-05-24T23:24:37.464Z\"  \n"
+        required: false
+        schema:
+          type: string
+          pattern: yyyy-mm-dd'T'HH:mm:ss.SSS'Z'
+      - name: delivered_date
+        in: query
+        description: 'The timestamp when the message has been delivered, corresponds to DR date.
+
+          Example: "2023-05-24T23:24:37.464Z"
+
+          '
+        required: false
+        schema:
+          type: string
+          pattern: yyyy-mm-dd'T'HH:mm:ss.SSS'Z'
+      - name: type
+        in: query
+        description: 'The message type (SMS, MMS, PSH, FB)
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: created_date
+        in: query
+        description: 'The timestamp when the message was created, which corresponds to the time when the bulk message POST was done by the client.
+
+          Example: 2023-03-20T14:14:14.672Z
+
+          '
+        required: false
+        schema:
+          type: string
+          pattern: yyyy-mm-dd'T'HH:mm:ss.SSS'Z'
+      - name: from
+        in: query
+        description: "The from attribute is the channel Id or Sender Id over/from which the message is to be sent.\n-To send from a sender ID, the ID should be prefixed with 'sender_id:'.   \n-To send from a channel the ID should be prefixed with 'channel:'.\n  example: channel:1KJPMkuHQkair_o15etpmg"
+        required: false
+        schema:
+          type: string
+      - name: pause_before_transmit
+        in: query
+        description: 'This is a flag that tells SCG to generate the messages but not to deliver them.
+
+          '
+        required: false
+        schema:
+          type: boolean
+      - name: pause_expiry_time
+        in: query
+        description: 'This is the timestamp after which all paused messages will expire and will be removed from the outbound queue. The maximum expiry time is 24h. If application creates a message request with Integer pause expiry time, the message request will fail
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: 'Recipient address or contact id.
+
+          example: fyX3rO7eL48xj2HNXNWIu4
+
+          '
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_6'
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request - Error Message provides information about what's wrong with the request\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n  * **SCG_ERROR_4001** - Required parameter<parameter> missing or is null\n  * **SCG_ERROR_4002** - Required parameter <parameter> data type/format is incorrect\n  * **SCG_ERROR_4003** - Optional parameter <parameter> data type/format is incorrect            \n  * **SCG_ERROR_4004** - Invalid parameter <parameter> defined            \n  * **SCG_ERROR_400**5 - Error message contains details about the limit being exceeded - Message size exceeds system limit            \n  * **SCG_ERROR_4006** -  Indexed parameter <parameter> too long - Value of <parameter> in the request exceeded the maximum allowed length          \n  * **SCG_ERROR_4007** -  Invalid Tracking URL - The tracking URL <parameter> that was provided is invalid          \n  * **SCG_ERROR_4008** -  Message scheduled time exceeds max allowed days: <parameter>          \n * **SCG_ERROR_4009** -  Cannot exceed more than <parameter> media URLs                    \n  * **SCG_ERROR_40010**  -  Cannot include media URLs with attachment        \n  * **SCG_ERROR_40011**  -  Group message only supported for US Phone numbers        \n  * **SCG_ERROR_40012**  -  No sender addresses capable of sending requested message type        \n * **SCG_ERROR_40013**  -  No sender addresses capable of sending requested verifiedSms message      \n  * **SCG_ERROR_40014**  -  Cannot failover to SMS on a message with attachments        \n  * **SCG_ERROR_40015**  - Cannot exceed more than <parameter> recipients          \n  * **SCG_ERROR_40016**  -  Sender id is not capable of sending MMS        \n  * **SCG_ERROR_40017**  -  Only sender id with type id LONGCODE is supported for group MMS        \n  * **SCG_ERROR_40018**  -  Invalid senderId/address: <parameter>        \n  * **SCG_ERROR_40019**  -  Multiple sender id with address: <parameter>. Use sender id to send message.        \n  * **SCG_ERROR_40020**  -  Unrecognized option(s): <parameter>        \n  * **SCG_ERROR_40021**  -  Failover to SMS requires a SenderId for SMS (use a channel)        \n  * **SCG_ERROR_40022**  -  Failover TO SMS requires a SenderId for <parameter> (use a channel)        \n  * **SCG_ERROR_40023**  -  Delivery Window Restriction Violation        \n  * **SCG_ERROR_40024**  -  Invalid Recipient        \n  * **SCG_ERROR_40025**  -  Invalid payload        \n  * **SCG_ERROR_40026**  -  Missing form-data part: <part>        \n  * **SCG_ERROR_40027**  -  Content size in Content-Disposition is mandatory        \n  * **SCG_ERROR_40028**  -  Content length is mandatory        \n  * **SCG_ERROR_40029**  -  Attachment size <parameter> exceeds max allowed attachment size <parameter>        \n  * **SCG_ERROR_40030**  - Only UPLOADED attachments can be downloaded.\n  \n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n  * **SCG_ERROR_4010** - Token unauthorized for this resource\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n  * **SCG_ERROR_4021** - Quota exceeded\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n  * **SCG_ERROR_4030** - Forbidden          \n  * **SCG_ERROR_4031** - Attachment <parameter> was not found neither in cache nor in database            \n  * **SCG_ERROR_4032** - Attachment <parameter> is in incorrect state\n    <parameter>                       \n  * **SCG_ERROR_4033** - SenderId start date in the future: <parameter>           \n  * **SCG_ERROR_4034** - SenderId end date in the past: <parameter>           \n  * **SCG_ERROR_4035** - Invalid sender ID state: <parameter>          \n  * **SCG_ERROR_4036** - Invalid sender ID ownership: <parameter>           \n  * **SCG_ERROR_4037** - <parameter> forbidden for attachment in state: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n  * **SCG_ERROR_4040**  - Resource you are trying to fetch not found for <parameter>          \n  * **SCG_ERROR_4041**  -  Resource you are trying to update cannot be found for <parameter>        \n  * **SCG_ERROR_4043**  -  The language code <language> is not found among the languages supported by Google Translate        \n  * **SCG_ERROR_4045**  -  No sender id matches with recipient country.        \n  * **SCG_ERROR_4046**  - Access token expired\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n  * **SCG_ERROR_4090** - The access token could not be updated because resource is being updated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '422':
+          description: "Unprocessable Entity\n  * **SCG_ERROR_4220** - Attachment content could not be downloaded from the provided URL. The error message is <error message>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n  * **SCG_ERROR_5000** - Unexpected Server Error\n  * **SCG_ERROR_5002** - Message type restriction not implemented for: <messageType>            \n  * **SCG_ERROR_5003** - Error redirecting to proxy: <parameter>                      \n  * **SCG_ERROR_5004** - Error downloading attachment from storage: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+    post:
+      tags:
+      - Message
+      summary: Send a Message
+      description: '  Send a Message'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_3'
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request - Error Message provides information about what's wrong with the request\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n  * **SCG_ERROR_4001** - Required parameter<parameter> missing or is null\n  * **SCG_ERROR_4002** - Required parameter <parameter> data type/format is incorrect\n  * **SCG_ERROR_4003** - Optional parameter <parameter> data type/format is incorrect            \n  * **SCG_ERROR_4004** - Invalid parameter <parameter> defined            \n  * **SCG_ERROR_4005** - Error message contains details about the limit being exceeded - Message size exceeds system limit            \n  * **SCG_ERROR_4006** -  Indexed parameter <parameter> too long - Value of <parameter> in the request exceeded the maximum allowed length          \n  * **SCG_ERROR_4007** -  Invalid Tracking URL - The tracking URL <parameter> that was provided is invalid          \n  * **SCG_ERROR_4008** -  Message scheduled time exceeds max allowed days: <parameter>          \n  * **SCG_ERROR_4009** -  Cannot exceed more than <parameter> media URLs                    \n  * **SCG_ERROR_40010**  -  Cannot include media URLs with attachment        \n  * **SCG_ERROR_40011**  -  Group message only supported for US Phone numbers        \n  * **SCG_ERROR_40012**  -  No sender addresses capable of sending requested message type        \n  * **SCG_ERROR_40013**  -  No sender addresses capable of sending requested verifiedSms message      \n  * **SCG_ERROR_40014**  -  Cannot failover to SMS on a message with attachments        \n  * **SCG_ERROR_40015**  - Cannot exceed more than <parameter> recipients          \n  * **SCG_ERROR_40016**  -  Sender id is not capable of sending MMS        \n  * **SCG_ERROR_40017**  -  Only sender id with type id LONGCODE is supported for group MMS        \n  * **SCG_ERROR_40018**  -  Invalid senderId/address: <parameter>        \n  * **SCG_ERROR_40019**  -  Multiple sender id with address: <parameter>. Use sender id to send message.        \n  * **SCG_ERROR_40020**  -  Unrecognized option(s): <parameter>        \n  * **SCG_ERROR_40021**  -  Failover to SMS requires a SenderId for SMS (use a channel)        \n  * **SCG_ERROR_40022**  -  Failover TO SMS requires a SenderId for <parameter> (use a channel)        \n  * **SCG_ERROR_40023**  -  Delivery Window Restriction Violation        \n  * **SCG_ERROR_40024**  -  Invalid Recipient        \n  * **SCG_ERROR_40025**  -  Invalid payload        \n  * **SCG_ERROR_40026**  -  Missing form-data part: <part>        \n  * **SCG_ERROR_40027**  -  Content size in Content-Disposition is mandatory        \n  * **SCG_ERROR_40028**  -  Content length is mandatory        \n  * **SCG_ERROR_40029**  -  Attachment size <parameter> exceeds max allowed attachment size <parameter>        \n  * **SCG_ERROR_40030**  - Only UPLOADED attachments can be downloaded.\n  \n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n  * **SCG_ERROR_4010** - Token unauthorized for this resource\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n  * **SCG_ERROR_4021** - Quota exceeded\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n  * **SCG_ERROR_4030** - Forbidden          \n  * **SCG_ERROR_4031** - Attachment <parameter> was not found neither in cache nor in database            \n  * **SCG_ERROR_4032** - Attachment <parameter> is in incorrect state\n    <parameter>                       \n  * **SCG_ERROR_4033** - SenderId start date in the future: <parameter>           \n  * **SCG_ERROR_4034** - SenderId end date in the past: <parameter>           \n  * **SCG_ERROR_4035** - Invalid sender ID state: <parameter>          \n  * **SCG_ERROR_4036** - Invalid sender ID ownership: <parameter>           \n  * **SCG_ERROR_4037** - <parameter> forbidden for attachment in state: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n  * **SCG_ERROR_4040**  - Resource you are trying to fetch not found for <parameter>          \n  * **SCG_ERROR_4041**  -  Resource you are trying to update cannot be found for <parameter>        \n  * **SCG_ERROR_4043**  -  The language code <language> is not found among the languages supported by Google Translate        \n  * **SCG_ERROR_4045**  -  No sender id matches with recipient country.        \n  * **SCG_ERROR_4046**  - Access token expired\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n  * **SCG_ERROR_4090** - The access token could not be updated because resource is being updated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '422':
+          description: "Unprocessable Entity\n  * **SCG_ERROR_4220** - Attachment content could not be downloaded from the provided URL. The error message is <error message>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n  * **SCG_ERROR_5000** - Unexpected Server Error\n  * **SCG_ERROR_5002** - Message type restriction not implemented for: <messageType>            \n  * **SCG_ERROR_5003** - Error redirecting to proxy: <parameter>                      \n  * **SCG_ERROR_5004** - Error downloading attachment from storage: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+  /'messaging/messages/{Message_ID}':
+    get:
+      tags:
+      - Message
+      summary: Returns current version of the specified message
+      description: '  Returns current version of the specified message'
+      parameters:
+      - name: Message_ID
+        in: path
+        description: The Message ID for this resource.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_6_list'
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request - Error Message provides information about what's wrong with the request\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n  * **SCG_ERROR_4001** - Required parameter<parameter> missing or is null\n  * **SCG_ERROR_4002** - Required parameter <parameter> data type/format is incorrect\n  * **SCG_ERROR_4003** - Optional parameter <parameter> data type/format is incorrect            \n  * **SCG_ERROR_4004** - Invalid parameter <parameter> defined            \n  * **SCG_ERROR_4005** - Error message contains details about the limit being exceeded - Message size exceeds system limit            \n  * **SCG_ERROR_4006** -  Indexed parameter <parameter> too long - Value of <parameter> in the request exceeded the maximum allowed length          \n  * **SCG_ERROR_4007** -  Invalid Tracking URL - The tracking URL <parameter> that was provided is invalid          \n  * **SCG_ERROR_4008** -  Message scheduled time exceeds max allowed days: <parameter>          \n  * **SCG_ERROR_4009** -  Cannot exceed more than <parameter> media URLs                    \n  * **SCG_ERROR_40010**  -  Cannot include media URLs with attachment        \n  * **SCG_ERROR_40011**  -  Group message only supported for US Phone numbers        \n  * **SCG_ERROR_40012**  -  No sender addresses capable of sending requested message type        \n  * **SCG_ERROR_40013**  -  No sender addresses capable of sending requested verifiedSms message      \n  * **SCG_ERROR_40014**  -  Cannot failover to SMS on a message with attachments        \n  * **SCG_ERROR_40015**  - Cannot exceed more than <parameter> recipients**          \n  * **SCG_ERROR_40016**  -  Sender id is not capable of sending MMS        \n  * **SCG_ERROR_40017**  -  Only sender id with type id LONGCODE is supported for group MMS        \n  * **SCG_ERROR_40018**  -  Invalid senderId/address: <parameter>        \n  * **SCG_ERROR_40019**  -  Multiple sender id with address: <parameter>. Use sender id to send message.        \n  * **SCG_ERROR_40020**  -  Unrecognized option(s): <parameter>        \n  * **SCG_ERROR_40021**  -  Failover to SMS requires a SenderId for SMS (use a channel)        \n  * **SCG_ERROR_40022**  -  Failover TO SMS requires a SenderId for <parameter> (use a channel)        \n  * **SCG_ERROR_40023**  -  Delivery Window Restriction Violation        \n  * **SCG_ERROR_40024**  -  Invalid Recipient        \n  * **SCG_ERROR_40025**  -  Invalid payload        \n  * **SCG_ERROR_40026**  -  Missing form-data part: <part>        \n  * **SCG_ERROR_40027**  -  Content size in Content-Disposition is mandatory        \n  * **SCG_ERROR_40028**  -  Content length is mandatory        \n  * **SCG_ERROR_40029**  -  Attachment size <parameter> exceeds max allowed attachment size <parameter>        \n  * **SCG_ERROR_40030**  - Only UPLOADED attachments can be downloaded.\n  \n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n  * **SCG_ERROR_4010** - Token unauthorized for this resource\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n  * **SCG_ERROR_4021** - Quota exceeded\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n  * **SCG_ERROR_4030** - Forbidden          \n  * **SCG_ERROR_4031** - Attachment <parameter> was not found neither in cache nor in database            \n  * **SCG_ERROR_4032** - Attachment <parameter> is in incorrect state\n    <parameter>                       \n  * **SCG_ERROR_4033** - SenderId start date in the future: <parameter>           \n  * **SCG_ERROR_4034** - SenderId end date in the past: <parameter>           \n  * **SCG_ERROR_4035** - Invalid sender ID state: <parameter>          \n  * **SCG_ERROR_4036** - Invalid sender ID ownership: <parameter>           \n  * **SCG_ERROR_4037** - <parameter> forbidden for attachment in state: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n  * **SCG_ERROR_4040**  - Resource you are trying to fetch not found for <parameter>          \n  * **SCG_ERROR_4041**  -  Resource you are trying to update cannot be found for <parameter>        \n  * **SCG_ERROR_4043**  -  The language code <language> is not found among the languages supported by Google Translate        \n  * **SCG_ERROR_4045**  -  No sender id matches with recipient country.        \n  * **SCG_ERROR_4046**  - Access token expired\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n  * **SCG_ERROR_4090** - The access token could not be updated because resource is being updated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '422':
+          description: "Unprocessable Entity\n  * **SCG_ERROR_4220** - Attachment content could not be downloaded from the provided URL. The error message is <error message>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n  * **SCG_ERROR_5000** - Unexpected Server Error\n  * **SCG_ERROR_5002** - Message type restriction not implemented for: <messageType>            \n  * **SCG_ERROR_5003** - Error redirecting to proxy: <parameter>                      \n  * **SCG_ERROR_5004** - Error downloading attachment from storage: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+    delete:
+      tags:
+      - Message
+      summary: Update Message Status to DELETED
+      description: '  Update Message Status to DELETED'
+      parameters:
+      - name: Message_ID
+        in: path
+        description: The Message ID for this resource.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful operation.  No Content in reponse.
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request - Error Message provides information about what's wrong with the request\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+  /'messaging/messages/{Message_ID}/attachments':
+    get:
+      tags:
+      - Message
+      summary: Returns a list of matching attachments
+      description: '  Returns a list of matching attachments'
+      parameters:
+      - name: Message_ID
+        in: path
+        description: The Message ID for this resource.
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: query
+        description: 'Unique identifier
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: name
+        in: query
+        description: 'The name of the attachment (e.g. it''s filename or other non-generated identifier)  The value of this field should be unique for a given message.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: 'The MIME type of the attachment (if known)
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: 'The size, in bytes, of the attachment body
+
+          '
+        required: false
+        schema:
+          type: integer
+      - name: filename
+        in: query
+        description: 'Original file name of the attachment
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: state
+        in: query
+        description: 'CREATED, UPLOADED
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: created_date
+        in: query
+        description: 'For a MT message (one which was sent via this API), this indicates the time when the API was called to request message delivery.  For a MO message, this is the point in time when the SCG was notified of the inbound message from the operator network/mediation channel.
+
+          example:2023-03-20T14:14:14.672Z
+
+          '
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_7'
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request - Error Message provides information about what's wrong with the request\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n  * **SCG_ERROR_4001** - Required parameter<parameter> missing or is null\n  * **SCG_ERROR_4002** - Required parameter <parameter> data type/format is incorrect\n  * **SCG_ERROR_4003** - Optional parameter <parameter> data type/format is incorrect            \n  * **SCG_ERROR_4004** - Invalid parameter <parameter> defined            \n  * **SCG_ERROR_4005** - Error message contains details about the limit being exceeded - Message size exceeds system limit            \n  * **SCG_ERROR_4006** -  Indexed parameter <parameter> too long - Value of <parameter> in the request exceeded the maximum allowed length          \n  * **SCG_ERROR_4007** -  Invalid Tracking URL - The tracking URL <parameter> that was provided is invalid          \n  * **SCG_ERROR_4008** -  Message scheduled time exceeds max allowed days: <parameter>          \n  * **SCG_ERROR_4009** -  Cannot exceed more than <parameter> media URLs                    \n  * **SCG_ERROR_40010**  -  Cannot include media URLs with attachment        \n  * **SCG_ERROR_40011**  -  Group message only supported for US Phone numbers        \n  * **SCG_ERROR_40012**  -  No sender addresses capable of sending requested message type        \n  * **SCG_ERROR_40013**  -  No sender addresses capable of sending requested verifiedSms message      \n  * **SCG_ERROR_40014**  -  Cannot failover to SMS on a message with attachments        \n  * **SCG_ERROR_40015**  - Cannot exceed more than <parameter> recipients          \n  * **SCG_ERROR_40016**  -  Sender id is not capable of sending MMS        \n  * **SCG_ERROR_40017**  -  Only sender id with type id LONGCODE is supported for group MMS        \n  * **SCG_ERROR_40018**  -  Invalid senderId/address: <parameter>        \n  * **SCG_ERROR_40019**  -  Multiple sender id with address: <parameter>. Use sender id to send message.        \n  * **SCG_ERROR_40020**  -  Unrecognized option(s): <parameter>        \n  * **SCG_ERROR_40021**  -  Failover to SMS requires a SenderId for SMS (use a channel)        \n  * **SCG_ERROR_40022**  -  Failover TO SMS requires a SenderId for <parameter> (use a channel)        \n  * **SCG_ERROR_40023**  -  Delivery Window Restriction Violation        \n  * **SCG_ERROR_40024**  -  Invalid Recipient        \n  * **SCG_ERROR_40025**  -  Invalid payload        \n  * **SCG_ERROR_40026**  -  Missing form-data part: <part>        \n  * **SCG_ERROR_40027**  -  Content size in Content-Disposition is mandatory        \n  * **SCG_ERROR_40028**  -  Content length is mandatory        \n  * **SCG_ERROR_40029**  -  Attachment size <parameter> exceeds max allowed attachment size <parameter>        \n  * **SCG_ERROR_40030**  - Only UPLOADED attachments can be downloaded.\n  \n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n  * **SCG_ERROR_4010** - Token unauthorized for this resource\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n  * **SCG_ERROR_4021** - Quota exceeded\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n  * **SCG_ERROR_4030** - Forbidden          \n  * **SCG_ERROR_4031** - Attachment <parameter> was not found neither in cache nor in database            \n  * **SCG_ERROR_4032** - Attachment <parameter> is in incorrect state\n    <parameter>                       \n  * **SCG_ERROR_4033** - SenderId start date in the future: <parameter>           \n  * **SCG_ERROR_4034** - SenderId end date in the past: <parameter>           \n  * **SCG_ERROR_4035** - Invalid sender ID state: <parameter>          \n  * **SCG_ERROR_4036** - Invalid sender ID ownership: <parameter>           \n  * **SCG_ERROR_4037** - <parameter> forbidden for attachment in state: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n  * **SCG_ERROR_4040**  - Resource you are trying to fetch not found for <parameter>          \n  * **SCG_ERROR_4041**  -  Resource you are trying to update cannot be found for <parameter>        \n  * **SCG_ERROR_4043**  -  The language code <language> is not found among the languages supported by Google Translate        \n  * **SCG_ERROR_4045**  -  No sender id matches with recipient country.        \n  * **SCG_ERROR_4046**  - Access token expired\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n  * **SCG_ERROR_4090** - The access token could not be updated because resource is being updated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '422':
+          description: "Unprocessable Entity\n  * **SCG_ERROR_4220** - Attachment content could not be downloaded from the provided URL. The error message is <error message>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n  * **SCG_ERROR_5000** - Unexpected Server Error\n  * **SCG_ERROR_5002** - Message type restriction not implemented for: <messageType>            \n  * **SCG_ERROR_5003** - Error redirecting to proxy: <parameter>                      \n  * **SCG_ERROR_5004** - Error downloading attachment from storage: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+components:
+  schemas:
+    Message:
+      type: object
+      properties:
+        conversation_id:
+          type: string
+          description: 'The identifier of the conversation for conversation threading.
+
+            '
+        campaign_id:
+          type: string
+          description: 'The campaign id: A unique identifier for a particular messaging campaign or program
+
+            '
+        subject:
+          type: string
+          description: 'Subject of the message.
+
+            '
+        body:
+          type: string
+          description: 'The message body as sent to the recipient.
+
+            '
+        attachments:
+          type: array
+          description: 'A list of attachment IDs which are associated with this message.
+
+            '
+          items:
+            type: string
+        scheduled_delivery_time:
+          type: string
+          example: '1690419562110'
+          description: 'The date and time that this message should be delivered. This is the user specific time as calculated by the SCG based on the destination time zone and requested time zone calculation.
+
+            '
+        scheduled_delivery_time_zone:
+          type: string
+          example: LOCAL
+          description: 'Determines what time zone to apply to the scheduled delivery time:
+
+            - UTC  - If no timezone was supplied in the delivery time then UTC is used.
+
+            - LOCAL -  means that the scheduled delivery time as supplied in the request is expressed in LOCAL recipient time. The time zone of the recipient is determined by SCG automatically based on the primary_address_zip value in the recipient contact record.  The UTC time of day of the supplied scheduled_delivery_time will be used to deliver to the recipient at the same time of day in the local timezone.  For example, if the supplied scheduled delivery time is May 24th at 11:00am UTC, then the message would be delivered to someone with a zipcode in the Pacific timezone at  May 24th at 11:00am PDT.
+
+            '
+        options:
+          $ref: '#/components/schemas/Message_Request_options'
+        body_extensions:
+          type: array
+          description: "Extended body    \n"
+          items:
+            $ref: '#/components/schemas/Message_Request_body_extensions'
+        expiry_time:
+          type: string
+          example: 2023-07-31T15:50:00 or 2023-07-31 or Mon, 07 Aug 2023 11:54:28 UTC or 1690793596000
+          description: 'This is the timestamp after which the messages will no Integer be sent to the downstream system for delivery
+
+            '
+        external_id:
+          type: string
+          description: 'Application provided unique tracking ID for the message.   Can be used as an alternative key in query methods.
+
+            '
+        contact_delivery_address_priority:
+          type: string
+          example: WHATSAPP,MDN
+          description: 'Priority list of contact delivery addresses (MDN, PUSH)
+
+            '
+        failover:
+          type: string
+          description: 'Controls fail over to SMS in case of MMS, RCS and OTT message delivery failures.
+
+            Valid value: SMS
+
+            '
+        verify_number:
+          type: boolean
+          description: 'If this flag is set to ''true'' then the recipient phone numbers will be checked to ensure they are valid mobile numbers,  virtual mobile numbers or virtual landline numbers.
+
+            '
+        verify_sms:
+          type: boolean
+          description: 'If this flag is set to ''true'' then the message content  and the sender of the message will be verified via the  Google messages application. If the verification is  successful, the end-user will be shown a transcript  stating that the message was verified along with  the customer''s logo in the Google messages application.
+
+            '
+        sender_id_sort_criteria:
+          type: string
+          description: 'Priority list of SenderId selection criteria (DELIVERY_ADDRESS, PRICE)
+
+            '
+        from:
+          type: string
+          example: channel:1KJPMkuHQkair_o15etpmg
+          description: "The from attribute is the channel Id or Sender Id over/from which the message is to be sent.\n-To send from a sender ID, the ID should be prefixed with 'sender_id:'.   \n-To send from a channel the ID should be prefixed with 'channel:'.\n"
+        price_threshold:
+          type: integer
+          description: 'The price threshold for messages in a request
+
+            '
+        to:
+          type: string
+          example: '13467871829'
+          description: 'Recipient address or contact id.
+
+            '
+        src_language:
+          type: string
+          description: 'This is the source language of a message. The defauly is English ''en''
+
+            '
+        dst_language:
+          type: string
+          description: 'Translate message to a specified language. If not set,  only messages to contacts with language preference will be translated.
+
+            '
+        translate:
+          type: boolean
+          description: 'When translate attribute is set to ''true'' translation of message body is enabled.
+
+            '
+        consent_requirement:
+          type: string
+          description: 'This field indicates if the message delivery is dependent on the consent status for the message recipient. This field is specific to a Sender address (Shortcode) that is classified as ''User Managed'' consent.  This is meant for Businesses who are responsible for managing consent but use the SCG contacts database to store the consent status for message recipients. Any contacts/destination MDNs for end-users that a message is sent to but does not have an opt-in status associated with the sender address will be blocked (message will be created but will be in ''failed'' status and will not be sent to the recipient).  Supported values are:
+
+            - OPT_IN (message will be sent only if user explicitly opted in)
+
+            - OPT_OUT (message will be sent unless user explicitly opted out)
+
+            - NONE (message will be sent irrespectively of optin status)
+
+            '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    Message_Request_body_extensions:
+      type: object
+      properties:
+        type:
+          example: DEEP_LINK
+        content:
+          example: https://www.syniverse.com/
+    Message_Request_options:
+      type: object
+      properties:
+        push:badge:
+          type: string
+          example: auto
+        push:notify_type:
+          type: string
+          example: silent
+        push:sound:
+          type: string
+          example: default
+      description: 'json options in use with push notifications.
+
+        '
+    inline_response_200_6:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_6_list'
+    inline_response_200_7:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_7_list'
+    inline_response_200_6_list:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'Unique identifier
+
+            '
+        message_request_id:
+          type: string
+          description: 'The unique id of the associated message request resource.
+
+            '
+        external_message_request_id:
+          type: string
+          description: 'Application provided unique tracking ID for the message.   Can be used as an alternative key in query methods.
+
+            '
+        conversation_id:
+          type: string
+          description: 'The identifier of the conversation for conversation threading.
+
+            '
+        campaign_id:
+          type: string
+          description: 'The campaign id: A unique identifier for a particular messaging campaign or program
+
+            '
+        direction:
+          type: string
+          description: 'Message direction: MO for received messages and MT sent messages
+
+            '
+        customer_sender_id:
+          type: string
+          description: 'The sender_id associated with the message delivery channel. For MT messages this will be the sender_id used to deliver the message. For MO messages this will be the sender_id corresponding to the downstream system which generated the message (determined by SCG based on the from/to address accordingly)
+
+            '
+        from_address:
+          type: string
+          description: 'The sender address.
+
+            '
+        to_address:
+          type: string
+          description: 'The recipient address.
+
+            '
+        state:
+          type: string
+          description: "The status of the message to this recipient.  \nValid values for MT messages are:\n- CREATED (message was created and is in the queue of SCG)\n- SENT (message was sent to the outbound delivery system)\n- DELIVERED (message was delivered to end-device of the user)\n- READ (message was read by the user)\n- CONVERTED (message was converted i.e. end user took action upon message)\n- FAILED (message delivery failed)\n- EXPIRED (message was too old to be sent)\n- SCHEDULED (message is created but not submitted for sending)\n- TEST (message was created but the request was a test request)\n- PAUSED (message was created but the request was to pause before delivery)\n- DELETED \nSCG will automatically set the status of the message to converted when the message contains a 'tracked' URL and the link was clicked by the recipient.\nAlternatively the customer also externally can track conversion and could update the message status put applying the PUT method and specifying status = CONVERTED and the conversion timestamp\nValid values for MO Messages are:\n- RECEIVED (received at SCG)\n- PROCESSED (when the customer has accessed the message and updated the status)\n- DELETED (when the message was deleted by the customer)\n"
+        failure_code:
+          type: string
+          description: 'INVALID_RECIPIENT, NO_CONSENT, OTHER
+
+            '
+        failure_details:
+          type: string
+          description: 'text description that gives more detail on failed messages
+
+            '
+        subject:
+          type: string
+          description: 'Subject of the message.
+
+            '
+        body:
+          type: string
+          description: 'The message body as sent to the recipient.
+
+            '
+        sent_date:
+          type: string
+          description: 'The timestamp when the message was submitted to downstream system for delivery
+
+            '
+        delivered_date:
+          type: string
+          description: 'The timestamp when the message has been delivered, corresponds to DR date.
+
+            '
+        converted_date:
+          type: string
+          description: 'The timestamp when the message was converted. This will be set automatically by SCG for messages with link tracking. For external tracking, the customer must provide the converted timestamp
+
+            '
+        reply_to:
+          type: string
+          description: 'The Message ID of a previously delivered message which the current message is a reply to.
+
+            '
+        attachments:
+          type: array
+          items:
+            type: string
+        scheduled_delivery_time:
+          type: string
+          description: 'The date and time that this message should be delivered. This is the user specific time as calculated by the SCG based on the destination time zone and requested time zone calculation.
+
+            '
+        expiry_time:
+          type: string
+          description: 'This is the timestamp after which the messages will no Integer be sent to the downstream system for delivery
+
+            '
+        type:
+          type: string
+          description: 'The message type (SMS, MMS, PSH, FB)
+
+            '
+        contact_id:
+          type: string
+          description: 'The ID of the contact (if any) this message was sent to
+
+            '
+        price:
+          type: number
+          description: 'The message cost.
+
+            '
+        application_id:
+          type: integer
+          description: 'ID of the application that has created the resource
+
+            '
+        created_date:
+          type: string
+          description: 'The timestamp when the message was created, which corresponds to the time when the bulk message POST was done by the client.
+
+            '
+        language:
+          type: string
+          description: 'Language this message was translated to
+
+            '
+        failedTranslation:
+          type: string
+          description: 'The reason that translate failed for this message
+
+            '
+        last_updated_date:
+          type: string
+          description: 'The data the resource was last changed
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+        request_body:
+          type: string
+          description: 'This is the body of the message as supplied by the customer''s application.  It can reference a message template and supply the variables assignments for use with a template or contain the actual message body
+
+            '
+        external_id:
+          type: string
+          description: 'Application provided unique tracking ID for the message.   Can be used as an alternative key in query methods.
+
+            '
+        contact_delivery_address_priority:
+          type: string
+          description: 'Priority list of contact delivery addresses (MDN, PUSH)
+
+            '
+        failover:
+          type: string
+          description: "Controls fail over to SMS in case of MMS, RCS and OTT message delivery failures. \nValid value: SMS\n"
+        verify_number:
+          type: boolean
+          description: 'If this flag is set to ''true'' then the recipient phone numbers will be checked to ensure they are valid mobile numbers,  virtual mobile numbers or virtual landline numbers.
+
+            '
+        verify_sms:
+          type: boolean
+          description: 'If this flag is set to ''true'' then the message content  and the sender of the message will be verified via the  Google messages application. If the verification is  successful, the end-user will be shown a transcript  stating that the message was verified along with  the customer''s logo in the Google messages application.
+
+            '
+        options:
+          type: string
+          description: 'json options in use with push notifications
+
+            '
+        sender_id_sort_criteria:
+          type: string
+          description: 'Priority list of SenderId selection criteria (DELIVERY_ADDRESS, PRICE)
+
+            '
+        from:
+          type: string
+          description: "The from attribute is the channel Id or Sender Id over/from which the message is to be sent.\n-To send from a sender ID, the ID should be prefixed with 'sender_id:'.   \n-To send from a channel the ID should be prefixed with 'channel:'.\n"
+        pause_before_transmit:
+          type: boolean
+          description: 'This is a flag that tells SCG to generate the messages but not to deliver them.
+
+            '
+        pause_expiry_time:
+          type: string
+          description: 'This is the timestamp after which all paused messages will expire and will be removed from the outbound queue. The maximum expiry time is 24h. If application creates a message request with Integer pause expiry time, the message request will fail
+
+            '
+        price_threshold:
+          type: integer
+          description: 'The price threshold for messages in a request
+
+            '
+        to:
+          type: string
+          description: 'Recipient address or contact id.
+
+            '
+        src_language:
+          type: string
+          description: 'This is the source language of a message. The defauly is English ''en''
+
+            '
+        dst_language:
+          type: string
+          description: 'Translate message to a specified language. If not set,  only messages to contacts with language preference will be translated.
+
+            '
+        translate:
+          type: boolean
+          description: 'When translate attribute is set to ''true'' translation of message body is enabled.
+
+            '
+        consent_requirement:
+          type: string
+          description: 'This field indicates if the message delivery is dependent on the consent status for the message recipient. This field is specific to a Sender address (Shortcode) that is classified as ''User Managed'' consent.  This is meant for Businesses who are responsible for managing consent but use the SCG contacts database to store the consent status for message recipients. Any contacts/destination MDNs for end-users that a message is sent to but does not have an opt-in status associated with the sender address will be blocked (message will be created but will be in ''failed'' status and will not be sent to the recipient).  Supported values are:
+
+            - OPT_IN (message will be sent only if user explicitly opted in)
+
+            - OPT_OUT (message will be sent unless user explicitly opted out)
+
+            - NONE (message will be sent irrespectively of optin status)
+
+            '
+        channel_id:
+          type: string
+          description: 'The channel id
+
+            '
+        destination_country:
+          type: string
+          description: 'destination country
+
+            '
+        body_extensions:
+          type: string
+          description: 'Extended body
+
+            '
+        content_type:
+          type: string
+          description: 'The content type of the message request body.
+
+            '
+        sender_id_alias:
+          type: string
+          description: 'alias of the sender
+
+            '
+        protocol_error:
+          type: string
+          description: 'The protocol level error that caused the message to fail
+
+            '
+        fragment_count:
+          type: integer
+          description: 'fragment count
+
+            '
+        fragments_info:
+          type: array
+          items:
+            type: string
+        media_urls:
+          type: array
+          items:
+            type: string
+        mediaURL_attachIds:
+          type: array
+          items:
+            type: string
+        number_type:
+          type: string
+          description: 'type of a number
+
+            '
+        group_to:
+          type: array
+          items:
+            type: string
+        shortcode_address_type:
+          type: string
+          description: 'shortcode address type (STANDARD, FTEU)
+
+            '
+        standalone:
+          type: boolean
+          description: 'standalone: true or false
+
+            '
+        failover_reference:
+          type: string
+          description: 'The failover info
+
+            '
+        test_message_flag:
+          type: boolean
+          description: 'This is a test mode flag for performing basic functional tests. If this flag is set to ''true'' then this will be processed and Out bound messages will be created but the messages will not be delivered to a handset.
+
+            '
+        recipient_verifiedSms_enabled:
+          type: boolean
+          description: 'recipient verified sms enabled: true or false
+
+            '
+    inline_response_200_7_list:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'Unique identifier
+
+            '
+        name:
+          type: string
+          description: 'The name of the attachment (e.g. it''s filename or other non-generated identifier)  The value of this field should be unique for a given message.
+
+            '
+        type:
+          type: string
+          description: 'The MIME type of the attachment (if known)
+
+            '
+        size:
+          type: integer
+          description: 'The size, in bytes, of the attachment body
+
+            '
+        filename:
+          type: string
+          description: 'Original file name of the attachment
+
+            '
+        state:
+          type: string
+          description: 'CREATED, UPLOADED
+
+            '
+        content_url:
+          type: string
+          description: 'The url of the content
+
+            '
+        designation:
+          type: string
+          description: 'The template is used either for VALIDATOR or as an actual TEMPLATE.
+
+            VALIDATOR type templates will be associated with a sender id and any message that is submitted to a sender ID that has some VALIDATOR templates associated with it will be checked against the template.
+
+            TEMPLATE type templates are used to send messages. in such case the message request body will indicate with template to apply and the message processing will use the template body and apply conversion of applicable keywords to create the actual message body.
+
+            NOTE: validator type templates can not be modified by the customer where the message template is associated with a shared sender id
+
+            '
+        application_id:
+          type: integer
+          description: 'ID of the application that has created the resource
+
+            '
+        created_date:
+          type: string
+          description: 'For a MT message (one which was sent via this API), this indicates the time when the API was called to request message delivery.  For a MO message, this is the point in time when the SCG was notified of the inbound message from the operator network/mediation channel.
+
+            '
+        last_updated_date:
+          type: string
+          description: 'The data the resource was last changed
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '

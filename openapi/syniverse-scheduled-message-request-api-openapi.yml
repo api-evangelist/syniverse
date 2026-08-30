@@ -1,0 +1,122 @@
+openapi: 3.2.0
+info:
+  description: Synivere Communication Gateway API
+  version: 1.0.0
+  title: SCG Scheduled Message Request API
+servers:
+- url: https://api.syniverse.com/scg-external-api/api/v1
+tags:
+- name: Scheduled Message Request
+paths:
+  /'messaging/message_requests/scheduled/{MessageRequest_Scheduled_ID}':
+    delete:
+      tags:
+      - Scheduled Message Request
+      summary: Delete a scheduled message request
+      description: '  Delete a scheduled message request'
+      parameters:
+      - name: MessageRequest_Scheduled_ID
+        in: path
+        description: The Scheduled MessageRequest ID for this resource.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful operation.  No Content in reponse.
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request - Error Message provides information about what's wrong with the request\n  * **1012** - Error message contains details about the limit being exceeded - Message size exceeds system limit\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n  * **1020** - Invalid Tracking URL - The tracking URL that was provided is invalid\n  * **SCG_ERROR_4001** - Required parameter<parameter> missing or is null\n  * **SCG_ERROR_4002** - Required parameter <parameter> data type/format is incorrect\n  * **SCG_ERROR_4003** - Optional parameter <parameter> data type/format is incorrect            \n  * **SCG_ERROR_4004** - Invalid parameter <parameter> defined            \n  * **SCG_ERROR_4005** - Error message contains details about the limit being exceeded - Message size exceeds system limit            \n  * **SCG_ERROR_4006** -  Indexed parameter <parameter> too long - Value of <parameter> in the request exceeded the maximum allowed length          \n  * **SCG_ERROR_4007** -  Invalid Tracking URL - The tracking URL <parameter> that was provided is invalid          \n  * **SCG_ERROR_4008** -  Message scheduled time exceeds max allowed days: <parameter>          \n  * **SCG_ERROR_4009** -  Cannot exceed more than <parameter> media URLs                    \n  * **SCG_ERROR_40010**  -  Cannot include media URLs with attachment        \n  * **SCG_ERROR_40011**  -  Group message only supported for US Phone numbers        \n  * **SCG_ERROR_40012**  -  No sender addresses capable of sending requested message type        \n  * **SCG_ERROR_40013**  -  No sender addresses capable of sending requested verifiedSms message      \n  * **SCG_ERROR_40014**  -  Cannot failover to SMS on a message with attachments        \n  * **SCG_ERROR_40015**  - Cannot exceed more than <parameter> recipients          \n  * **SCG_ERROR_40016**  -  Sender id is not capable of sending MMS        \n  * **SCG_ERROR_40017**  -  Only sender id with type id LONGCODE is supported for group MMS        \n  * **SCG_ERROR_40018**  -  Invalid senderId/address: <parameter>        \n  * **SCG_ERROR_40019**  -  Multiple sender id with address: <parameter>. Use sender id to send message.        \n  * **SCG_ERROR_40020**  -  Unrecognized option(s): <parameter>        \n  * **SCG_ERROR_40021**  -  Failover to SMS requires a SenderId for SMS (use a channel)        \n  * **SCG_ERROR_40022**  -  Failover TO SMS requires a SenderId for <parameter> (use a channel)        \n  * **SCG_ERROR_40023**  -  Delivery Window Restriction Violation        \n  * **SCG_ERROR_40024**  -  Invalid Recipient        \n  * **SCG_ERROR_40025**  -  Invalid payload        \n  * **SCG_ERROR_40026**  -  Missing form-data part: <part>        \n  * **SCG_ERROR_40027**  -  Content size in Content-Disposition is mandatory        \n  * **SCG_ERROR_40028**  -  Content length is mandatory        \n  * **SCG_ERROR_40029**  -  Attachment size <parameter> exceeds max allowed attachment size <parameter>        \n  * **SCG_ERROR_40030**  - Only UPLOADED attachments can be downloaded.              \n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n  * **SCG_ERROR_4010** - Token unauthorized for this resource\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n  * **SCG_ERROR_4021** - Quota exceeded\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n  * **SCG_ERROR_4030** - Forbidden          \n  * **SCG_ERROR_4031** - Attachment <parameter> was not found neither in cache nor in database            \n  * **SCG_ERROR_4032** - Attachment <parameter> is in incorrect state\n    <parameter>                       \n  * **SCG_ERROR_4033** - SenderId start date in the future: <parameter>           \n  * **SCG_ERROR_4034** - SenderId end date in the past: <parameter>           \n  * **SCG_ERROR_4035** - Invalid sender ID state: <parameter>          \n  * **SCG_ERROR_4036** - Invalid sender ID ownership: <parameter>           \n  * **SCG_ERROR_4037** - <parameter> forbidden for attachment in state: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n  * **SCG_ERROR_4040**  - Resource you are trying to fetch not found for <parameter>          \n  * **SCG_ERROR_4041**  -  Resource you are trying to update cannot be found for <parameter>        \n  * **SCG_ERROR_4043**  -  The language code <language> is not found among the languages supported by Google Translate        \n  * **SCG_ERROR_4045**  -  No sender id matches with recipient country.        \n  * **SCG_ERROR_4046**  - Access token expired\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n  * **SCG_ERROR_4090** - The access token could not be updated because resource is being updated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '422':
+          description: "Unprocessable Entity\n  * **SCG_ERROR_4220** - Attachment content could not be downloaded from the provided URL. The error message is <error message>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n  * **SCG_ERROR_5000** - Unexpected Server Error\n  * **SCG_ERROR_5002** - Message type restriction not implemented for: <messageType>            \n  * **SCG_ERROR_5003** - Error redirecting to proxy: <parameter>                      \n  * **SCG_ERROR_5004** - Error downloading attachment from storage: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.

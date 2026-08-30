@@ -1,0 +1,240 @@
+openapi: 3.2.0
+info:
+  license:
+    name: ''
+    url: ''
+  contact:
+    name: ''
+  description: ''
+  termsOfService: ''
+  title: Whitelisting_Service Whitelist API
+  version: v1
+tags:
+- name: whitelist
+paths:
+  /whitelist/{WHITELIST_ID}:
+    post:
+      security:
+      - default: []
+      x-auth-type: Application & Application User
+      operationId: post_whitelist/{WHITELIST_ID}
+      responses:
+        '200':
+          description: No response was specified
+      parameters:
+      - in: path
+        name: WHITELIST_ID
+        description: ''
+        required: true
+        schema:
+          type: string
+      x-throttling-tier: Unlimited
+      tags:
+      - whitelist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+              properties:
+                payload:
+                  type: string
+        description: Request Body
+        required: true
+    get:
+      security:
+      - default: []
+      x-auth-type: Application & Application User
+      operationId: get_whitelist/{WHITELIST_ID}
+      responses:
+        '200':
+          description: No response was specified
+      parameters:
+      - in: path
+        name: WHITELIST_ID
+        description: ''
+        required: true
+        schema:
+          type: string
+      x-throttling-tier: Unlimited
+      tags:
+      - whitelist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+              properties:
+                payload:
+                  type: string
+        description: Request Body
+        required: true
+  /whitelist/{WHITELIST_ID}/{ENTITY_ID}:
+    get:
+      security:
+      - default: []
+      x-auth-type: Application & Application User
+      operationId: get_whitelist/{WHITELIST_ID}/{ENTITY_ID}
+      responses:
+        '200':
+          description: No response was specified
+      parameters:
+      - in: path
+        name: WHITELIST_ID
+        description: ''
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: ENTITY_ID
+        description: ''
+        required: true
+        schema:
+          type: string
+      x-throttling-tier: Unlimited
+      tags:
+      - whitelist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+              properties:
+                payload:
+                  type: string
+        description: Request Body
+        required: true
+    delete:
+      security:
+      - default: []
+      x-auth-type: Application & Application User
+      operationId: delete_whitelist/{WHITELIST_ID}/{ENTITY_ID}
+      responses:
+        '200':
+          description: No response was specified
+      parameters:
+      - in: path
+        name: WHITELIST_ID
+        description: ''
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: ENTITY_ID
+        description: ''
+        required: true
+        schema:
+          type: string
+      x-throttling-tier: Unlimited
+      tags:
+      - whitelist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+              properties:
+                payload:
+                  type: string
+        description: Request Body
+        required: true
+  /whitelist/{WHITELIST_ID}/{ENTITY_ID}/{TRANSACTION_ID}:
+    post:
+      security:
+      - default: []
+      x-auth-type: Application & Application User
+      operationId: post_whitelist/{WHITELIST_ID}/{ENTITY_ID}/{TRANSACTION_ID}
+      responses:
+        '200':
+          description: No response was specified
+      parameters:
+      - in: path
+        name: WHITELIST_ID
+        description: ''
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: ENTITY_ID
+        description: ''
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: TRANSACTION_ID
+        description: ''
+        required: true
+        schema:
+          type: string
+      x-throttling-tier: Unlimited
+      tags:
+      - whitelist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+              properties:
+                payload:
+                  type: string
+        description: Request Body
+        required: true
+    get:
+      security:
+      - default: []
+      x-auth-type: Application & Application User
+      operationId: get_whitelist/{WHITELIST_ID}/{ENTITY_ID}/{TRANSACTION_ID}
+      responses:
+        '200':
+          description: No response was specified
+      parameters:
+      - in: path
+        name: WHITELIST_ID
+        description: ''
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: ENTITY_ID
+        description: ''
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: TRANSACTION_ID
+        description: ''
+        required: true
+        schema:
+          type: string
+      x-throttling-tier: Unlimited
+      tags:
+      - whitelist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+              properties:
+                payload:
+                  type: string
+        description: Request Body
+        required: true
+components:
+  securitySchemes:
+    default:
+      type: oauth2
+      flows:
+        implicit:
+          scopes: {}
+          authorizationUrl: https://beta.api.syniverse.com/token
+x-wso2-security:
+  apim:
+    tokenUrl: ''
+    authorizationUrl: ''
+    in: ''
+    name: ''
+    description: ''
+    scopes: ''
+    type: ''
+    x-wso2-scopes: []
+    flow: ''

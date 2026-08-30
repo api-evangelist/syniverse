@@ -1,0 +1,1640 @@
+openapi: 3.2.0
+info:
+  description: Synivere Communication Gateway API
+  version: 1.0.0
+  title: SCG Sender ID API
+servers:
+- url: https://api.syniverse.com/scg-external-api/api/v1
+tags:
+- name: Sender ID
+paths:
+  /messaging/sender_ids:
+    get:
+      tags:
+      - Sender ID
+      summary: Retrieve the list of matching sender addresses
+      description: '  Retrieve the list of matching sender addresses'
+      parameters:
+      - name: id
+        in: query
+        description: 'unique id of the sender address
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: name
+        in: query
+        description: 'name of the sender address
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: state
+        in: query
+        description: 'represents the sender address status. Following values are allowed:
+
+          - PENDING_IMPLEMENTATION
+
+          - IMPLEMENTED
+
+          - ACTIVE
+
+          - INACTIVE
+
+          - BROKEN
+
+          - PENDING_DELETE
+
+          - PENDING_CONFIRMATION
+
+
+          For each sender address that require provisioning, when a sender address is requested, the initial status will be ''pending implementation''
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: country
+        in: query
+        description: 'The country that the sender address can be used to send messages to. This field will contain ISO country code. The value is managed by Syniverse and not editable by the customer.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: application_id
+        in: query
+        description: 'ID of the application that has created the resource
+
+          '
+        required: false
+        schema:
+          type: integer
+      - name: created_date
+        in: query
+        description: 'The date the resource was created
+
+          '
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_2'
+        '400':
+          description: "Bad Request.  The request could not be understood by the server. \n * **400** - Bad Request - Error Message provides information about what's wrong with the request \n  * **1012** - Error message contains details about the limit being exceeded - Message size exceeds system limit \n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length \n  * **1020** - Invalid Tracking URL - The tracking URL that was provided is invalid \n  * **4001** - Required parameter<parameter> missing or is null \n  * **4002** - Required parameter <parameter> data type/format is incorrect  \n  * **4003** - Optional parameter <parameter> data type/format is incorrect\n  * **4004** - Invalid parameter <parameter> defined \n  * **4005** - Error message contains details about the limit being exceeded - Message size exceeds system limit\n  * **4006** - Indexed parameter <parameter> too long - Value of <parameter> in the request exceeded the maximum allowed length\n  * **4007** - Invalid Tracking URL - The tracking URL <parameter> that was provided is invalid\n  * **4008** - Message scheduled time exceeds max allowed days: <parameter>\n  * **4009** - Cannot exceed more than <parameter> media URLs\n  * **40010** - Cannot include media URLs with attachment\n  * **40011** - Group message only supported for US Phone numbers\n  * **40012** - No sender addresses capable of sending requested message type\n  * **40013** - No sender addresses capable of sending requested verifiedSms message\n  * **40014** - Cannot failover to SMS on a message with attachments\n  * **40015** - Cannot exceed more than <parameter> recipients\n  * **40016** - Sender id is not capable of sending MMS\n  * **40017** - Only sender id with type id LONGCODE is supported for group MMS\n  * **40018** - Invalid senderId/address: <parameter>\n  * **40019** - Multiple sender id with address: <parameter>. Use sender id to send message.\n  * **40020** - Unrecognized option(s): <parameter>\n  * **40021** - Failover to SMS requires a SenderId for SMS (use a channel)\n  * **40022** - Failover TO SMS requires a SenderId for <parameter> (use a channel)\n  * **40023** - Delivery Window Restriction Violation\n  * **40024** - Invalid Recipient \n  * **40025** - Invalid payload\n  * **40026** - Missing form-data part: <part>\n  * **40027** - Content size in Content-Disposition is mandatory\n  * **40028** - Content length is mandatory\n  * **40029** - Attachment size <parameter> exceeds max allowed attachment size <parameter>\n  * **40030** - Only UPLOADED attachments can be downloaded.\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n  * **4010** - Token unauthorized for this resource\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n  * **4021** - Quota exceeded\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource \n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n  * **4030** - Forbidden          \n  * **4031** - Attachment <parameter> was not found neither in cache nor in database            \n  * **4032** - Attachment <parameter> is in incorrect state   <parameter>                       \n  * **4033** - SenderId start date in the future: <parameter>           \n  * **4034** - SenderId end date in the past: <parameter>          \n  * **4035** - Invalid sender ID state: <parameter>         \n  * **4036** - Invalid sender ID ownership: <parameter>           \n  * **4037** - <parameter> forbidden for attachment in state: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n* **404** - Error message contains details about the missing resource - Requested resource not found  \n* **4040** - Resource you are trying to fetch not found for <parameter>          \n* **4041** - Resource you are trying to update cannot be found for <parameter>        \n* **4042** - No mdn is found       \n* **4043** - The language code <language> is not found among the languages supported by Google Translate        \n* **4044** - Non-shortcode senderId is found.                 \n* **4045** - No sender id matches with recipient country.        \n* **4046** - Access token expired\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n  * **4090** - The access token could not be updated because resource is being updated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '422':
+          description: "Unprocessable Entity\n  * **4220** - Attachment content could not be downloaded from the provided URL. The error message is <error message>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n* **500** - Server Error - Internal server error. Please report\n* **5000** - Unexpected Server Error\n* **5001** - Unexpected Non Retriable Server Error          \n* **5002** - Message type restriction not implemented for: <messageType>            \n* **5003** - Error redirecting to proxy: <parameter>                      \n* **5004** - Error downloading attachment from storage: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+    post:
+      tags:
+      - Sender ID
+      summary: Creates a Sender ID
+      description: '  Creates a Sender ID'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_3'
+        '400':
+          description: "Bad Request.  The request could not be understood by the server. \n  * **400** - Bad Request - Error Message provides information about what's wrong with the request \n  * **1012** - Error message contains details about the limit being exceeded - Message size exceeds system limit  \n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length \n  * **1020** - Invalid Tracking URL - The tracking URL that was provided is invalid \n  * **4001** - Required parameter<parameter> missing or is null \n  * **4002** - Required parameter <parameter> data type/format is incorrect  \n  * **4003** - Optional parameter <parameter> data type/format is incorrect\n  * **4004** - Invalid parameter <parameter> defined \n  * **4005** - Error message contains details about the limit being exceeded - Message size exceeds system limit\n  * **4006** - Indexed parameter <parameter> too long - Value of <parameter> in the request exceeded the maximum allowed length\n  * **4007** - Invalid Tracking URL - The tracking URL <parameter> that was provided is invalid\n  * **4008** - Message scheduled time exceeds max allowed days: <parameter>\n  * **4009** - Cannot exceed more than <parameter> media URLs\n  * **40010** - Cannot include media URLs with attachment\n  * **40011** - Group message only supported for US Phone numbers\n  * **40012** - No sender addresses capable of sending requested message type\n  * **40013** - No sender addresses capable of sending requested verifiedSms message\n  * **40014** - Cannot failover to SMS on a message with attachments\n  * **40015** - Cannot exceed more than <parameter> recipients\n  * **40016** - Sender id is not capable of sending MMS\n  * **40017** - Only sender id with type id LONGCODE is supported for group MMS\n  * **40018** - Invalid senderId/address: <parameter>\n  * **40019** - Multiple sender id with address: <parameter>. Use sender id to send message.\n  * **40020** - Unrecognized option(s): <parameter>\n  * **40021** - Failover to SMS requires a SenderId for SMS (use a channel)\n  * **40022** - Failover TO SMS requires a SenderId for <parameter> (use a channel)\n  * **40023** - Delivery Window Restriction Violation\n  * **40024** - Invalid Recipient \n  * **40025** - Invalid payload\n  * **40026** - Missing form-data part: <part>\n  * **40027** - Content size in Content-Disposition is mandatory\n  * **40028** - Content length is mandatory\n  * **40029** - Attachment size <parameter> exceeds max allowed attachment size <parameter>\n  * **40030** - Only UPLOADED attachments can be downloaded.\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n  * **4010** - Token unauthorized for this resource\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n  * **4021** - Quota exceeded\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource \n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n  * **4030** - Forbidden          \n  * **4031** - Attachment <parameter> was not found neither in cache nor in database            \n  * **4032** - Attachment <parameter> is in incorrect state \n    <parameter>                       \n  * **4033** - SenderId start date in the future: <parameter>           \n  * **4034** - SenderId end date in the past: <parameter>          \n  * **4035** - Invalid sender ID state: <parameter>         \n  * **4036** - Invalid sender ID ownership: <parameter>           \n  * **4037** - <parameter> forbidden for attachment in state: <parameter> \n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n* **404** - Error message contains details about the missing resource - Requested resource not found  \n* **4040** - Resource you are trying to fetch not found for <parameter>          \n* **4041** - Resource you are trying to update cannot be found for <parameter>        \n* **4042** - No mdn is found       \n* **4043** - The language code <language> is not found among the languages supported by Google Translate        \n* **4044** - Non-shortcode senderId is found.                 \n* **4045** - No sender id matches with recipient country.        \n* **4046** - Access token expired \n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n  * **4090** - The access token could not be updated because resource is being updated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '422':
+          description: "Unprocessable Entity\n  * **4220** - Attachment content could not be downloaded from the provided URL. The error message is <error message>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n* **500** - Server Error - Internal server error. Please report\n* **5000** - Unexpected Server Error\n* **5001** - Unexpected Non Retriable Server Error          \n* **5002** - Message type restriction not implemented for: <messageType>            \n* **5003** - Error redirecting to proxy: <parameter>                      \n* **5004** - Error downloading attachment from storage: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sender_ID'
+    delete:
+      tags:
+      - Sender ID
+      summary: Delete the list of matching sender addresses
+      description: '  Delete the list of matching sender addresses'
+      parameters:
+      - name: id
+        in: query
+        description: 'unique id of the sender address
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: parent_id
+        in: query
+        description: 'for shared short codes, this is a reference to the system  sender id that is associated with this preprovisioned address.  Whenever a customer wants to use a preprovisioned, shared code, the parent sender address id will indicate the sender id that was used to create customer version of the sender id
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: name
+        in: query
+        description: 'name of the sender address
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: ownership
+        in: query
+        description: 'this field determines the ownership category of a shortcode. Applies only for SMS type of sender id''s. Following values are allowed:
+
+          - PRIVATE -> represents a short code that is private for use by one company only
+
+          - SHARED -> represents a short code that is owned by Syniverse and where multiple customers can use it. When a customer wants to use a SHARED sender id, a new PRIVATE sender address will be created with parent sender id set to the SHARED sender id
+
+          - PREPROVISIONED -> represents an address that is owned by Syniverse and can be selected by a customer. Upon a customer selecting a preprovisioned sender address, new sender id document as a copy of the PREPROVISIONED document is created, with state PRIVATE and parent_id pointing the original PREPROVISIONED sender address. The PREPROVISIONED sender address changes ownership to PURCHASED. Once the PRIVATE sender address, pointing to the PURCHASED is deleted, the PURCHASED sender changes its ownership back to PREPROVISIONED.
+
+          - PURCHASED -> PREPROVISIONED sender address, currently occupied by a customer.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: class_id
+        in: query
+        description: 'reference to the sender address class that determines the priority and throughput of the configured sender id
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: type_id
+        in: query
+        description: 'reference the sender address type that determines the data types allowed on the sender id and identifies the gateway used to deliver the messages
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: state
+        in: query
+        description: 'represents the sender address status. Following values are allowed:
+
+          - PENDING_IMPLEMENTATION
+
+          - IMPLEMENTED
+
+          - ACTIVE
+
+          - INACTIVE
+
+          - BROKEN
+
+          - PENDING_DELETE
+
+          - PENDING_CONFIRMATION
+
+
+          For each sender address that require provisioning, when a sender address is requested, the initial status will be ''pending implementation''
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: country
+        in: query
+        description: 'The country that the sender address can be used to send messages to. This field will contain ISO country code. The value is managed by Syniverse and not editable by the customer.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: consent_managed_by
+        in: query
+        description: 'Possible values: USER, SCG or SCG_UNSOLICITED_OPT_OUT. Default is USER
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: capabilities
+        in: query
+        description: 'Message types allowed on the sender ids from of this type: SMS, MMS, VOICE, WhatsApp etc.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: check_white_list
+        in: query
+        description: 'If set, sending via this sender ID is limited to recipients present in the customer''s white list.
+
+          '
+        required: false
+        schema:
+          type: boolean
+      - name: application_id
+        in: query
+        description: 'ID of the application that has created the resource
+
+          '
+        required: false
+        schema:
+          type: integer
+      - name: created_date
+        in: query
+        description: 'The date the resource was created
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: last_updated_date
+        in: query
+        description: 'for shared short codes, this is a reference to the system  sender id that is associated with this preprovisioned address.  Whenever a customer wants to use a preprovisioned, shared code, the parent sender address id will indicate the sender id that was us
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: register_number
+        in: query
+        description: 'When the ''register_number'' can be set to ''true'' or ''false''. When set to ''true'', this instructs SCG to register a Telephone number with the appropriate Operator or Registration entity.
+
+          '
+        required: false
+        schema:
+          type: string
+      responses:
+        '204':
+          description: "Successful operation. \n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  del_qty:
+                    type: string
+                    description: The quantity of deleted items.
+                  err_qty:
+                    type: string
+                    description: The quantity of errors.
+                  err_msg:
+                    type: string
+                    description: A human readable description of the error.
+        '400':
+          description: "Bad Request.  The request could not be understood by the server. \n  * **400** - Bad Request - Error Message provides information about what's wrong with the request \n  * **1012** - Error message contains details about the limit being exceeded - Message size exceeds system limit \n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length \n  * **1020** - Invalid Tracking URL - The tracking URL that was provided is invalid \n  * **4001** - Required parameter<parameter> missing or is null \n  * **4002** - Required parameter <parameter> data type/format is incorrect \n  * **4003** - Optional parameter <parameter> data type/format is incorrect\n  * **4004** - Invalid parameter <parameter> defined \n  * **4005** - Error message contains details about the limit being exceeded - Message size exceeds system limit\n  * **4006** - Indexed parameter <parameter> too long - Value of <parameter> in the request exceeded the maximum allowed length\n  * **4007** - Invalid Tracking URL - The tracking URL <parameter> that was provided is invalid\n  * **4008** - Message scheduled time exceeds max allowed days: <parameter>\n  * **4009** - Cannot exceed more than <parameter> media URLs\n  * **40010** - Cannot include media URLs with attachment\n  * **40011** - Group message only supported for US Phone numbers\n  * **40012** - No sender addresses capable of sending requested message type\n  * **40013** - No sender addresses capable of sending requested verifiedSms message\n  * **40014** - Cannot failover to SMS on a message with attachments\n  * **40015** - Cannot exceed more than <parameter> recipients\n  * **40016** - Sender id is not capable of sending MMS\n  * **40017** - Only sender id with type id LONGCODE is supported for group MMS\n  * **40018** - Invalid senderId/address: <parameter>\n  * **40019** - Multiple sender id with address: <parameter>. Use sender id to send message.\n  * **40020** - Unrecognized option(s): <parameter>\n  * **40021** - Failover to SMS requires a SenderId for SMS (use a channel)\n  * **40022** - Failover TO SMS requires a SenderId for <parameter> (use a channel)\n  * **40023** - Delivery Window Restriction Violation\n  * **40024** - Invalid Recipient \n  * **40025** - Invalid payload\n  * **40026** - Missing form-data part: <part>\n  * **40027** - Content size in Content-Disposition is mandatory\n  * **40028** - Content length is mandatory\n  * **40029** - Attachment size <parameter> exceeds max allowed attachment size <parameter>\n  * **40030** - Only UPLOADED attachments can be downloaded.\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n  * **4010** - Token unauthorized for this resource\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n  * **4021** - Quota exceeded\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n  * **4030** - Forbidden          \n  * **4031** - Attachment <parameter> was not found neither in cache nor in database            \n  * **4032** - Attachment <parameter> is in incorrect state   <parameter>                       \n  * **4033** - SenderId start date in the future: <parameter>           \n  * **4034** - SenderId end date in the past: <parameter>          \n  * **4035** - Invalid sender ID state: <parameter>         \n  * **4036** - Invalid sender ID ownership: <parameter>           \n  * **4037** - <parameter> forbidden for attachment in state: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n* **404** - Error message contains details about the missing resource - Requested resource not found  \n* **4040** - Resource you are trying to fetch not found for <parameter>          \n* **4041** - Resource you are trying to update cannot be found for <parameter>        \n* **4042** - No mdn is found       \n* **4043** - The language code <language> is not found among the languages supported by Google Translate        \n* **4044** - Non-shortcode senderId is found.                 \n* **4045** - No sender id matches with recipient country.        \n* **4046** - Access token expired\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n  * **4090** - The access token could not be updated because resource is being updated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '422':
+          description: "Unprocessable Entity\n  * **4220** - Attachment content could not be downloaded from the provided URL. The error message is <error message>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n* **500** - Server Error - Internal server error. Please report\n* **5000** - Unexpected Server Error\n* **5001** - Unexpected Non Retriable Server Error          \n* **5002** - Message type restriction not implemented for: <messageType>            \n* **5003** - Error redirecting to proxy: <parameter>                      \n* **5004** - Error downloading attachment from storage: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+  /'messaging/sender_ids/purchase':
+    post:
+      tags:
+      - Sender ID
+      summary: Purchase a Sender Address
+      description: '  Purchase a Sender Address'
+      responses:
+        '204':
+          description: Successful operation.  No Content in reponse.
+        '400':
+          description: "Bad Request.  The request could not be understood by the server. \n  * **400** - Bad Request - Error Message provides information about what's wrong with the request \n  * **1012** - Error message contains details about the limit being exceeded - Message size exceeds system limit \n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length \n  * **1020** - Invalid Tracking URL - The tracking URL that was provided is invalid \n  * **4001** - Required parameter<parameter> missing or is null \n  * **4002** - Required parameter <parameter> data type/format is incorrect \n  * **4003** - Optional parameter <parameter> data type/format is incorrect\n  * **4004** - Invalid parameter <parameter> defined \n  * **4005** - Error message contains details about the limit being exceeded - Message size exceeds system limit\n  * **4006** - Indexed parameter <parameter> too long - Value of <parameter> in the request exceeded the maximum allowed length\n  * **4007** - Invalid Tracking URL - The tracking URL <parameter> that was provided is invalid\n  * **4008** - Message scheduled time exceeds max allowed days: <parameter>\n  * **4009** - Cannot exceed more than <parameter> media URLs\n  * **40010** - Cannot include media URLs with attachment\n  * **40011** - Group message only supported for US Phone numbers\n  * **40012** - No sender addresses capable of sending requested message type\n  * **40013** - No sender addresses capable of sending requested verifiedSms message\n  * **40014** - Cannot failover to SMS on a message with attachments\n  * **40015** - Cannot exceed more than <parameter> recipients\n  * **40016** - Sender id is not capable of sending MMS\n  * **40017** - Only sender id with type id LONGCODE is supported for group MMS\n  * **40018** - Invalid senderId/address: <parameter>\n  * **40019** - Multiple sender id with address: <parameter>. Use sender id to send message.\n  * **40020** - Unrecognized option(s): <parameter>\n  * **40021** - Failover to SMS requires a SenderId for SMS (use a channel)\n  * **40022** - Failover TO SMS requires a SenderId for <parameter> (use a channel)\n  * **40023** - Delivery Window Restriction Violation\n  * **40024** - Invalid Recipient \n  * **40025** - Invalid payload\n  * **40026** - Missing form-data part: <part>\n  * **40027** - Content size in Content-Disposition is mandatory\n  * **40028** - Content length is mandatory\n  * **40029** - Attachment size <parameter> exceeds max allowed attachment size <parameter>\n  * **40030** - Only UPLOADED attachments can be downloaded.\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n  * **4010** - Token unauthorized for this resource\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n  * **4021** - Quota exceeded\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n  * **4030** - Forbidden          \n  * **4031** - Attachment <parameter> was not found neither in cache nor in database            \n  * **4032** - Attachment <parameter> is in incorrect state\n    <parameter>                       \n  * **4033** - SenderId start date in the future: <parameter>           \n  * **4034** - SenderId end date in the past: <parameter>          \n  * **4035** - Invalid sender ID state: <parameter>         \n  * **4036** - Invalid sender ID ownership: <parameter>           \n  * **4037** - <parameter> forbidden for attachment in state: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n* **404** - Error message contains details about the missing resource - Requested resource not found  \n* **4040** - Resource you are trying to fetch not found for <parameter>          \n* **4041** - Resource you are trying to update cannot be found for <parameter>        \n* **4042** - No mdn is found       \n* **4043** - The language code <language> is not found among the languages supported by Google Translate        \n* **4044** - Non-shortcode senderId is found.                 \n* **4045** - No sender id matches with recipient country.        \n* **4046** - Access token expired \n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n  * **4090** - The access token could not be updated because resource is being updated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '422':
+          description: "Unprocessable Entity\n  * **4220** - Attachment content could not be downloaded from the provided URL. The error message is <error message>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n* **500** - Server Error - Internal server error. Please report\n* **5000** - Unexpected Server Error\n* **5001** - Unexpected Non Retriable Server Error          \n* **5002** - Message type restriction not implemented for: <messageType>            \n* **5003** - Error redirecting to proxy: <parameter>                      \n* **5004** - Error downloading attachment from storage: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sender_ID_Purchase'
+  /'messaging/sender_ids/{Sender_ID}':
+    get:
+      tags:
+      - Sender ID
+      summary: Retrieve a specified Sender ID
+      description: '  Retrieve a specified Sender ID'
+      parameters:
+      - name: Sender_ID
+        in: path
+        description: The Sender ID for this resource.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_2_list'
+        '400':
+          description: "Bad Request.  The request could not be understood by the server. \n  * **400** - Bad Request - Error Message provides information about what's wrong with the request \n  * **1012** - Error message contains details about the limit being exceeded - Message size exceeds system limit \n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length \n  * **1020** - Invalid Tracking URL - The tracking URL that was provided is invalid \n  * **4001** - Required parameter<parameter> missing or is null \n  * **4002** - Required parameter <parameter> data type/format is incorrect \n  * **4003** - Optional parameter <parameter> data type/format is incorrect\n  * **4004** - Invalid parameter <parameter> defined \n  * **4005** - Error message contains details about the limit being exceeded - Message size exceeds system limit\n  * **4006** - Indexed parameter <parameter> too long - Value of <parameter> in the request exceeded the maximum allowed length\n  * **4007** - Invalid Tracking URL - The tracking URL <parameter> that was provided is invalid\n  * **4008** - Message scheduled time exceeds max allowed days: <parameter>\n  * **4009** - Cannot exceed more than <parameter> media URLs\n  * **40010** - Cannot include media URLs with attachment\n  * **40011** - Group message only supported for US Phone numbers\n  * **40012** - No sender addresses capable of sending requested message type\n  * **40013** - No sender addresses capable of sending requested verifiedSms message\n  * **40014** - Cannot failover to SMS on a message with attachments\n  * **40015** - Cannot exceed more than <parameter> recipients\n  * **40016** - Sender id is not capable of sending MMS\n  * **40017** - Only sender id with type id LONGCODE is supported for group MMS\n  * **40018** - Invalid senderId/address: <parameter>\n  * **40019** - Multiple sender id with address: <parameter>. Use sender id to send message.\n  * **40020** - Unrecognized option(s): <parameter>\n  * **40021** - Failover to SMS requires a SenderId for SMS (use a channel)\n  * **40022** - Failover TO SMS requires a SenderId for <parameter> (use a channel)\n  * **40023** - Delivery Window Restriction Violation\n  * **40024** - Invalid Recipient \n  * **40025** - Invalid payload\n  * **40026** - Missing form-data part: <part>\n  * **40027** - Content size in Content-Disposition is mandatory\n  * **40028** - Content length is mandatory\n  * **40029** - Attachment size <parameter> exceeds max allowed attachment size <parameter>\n  * **40030** - Only UPLOADED attachments can be downloaded.\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n  * **4010** - Token unauthorized for this resource\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n  * **4021** - Quota exceeded\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n  * **4030** - Forbidden          \n  * **4031** - Attachment <parameter> was not found neither in cache nor in database            \n  * **4032** - Attachment <parameter> is in incorrect state \n    <parameter>                       \n  * **4033** - SenderId start date in the future: <parameter>           \n  * **4034** - SenderId end date in the past: <parameter>          \n  * **4035** - Invalid sender ID state: <parameter>         \n  * **4036** - Invalid sender ID ownership: <parameter>           \n  * **4037** - <parameter> forbidden for attachment in state: <parameter> \n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n* **404** - Error message contains details about the missing resource - Requested resource not found  \n* **4040** - Resource you are trying to fetch not found for <parameter>          \n* **4041** - Resource you are trying to update cannot be found for <parameter>        \n* **4042** - No mdn is found       \n* **4043** - The language code <language> is not found among the languages supported by Google Translate        \n* **4044** - Non-shortcode senderId is found.                 \n* **4045** - No sender id matches with recipient country.        \n* **4046** - Access token expired n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n  * **4090** - The access token could not be updated because resource is being updated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '422':
+          description: "Unprocessable Entity\n  * **4220** - Attachment content could not be downloaded from the provided URL. The error message is <error message>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n* **500** - Server Error - Internal server error. Please report\n* **5000** - Unexpected Server Error\n* **5001** - Unexpected Non Retriable Server Error          \n* **5002** - Message type restriction not implemented for: <messageType>            \n* **5003** - Error redirecting to proxy: <parameter>                      \n* **5004** - Error downloading attachment from storage: <parameter> n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+    post:
+      tags:
+      - Sender ID
+      summary: Update a Sender ID
+      description: '  Update a Sender ID'
+      parameters:
+      - name: Sender_ID
+        in: path
+        description: The Sender ID for this resource.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful operation.  No Content in reponse.
+        '400':
+          description: "Bad Request.  The request could not be understood by the server. \n  * **400** - Bad Request - Error Message provides information about what's wrong with the request \n  * **1012** - Error message contains details about the limit being exceeded - Message size exceeds system limit \n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length \n  * **1020** - Invalid Tracking URL - The tracking URL that was provided is invalid \n  * **4001** - Required parameter<parameter> missing or is null \n  * **4002** - Required parameter <parameter> data type/format is incorrect \n  * **4003** - Optional parameter <parameter> data type/format is incorrect\n  * **4004** - Invalid parameter <parameter> defined \n  * **4005** - Error message contains details about the limit being exceeded - Message size exceeds system limit\n  * **4006** - Indexed parameter <parameter> too long - Value of <parameter> in the request exceeded the maximum allowed length\n  * **4007** - Invalid Tracking URL - The tracking URL <parameter> that was provided is invalid\n  * **4008** - Message scheduled time exceeds max allowed days: <parameter>\n  * **4009** - Cannot exceed more than <parameter> media URLs\n  * **40010** - Cannot include media URLs with attachment\n  * **40011** - Group message only supported for US Phone numbers\n  * **40012** - No sender addresses capable of sending requested message type\n  * **40013** - No sender addresses capable of sending requested verifiedSms message\n  * **40014** - Cannot failover to SMS on a message with attachments\n  * **40015** - Cannot exceed more than <parameter> recipients\n  * **40016** - Sender id is not capable of sending MMS\n  * **40017** - Only sender id with type id LONGCODE is supported for group MMS\n  * **40018** - Invalid senderId/address: <parameter>\n  * **40019** - Multiple sender id with address: <parameter>. Use sender id to send message.\n  * **40020** - Unrecognized option(s): <parameter>\n  * **40021** - Failover to SMS requires a SenderId for SMS (use a channel)\n  * **40022** - Failover TO SMS requires a SenderId for <parameter> (use a channel)\n  * **40023** - Delivery Window Restriction Violation\n  * **40024** - Invalid Recipient \n  * **40025** - Invalid payload\n  * **40026** - Missing form-data part: <part>\n  * **40027** - Content size in Content-Disposition is mandatory\n  * **40028** - Content length is mandatory\n  * **40029** - Attachment size <parameter> exceeds max allowed attachment size <parameter>\n  * **40030** - Only UPLOADED attachments can be downloaded.\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n  * **4010** - Token unauthorized for this resource\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n  * **4021** - Quota exceeded\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n  * **4030** - Forbidden          \n  * **4031** - Attachment <parameter> was not found neither in cache nor in database            \n  * **4032** - Attachment <parameter> is in incorrect state \n    <parameter>                       \n  * **4033** - SenderId start date in the future: <parameter>           \n  * **4034** - SenderId end date in the past: <parameter>          \n  * **4035** - Invalid sender ID state: <parameter>         \n  * **4036** - Invalid sender ID ownership: <parameter>           \n  * **4037** - <parameter> forbidden for attachment in state: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n* **404** - Error message contains details about the missing resource - Requested resource not found  \n* **4040** - Resource you are trying to fetch not found for <parameter>          \n* **4041** - Resource you are trying to update cannot be found for <parameter>        \n* **4042** - No mdn is found       \n* **4043** - The language code <language> is not found among the languages supported by Google Translate        \n* **4044** - Non-shortcode senderId is found.                 \n* **4045** - No sender id matches with recipient country.        \n* **4046** - Access token expired \n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n  * **4090** - The access token could not be updated because resource is being updated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '422':
+          description: "Unprocessable Entity\n  * **4220** - Attachment content could not be downloaded from the provided URL. The error message is <error message>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n* **500** - Server Error - Internal server error. Please report\n* **5000** - Unexpected Server Error\n* **5001** - Unexpected Non Retriable Server Error          \n* **5002** - Message type restriction not implemented for: <messageType>            \n* **5003** - Error redirecting to proxy: <parameter>                      \n* **5004** - Error downloading attachment from storage: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sender_ID_1'
+    delete:
+      tags:
+      - Sender ID
+      summary: Delete a Sender ID
+      description: '  Delete a Sender ID '
+      parameters:
+      - name: Sender_ID
+        in: path
+        description: The Sender ID for this resource.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: "Successful operation. \n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  del_qty:
+                    type: string
+                    description: The quantity of deleted items.
+                  err_qty:
+                    type: string
+                    description: The quantity of errors.
+                  err_msg:
+                    type: string
+                    description: A human readable description of the error.
+        '400':
+          description: "Bad Request.  The request could not be understood by the server. \n  * **400** - Bad Request - Error Message provides information about what's wrong with the request \n  * **1012** - Error message contains details about the limit being exceeded - Message size exceeds system limit \n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length \n  * **1020** - Invalid Tracking URL - The tracking URL that was provided is invalid \n  * **4001** - Required parameter<parameter> missing or is null \n  * **4002** - Required parameter <parameter> data type/format is incorrect \n  * **4003** - Optional parameter <parameter> data type/format is incorrect\n  * **4004** - Invalid parameter <parameter> defined \n  * **4005** - Error message contains details about the limit being exceeded - Message size exceeds system limit\n  * **4006** - Indexed parameter <parameter> too long - Value of <parameter> in the request exceeded the maximum allowed length\n  * **4007** - Invalid Tracking URL - The tracking URL <parameter> that was provided is invalid\n  * **4008** - Message scheduled time exceeds max allowed days: <parameter>\n  * **4009** - Cannot exceed more than <parameter> media URLs\n  * **40010** - Cannot include media URLs with attachment\n  * **40011** - Group message only supported for US Phone numbers\n  * **40012** - No sender addresses capable of sending requested message type\n  * **40013** - No sender addresses capable of sending requested verifiedSms message\n  * **40014** - Cannot failover to SMS on a message with attachments\n  * **40015** - Cannot exceed more than <parameter> recipients\n  * **40016** - Sender id is not capable of sending MMS\n  * **40017** - Only sender id with type id LONGCODE is supported for group MMS\n  * **40018** - Invalid senderId/address: <parameter>\n  * **40019** - Multiple sender id with address: <parameter>. Use sender id to send message.\n  * **40020** - Unrecognized option(s): <parameter>\n  * **40021** - Failover to SMS requires a SenderId for SMS (use a channel)\n  * **40022** - Failover TO SMS requires a SenderId for <parameter> (use a channel)\n  * **40023** - Delivery Window Restriction Violation\n  * **40024** - Invalid Recipient \n  * **40025** - Invalid payload\n  * **40026** - Missing form-data part: <part>\n  * **40027** - Content size in Content-Disposition is mandatory\n  * **40028** - Content length is mandatory\n  * **40029** - Attachment size <parameter> exceeds max allowed attachment size <parameter>\n  * **40030** - Only UPLOADED attachments can be downloaded.\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n  * **4010** - Token unauthorized for this resource\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n  * **4021** - Quota exceeded\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n  * **4030** - Forbidden          \n  * **4031** - Attachment <parameter> was not found neither in cache nor in database            \n  * **4032** - Attachment <parameter> is in incorrect state \n    <parameter>                       \n  * **4033** - SenderId start date in the future: <parameter>           \n  * **4034** - SenderId end date in the past: <parameter>          \n  * **4035** - Invalid sender ID state: <parameter>         \n  * **4036** - Invalid sender ID ownership: <parameter>           \n  * **4037** - <parameter> forbidden for attachment in state: <parameter>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n* **404** - Error message contains details about the missing resource - Requested resource not found  \n* **4040** - Resource you are trying to fetch not found for <parameter>          \n* **4041** - Resource you are trying to update cannot be found for <parameter>        \n* **4042** - No mdn is found       \n* **4043** - The language code <language> is not found among the languages supported by Google Translate        \n* **4044** - Non-shortcode senderId is found.                 \n* **4045** - No sender id matches with recipient country.        \n* **4046** - Access token expired n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n  * **4090** - The access token could not be updated because resource is being updated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '422':
+          description: "Unprocessable Entity\n  * **4220** - Attachment content could not be downloaded from the provided URL. The error message is <error message>\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n* **500** - Server Error - Internal server error. Please report\n* **5000** - Unexpected Server Error\n* **5001** - Unexpected Non Retriable Server Error          \n* **5002** - Message type restriction not implemented for: <messageType>            \n* **5003** - Error redirecting to proxy: <parameter>                      \n* **5004** - Error downloading attachment from storage: <parameter> \n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+  /messaging/sender_ids/list:
+    get:
+      tags:
+      - Sender ID
+      summary: Retrieve the list of matching Sender addresses with the filter
+      description: Retrieve the list of sender addresses which matches the name
+      parameters:
+      - name: name
+        in: query
+        description: 'Name to search for, can include partial matches of the sender name.
+
+          '
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_2_list_limited'
+        '400':
+          description: "Bad Request.  The request could not be understood by the server.\n\n  * **400** - Bad Request - Error Message provides information about what's wrong with the request\n  * **1023** - Indexed field too long - One of the values in the request exceeded the maximum allowed length\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '401':
+          description: "Unauthorized. The request requires user authentication.\n\n  * **401** - Unauthorized - Provided authentication data is invalid or insufficient\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '402':
+          description: "Payment Required.\n\n  * **402** - Insufficient credit - The account does not have sufficient funds for this operation\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '403':
+          description: "Forbidden. The user does not have permission to access the specified resource.\n\n  * **403** - Forbidden - Access to this resource is not allowed with the current application token\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '404':
+          description: "Not found. The requested resource could not be found.\n\n  * **404** - Error message contains details about the missing resource - Requested resource not found\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '409':
+          description: "Conflict. The request could not be completed due to a conflict with the current state of the target resource.\n\n  * **1001** - Stale data - Concurrent resource update. Refresh the resource and retry.\n  * **1011** - Error message contains details about the key being violated - Unique key constraint violated\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+        '500':
+          description: "Server Error. An error has been encountered while processing this request.\n\n  * **500** - Server Error - Internal server error. Please report\n"
+          content:
+            application/json:
+              schema:
+                properties:
+                  error_code:
+                    type: string
+                    description: The error code for this error.
+                  error_description:
+                    type: string
+                    description: A human readable description of the error.
+components:
+  schemas:
+    inline_response_200_2_list:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'unique id of the sender address
+
+            '
+        parent_id:
+          type: string
+          description: 'for shared short codes, this is a reference to the system  sender id that is associated with this preprovisioned address.  Whenever a customer wants to use a preprovisioned, shared code, the parent sender address id will indicate the sender id that was used to create customer version of the sender id
+
+            '
+        name:
+          type: string
+          description: 'name of the sender address
+
+            '
+        ownership:
+          type: string
+          description: 'this field determines the ownership category of a shortcode. Applies only for SMS type of sender id''s. Following values are allowed:
+
+            - PRIVATE -> represents a short code that is private for use by one company only
+
+            - SHARED -> represents a short code that is owned by Syniverse and where multiple customers can use it. When a customer wants to use a SHARED sender id, a new PRIVATE sender address will be created with parent sender id set to the SHARED sender id
+
+            - PREPROVISIONED -> represents an address that is owned by Syniverse and can be selected by a customer. Upon a customer selecting a preprovisioned sender address, new sender id document as a copy of the PREPROVISIONED document is created, with state PRIVATE and parent_id pointing the original PREPROVISIONED sender address. The PREPROVISIONED sender address changes ownership to PURCHASED. Once the PRIVATE sender address, pointing to the PURCHASED is deleted, the PURCHASED sender changes its ownership back to PREPROVISIONED.
+
+            - PURCHASED -> PREPROVISIONED sender address, currently occupied by a customer.
+
+            '
+        class_id:
+          type: string
+          description: 'reference to the sender address class that determines the priority and throughput of the configured sender id
+
+            '
+        type_id:
+          type: string
+          description: 'reference the sender address type that determines the data types allowed on the sender id and identifies the gateway used to deliver the messages
+
+            '
+        state:
+          type: string
+          description: 'represents the sender address status. Following values are allowed:
+
+            - PENDING_IMPLEMENTATION
+
+            - IMPLEMENTED
+
+            - ACTIVE
+
+            - INACTIVE
+
+            - BROKEN
+
+            - PENDING_DELETE
+
+            - PENDING_CONFIRMATION
+
+
+            For each sender address that require provisioning, when a sender address is requested, the initial status will be ''pending implementation''
+
+            '
+        address:
+          type: string
+          description: 'The sender address. The address must correspond to the sender address type. For a2p sms this will be the shortcode or Integercode, for emails this will be the email address etc... For push this is a unique application name.  This name will be used in contacts to identify the application specific push registration ids for a particular user.
+
+            '
+        content_type:
+          type: string
+          description: 'the content of this field is specific the sender type / gateway associated with this sender
+
+            '
+        message_templates:
+          type: array
+          items:
+            type: string
+        country:
+          type: string
+          description: 'The country that the sender address can be used to send messages to. This field will contain ISO country code. The value is managed by Syniverse and not editable by the customer.
+
+            '
+        credentials:
+          type: string
+          description: 'An array of  inline JSON objects with a list of name, value pairs that contain the credential and configuration values need to use this sender ID.  There is one object in the array per message delivery provider that will be used for delivery messages with this sender ID.  For example, the array may contain one entry for APN and one entry for GCN.
+
+            '
+        consent_managed_by:
+          type: string
+          description: 'Possible values: USER, SCG or SCG_UNSOLICITED_OPT_OUT. Default is USER
+
+            '
+        capabilities:
+          type: array
+          items:
+            type: string
+        check_white_list:
+          type: boolean
+          description: 'If set, sending via this sender ID is limited to recipients present in the customer''s white list.
+
+            '
+        application_id:
+          type: integer
+          description: 'ID of the application that has created the resource
+
+            '
+        company_id:
+          type: integer
+          description: 'ID of the company that has created the resource
+
+            '
+        created_date:
+          type: string
+          description: 'The date the resource was created
+
+            '
+        last_updated_date:
+          type: string
+          description: 'for shared short codes, this is a reference to the system  sender id that is associated with this preprovisioned address.  Whenever a customer wants to use a preprovisioned, shared code, the parent sender address id will indicate the sender id that was us
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+        billing:
+          type: string
+          description: 'billing info
+
+            '
+        default_greating:
+          type: string
+          description: 'default greating info
+
+            '
+        google_project_id:
+          type: string
+          description: 'google project id
+
+            '
+        syniverse_chatbot_id:
+          type: string
+          description: 'syniverse chatbot id
+
+            '
+        applied_charges:
+          type: array
+          items:
+            type: string
+        alias:
+          type: string
+          description: 'alias of the sender
+
+            '
+        start_date:
+          type: string
+          description: 'start date
+
+            '
+        end_date:
+          type: string
+          description: 'end date
+
+            '
+        suspend_reason:
+          type: string
+          description: 'suspend reason info: MANUAL, INSUFFICIENT_FUNDS, PORTED_OUT
+
+            '
+        register_provider:
+          type: string
+          description: 'register provider (NETNUMBERS, NONE, ZIPWHIP)
+
+            '
+        shortcode_address_type:
+          type: string
+          description: 'shortcode address type (STANDARD, FTEU)
+
+            '
+        foreign_id:
+          type: string
+          description: 'foreign id
+
+            '
+        restriction_id:
+          type: string
+          description: 'restriction id
+
+            '
+        verify_sms_agent_id:
+          type: string
+          description: 'verify sms agent id
+
+            '
+    inline_response_200_2_list_limited:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'unique id of the sender address
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+        name:
+          type: string
+          description: 'name of the sender address
+
+            '
+        address:
+          type: string
+          description: 'The sender address. The address must correspond to the sender address type. For a2p sms this will be the shortcode or Integercode, for emails this will be the email address etc... For push this is a unique application name.  This name will be used in contacts to identify the application specific push registration ids for a particular user.
+
+            '
+        country:
+          type: string
+          description: 'The country that the sender address can be used to send messages to. This field will contain ISO country code. The value is managed by Syniverse and not editable by the customer.
+
+            '
+        countries:
+          type: array
+          items:
+            type: string
+            description: 'The countries that the sender address can be used to send messages to. This field will contain the list of ISO country codes. The value is managed by Syniverse and not editable by the customer.
+
+              '
+        capabilities:
+          type: array
+          items:
+            type: string
+        application_id:
+          type: integer
+          description: 'ID of the application that has created the resource
+
+            '
+        company_id:
+          type: integer
+          description: 'ID of the company that has created the resource
+
+            '
+        type_id:
+          type: string
+          description: 'reference the sender address type that determines the data types allowed on the sender id and identifies the gateway used to deliver the messages
+
+            '
+        state:
+          type: string
+          description: 'represents the sender address status. Following values are allowed:
+
+            - PENDING_IMPLEMENTATION
+
+            - IMPLEMENTED
+
+            - ACTIVE
+
+            - INACTIVE
+
+            - BROKEN
+
+            - PENDING_DELETE
+
+            - PENDING_CONFIRMATION
+
+
+            For each sender address that require provisioning, when a sender address is requested, the initial status will be ''pending implementation''
+
+            '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    Sender_ID_Purchase:
+      type: object
+      properties:
+        parent_id:
+          type: string
+          description: 'This is the Sender ID of the Preprovisioned Sender ID that is being purchased.
+
+            '
+    Sender_ID_1:
+      type: object
+      properties:
+        parent_id:
+          type: string
+          description: 'for shared short codes, this is a reference to the system  sender id that is associated with this preprovisioned address.  Whenever a customer wants to use a preprovisioned, shared code, the parent sender address id will indicate the sender id that was used to create customer version of the sender id
+
+            '
+        name:
+          type: string
+          description: 'name of the sender address
+
+            '
+        ownership:
+          type: string
+          description: 'this field determines the ownership category of a shortcode. Applies only for SMS type of sender id''s. Following values are allowed:
+
+            - PRIVATE -> represents a short code that is private for use by one company only
+
+            - SHARED -> represents a short code that is owned by Syniverse and where multiple customers can use it. When a customer wants to use a SHARED sender id, a new PRIVATE sender address will be created with parent sender id set to the SHARED sender id
+
+            - PREPROVISIONED -> represents an address that is owned by Syniverse and can be selected by a customer. Upon a customer selecting a preprovisioned sender address, new sender id document as a copy of the PREPROVISIONED document is created, with state PRIVATE and parent_id pointing the original PREPROVISIONED sender address. The PREPROVISIONED sender address changes ownership to PURCHASED. Once the PRIVATE sender address, pointing to the PURCHASED is deleted, the PURCHASED sender changes its ownership back to PREPROVISIONED.
+
+            - PURCHASED -> PREPROVISIONED sender address, currently occupied by a customer.
+
+            '
+        class_id:
+          type: string
+          description: 'reference to the sender address class that determines the priority and throughput of the configured sender id
+
+            '
+        type_id:
+          type: string
+          description: 'reference the sender address type that determines the data types allowed on the sender id and identifies the gateway used to deliver the messages
+
+            '
+        state:
+          type: string
+          description: 'represents the sender address status. Following values are allowed:
+
+            - PENDING_IMPLEMENTATION
+
+            - IMPLEMENTED
+
+            - ACTIVE
+
+            - INACTIVE
+
+            - BROKEN
+
+            - PENDING_DELETE
+
+            - PENDING_CONFIRMATION
+
+
+            For each sender address that require provisioning, when a sender address is requested, the initial status will be ''pending implementation''
+
+            '
+        address:
+          type: string
+          description: 'The sender address. The address must correspond to the sender address type. For a2p sms this will be the shortcode or Integercode, for emails this will be the email address etc... For push this is a unique application name.  This name will be used in contacts to identify the application specific push registration ids for a particular user.
+
+            '
+        content_type:
+          type: string
+          description: 'the content of this field is specific the sender type / gateway associated with this sender
+
+            '
+        message_templates:
+          type: array
+          description: 'A list of template ids that apply to this sender address. If more than one template applies, the elements will be separated by  a coma.
+
+            '
+          items:
+            type: string
+        country:
+          type: string
+          description: 'The country that the sender address can be used to send messages to. This field will contain ISO country code. The value is managed by Syniverse and not editable by the customer.
+
+            '
+        credentials:
+          type: string
+          description: 'An array of  inline JSON objects with a list of name, value pairs that contain the credential and configuration values need to use this sender ID.  There is one object in the array per message delivery provider that will be used for delivery messages with this sender ID.  For example, the array may contain one entry for APN and one entry for GCN.
+
+            '
+        consent_managed_by:
+          type: string
+          description: 'Possible values: USER, SCG or SCG_UNSOLICITED_OPT_OUT. Default is USER
+
+            '
+        capabilities:
+          type: array
+          description: 'Message types allowed on the sender ids from of this type: SMS, MMS, VOICE, WhatsApp etc.
+
+            '
+          items:
+            type: string
+        check_white_list:
+          type: boolean
+          description: 'If set, sending via this sender ID is limited to recipients present in the customer''s white list.
+
+            '
+        register_number:
+          type: string
+          description: 'When the ''register_number'' can be set to ''true'' or ''false''. When set to ''true'', this instructs SCG to register a Telephone number with the appropriate Operator or Registration entity.
+
+            '
+        register_method:
+          type: string
+          description: "Provides registration method for sender ids that need registration step - currently WhatsApp sender ids.\n\nValues:\n\n * voice - deliver verification code via phone call\n * sms -  deliver verification code via SMS\n"
+        verification_code:
+          type: string
+          description: 'Provides verification code for sender ids that need verification step - currently WhatsApp sender ids.
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+    Sender_ID:
+      type: object
+      properties:
+        parent_id:
+          type: string
+          description: 'for shared short codes, this is a reference to the system  sender id that is associated with this preprovisioned address.  Whenever a customer wants to use a preprovisioned, shared code, the parent sender address id will indicate the sender id that was used to create customer version of the sender id
+
+            '
+        name:
+          type: string
+          description: 'name of the sender address
+
+            '
+        ownership:
+          type: string
+          description: 'this field determines the ownership category of a shortcode. Applies only for SMS type of sender id''s. Following values are allowed:
+
+            - PRIVATE -> represents a short code that is private for use by one company only
+
+            - SHARED -> represents a short code that is owned by Syniverse and where multiple customers can use it. When a customer wants to use a SHARED sender id, a new PRIVATE sender address will be created with parent sender id set to the SHARED sender id
+
+            - PREPROVISIONED -> represents an address that is owned by Syniverse and can be selected by a customer. Upon a customer selecting a preprovisioned sender address, new sender id document as a copy of the PREPROVISIONED document is created, with state PRIVATE and parent_id pointing the original PREPROVISIONED sender address. The PREPROVISIONED sender address changes ownership to PURCHASED. Once the PRIVATE sender address, pointing to the PURCHASED is deleted, the PURCHASED sender changes its ownership back to PREPROVISIONED.
+
+            - PURCHASED -> PREPROVISIONED sender address, currently occupied by a customer.
+
+            '
+        class_id:
+          type: string
+          description: 'reference to the sender address class that determines the priority and throughput of the configured sender id
+
+            '
+        type_id:
+          type: string
+          description: 'reference the sender address type that determines the data types allowed on the sender id and identifies the gateway used to deliver the messages
+
+            '
+        address:
+          type: string
+          description: 'The sender address. The address must correspond to the sender address type. For a2p sms this will be the shortcode or Integercode, for emails this will be the email address etc... For push this is a unique application name.  This name will be used in contacts to identify the application specific push registration ids for a particular user.
+
+            '
+        content_type:
+          type: string
+          description: 'the content of this field is specific the sender type / gateway associated with this sender
+
+            '
+        message_templates:
+          type: array
+          description: 'A list of template ids that apply to this sender address. If more than one template applies, the elements will be separated by  a coma.
+
+            '
+          items:
+            type: string
+        country:
+          type: string
+          description: 'The country that the sender address can be used to send messages to. This field will contain ISO country code. The value is managed by Syniverse and not editable by the customer.
+
+            '
+        credentials:
+          type: string
+          description: 'An array of  inline JSON objects with a list of name, value pairs that contain the credential and configuration values need to use this sender ID.  There is one object in the array per message delivery provider that will be used for delivery messages with this sender ID.  For example, the array may contain one entry for APN and one entry for GCN.
+
+            '
+        consent_managed_by:
+          type: string
+          description: 'Possible values: USER, SCG or SCG_UNSOLICITED_OPT_OUT. Default is USER
+
+            '
+        capabilities:
+          type: array
+          description: 'Message types allowed on the sender ids from of this type: SMS, MMS, VOICE, WhatsApp etc.
+
+            '
+          items:
+            type: string
+        check_white_list:
+          type: boolean
+          description: 'If set, sending via this sender ID is limited to recipients present in the customer''s white list.
+
+            '
+        register_number:
+          type: string
+          description: 'When the ''register_number'' can be set to ''true'' or ''false''. When set to ''true'', this instructs SCG to register a Telephone number with the appropriate Operator or Registration entity.
+
+            '
+        register_method:
+          type: string
+          description: "Provides registration method for sender ids that need registration step - currently WhatsApp sender ids.\n\nValues:\n\n * voice - deliver verification code via phone call\n * sms -  deliver verification code via SMS\n"
+        verification_code:
+          type: string
+          description: 'Provides verification code for sender ids that need verification step - currently WhatsApp sender ids.
+
+            '
+    inline_response_200_2:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_2_list'

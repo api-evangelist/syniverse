@@ -1,0 +1,829 @@
+openapi: 3.2.0
+info:
+  title: 10DLC LongCodes API
+  description: This Service enables the Enterprise Customer to Addition/Deletion of the 10DLC number and Number Pool
+  version: '2.3'
+servers:
+- url: https://api.syniverse.com
+  description: Syniverse API
+security:
+- SyniverseToken: []
+tags:
+- name: 10DLC LongCodes
+paths:
+  /engage/tendlc-services/v2/campaigns/{campaignId}/longcodes/{longcode}:
+    get:
+      tags:
+      - 10DLC LongCodes
+      summary: Get application address by Id
+      description: Get application address details
+      operationId: getApplicationAddress
+      parameters:
+      - name: campaignId
+        in: path
+        description: Campaign Id value
+        required: true
+        schema:
+          type: string
+          default: Id
+        example: Id
+      - name: longcode
+        in: path
+        description: Longcode value
+        required: true
+        schema:
+          maxLength: 15
+          minLength: 10
+          pattern: ^[0-9]*$
+          type: string
+          default: Id
+        example: Id
+      responses:
+        '200':
+          description: Request received
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiOkLongcodeResponseExample'
+        '401':
+          description: You are not authorized to view the resource
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiUnauthorizedResponse'
+        '404':
+          description: Longcode does not exist
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiNotFoundResponseLongCode'
+    post:
+      tags:
+      - 10DLC LongCodes
+      summary: Addition of 10DLC number to the registered campaign
+      description: Syniverse is required to update T-Mobile SDG platform with the new added number for a given campaign
+      operationId: create10DLCNumberV2
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: longcode
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Request received
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiGeneralResponse'
+        '202':
+          description: Request already in Progress.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiAcceptedResponse'
+        '400':
+          description: '[Request failed. Daily quota exceeded, Longcode cannot be added/deleted as it is already associated with another campaign., Longcode cannot be added to campaign. Limit exceeded, Longcode cannot be added/deleted as Campaign is not Deployed.,Invalid Longcode. Longcode must be a number., Invalid Longcode. Longcode must be 11 digits and must start with country code 1.]'
+          content:
+            application/json:
+              examples:
+                CUSTOMER_DAILY_LIMIT:
+                  description: CUSTOMER_DAILY_LIMIT
+                  value:
+                    code: 400
+                    message: Request failed. Daily quota exceeded
+                    status: BAD_REQUEST
+                    timestamp: 06-07-2022 01:53:10
+                    data: {}
+                ALREADY_ASSOCIATED:
+                  description: ALREADY_ASSOCIATED
+                  value:
+                    code: 400
+                    message: Longcode cannot be added/deleted as it is already associated with another campaign.
+                    status: BAD_REQUEST
+                    timestamp: 06-07-2022 01:53:10
+                    data: {}
+                LONGCODE_LIMIT_EXCEEDED:
+                  description: LONGCODE_LIMIT_EXCEEDED
+                  value:
+                    code: 400
+                    message: Longcode cannot be added to campaign. Limit exceeded
+                    status: BAD_REQUEST
+                    timestamp: 06-07-2022 01:53:10
+                    data: {}
+                CAMPAIGN_NOT_DEPLOYED:
+                  description: CAMPAIGN_NOT_DEPLOYED
+                  value:
+                    code: 400
+                    message: Longcode cannot be added/deleted as Campaign is not Deployed.
+                    status: BAD_REQUEST
+                    timestamp: 06-07-2022 01:53:10
+                    data: {}
+                INVALID_LONGCODE:
+                  description: INVALID_LONGCODE
+                  value:
+                    code: 400
+                    message: Invalid Longcode. Longcode must be a number.
+                    status: BAD_REQUEST
+                    timestamp: 06-07-2022 01:53:10
+                    data: {}
+                LONGCODE_INVALID_SIZE:
+                  description: LONGCODE_INVALID_SIZE
+                  value:
+                    code: 400
+                    message: Invalid Longcode. Longcode must be 11 digits and must start with country code 1.
+                    status: BAD_REQUEST
+                    timestamp: 06-07-2022 01:53:10
+                    data: {}
+        '401':
+          description: You are not authorized to view the resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiUnauthorizedResponse'
+        '409':
+          description: Request already completed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiProcessedAlreadyResponse'
+    delete:
+      tags:
+      - 10DLC LongCodes
+      summary: Deletion of 10DLC number from the registered campaign
+      description: Syniverse is required to update T-Mobile SDG platform with the deleted number for a given campaign
+      operationId: delete10DLCNumberV2
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: longcode
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Request received
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiGeneralResponse'
+        '202':
+          description: Request already in Progress.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiAcceptedResponse'
+        '400':
+          description: '[Request failed. Daily quota exceeded, Longcode cannot be added/deleted as it is already associated with another campaign., Longcode cannot be deleted as it is not associated with campaign., Longcode cannot be added/deleted as Campaign is not Deployed.,Invalid Longcode. Longcode must be a number., Invalid Longcode. Longcode must be 11 digits and must start with country code 1.]'
+          content:
+            application/json:
+              examples:
+                CUSTOMER_DAILY_LIMIT:
+                  description: CUSTOMER_DAILY_LIMIT
+                  value:
+                    code: 400
+                    message: Request failed. Daily quota exceeded
+                    status: BAD_REQUEST
+                    timestamp: 06-07-2022 01:53:10
+                    data: {}
+                ALREADY_ASSOCIATED:
+                  description: ALREADY_ASSOCIATED
+                  value:
+                    code: 400
+                    message: Longcode cannot be added/deleted as it is already associated with another campaign.
+                    status: BAD_REQUEST
+                    timestamp: 06-07-2022 01:53:10
+                    data: {}
+                LONGCODE_CANNOT_BE_DELETED:
+                  description: LONGCODE_CANNOT_BE_DELETED
+                  value:
+                    code: 400
+                    message: Longcode cannot be deleted as it is not associated with campaign.
+                    status: BAD_REQUEST
+                    timestamp: 06-07-2022 01:53:10
+                    data: {}
+                CAMPAIGN_NOT_DEPLOYED:
+                  description: CAMPAIGN_NOT_DEPLOYED
+                  value:
+                    code: 400
+                    message: Longcode cannot be added/deleted as Campaign is not Deployed.
+                    status: BAD_REQUEST
+                    timestamp: 06-07-2022 01:53:10
+                    data: {}
+                INVALID_LONGCODE:
+                  description: INVALID_LONGCODE
+                  value:
+                    code: 400
+                    message: Invalid Longcode. Longcode must be a number.
+                    status: BAD_REQUEST
+                    timestamp: 06-07-2022 01:53:10
+                    data: {}
+                LONGCODE_INVALID_SIZE:
+                  description: LONGCODE_INVALID_SIZE
+                  value:
+                    code: 400
+                    message: Invalid Longcode. Longcode must be 11 digits and must start with country code 1.
+                    status: BAD_REQUEST
+                    timestamp: 06-07-2022 01:53:10
+                    data: {}
+        '401':
+          description: You are not authorized to view the resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiUnauthorizedResponse'
+        '409':
+          description: Request already completed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiProcessedAlreadyResponse'
+components:
+  schemas:
+    ApiNotFoundResponseLongCode:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Http status code
+          format: int32
+          example: 404
+        message:
+          type: string
+          description: Message
+          example: Longcode does not exist
+        status:
+          type: string
+          description: Http status
+          example: Not found
+          enum:
+          - 100 CONTINUE
+          - 101 SWITCHING_PROTOCOLS
+          - 102 PROCESSING
+          - 103 CHECKPOINT
+          - 200 OK
+          - 201 CREATED
+          - 202 ACCEPTED
+          - 203 NON_AUTHORITATIVE_INFORMATION
+          - 204 NO_CONTENT
+          - 205 RESET_CONTENT
+          - 206 PARTIAL_CONTENT
+          - 207 MULTI_STATUS
+          - 208 ALREADY_REPORTED
+          - 226 IM_USED
+          - 300 MULTIPLE_CHOICES
+          - 301 MOVED_PERMANENTLY
+          - 302 FOUND
+          - 302 MOVED_TEMPORARILY
+          - 303 SEE_OTHER
+          - 304 NOT_MODIFIED
+          - 305 USE_PROXY
+          - 307 TEMPORARY_REDIRECT
+          - 308 PERMANENT_REDIRECT
+          - 400 BAD_REQUEST
+          - 401 UNAUTHORIZED
+          - 402 PAYMENT_REQUIRED
+          - 403 FORBIDDEN
+          - 404 NOT_FOUND
+          - 405 METHOD_NOT_ALLOWED
+          - 406 NOT_ACCEPTABLE
+          - 407 PROXY_AUTHENTICATION_REQUIRED
+          - 408 REQUEST_TIMEOUT
+          - 409 CONFLICT
+          - 410 GONE
+          - 411 LENGTH_REQUIRED
+          - 412 PRECONDITION_FAILED
+          - 413 PAYLOAD_TOO_LARGE
+          - 413 REQUEST_ENTITY_TOO_LARGE
+          - 414 URI_TOO_LONG
+          - 414 REQUEST_URI_TOO_LONG
+          - 415 UNSUPPORTED_MEDIA_TYPE
+          - 416 REQUESTED_RANGE_NOT_SATISFIABLE
+          - 417 EXPECTATION_FAILED
+          - 418 I_AM_A_TEAPOT
+          - 419 INSUFFICIENT_SPACE_ON_RESOURCE
+          - 420 METHOD_FAILURE
+          - 421 DESTINATION_LOCKED
+          - 422 UNPROCESSABLE_ENTITY
+          - 423 LOCKED
+          - 424 FAILED_DEPENDENCY
+          - 425 TOO_EARLY
+          - 426 UPGRADE_REQUIRED
+          - 428 PRECONDITION_REQUIRED
+          - 429 TOO_MANY_REQUESTS
+          - 431 REQUEST_HEADER_FIELDS_TOO_LARGE
+          - 451 UNAVAILABLE_FOR_LEGAL_REASONS
+          - 500 INTERNAL_SERVER_ERROR
+          - 501 NOT_IMPLEMENTED
+          - 502 BAD_GATEWAY
+          - 503 SERVICE_UNAVAILABLE
+          - 504 GATEWAY_TIMEOUT
+          - 505 HTTP_VERSION_NOT_SUPPORTED
+          - 506 VARIANT_ALSO_NEGOTIATES
+          - 507 INSUFFICIENT_STORAGE
+          - 508 LOOP_DETECTED
+          - 509 BANDWIDTH_LIMIT_EXCEEDED
+          - 510 NOT_EXTENDED
+          - 511 NETWORK_AUTHENTICATION_REQUIRED
+        timestamp:
+          type: string
+          description: Response time
+          format: date-time
+        data:
+          type: object
+          description: Response data
+    ApiAcceptedResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Http status code
+          format: int32
+          example: 202
+        message:
+          type: string
+          description: Message
+          example: Request already in Progress.
+        status:
+          type: string
+          description: Http status
+          example: Accepted
+          enum:
+          - 100 CONTINUE
+          - 101 SWITCHING_PROTOCOLS
+          - 102 PROCESSING
+          - 103 CHECKPOINT
+          - 200 OK
+          - 201 CREATED
+          - 202 ACCEPTED
+          - 203 NON_AUTHORITATIVE_INFORMATION
+          - 204 NO_CONTENT
+          - 205 RESET_CONTENT
+          - 206 PARTIAL_CONTENT
+          - 207 MULTI_STATUS
+          - 208 ALREADY_REPORTED
+          - 226 IM_USED
+          - 300 MULTIPLE_CHOICES
+          - 301 MOVED_PERMANENTLY
+          - 302 FOUND
+          - 302 MOVED_TEMPORARILY
+          - 303 SEE_OTHER
+          - 304 NOT_MODIFIED
+          - 305 USE_PROXY
+          - 307 TEMPORARY_REDIRECT
+          - 308 PERMANENT_REDIRECT
+          - 400 BAD_REQUEST
+          - 401 UNAUTHORIZED
+          - 402 PAYMENT_REQUIRED
+          - 403 FORBIDDEN
+          - 404 NOT_FOUND
+          - 405 METHOD_NOT_ALLOWED
+          - 406 NOT_ACCEPTABLE
+          - 407 PROXY_AUTHENTICATION_REQUIRED
+          - 408 REQUEST_TIMEOUT
+          - 409 CONFLICT
+          - 410 GONE
+          - 411 LENGTH_REQUIRED
+          - 412 PRECONDITION_FAILED
+          - 413 PAYLOAD_TOO_LARGE
+          - 413 REQUEST_ENTITY_TOO_LARGE
+          - 414 URI_TOO_LONG
+          - 414 REQUEST_URI_TOO_LONG
+          - 415 UNSUPPORTED_MEDIA_TYPE
+          - 416 REQUESTED_RANGE_NOT_SATISFIABLE
+          - 417 EXPECTATION_FAILED
+          - 418 I_AM_A_TEAPOT
+          - 419 INSUFFICIENT_SPACE_ON_RESOURCE
+          - 420 METHOD_FAILURE
+          - 421 DESTINATION_LOCKED
+          - 422 UNPROCESSABLE_ENTITY
+          - 423 LOCKED
+          - 424 FAILED_DEPENDENCY
+          - 425 TOO_EARLY
+          - 426 UPGRADE_REQUIRED
+          - 428 PRECONDITION_REQUIRED
+          - 429 TOO_MANY_REQUESTS
+          - 431 REQUEST_HEADER_FIELDS_TOO_LARGE
+          - 451 UNAVAILABLE_FOR_LEGAL_REASONS
+          - 500 INTERNAL_SERVER_ERROR
+          - 501 NOT_IMPLEMENTED
+          - 502 BAD_GATEWAY
+          - 503 SERVICE_UNAVAILABLE
+          - 504 GATEWAY_TIMEOUT
+          - 505 HTTP_VERSION_NOT_SUPPORTED
+          - 506 VARIANT_ALSO_NEGOTIATES
+          - 507 INSUFFICIENT_STORAGE
+          - 508 LOOP_DETECTED
+          - 509 BANDWIDTH_LIMIT_EXCEEDED
+          - 510 NOT_EXTENDED
+          - 511 NETWORK_AUTHENTICATION_REQUIRED
+        timestamp:
+          type: string
+          description: Response time
+          format: date-time
+        data:
+          type: object
+          description: Response data
+    ApplicationAddressResponse:
+      type: object
+      properties:
+        applicationAddress:
+          type: string
+        campaignId:
+          type: string
+        action:
+          type: string
+        appId:
+          type: string
+        addressType:
+          type: string
+        companyId:
+          type: string
+        status:
+          type: string
+        insertedTime:
+          type: string
+        updatedTime:
+          type: string
+      description: Response data
+    ApiUnauthorizedResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Http status code
+          format: int32
+          example: 401
+        message:
+          type: string
+          description: Message
+          example: You are not authorized to view the resource
+        status:
+          type: string
+          description: Http status
+          example: Unauthorized
+          enum:
+          - 100 CONTINUE
+          - 101 SWITCHING_PROTOCOLS
+          - 102 PROCESSING
+          - 103 CHECKPOINT
+          - 200 OK
+          - 201 CREATED
+          - 202 ACCEPTED
+          - 203 NON_AUTHORITATIVE_INFORMATION
+          - 204 NO_CONTENT
+          - 205 RESET_CONTENT
+          - 206 PARTIAL_CONTENT
+          - 207 MULTI_STATUS
+          - 208 ALREADY_REPORTED
+          - 226 IM_USED
+          - 300 MULTIPLE_CHOICES
+          - 301 MOVED_PERMANENTLY
+          - 302 FOUND
+          - 302 MOVED_TEMPORARILY
+          - 303 SEE_OTHER
+          - 304 NOT_MODIFIED
+          - 305 USE_PROXY
+          - 307 TEMPORARY_REDIRECT
+          - 308 PERMANENT_REDIRECT
+          - 400 BAD_REQUEST
+          - 401 UNAUTHORIZED
+          - 402 PAYMENT_REQUIRED
+          - 403 FORBIDDEN
+          - 404 NOT_FOUND
+          - 405 METHOD_NOT_ALLOWED
+          - 406 NOT_ACCEPTABLE
+          - 407 PROXY_AUTHENTICATION_REQUIRED
+          - 408 REQUEST_TIMEOUT
+          - 409 CONFLICT
+          - 410 GONE
+          - 411 LENGTH_REQUIRED
+          - 412 PRECONDITION_FAILED
+          - 413 PAYLOAD_TOO_LARGE
+          - 413 REQUEST_ENTITY_TOO_LARGE
+          - 414 URI_TOO_LONG
+          - 414 REQUEST_URI_TOO_LONG
+          - 415 UNSUPPORTED_MEDIA_TYPE
+          - 416 REQUESTED_RANGE_NOT_SATISFIABLE
+          - 417 EXPECTATION_FAILED
+          - 418 I_AM_A_TEAPOT
+          - 419 INSUFFICIENT_SPACE_ON_RESOURCE
+          - 420 METHOD_FAILURE
+          - 421 DESTINATION_LOCKED
+          - 422 UNPROCESSABLE_ENTITY
+          - 423 LOCKED
+          - 424 FAILED_DEPENDENCY
+          - 425 TOO_EARLY
+          - 426 UPGRADE_REQUIRED
+          - 428 PRECONDITION_REQUIRED
+          - 429 TOO_MANY_REQUESTS
+          - 431 REQUEST_HEADER_FIELDS_TOO_LARGE
+          - 451 UNAVAILABLE_FOR_LEGAL_REASONS
+          - 500 INTERNAL_SERVER_ERROR
+          - 501 NOT_IMPLEMENTED
+          - 502 BAD_GATEWAY
+          - 503 SERVICE_UNAVAILABLE
+          - 504 GATEWAY_TIMEOUT
+          - 505 HTTP_VERSION_NOT_SUPPORTED
+          - 506 VARIANT_ALSO_NEGOTIATES
+          - 507 INSUFFICIENT_STORAGE
+          - 508 LOOP_DETECTED
+          - 509 BANDWIDTH_LIMIT_EXCEEDED
+          - 510 NOT_EXTENDED
+          - 511 NETWORK_AUTHENTICATION_REQUIRED
+        timestamp:
+          type: string
+          description: Response time
+          format: date-time
+        data:
+          type: object
+          description: Response data
+    ApiGeneralResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Http status code
+          format: int32
+          example: 200
+        message:
+          type: string
+          description: Message
+          example: Request received
+        status:
+          type: string
+          description: Http status
+          example: OK
+          enum:
+          - 100 CONTINUE
+          - 101 SWITCHING_PROTOCOLS
+          - 102 PROCESSING
+          - 103 CHECKPOINT
+          - 200 OK
+          - 201 CREATED
+          - 202 ACCEPTED
+          - 203 NON_AUTHORITATIVE_INFORMATION
+          - 204 NO_CONTENT
+          - 205 RESET_CONTENT
+          - 206 PARTIAL_CONTENT
+          - 207 MULTI_STATUS
+          - 208 ALREADY_REPORTED
+          - 226 IM_USED
+          - 300 MULTIPLE_CHOICES
+          - 301 MOVED_PERMANENTLY
+          - 302 FOUND
+          - 302 MOVED_TEMPORARILY
+          - 303 SEE_OTHER
+          - 304 NOT_MODIFIED
+          - 305 USE_PROXY
+          - 307 TEMPORARY_REDIRECT
+          - 308 PERMANENT_REDIRECT
+          - 400 BAD_REQUEST
+          - 401 UNAUTHORIZED
+          - 402 PAYMENT_REQUIRED
+          - 403 FORBIDDEN
+          - 404 NOT_FOUND
+          - 405 METHOD_NOT_ALLOWED
+          - 406 NOT_ACCEPTABLE
+          - 407 PROXY_AUTHENTICATION_REQUIRED
+          - 408 REQUEST_TIMEOUT
+          - 409 CONFLICT
+          - 410 GONE
+          - 411 LENGTH_REQUIRED
+          - 412 PRECONDITION_FAILED
+          - 413 PAYLOAD_TOO_LARGE
+          - 413 REQUEST_ENTITY_TOO_LARGE
+          - 414 URI_TOO_LONG
+          - 414 REQUEST_URI_TOO_LONG
+          - 415 UNSUPPORTED_MEDIA_TYPE
+          - 416 REQUESTED_RANGE_NOT_SATISFIABLE
+          - 417 EXPECTATION_FAILED
+          - 418 I_AM_A_TEAPOT
+          - 419 INSUFFICIENT_SPACE_ON_RESOURCE
+          - 420 METHOD_FAILURE
+          - 421 DESTINATION_LOCKED
+          - 422 UNPROCESSABLE_ENTITY
+          - 423 LOCKED
+          - 424 FAILED_DEPENDENCY
+          - 425 TOO_EARLY
+          - 426 UPGRADE_REQUIRED
+          - 428 PRECONDITION_REQUIRED
+          - 429 TOO_MANY_REQUESTS
+          - 431 REQUEST_HEADER_FIELDS_TOO_LARGE
+          - 451 UNAVAILABLE_FOR_LEGAL_REASONS
+          - 500 INTERNAL_SERVER_ERROR
+          - 501 NOT_IMPLEMENTED
+          - 502 BAD_GATEWAY
+          - 503 SERVICE_UNAVAILABLE
+          - 504 GATEWAY_TIMEOUT
+          - 505 HTTP_VERSION_NOT_SUPPORTED
+          - 506 VARIANT_ALSO_NEGOTIATES
+          - 507 INSUFFICIENT_STORAGE
+          - 508 LOOP_DETECTED
+          - 509 BANDWIDTH_LIMIT_EXCEEDED
+          - 510 NOT_EXTENDED
+          - 511 NETWORK_AUTHENTICATION_REQUIRED
+        timestamp:
+          type: string
+          description: Response time
+          format: date-time
+        data:
+          type: object
+          description: Response data
+    ApiProcessedAlreadyResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Http status code
+          format: int32
+          example: 409
+        message:
+          type: string
+          description: Message
+          example: Request already completed.
+        status:
+          type: string
+          description: Http status
+          example: Conflict
+          enum:
+          - 100 CONTINUE
+          - 101 SWITCHING_PROTOCOLS
+          - 102 PROCESSING
+          - 103 CHECKPOINT
+          - 200 OK
+          - 201 CREATED
+          - 202 ACCEPTED
+          - 203 NON_AUTHORITATIVE_INFORMATION
+          - 204 NO_CONTENT
+          - 205 RESET_CONTENT
+          - 206 PARTIAL_CONTENT
+          - 207 MULTI_STATUS
+          - 208 ALREADY_REPORTED
+          - 226 IM_USED
+          - 300 MULTIPLE_CHOICES
+          - 301 MOVED_PERMANENTLY
+          - 302 FOUND
+          - 302 MOVED_TEMPORARILY
+          - 303 SEE_OTHER
+          - 304 NOT_MODIFIED
+          - 305 USE_PROXY
+          - 307 TEMPORARY_REDIRECT
+          - 308 PERMANENT_REDIRECT
+          - 400 BAD_REQUEST
+          - 401 UNAUTHORIZED
+          - 402 PAYMENT_REQUIRED
+          - 403 FORBIDDEN
+          - 404 NOT_FOUND
+          - 405 METHOD_NOT_ALLOWED
+          - 406 NOT_ACCEPTABLE
+          - 407 PROXY_AUTHENTICATION_REQUIRED
+          - 408 REQUEST_TIMEOUT
+          - 409 CONFLICT
+          - 410 GONE
+          - 411 LENGTH_REQUIRED
+          - 412 PRECONDITION_FAILED
+          - 413 PAYLOAD_TOO_LARGE
+          - 413 REQUEST_ENTITY_TOO_LARGE
+          - 414 URI_TOO_LONG
+          - 414 REQUEST_URI_TOO_LONG
+          - 415 UNSUPPORTED_MEDIA_TYPE
+          - 416 REQUESTED_RANGE_NOT_SATISFIABLE
+          - 417 EXPECTATION_FAILED
+          - 418 I_AM_A_TEAPOT
+          - 419 INSUFFICIENT_SPACE_ON_RESOURCE
+          - 420 METHOD_FAILURE
+          - 421 DESTINATION_LOCKED
+          - 422 UNPROCESSABLE_ENTITY
+          - 423 LOCKED
+          - 424 FAILED_DEPENDENCY
+          - 425 TOO_EARLY
+          - 426 UPGRADE_REQUIRED
+          - 428 PRECONDITION_REQUIRED
+          - 429 TOO_MANY_REQUESTS
+          - 431 REQUEST_HEADER_FIELDS_TOO_LARGE
+          - 451 UNAVAILABLE_FOR_LEGAL_REASONS
+          - 500 INTERNAL_SERVER_ERROR
+          - 501 NOT_IMPLEMENTED
+          - 502 BAD_GATEWAY
+          - 503 SERVICE_UNAVAILABLE
+          - 504 GATEWAY_TIMEOUT
+          - 505 HTTP_VERSION_NOT_SUPPORTED
+          - 506 VARIANT_ALSO_NEGOTIATES
+          - 507 INSUFFICIENT_STORAGE
+          - 508 LOOP_DETECTED
+          - 509 BANDWIDTH_LIMIT_EXCEEDED
+          - 510 NOT_EXTENDED
+          - 511 NETWORK_AUTHENTICATION_REQUIRED
+        timestamp:
+          type: string
+          description: Response time
+          format: date-time
+        data:
+          type: object
+          description: Response data
+    ApiOkLongcodeResponseExample:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Http status code
+          format: int32
+          example: 200
+        message:
+          type: string
+          description: Message
+          example: Request received
+        status:
+          type: string
+          description: Http status
+          example: Ok
+          enum:
+          - 100 CONTINUE
+          - 101 SWITCHING_PROTOCOLS
+          - 102 PROCESSING
+          - 103 CHECKPOINT
+          - 200 OK
+          - 201 CREATED
+          - 202 ACCEPTED
+          - 203 NON_AUTHORITATIVE_INFORMATION
+          - 204 NO_CONTENT
+          - 205 RESET_CONTENT
+          - 206 PARTIAL_CONTENT
+          - 207 MULTI_STATUS
+          - 208 ALREADY_REPORTED
+          - 226 IM_USED
+          - 300 MULTIPLE_CHOICES
+          - 301 MOVED_PERMANENTLY
+          - 302 FOUND
+          - 302 MOVED_TEMPORARILY
+          - 303 SEE_OTHER
+          - 304 NOT_MODIFIED
+          - 305 USE_PROXY
+          - 307 TEMPORARY_REDIRECT
+          - 308 PERMANENT_REDIRECT
+          - 400 BAD_REQUEST
+          - 401 UNAUTHORIZED
+          - 402 PAYMENT_REQUIRED
+          - 403 FORBIDDEN
+          - 404 NOT_FOUND
+          - 405 METHOD_NOT_ALLOWED
+          - 406 NOT_ACCEPTABLE
+          - 407 PROXY_AUTHENTICATION_REQUIRED
+          - 408 REQUEST_TIMEOUT
+          - 409 CONFLICT
+          - 410 GONE
+          - 411 LENGTH_REQUIRED
+          - 412 PRECONDITION_FAILED
+          - 413 PAYLOAD_TOO_LARGE
+          - 413 REQUEST_ENTITY_TOO_LARGE
+          - 414 URI_TOO_LONG
+          - 414 REQUEST_URI_TOO_LONG
+          - 415 UNSUPPORTED_MEDIA_TYPE
+          - 416 REQUESTED_RANGE_NOT_SATISFIABLE
+          - 417 EXPECTATION_FAILED
+          - 418 I_AM_A_TEAPOT
+          - 419 INSUFFICIENT_SPACE_ON_RESOURCE
+          - 420 METHOD_FAILURE
+          - 421 DESTINATION_LOCKED
+          - 422 UNPROCESSABLE_ENTITY
+          - 423 LOCKED
+          - 424 FAILED_DEPENDENCY
+          - 425 TOO_EARLY
+          - 426 UPGRADE_REQUIRED
+          - 428 PRECONDITION_REQUIRED
+          - 429 TOO_MANY_REQUESTS
+          - 431 REQUEST_HEADER_FIELDS_TOO_LARGE
+          - 451 UNAVAILABLE_FOR_LEGAL_REASONS
+          - 500 INTERNAL_SERVER_ERROR
+          - 501 NOT_IMPLEMENTED
+          - 502 BAD_GATEWAY
+          - 503 SERVICE_UNAVAILABLE
+          - 504 GATEWAY_TIMEOUT
+          - 505 HTTP_VERSION_NOT_SUPPORTED
+          - 506 VARIANT_ALSO_NEGOTIATES
+          - 507 INSUFFICIENT_STORAGE
+          - 508 LOOP_DETECTED
+          - 509 BANDWIDTH_LIMIT_EXCEEDED
+          - 510 NOT_EXTENDED
+          - 511 NETWORK_AUTHENTICATION_REQUIRED
+        timestamp:
+          type: string
+          description: Response time
+          format: date-time
+        data:
+          $ref: '#/components/schemas/ApplicationAddressResponse'
+  securitySchemes:
+    SyniverseToken:
+      type: http
+      scheme: bearer
+      bearerFormat: SDC
