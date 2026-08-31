@@ -2584,6 +2584,8 @@ apis:
     https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
   baseURL: https://api.syniverse.com/scg-external-api/api/v1
   tags:
+  - Reports
+  tags_raw:
   - reports
   properties:
   - type: OpenAPI
@@ -3033,6 +3035,8 @@ apis:
     https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
   baseURL: https://api.syniverse.com/scg-external-api/api/v1
   tags:
+  - Whitelist
+  tags_raw:
   - whitelist
   properties:
   - type: OpenAPI
