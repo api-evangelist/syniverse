@@ -1250,6 +1250,8 @@ apis:
     https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
   baseURL: https://api.syniverse.com/scg-external-api/api/v1
   tags:
+  - Channels
+  tags_raw:
   - Channel
   properties:
   - type: OpenAPI
@@ -1314,6 +1316,8 @@ apis:
     https://sdcdocumentation.syniverse.com/index.php/omni-channel/user-guides/sms-mms-user-guide
   baseURL: https://api.syniverse.com/scg-external-api/api/v1
   tags:
+  - Conferences
+  tags_raw:
   - Conference
   properties:
   - type: OpenAPI
