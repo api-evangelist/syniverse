@@ -1,0 +1,46 @@
+slug: syniverse
+provider: Syniverse
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Telecommunications
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: 10DLC LongCodes
+  spec_file: syniverse-10dlc-longcodes-api-openapi.yml
+  capability_id: BC-2640.30
+  capability_id_l1: BC-2640
+  capability_name: Numbering Resource Management
+  confidence: 0.75
+  evidence: POST .../campaigns/{campaignId}/longcodes/{longcode}  Addition of 10DLC number to the registered
+    campaign; DELETE ... Deletion of 10DLC number from the registered campaign
+  reason: Assignment and release of 10-digit long code telephone numbers to registered A2P messaging campaigns
+    — direct stewardship and assignment of numbering resources to services.
+- tag: 10DLC Number Pools
+  spec_file: syniverse-10dlc-number-pools-api-openapi.yml
+  capability_id: BC-2640.30
+  capability_id_l1: BC-2640
+  capability_name: Numbering Resource Management
+  confidence: 0.7
+  evidence: Association of Campaign with the Number Pool; Removal of the Association of the Number pool
+    with Campaign
+  reason: Manages pools of telephone numbers and their assignment to messaging campaigns — numbering resource
+    assignment rather than product or subscriber identity management.
+- tag: 10DLC v1
+  spec_file: syniverse-10dlc-v1-api-openapi.yml
+  capability_id: BC-2640.30
+  capability_id_l1: BC-2640
+  capability_name: Numbering Resource Management
+  confidence: 0.7
+  evidence: '"Add/Delete 10DLC numbers as well as Number Pools to Campaigns. The backend systems of this
+    api will perform automatic MNO (Mobile Carrier) provisionning as required."'
+  reason: 'v1 of the same long-code endpoints: assignment and withdrawal of telephone numbers to campaigns
+    with downstream carrier provisioning — numbering resource management (with a secondary provisioning
+    aspect).'
