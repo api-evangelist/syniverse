@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 3
+edge_count: 4
 edges:
 - tag: 10DLC LongCodes
   spec_file: syniverse-10dlc-longcodes-api-openapi.yml
@@ -44,3 +44,15 @@ edges:
   reason: 'v1 of the same long-code endpoints: assignment and withdrawal of telephone numbers to campaigns
     with downstream carrier provisioning — numbering resource management (with a secondary provisioning
     aspect).'
+- tag: Regenerate access token
+  spec_file: syniverse-regenerate-access-token-api-openapi.yml
+  capability_id: BC-4270.40
+  capability_id_l1: BC-4270
+  capability_name: Developer Identity & Credential Management
+  confidence: 0.7
+  evidence: API enables regeneration of an access token associated with an SDC application ... Regenerate
+    access token associated with an SDC application.
+  reason: Issuance and rotation of application access tokens for developer applications on the platform
+    matches Developer Identity & Credential Management; it is credential lifecycle for API consumers rather
+    than end-user IAM.
+  recovered_from: sweep-20260829T005356Z-edges.json
