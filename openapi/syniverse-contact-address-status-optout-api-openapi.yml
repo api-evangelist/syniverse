@@ -13,7 +13,6 @@ paths:
       tags:
       - Contact Address Status Optout
       summary: Update Contact Address Status to OPTOUT
-      description: '  Update Contact Address Status to OPTOUT '
       responses:
         '200':
           description: Successful operation. No response body
@@ -106,6 +105,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Contact_Address_Status_Optout'
+      operationId: postConsentContactAddressStatusesOptout
+      x-operation-id-source: derived
 components:
   schemas:
     Contact_Address_Status_Optout:

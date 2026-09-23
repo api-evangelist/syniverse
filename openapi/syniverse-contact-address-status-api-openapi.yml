@@ -13,7 +13,6 @@ paths:
       tags:
       - Contact Address Status
       summary: Retrieve Contact Address Statues
-      description: '  Retrieve Contact Address Statues'
       parameters:
       - name: id
         in: query
@@ -184,11 +183,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getConsentContactAddressStatuses
+      x-operation-id-source: derived
     post:
       tags:
       - Contact Address Status
       summary: Create a new Contact Address Status
-      description: '  Create a new Contact Address Status '
       responses:
         '200':
           description: Successful operation
@@ -285,12 +285,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Contact_Address_Status'
+      operationId: postConsentContactAddressStatuses
+      x-operation-id-source: derived
   /'consent/contact_address_statuses/{AddressStatus_ID}':
     get:
       tags:
       - Contact Address Status
       summary: Returns the current version of the specified Contact Address Status History
-      description: '  Returns the current version of the specified Contact Address Status History'
       parameters:
       - name: AddressStatus_ID
         in: path
@@ -389,11 +390,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'consentContactAddressStatuses{AddressStatusID}'
+      x-operation-id-source: derived
     post:
       tags:
       - Contact Address Status
       summary: Create a new Address Status
-      description: '  Create a new Address Status'
       parameters:
       - name: AddressStatus_ID
         in: path
@@ -493,11 +495,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Contact_Address_Status_1'
+      operationId: post'consentContactAddressStatuses{AddressStatusID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Contact Address Status
       summary: Delete a Contact Address Status
-      description: '  Delete a Contact Address Status '
       parameters:
       - name: AddressStatus_ID
         in: path
@@ -592,54 +595,10 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'consentContactAddressStatuses{AddressStatusID}'
+      x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    Contact_Address_Status_1:
-      type: object
-      properties:
-        consent_status:
-          type: string
-          description: 'this is the current optin status for the specific address / sender id. The possible values are:
-
-            - NONE (no optin or optout message received from the address on the specific sender id)
-
-            - OPTIN (user has explicitly opted in to the sender id)
-
-            - OPTOUT (user has explicitly opted out of the sender id)
-
-            - BLACKLIST (blacklisted address - will be treated as explicit OPTOUT)
-
-            - WHITELIST (whitelisted address - will be treated as explicit OPTIN)
-
-            NOTE: Whitelisted or blacklisted status can not be overwritten by the end-user by sending messages to the sender id. Such users can be only un-listed by changing the optin-status explicitly put POST to address status ID
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-    inline_response_200_23:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_23_list'
-    Contact_Address_Status:
-      type: object
-      properties:
-        address_type:
-          type: string
-          description: 'The address type MDN (for phone numbers), EMAIL, SOCIAL, PUSH (...)
-
-            '
     inline_response_200_23_list:
       type: object
       properties:
@@ -711,5 +670,51 @@ components:
         version_number:
           type: integer
           description: 'An ascending version number of the object.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking.
+
+            '
+    Contact_Address_Status_1:
+      type: object
+      properties:
+        consent_status:
+          type: string
+          description: 'this is the current optin status for the specific address / sender id. The possible values are:
+
+            - NONE (no optin or optout message received from the address on the specific sender id)
+
+            - OPTIN (user has explicitly opted in to the sender id)
+
+            - OPTOUT (user has explicitly opted out of the sender id)
+
+            - BLACKLIST (blacklisted address - will be treated as explicit OPTOUT)
+
+            - WHITELIST (whitelisted address - will be treated as explicit OPTIN)
+
+            NOTE: Whitelisted or blacklisted status can not be overwritten by the end-user by sending messages to the sender id. Such users can be only un-listed by changing the optin-status explicitly put POST to address status ID
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+    inline_response_200_23:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_23_list'
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    Contact_Address_Status:
+      type: object
+      properties:
+        address_type:
+          type: string
+          description: 'The address type MDN (for phone numbers), EMAIL, SOCIAL, PUSH (...)
 
             '

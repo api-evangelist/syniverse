@@ -13,7 +13,6 @@ paths:
       tags:
       - Contact Application Token
       summary: Return a list of matching Contact Application Tokens
-      description: '  Return a list of matching Contact Application Tokens'
       parameters:
       - name: Contact_ID
         in: path
@@ -168,11 +167,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getContactsByContactIDApplicationTokens
+      x-operation-id-source: derived
     post:
       tags:
       - Contact Application Token
       summary: Create a new contact application token
-      description: '  Create a new contact application token '
       parameters:
       - name: Contact_ID
         in: path
@@ -276,12 +276,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Contact_3'
+      operationId: postContactsByContactIDApplicationTokens
+      x-operation-id-source: derived
   /'contacts/{Contact_ID}/application_tokens/{Contact_Application_Token_Id}':
     get:
       tags:
       - Contact Application Token
       summary: Return a Contact Application Token
-      description: '  Return a Contact Application Token'
       parameters:
       - name: Contact_ID
         in: path
@@ -386,11 +387,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'contactsByContactIDApplicationTokens{ContactApplicationTokenId}'
+      x-operation-id-source: derived
     post:
       tags:
       - Contact Application Token
       summary: Update a contact application token
-      description: '  Update a contact application token'
       parameters:
       - name: Contact_ID
         in: path
@@ -496,11 +498,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Contact_4'
+      operationId: post'contactsByContactIDApplicationTokens{ContactApplicationTokenId}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Contact Application Token
       summary: Delete a Contact Application
-      description: '  Delete a Contact Application '
       parameters:
       - name: Contact_ID
         in: path
@@ -601,37 +604,17 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'contactsByContactIDApplicationTokens{ContactApplicationTokenId}'
+      x-operation-id-source: derived
 components:
   schemas:
-    Contact_4:
+    inline_response_200_18:
       type: object
       properties:
-        sender_id_address:
-          type: string
-          description: 'The address of the sender Id that is associated with this application.
-
-            '
-        message_delivery_provider:
-          type: string
-          description: 'The code that indicates the message devliery provider (e.g. APN, GCN)
-
-            '
-        token:
-          type: string
-          description: 'The token the user, application and device.
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_18_list'
     inline_response_200_18_list:
       type: object
       properties:
@@ -683,6 +666,35 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
+    Contact_4:
+      type: object
+      properties:
+        sender_id_address:
+          type: string
+          description: 'The address of the sender Id that is associated with this application.
+
+            '
+        message_delivery_provider:
+          type: string
+          description: 'The code that indicates the message devliery provider (e.g. APN, GCN)
+
+            '
+        token:
+          type: string
+          description: 'The token the user, application and device.
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     Contact_3:
       type: object
       properties:
@@ -701,10 +713,3 @@ components:
           description: 'The token the user, application and device.
 
             '
-    inline_response_200_18:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_18_list'

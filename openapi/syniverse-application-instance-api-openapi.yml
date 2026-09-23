@@ -13,7 +13,6 @@ paths:
       tags:
       - Application Instance
       summary: Retrieve the list of matching Application Instance
-      description: '  Retrieve the list of matching Application Instance'
       parameters:
       - name: id
         in: query
@@ -122,11 +121,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getAssistantCommunicationApplicationsInstances
+      x-operation-id-source: derived
     post:
       tags:
       - Application Instance
       summary: Create a new Application Instance
-      description: '  Create a new Application Instance '
       responses:
         '200':
           description: Successful operation
@@ -223,12 +223,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Application_Instance'
+      operationId: postAssistantCommunicationApplicationsInstances
+      x-operation-id-source: derived
   /'assistant/communication_applications/instances/{Application_Instance_ID}':
     get:
       tags:
       - Application Instance
-      summary: Retrieve a specified  Application Instance
-      description: '  Retrieve a specified  Application Instance'
+      summary: Retrieve a specified Application Instance
       parameters:
       - name: Application_Instance_ID
         in: path
@@ -327,11 +328,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'assistantCommunicationApplicationsInstances{ApplicationInstanceID}'
+      x-operation-id-source: derived
     put:
       tags:
       - Application Instance
       summary: Update an Application Instance
-      description: '  Update an Application Instance'
       parameters:
       - name: Application_Instance_ID
         in: path
@@ -426,11 +428,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: put'assistantCommunicationApplicationsInstances{ApplicationInstanceID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Application Instance
       summary: Delete an Application Instance
-      description: '  Delete an Application Instance '
       parameters:
       - name: Application_Instance_ID
         in: path
@@ -525,14 +528,10 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'assistantCommunicationApplicationsInstances{ApplicationInstanceID}'
+      x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
     inline_response_200_29:
       type: object
       properties:
@@ -540,6 +539,33 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/inline_response_200_29_list'
+    Application_Instance:
+      type: object
+      properties:
+        script_id:
+          type: string
+          description: 'The is of the script to be used for this instance.
+
+            '
+        sender_id:
+          type: string
+          description: 'The sender_id that is to be used with this instance.
+
+            '
+        state:
+          type: string
+          description: 'The state of the instance. This can be:
+
+            - ENABLED
+
+            - DISABLED
+
+            '
+        allow_incoming_call:
+          type: string
+          description: 'This is used to enable handling of incoming calls by the application instance.
+
+            '
     inline_response_200_29_list:
       type: object
       properties:
@@ -607,30 +633,9 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
-    Application_Instance:
+    inline_response_200_3:
       type: object
       properties:
-        script_id:
+        id:
           type: string
-          description: 'The is of the script to be used for this instance.
-
-            '
-        sender_id:
-          type: string
-          description: 'The sender_id that is to be used with this instance.
-
-            '
-        state:
-          type: string
-          description: 'The state of the instance. This can be:
-
-            - ENABLED
-
-            - DISABLED
-
-            '
-        allow_incoming_call:
-          type: string
-          description: 'This is used to enable handling of incoming calls by the application instance.
-
-            '
+          description: The identifier for the newly created resource.

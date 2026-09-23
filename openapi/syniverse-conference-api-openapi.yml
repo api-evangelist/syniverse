@@ -12,8 +12,7 @@ paths:
     get:
       tags:
       - Conference
-      summary: Retrieve a  list of Conferences
-      description: '  Retrieve a  list of Conferences'
+      summary: Retrieve a list of Conferences
       parameters:
       - name: id
         in: query
@@ -144,11 +143,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getCallingConferences
+      x-operation-id-source: derived
     post:
       tags:
       - Conference
       summary: Create a Conference
-      description: '  Create a Conference'
       responses:
         '200':
           description: Successful operation
@@ -245,12 +245,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Conference'
+      operationId: postCallingConferences
+      x-operation-id-source: derived
   /'calling/conferences/{Conference_ID}':
     get:
       tags:
       - Conference
       summary: Retrieve a specified Conference
-      description: '  Retrieve a specified Conference'
       parameters:
       - name: Conference_ID
         in: path
@@ -349,11 +350,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'callingConferences{ConferenceID}'
+      x-operation-id-source: derived
     post:
       tags:
       - Conference
       summary: Update conference state
-      description: '  Update conference state'
       parameters:
       - name: Conference_ID
         in: path
@@ -453,11 +455,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Conference_1'
+      operationId: post'callingConferences{ConferenceID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Conference
       summary: Deletes the Conference resource with the specified ID
-      description: '  Deletes the Conference resource with the specified ID'
       parameters:
       - name: Conference_ID
         in: path
@@ -552,12 +555,14 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'callingConferences{ConferenceID}'
+      x-operation-id-source: derived
   /'calling/conferences/{Conference_ID}/play_tts':
     post:
       tags:
       - Conference
-      summary: Play the specified text using text to speech.
-      description: '  Play the specified text using text to speech.'
+      summary: Play the specified text using text to speech
+      description: Play the specified text using text to speech.
       parameters:
       - name: Conference_ID
         in: path
@@ -657,12 +662,14 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AudioFile_4'
+      operationId: post'callingConferencesByConferenceIDPlayTts'
+      x-operation-id-source: derived
   /'calling/conferences/{Conference_ID}/play_audio':
     post:
       tags:
       - Conference
-      summary: Play a specified audio file.
-      description: '  Play a specified audio file.'
+      summary: Play a specified audio file
+      description: Play a specified audio file.
       parameters:
       - name: Conference_ID
         in: path
@@ -762,35 +769,10 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AudioFile_5'
+      operationId: post'callingConferencesByConferenceIDPlayAudio'
+      x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_13:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_13_list'
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    AudioFile_5:
-      type: object
-      required:
-      - source
-      - source_type
-      properties:
-        source_type:
-          type: string
-          description: "This is the type of the source.  \nSupported values are:\n- ATTACHMENT\n- URL\n"
-        source:
-          type: string
-          description: 'The attachment ID or URL value for the audio file.
-
-            '
     inline_response_200_13_list:
       type: object
       properties:
@@ -847,21 +829,6 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
-    Conference:
-      type: object
-      required:
-      - from
-      properties:
-        external_id:
-          type: string
-          description: 'The unique Id assigned by the application.
-
-            '
-        from:
-          type: string
-          description: 'The calling party''s address.
-
-            '
     AudioFile_4:
       type: object
       required:
@@ -889,6 +856,21 @@ components:
             https://sdcsupport.syniverse.com/hc/en-us/articles/360042993153-Customizing-Spoken-Text-on-SCG-Voice-API-with-SSML-tags
 
             '
+    Conference:
+      type: object
+      required:
+      - from
+      properties:
+        external_id:
+          type: string
+          description: 'The unique Id assigned by the application.
+
+            '
+        from:
+          type: string
+          description: 'The calling party''s address.
+
+            '
     Conference_1:
       type: object
       required:
@@ -897,3 +879,30 @@ components:
         state:
           type: string
           description: "The conference's state:\n - created (the conference is created but has no members)\n - active (the conference is active and has members)\n - completed (the conference is completed and has no members)\n"
+    inline_response_200_13:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_13_list'
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    AudioFile_5:
+      type: object
+      required:
+      - source
+      - source_type
+      properties:
+        source_type:
+          type: string
+          description: "This is the type of the source.  \nSupported values are:\n- ATTACHMENT\n- URL\n"
+        source:
+          type: string
+          description: 'The attachment ID or URL value for the audio file.
+
+            '

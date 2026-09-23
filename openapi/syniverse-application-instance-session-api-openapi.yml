@@ -13,7 +13,6 @@ paths:
       tags:
       - Application Instance Session
       summary: Retrieve the list of matching Application Instance Session
-      description: '  Retrieve the list of matching Application Instance Session'
       parameters:
       - name: Application_Instance_ID
         in: path
@@ -128,11 +127,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getAssistantCommunicationApplicationsInstancesByApplicationInstanceIDSessions
+      x-operation-id-source: derived
     post:
       tags:
       - Application Instance Session
       summary: Create a new Application Instance Session
-      description: '  Create a new Application Instance Session'
       parameters:
       - name: Application_Instance_ID
         in: path
@@ -236,12 +236,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Application_Instance_Session'
+      operationId: postAssistantCommunicationApplicationsInstancesByApplicationInstanceIDSessions
+      x-operation-id-source: derived
   /'assistant/communication_applications/instances/{Application_Instance_ID}/sessions/{Application_Instance_Session_ID}':
     get:
       tags:
       - Application Instance Session
-      summary: Retrieve the current version of the specified  Application Instance Session
-      description: '  Retrieve the current version of the specified  Application Instance Session'
+      summary: Retrieve the current version of the specified Application Instance Session
       parameters:
       - name: Application_Instance_ID
         in: path
@@ -346,11 +347,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'assistantCommunicationApplicationsInstancesByApplicationInstanceIDSessions{ApplicationInstanceSessionID}'
+      x-operation-id-source: derived
     put:
       tags:
       - Application Instance Session
-      summary: Update an  Application Instance Session
-      description: '  Update an  Application Instance Session'
+      summary: Update an Application Instance Session
       parameters:
       - name: Application_Instance_ID
         in: path
@@ -451,11 +453,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: put'assistantCommunicationApplicationsInstancesByApplicationInstanceIDSessions{ApplicationInstanceSessionID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Application Instance Session
       summary: Delete an Application Instance Session
-      description: '  Delete an Application Instance Session '
       parameters:
       - name: Application_Instance_ID
         in: path
@@ -556,6 +559,8 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'assistantCommunicationApplicationsInstancesByApplicationInstanceIDSessions{ApplicationInstanceSessionID}'
+      x-operation-id-source: derived
 components:
   schemas:
     Application_Instance_Session:
@@ -579,19 +584,6 @@ components:
             - COMPLETED
 
             '
-    inline_response_200_30:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_30_list'
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
     inline_response_200_30_list:
       type: object
       properties:
@@ -673,3 +665,16 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
+    inline_response_200_30:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_30_list'
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.

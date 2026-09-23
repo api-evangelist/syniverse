@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: SDC Application Access Token Management Regenerate access token API
+  title: SDC Application Access Token Management Regenerate access…
   description: API enables regeneration of an access token associated with an SDC application.
   version: '1.0'
 servers:
@@ -12,7 +12,7 @@ paths:
     get:
       tags:
       - Regenerate access token
-      summary: Regenerate access token associated with an SDC application.
+      summary: Regenerate access token associated with an SDC application
       description: Regenerate access token associated with a SDC application. After the access token is successfully regenerated, the current access token will get invalidated immediately near real-time i.e. API calls will fail with the old access token. If the API is invoked with a validity period within the range of the current access token's expiration period then the current access token will be returned as response.
       parameters:
       - name: consumerkey
@@ -100,3 +100,5 @@ paths:
                     errorCode: 1
                     moreInfo: System error received during access token regeneration.
                     userMsg: Contact Syniverse support for resolution of the system error recieved for access token regeneration.
+      operationId: getSaopRestDataV1ApptokenRefresh
+      x-operation-id-source: derived

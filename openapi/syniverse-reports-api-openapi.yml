@@ -8,12 +8,12 @@ servers:
 security:
 - OAuth2: []
 tags:
-- name: reports
+- name: Reports
 paths:
   /spam/report:
     post:
       tags:
-      - reports
+      - Reports
       summary: Submit spam reports
       description: Submit a list of spam reports
       requestBody:
@@ -57,17 +57,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/endpoint.SpamReportError'
       x-codegen-request-body-name: reports
+      operationId: postSpamReport
+      x-operation-id-source: derived
 components:
   schemas:
-    endpoint.SpamReportResponse:
-      type: object
-      properties:
-        batch_id:
-          type: string
-          example: 588de77e-5055-49f6-91de-441d672a0f9c
-        count:
-          type: integer
-          example: 10
     endpoint.SpamReportRequest:
       required:
       - reports
@@ -109,6 +102,15 @@ components:
           type: string
           example: '7727'
       description: Spam report information
+    endpoint.SpamReportResponse:
+      type: object
+      properties:
+        batch_id:
+          type: string
+          example: 588de77e-5055-49f6-91de-441d672a0f9c
+        count:
+          type: integer
+          example: 10
     endpoint.SpamReportError:
       type: object
       properties:

@@ -13,7 +13,6 @@ paths:
       tags:
       - Auto Alias History
       summary: Return a list of available auto alias history
-      description: '  Return a list of available auto alias history'
       responses:
         '200':
           description: Successful operation
@@ -105,12 +104,13 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getAssistantAutoAliasHistory
+      x-operation-id-source: derived
   /'assistant/auto_alias/history/{Auto_Alias_History_ID}':
     get:
       tags:
       - Auto Alias History
       summary: Create resource
-      description: '  Create resource'
       parameters:
       - name: Auto_Alias_History_ID
         in: path
@@ -209,11 +209,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'assistantAutoAliasHistory{AutoAliasHistoryID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Auto Alias History
       summary: Delete specified resource
-      description: '  Delete specified resource'
       parameters:
       - name: Auto_Alias_History_ID
         in: path
@@ -308,6 +309,8 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'assistantAutoAliasHistory{AutoAliasHistoryID}'
+      x-operation-id-source: derived
 components:
   schemas:
     inline_response_200_27_list:

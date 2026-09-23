@@ -13,7 +13,6 @@ paths:
       tags:
       - Scheduled Message
       summary: Delete a scheduled message
-      description: '  Delete a scheduled message'
       parameters:
       - name: Message_Scheduled_ID
         in: path
@@ -108,3 +107,5 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'messagingMessagesScheduled{MessageScheduledID}'
+      x-operation-id-source: derived

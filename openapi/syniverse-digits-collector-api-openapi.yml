@@ -13,7 +13,6 @@ paths:
       tags:
       - Digits Collector
       summary: List all digit collectors
-      description: '  List all digit collectors'
       parameters:
       - name: Call_ID
         in: path
@@ -120,11 +119,13 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getCallingCallsByCallIDDigitsCollector
+      x-operation-id-source: derived
     post:
       tags:
       - Digits Collector
       summary: Create digits collector
-      description: '  Create digits collector. When voice parameter is present, no gender or locale parameters are accepted.'
+      description: Create digits collector. When voice parameter is present, no gender or locale parameters are accepted.
       parameters:
       - name: Call_ID
         in: path
@@ -228,12 +229,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Digits_Collector'
+      operationId: postCallingCallsByCallIDDigitsCollector
+      x-operation-id-source: derived
   /'calling/calls/{Call_ID}/digits_collector/{Collector_ID}':
     get:
       tags:
       - Digits Collector
       summary: Retrieve a specific digits collector
-      description: '  Retrieve a specific digits collector'
       parameters:
       - name: Call_ID
         in: path
@@ -338,11 +340,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'callingCallsByCallIDDigitsCollector{CollectorID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Digits Collector
       summary: Delete a specified resource
-      description: '  Delete a specified resource'
       parameters:
       - name: Call_ID
         in: path
@@ -443,8 +446,38 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'callingCallsByCallIDDigitsCollector{CollectorID}'
+      x-operation-id-source: derived
 components:
   schemas:
+    Digits_Collector:
+      type: object
+      required:
+      - prompt
+      properties:
+        max_digits:
+          type: string
+          description: 'will stop collecting digits when max_digits is reached
+
+            '
+        timeout:
+          type: integer
+          description: 'will stop collecting if timeout is reached
+
+            '
+        terminating_digits:
+          type: string
+          description: 'Will stop if some of terminating_digits  is  pressed
+
+            '
+        prompt:
+          $ref: '#/components/schemas/digit_collector_prompt'
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     digit_collector_prompt:
       type: object
       required:
@@ -470,41 +503,6 @@ components:
           description: 'language locale of the voice
 
             '
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    inline_response_200_15:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_15_list'
-    Digits_Collector:
-      type: object
-      required:
-      - prompt
-      properties:
-        max_digits:
-          type: string
-          description: 'will stop collecting digits when max_digits is reached
-
-            '
-        timeout:
-          type: integer
-          description: 'will stop collecting if timeout is reached
-
-            '
-        terminating_digits:
-          type: string
-          description: 'Will stop if some of terminating_digits  is  pressed
-
-            '
-        prompt:
-          $ref: '#/components/schemas/digit_collector_prompt'
     inline_response_200_15_list:
       type: object
       properties:
@@ -572,3 +570,10 @@ components:
           description: 'ID of the application that has created the resource
 
             '
+    inline_response_200_15:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_15_list'

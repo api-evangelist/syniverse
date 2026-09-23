@@ -16,7 +16,7 @@ paths:
       tags:
       - 10DLC v1
       summary: Addition of 10DLC number to the registered campaign
-      description: Syniverse is required to update some MNO A2P platforms with the new added number for a given campaign, this enables  customers to manage  individual number to campaign associations when the numbers are NOT part of a number pool
+      description: Syniverse is required to update some MNO A2P platforms with the new added number for a given campaign, this enables customers to manage individual number to campaign associations when the numbers are NOT part of a number pool
       operationId: create10DLCNumberUsingPOST
       parameters:
       - name: campaignId
@@ -61,7 +61,7 @@ paths:
       tags:
       - 10DLC v1
       summary: Deletion of 10DLC number from the registered campaign
-      description: Syniverse is required to update MNOs A2P platforms and remove the number for a given campaign, this enables  customers to manage  individual number to campaign associations when the numbers are NOT part of a number pool
+      description: Syniverse is required to update MNOs A2P platforms and remove the number for a given campaign, this enables customers to manage individual number to campaign associations when the numbers are NOT part of a number pool
       operationId: delete10DLCNumberUsingDELETE
       parameters:
       - name: campaignId

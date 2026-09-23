@@ -13,7 +13,6 @@ paths:
       tags:
       - ConferenceMember
       summary: Retrieve ConferenceMembers for the specified Conference
-      description: '  Retrieve ConferenceMembers for the specified Conference'
       parameters:
       - name: Conference_ID
         in: path
@@ -126,11 +125,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getCallingConferencesByConferenceIDMembers
+      x-operation-id-source: derived
     post:
       tags:
       - ConferenceMember
       summary: Create a new ConferenceMember
-      description: '  Create a new ConferenceMember '
       parameters:
       - name: Conference_ID
         in: path
@@ -234,12 +234,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ConferenceMember'
+      operationId: postCallingConferencesByConferenceIDMembers
+      x-operation-id-source: derived
   /'calling/conferences/{Conference_ID}/members/{Member_ID}':
     get:
       tags:
       - ConferenceMember
-      summary: Retrieve a  specified ConferenceMember
-      description: '  Retrieve a  specified ConferenceMember'
+      summary: Retrieve a specified ConferenceMember
       parameters:
       - name: Conference_ID
         in: path
@@ -344,11 +345,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'callingConferencesByConferenceIDMembers{MemberID}'
+      x-operation-id-source: derived
     post:
       tags:
       - ConferenceMember
       summary: Update member info
-      description: '  Update member info'
       parameters:
       - name: Conference_ID
         in: path
@@ -454,11 +456,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ConferenceMember_1'
+      operationId: post'callingConferencesByConferenceIDMembers{MemberID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - ConferenceMember
       summary: Delete the ConferenceMember resource with a specified ID
-      description: '  Delete the ConferenceMember resource with a specified ID'
       parameters:
       - name: Conference_ID
         in: path
@@ -559,14 +562,10 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'callingConferencesByConferenceIDMembers{MemberID}'
+      x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
     ConferenceMember_1:
       type: object
       properties:
@@ -580,6 +579,44 @@ components:
           description: 'If ''true'', this member is muted in the conference
 
             '
+    ConferenceMember:
+      type: object
+      required:
+      - call_id
+      properties:
+        external_id:
+          type: string
+          description: 'The unique Id assigned by the application.
+
+            '
+        call_id:
+          type: string
+          description: 'The id for the Call resource that is associated with this member.
+
+            '
+        hold:
+          type: boolean
+          description: 'If true, all member can''t hear or speak in the conference
+
+            '
+        mute:
+          type: boolean
+          description: 'If ''true'', all member can''t speak in the conference
+
+            '
+    inline_response_200_14:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_14_list'
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     inline_response_200_14_list:
       type: object
       properties:
@@ -631,37 +668,5 @@ components:
         version_number:
           type: integer
           description: 'An ascending version number of the object.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking.
-
-            '
-    inline_response_200_14:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_14_list'
-    ConferenceMember:
-      type: object
-      required:
-      - call_id
-      properties:
-        external_id:
-          type: string
-          description: 'The unique Id assigned by the application.
-
-            '
-        call_id:
-          type: string
-          description: 'The id for the Call resource that is associated with this member.
-
-            '
-        hold:
-          type: boolean
-          description: 'If true, all member can''t hear or speak in the conference
-
-            '
-        mute:
-          type: boolean
-          description: 'If ''true'', all member can''t speak in the conference
 
             '

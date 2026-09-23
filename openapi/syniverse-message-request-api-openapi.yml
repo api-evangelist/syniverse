@@ -13,7 +13,6 @@ paths:
       tags:
       - Message Request
       summary: Retrieve all message requests
-      description: '  Retrieve all message requests'
       parameters:
       - name: id
         in: query
@@ -218,11 +217,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getMessagingMessageRequests
+      x-operation-id-source: derived
     post:
       tags:
       - Message Request
       summary: Send a Message
-      description: '  Send a Message'
       responses:
         '200':
           description: Successful operation
@@ -331,12 +331,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Message_Request'
+      operationId: postMessagingMessageRequests
+      x-operation-id-source: derived
   /'messaging/message_requests/{MessageRequest_ID}':
     get:
       tags:
       - Message Request
       summary: Retrieve message requests using a message request Id
-      description: '  Retrieve message requests using a message request Id'
       parameters:
       - name: MessageRequest_ID
         in: path
@@ -447,11 +448,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'messagingMessageRequests{MessageRequestID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Message Request
       summary: Delete a message request
-      description: '  Delete a message request'
       parameters:
       - name: MessageRequest_ID
         in: path
@@ -546,12 +548,13 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'messagingMessageRequests{MessageRequestID}'
+      x-operation-id-source: derived
   /'messaging/message_requests/{MessageRequest_ID}/messages':
     get:
       tags:
       - Message Request
       summary: Retrieve messages using a Message request Id
-      description: '  Retrieve messages using a Message request Id'
       parameters:
       - name: MessageRequest_ID
         in: path
@@ -778,8 +781,24 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'messagingMessageRequestsByMessageRequestIDMessages'
+      x-operation-id-source: derived
 components:
   schemas:
+    Message_Request_body_extensions:
+      type: object
+      properties:
+        type:
+          example: DEEP_LINK
+        content:
+          example: https://www.syniverse.com/
+    inline_response_200_6:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_6_list'
     Message_Request:
       type: object
       properties:
@@ -936,19 +955,6 @@ components:
           description: 'Priority list of contact delivery addresses (MDN, PUSH)
 
             '
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    Message_Request_body_extensions:
-      type: object
-      properties:
-        type:
-          example: DEEP_LINK
-        content:
-          example: https://www.syniverse.com/
     Message_Request_options:
       type: object
       properties:
@@ -964,13 +970,13 @@ components:
       description: 'json options in use with push notifications.
 
         '
-    inline_response_200_6:
+    inline_response_200_5:
       type: object
       properties:
         list:
           type: array
           items:
-            $ref: '#/components/schemas/inline_response_200_6_list'
+            $ref: '#/components/schemas/inline_response_200_5_list'
     inline_response_200_6_list:
       type: object
       properties:
@@ -1289,6 +1295,12 @@ components:
           description: 'recipient verified sms enabled: true or false
 
             '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     inline_response_200_5_list:
       type: object
       properties:
@@ -1576,10 +1588,3 @@ components:
         version_number:
           type: integer
           description: "An ascending version number of the object.  1 upon creation, incremented by one for each modification done.  \nNOTE: unlike other resources in the messaging gateway, messages are not updated directly. Events happening to a message (sending, delivery receipts, replies, conversions ...) indirectly update the status and hence version number of the message.\n"
-    inline_response_200_5:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_5_list'

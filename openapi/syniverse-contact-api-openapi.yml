@@ -13,7 +13,6 @@ paths:
       tags:
       - Contact
       summary: List all matching Contacts
-      description: '  List all matching Contacts'
       parameters:
       - name: id
         in: query
@@ -250,11 +249,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getContacts
+      x-operation-id-source: derived
     post:
       tags:
       - Contact
       summary: Create a new Contact
-      description: '  Create a new Contact '
       responses:
         '200':
           description: Successful operation
@@ -351,12 +351,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Contact'
+      operationId: postContacts
+      x-operation-id-source: derived
   /'contacts/{Contact_ID}':
     get:
       tags:
       - Contact
       summary: List a Contact
-      description: '  List a Contact'
       parameters:
       - name: Contact_ID
         in: path
@@ -455,11 +456,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'contacts{ContactID}'
+      x-operation-id-source: derived
     post:
       tags:
       - Contact
       summary: Update a specific contact
-      description: '  Update a specific contact'
       parameters:
       - name: Contact_ID
         in: path
@@ -559,11 +561,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Contact_2'
+      operationId: post'contacts{ContactID}'
+      x-operation-id-source: derived
     put:
       tags:
       - Contact
       summary: Replace a specific contact
-      description: '  Replace a specific contact'
       parameters:
       - name: Contact_ID
         in: path
@@ -663,11 +666,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Contact_1'
+      operationId: put'contacts{ContactID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Contact
       summary: Delete a Contact
-      description: '  Delete a Contact '
       parameters:
       - name: Contact_ID
         in: path
@@ -762,12 +766,13 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'contacts{ContactID}'
+      x-operation-id-source: derived
   /'contacts/{Contact_ID}/access_tokens':
     post:
       tags:
       - Contact
       summary: Create a new contact access token
-      description: '  Create a new contact access token '
       parameters:
       - name: Contact_ID
         in: path
@@ -871,12 +876,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Access_Token_1'
+      operationId: post'contactsByContactIDAccessTokens'
+      x-operation-id-source: derived
   /'contacts/{Contact_ID}/access_tokens/{Contact_Access_Token_Id}':
     get:
       tags:
       - Contact
       summary: Return a Contact Access Token
-      description: '  Return a Contact Access Token'
       parameters:
       - name: Contact_ID
         in: path
@@ -981,11 +987,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'contactsByContactIDAccessTokens{ContactAccessTokenId}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Contact
       summary: Delete a Contact Access Token
-      description: '  Delete a Contact Access Token '
       parameters:
       - name: Contact_ID
         in: path
@@ -1086,14 +1093,198 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'contactsByContactIDAccessTokens{ContactAccessTokenId}'
+      x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_3:
+    Contact:
+      type: object
+      properties:
+        external_id:
+          type: string
+          description: 'the id of the contact at the customer system. Can be used by customer to update the contacts
+
+            '
+        first_name:
+          type: string
+          description: 'First name of customer
+
+            '
+        last_name:
+          type: string
+          description: 'Last name of customer
+
+            '
+        birth_date:
+          type: string
+          description: 'Customer birth date. YYYY-MM-DD
+
+            '
+        first_acquisition_date:
+          type: string
+          description: 'The timestamp of the first customer acquisition - i.e. the date when the customer has been for the first time opted in to any program
+
+            '
+        last_acquisition_date:
+          type: string
+          description: 'The timestamp of the last customer acquisition i.e. the date when the customer has for the last time sent an optin keyword or performed a doubleoptin
+
+            '
+        primary_mdn:
+          type: string
+          description: 'The primary phone number of the customer. This is the number used to track the double optin for the customer
+
+            '
+        primary_addr_line1:
+          type: string
+          description: 'Details of customers primary address
+
+            '
+        primary_addr_line2:
+          type: string
+          description: 'Details of customers primary address
+
+            '
+        primary_addr_city:
+          type: string
+          description: 'Details of customers primary address
+
+            '
+        primary_addr_zip:
+          type: string
+          description: 'ZIP code of the customer primary address
+
+            '
+        primary_addr_state:
+          type: string
+          description: 'Details of customers primary address
+
+            '
+        primary_email_addr:
+          type: string
+          description: 'Customers primary email address
+
+            '
+        primary_addr_country:
+          type: string
+          description: 'Customer primary address country
+
+            '
+        primary_social_handle:
+          type: string
+          description: 'Customers primary social media ID
+
+            '
+        address_list:
+          type: string
+          description: 'Stores all known addresses of the customer in a form of a JSON array. Each address in the array can have the following attributes:
+
+            - priority: priority of the address, 1 highest
+
+            - designation: specifies type of the address: home, work
+
+            - use: billing, shipping
+
+            - source: specifies where the address comes from, company specific
+
+            - status: status of the address: VALID_NEW, VALID_CONF, INVALID, EXPIRED
+
+            - line1: first address line
+
+            - line2: second address line
+
+            - city
+
+            - state
+
+            - province
+
+            - zip
+
+            - country
+
+            '
+        account_list:
+          type: string
+          description: 'Stores all known accounts of the customer in a form of a JSON array. Each account in the array can have the following attributes:
+
+            - priority: user defined account priority
+
+            - designation:  primary designation of the account: work, private ...
+
+            - source: specifies where the address comes from, company specific
+
+            - status: status of the address: VALID_NEW, VALID_CONF, INVALID, EXPIRED
+
+            - type: email, social, web, loyalty
+
+            - username: the username in the account. This will be the membership id in loyalty programs or the email address for an email account
+
+            - domain: account domain. For example starwood.com
+
+            - access_token: the access token to the account where the account requires some oauth type authorization
+
+            NOTE: other attributes may be required/provided, based on the account type and domain.
+
+            '
+        device_list:
+          type: string
+          description: "Stores all known customer devices in a form of a JSON array. Each account in the device can have the following attributes:\n- priority: user defined account priority\n- designation:  primary designation of the account: work, private ...\n- source: specifies where the address comes from, company specific\n- status: status of the address: VALID_NEW, VALID_CONF, INVALID, EXPIRED\n- msisdn\n- carrier\n- mac_address, \n- uuid\n- imei \n- manufacturer: device manufacturer, for example Apple\n- model: model of the device, for example iPhone 5s\n- os: operating system of the device, for example iOS 8.3\nNOTE: other attributes may be required/provided, based on the device type.\n"
+        interest_list:
+          type: string
+          description: "Stores all known customer preferences in a form of a JSON array. Each preference can have the following attributes:\n- code: interest code \n- name: interest name\n- source: where the information was obtained\n- score: how likely the information is, floating point value 0...1\n"
+        demographic_list:
+          type: string
+          description: 'Stores all known customer demographic in a form of a JSON array. Each demographic can have the following attributes:
+
+            - demographic name
+
+            - source: where the information was obtained
+
+            - score: how likely the information is, floating point value 0...1
+
+            '
+        extended_attributes:
+          type: string
+          description: 'JSON string of all extended attributes of the customer. Any list of key:value pairs is supported. Also composite attributes can be stored.
+
+            '
+        preferred_language:
+          type: string
+          description: 'When translation is enabled, the message to this contact will be translated
+
+            '
+        voice_preference:
+          type: boolean
+          description: "This contacts preference setting for voice message delivery: \n- NONE : no preference\n- PREFER_VOICE : contact prefers voice if possible (voice capable sender ID available as message originator and is not rejected due to price or other policy)\n- REQUIRE_VOICE : contact requires voice - selecting voice capable sender ID overrides price and other policies; message fails if voice sender ID is not available\n"
+        social_handles:
+          type: string
+          description: 'list of social handles
+
+            '
+        social_profile_lookup_prefix:
+          type: string
+          description: 'which social id to use to update contact info
+
+            '
+        social_profile_lookup_override:
+          type: boolean
+          description: 'If set to true will overwrite existing contact attributes that are collected from social id
+
+            '
+    inline_response_200_17:
       type: object
       properties:
         id:
           type: string
-          description: The identifier for the newly created resource.
+          description: 'The unique id of the token
+
+            '
+        expiry_time:
+          type: string
+          description: 'The UTC timestamp after which the token is no Integer valid.
+
+            '
     Contact_2:
       type: object
       properties:
@@ -1274,179 +1465,12 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
-    Contact:
+    Access_Token_1:
       type: object
       properties:
-        external_id:
+        duration:
           type: string
-          description: 'the id of the contact at the customer system. Can be used by customer to update the contacts
-
-            '
-        first_name:
-          type: string
-          description: 'First name of customer
-
-            '
-        last_name:
-          type: string
-          description: 'Last name of customer
-
-            '
-        birth_date:
-          type: string
-          description: 'Customer birth date. YYYY-MM-DD
-
-            '
-        first_acquisition_date:
-          type: string
-          description: 'The timestamp of the first customer acquisition - i.e. the date when the customer has been for the first time opted in to any program
-
-            '
-        last_acquisition_date:
-          type: string
-          description: 'The timestamp of the last customer acquisition i.e. the date when the customer has for the last time sent an optin keyword or performed a doubleoptin
-
-            '
-        primary_mdn:
-          type: string
-          description: 'The primary phone number of the customer. This is the number used to track the double optin for the customer
-
-            '
-        primary_addr_line1:
-          type: string
-          description: 'Details of customers primary address
-
-            '
-        primary_addr_line2:
-          type: string
-          description: 'Details of customers primary address
-
-            '
-        primary_addr_city:
-          type: string
-          description: 'Details of customers primary address
-
-            '
-        primary_addr_zip:
-          type: string
-          description: 'ZIP code of the customer primary address
-
-            '
-        primary_addr_state:
-          type: string
-          description: 'Details of customers primary address
-
-            '
-        primary_email_addr:
-          type: string
-          description: 'Customers primary email address
-
-            '
-        primary_addr_country:
-          type: string
-          description: 'Customer primary address country
-
-            '
-        primary_social_handle:
-          type: string
-          description: 'Customers primary social media ID
-
-            '
-        address_list:
-          type: string
-          description: 'Stores all known addresses of the customer in a form of a JSON array. Each address in the array can have the following attributes:
-
-            - priority: priority of the address, 1 highest
-
-            - designation: specifies type of the address: home, work
-
-            - use: billing, shipping
-
-            - source: specifies where the address comes from, company specific
-
-            - status: status of the address: VALID_NEW, VALID_CONF, INVALID, EXPIRED
-
-            - line1: first address line
-
-            - line2: second address line
-
-            - city
-
-            - state
-
-            - province
-
-            - zip
-
-            - country
-
-            '
-        account_list:
-          type: string
-          description: 'Stores all known accounts of the customer in a form of a JSON array. Each account in the array can have the following attributes:
-
-            - priority: user defined account priority
-
-            - designation:  primary designation of the account: work, private ...
-
-            - source: specifies where the address comes from, company specific
-
-            - status: status of the address: VALID_NEW, VALID_CONF, INVALID, EXPIRED
-
-            - type: email, social, web, loyalty
-
-            - username: the username in the account. This will be the membership id in loyalty programs or the email address for an email account
-
-            - domain: account domain. For example starwood.com
-
-            - access_token: the access token to the account where the account requires some oauth type authorization
-
-            NOTE: other attributes may be required/provided, based on the account type and domain.
-
-            '
-        device_list:
-          type: string
-          description: "Stores all known customer devices in a form of a JSON array. Each account in the device can have the following attributes:\n- priority: user defined account priority\n- designation:  primary designation of the account: work, private ...\n- source: specifies where the address comes from, company specific\n- status: status of the address: VALID_NEW, VALID_CONF, INVALID, EXPIRED\n- msisdn\n- carrier\n- mac_address, \n- uuid\n- imei \n- manufacturer: device manufacturer, for example Apple\n- model: model of the device, for example iPhone 5s\n- os: operating system of the device, for example iOS 8.3\nNOTE: other attributes may be required/provided, based on the device type.\n"
-        interest_list:
-          type: string
-          description: "Stores all known customer preferences in a form of a JSON array. Each preference can have the following attributes:\n- code: interest code \n- name: interest name\n- source: where the information was obtained\n- score: how likely the information is, floating point value 0...1\n"
-        demographic_list:
-          type: string
-          description: 'Stores all known customer demographic in a form of a JSON array. Each demographic can have the following attributes:
-
-            - demographic name
-
-            - source: where the information was obtained
-
-            - score: how likely the information is, floating point value 0...1
-
-            '
-        extended_attributes:
-          type: string
-          description: 'JSON string of all extended attributes of the customer. Any list of key:value pairs is supported. Also composite attributes can be stored.
-
-            '
-        preferred_language:
-          type: string
-          description: 'When translation is enabled, the message to this contact will be translated
-
-            '
-        voice_preference:
-          type: boolean
-          description: "This contacts preference setting for voice message delivery: \n- NONE : no preference\n- PREFER_VOICE : contact prefers voice if possible (voice capable sender ID available as message originator and is not rejected due to price or other policy)\n- REQUIRE_VOICE : contact requires voice - selecting voice capable sender ID overrides price and other policies; message fails if voice sender ID is not available\n"
-        social_handles:
-          type: string
-          description: 'list of social handles
-
-            '
-        social_profile_lookup_prefix:
-          type: string
-          description: 'which social id to use to update contact info
-
-            '
-        social_profile_lookup_override:
-          type: boolean
-          description: 'If set to true will overwrite existing contact attributes that are collected from social id
+          description: 'The UTC timestamp after which the token is no Integer valid.
 
             '
     Contact_1:
@@ -1606,6 +1630,12 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     inline_response_200_16:
       type: object
       properties:
@@ -1934,26 +1964,5 @@ components:
         is_rcs_capable:
           type: boolean
           description: 'Is rcs capable: true or false
-
-            '
-    inline_response_200_17:
-      type: object
-      properties:
-        id:
-          type: string
-          description: 'The unique id of the token
-
-            '
-        expiry_time:
-          type: string
-          description: 'The UTC timestamp after which the token is no Integer valid.
-
-            '
-    Access_Token_1:
-      type: object
-      properties:
-        duration:
-          type: string
-          description: 'The UTC timestamp after which the token is no Integer valid.
 
             '

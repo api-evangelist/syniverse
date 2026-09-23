@@ -13,7 +13,6 @@ paths:
       summary: Returns the list of applications
       tags:
       - Application
-      description: '  Returns the list of applications'
       parameters:
       - in: query
         name: id
@@ -269,11 +268,12 @@ paths:
                   error_description:
                     description: A human readable description of the error.
                     type: string
+      operationId: getApplications
+      x-operation-id-source: derived
     post:
       summary: Creates a new application
       tags:
       - Application
-      description: '  Creates a new application'
       responses:
         200:
           description: Successful operation
@@ -442,12 +442,13 @@ paths:
 
                     '
                   type: string
+      operationId: postApplications
+      x-operation-id-source: derived
   /'applications/{Application_ID}':
     get:
       summary: Returns the current version of the specified Application
       tags:
       - Application
-      description: '  Returns the current version of the specified Application'
       parameters:
       - in: path
         name: Application_ID
@@ -704,11 +705,12 @@ paths:
                   error_description:
                     description: A human readable description of the error.
                     type: string
+      operationId: get'applications{ApplicationID}'
+      x-operation-id-source: derived
     delete:
       summary: Deletes the Application resource with the specified ID
       tags:
       - Application
-      description: '  Deletes the Application resource with the specified ID'
       parameters:
       - in: path
         name: Application_ID
@@ -815,3 +817,5 @@ paths:
                   error_description:
                     description: A human readable description of the error.
                     type: string
+      operationId: delete'applications{ApplicationID}'
+      x-operation-id-source: derived

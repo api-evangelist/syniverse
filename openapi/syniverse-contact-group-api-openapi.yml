@@ -13,7 +13,6 @@ paths:
       tags:
       - Contact Group
       summary: List a Contact group
-      description: '  List a Contact group'
       parameters:
       - name: id
         in: query
@@ -170,11 +169,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getContactGroups
+      x-operation-id-source: derived
     post:
       tags:
       - Contact Group
       summary: Create a Contact Group
-      description: '  Create a Contact Group'
       responses:
         '200':
           description: Successful operation
@@ -271,12 +271,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Contact_Group'
+      operationId: postContactGroups
+      x-operation-id-source: derived
   /'contact_groups/{Group_ID}':
     get:
       tags:
       - Contact Group
       summary: Return a specified Contact Group
-      description: '  Return a specified Contact Group'
       parameters:
       - name: Group_ID
         in: path
@@ -375,11 +376,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'contactGroups{GroupID}'
+      x-operation-id-source: derived
     post:
       tags:
       - Contact Group
       summary: Update a Contact group
-      description: '  Update a Contact group'
       parameters:
       - name: Group_ID
         in: path
@@ -479,11 +481,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Contact_Group_1'
+      operationId: post'contactGroups{GroupID}'
+      x-operation-id-source: derived
     put:
       tags:
       - Contact Group
       summary: Replace a specified group ID
-      description: '  Replace a specified group ID'
       parameters:
       - name: Group_ID
         in: path
@@ -583,11 +586,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Contact_Group_2'
+      operationId: put'contactGroups{GroupID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Contact Group
       summary: Delete a Contact Group
-      description: '  Delete a Contact Group'
       parameters:
       - name: Group_ID
         in: path
@@ -682,12 +686,14 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'contactGroups{GroupID}'
+      x-operation-id-source: derived
   /'contact_groups/{Group_ID}/contacts':
     get:
       tags:
       - Contact Group
-      summary: Return the list of contacts associated with the contact group.
-      description: '  Return the list of contacts associated with the contact group. '
+      summary: Return the list of contacts associated with the contact group
+      description: Return the list of contacts associated with the contact group.
       parameters:
       - name: Group_ID
         in: path
@@ -930,11 +936,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'contactGroupsByGroupIDContacts'
+      x-operation-id-source: derived
     post:
       tags:
       - Contact Group
       summary: Add a contact to a static contact group
-      description: '  Add a contact to a static contact group'
       parameters:
       - name: Group_ID
         in: path
@@ -1038,12 +1045,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Contact_5'
+      operationId: post'contactGroupsByGroupIDContacts'
+      x-operation-id-source: derived
   /'contact_groups/{Group_ID}/contacts/{Contact_ID}':
     delete:
       tags:
       - Contact Group
       summary: Remove Contact from a Static Contact group
-      description: '  Remove Contact from a Static Contact group '
       parameters:
       - name: Group_ID
         in: path
@@ -1144,8 +1152,66 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'contactGroupsByGroupIDContacts{ContactID}'
+      x-operation-id-source: derived
 components:
   schemas:
+    Contact_Group:
+      type: object
+      properties:
+        external_id:
+          type: string
+          description: 'Customer supplied id of the contact group
+
+            '
+        name:
+          type: string
+          description: 'A name for the group
+
+            '
+        description:
+          type: string
+          description: 'Group description
+
+            '
+        criteria:
+          type: string
+          description: 'Filter definition for creation of the group. Users can use either criteria or members <FORMAT TBD -  figure our the syntax>
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+    Contact_Group_1:
+      type: object
+      properties:
+        external_id:
+          type: string
+          description: 'Customer supplied id of the contact group
+
+            '
+        name:
+          type: string
+          description: 'A name for the group
+
+            '
+        description:
+          type: string
+          description: 'Group description
+
+            '
+        criteria:
+          type: string
+          description: 'Filter definition for creation of the group. Users can use either criteria or members <FORMAT TBD -  figure our the syntax>
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
     inline_response_200_20_list:
       type: object
       properties:
@@ -1209,6 +1275,20 @@ components:
           description: 'An ascending version number of the object.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking.
 
             '
+    inline_response_200_20:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_20_list'
+    inline_response_200_16:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_16_list'
     inline_response_200_3:
       type: object
       properties:
@@ -1243,76 +1323,16 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
-    inline_response_200_20:
+    Contact_5:
       type: object
       properties:
-        list:
+        contacts:
           type: array
+          description: 'a list of contacts
+
+            '
           items:
-            $ref: '#/components/schemas/inline_response_200_20_list'
-    inline_response_200_16:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_16_list'
-    Contact_Group:
-      type: object
-      properties:
-        external_id:
-          type: string
-          description: 'Customer supplied id of the contact group
-
-            '
-        name:
-          type: string
-          description: 'A name for the group
-
-            '
-        description:
-          type: string
-          description: 'Group description
-
-            '
-        criteria:
-          type: string
-          description: 'Filter definition for creation of the group. Users can use either criteria or members <FORMAT TBD -  figure our the syntax>
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-    Contact_Group_1:
-      type: object
-      properties:
-        external_id:
-          type: string
-          description: 'Customer supplied id of the contact group
-
-            '
-        name:
-          type: string
-          description: 'A name for the group
-
-            '
-        description:
-          type: string
-          description: 'Group description
-
-            '
-        criteria:
-          type: string
-          description: 'Filter definition for creation of the group. Users can use either criteria or members <FORMAT TBD -  figure our the syntax>
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
+            type: string
     inline_response_200_16_list:
       type: object
       properties:
@@ -1636,13 +1656,3 @@ components:
           description: 'Is rcs capable: true or false
 
             '
-    Contact_5:
-      type: object
-      properties:
-        contacts:
-          type: array
-          description: 'a list of contacts
-
-            '
-          items:
-            type: string

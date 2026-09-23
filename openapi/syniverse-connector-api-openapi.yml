@@ -13,7 +13,6 @@ paths:
       tags:
       - Connector
       summary: List all matching Connectors
-      description: '  List all matching Connectors'
       parameters:
       - name: id
         in: query
@@ -144,11 +143,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getConnectConnectors
+      x-operation-id-source: derived
     post:
       tags:
       - Connector
       summary: Create a new Connector
-      description: '  Create a new Connector'
       responses:
         '200':
           description: Successful operation
@@ -221,12 +221,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Connector'
+      operationId: postConnectConnectors
+      x-operation-id-source: derived
   /'connect/connectors/{Connector_ID}':
     get:
       tags:
       - Connector
       summary: List a Connector
-      description: '  List a Connector'
       parameters:
       - name: Connector_ID
         in: path
@@ -289,11 +290,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'connectConnectors{ConnectorID}'
+      x-operation-id-source: derived
     post:
       tags:
       - Connector
       summary: Update a specific Connector
-      description: '  Update a specific Connector'
       parameters:
       - name: Connector_ID
         in: path
@@ -357,11 +359,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Connector_1'
+      operationId: post'connectConnectors{ConnectorID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Connector
       summary: Delete a Contact
-      description: '  Delete a Contact '
       parameters:
       - name: Connector_ID
         in: path
@@ -420,9 +423,11 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'connectConnectors{ConnectorID}'
+      x-operation-id-source: derived
 components:
   schemas:
-    Connector:
+    Connector_1:
       type: object
       properties:
         external_id:
@@ -440,15 +445,19 @@ components:
             '
         credentials:
           type: string
-          description: '
+          description: ''
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
-    inline_response_200_3:
+    inline_response_200_31:
       type: object
       properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_31_list'
     inline_response_200_31_list:
       type: object
       properties:
@@ -490,14 +499,7 @@ components:
           description: 'ID of the application that has created the resource
 
             '
-    inline_response_200_31:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_31_list'
-    Connector_1:
+    Connector:
       type: object
       properties:
         external_id:
@@ -515,9 +517,12 @@ components:
             '
         credentials:
           type: string
-          description: ''
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+          description: '
 
             '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.

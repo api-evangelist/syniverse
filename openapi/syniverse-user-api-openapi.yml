@@ -13,7 +13,6 @@ paths:
       summary: Returns the list of Users
       tags:
       - User
-      description: '  Returns the list of Users'
       parameters:
       - in: path
         name: Application_ID
@@ -188,12 +187,14 @@ paths:
                   error_description:
                     description: A human readable description of the error.
                     type: string
+      operationId: getApplicationsByApplicationIDUsers
+      x-operation-id-source: derived
   /'applications/{Application_ID}/users/{User_ID}':
     get:
-      summary: Returns the current version of the specified User.
+      summary: Returns the current version of the specified User
       tags:
       - User
-      description: '  Returns the current version of the specified User.'
+      description: Returns the current version of the specified User.
       parameters:
       - in: path
         name: Application_ID
@@ -369,11 +370,12 @@ paths:
                   error_description:
                     description: A human readable description of the error.
                     type: string
+      operationId: get'applicationsByApplicationIDUsers{UserID}'
+      x-operation-id-source: derived
     delete:
       summary: Deletes the User resource with the specified ID
       tags:
       - User
-      description: '  Deletes the User resource with the specified ID'
       parameters:
       - in: path
         name: Application_ID
@@ -486,12 +488,14 @@ paths:
                   error_description:
                     description: A human readable description of the error.
                     type: string
+      operationId: delete'applicationsByApplicationIDUsers{UserID}'
+      x-operation-id-source: derived
   /'applications/{Application_ID}/users/{User_ID}/associate':
     post:
-      summary: Associates an user address (MDN or whatever) with the User.  Also creates and sends a validation token to the end user. The post body will contain the user address (MDN, etc.).
+      summary: Associates an user address (MDN or whatever) with the User.
       tags:
       - User
-      description: '  Associates an user address (MDN or whatever) with the User.  Also creates and sends a validation token to the end user. The post body will contain the user address (MDN, etc.).'
+      description: Associates an user address (MDN or whatever) with the User. Also creates and sends a validation token to the end user. The post body will contain the user address (MDN, etc.).
       parameters:
       - in: path
         name: Application_ID
@@ -615,11 +619,13 @@ paths:
 
                     '
                   type: string
+      operationId: post'applicationsByApplicationIDUsersByUserIDAssociate'
+      x-operation-id-source: derived
     delete:
-      summary: Removes the association with this User.
+      summary: Removes the association with this User
       tags:
       - User
-      description: '  Removes the association with this User.'
+      description: Removes the association with this User.
       parameters:
       - in: path
         name: Application_ID
@@ -732,12 +738,14 @@ paths:
                   error_description:
                     description: A human readable description of the error.
                     type: string
+      operationId: delete'applicationsByApplicationIDUsersByUserIDAssociate'
+      x-operation-id-source: derived
   /'applications/{Application_ID}/users/{User_ID}/validate':
     post:
-      summary: Validates the association or login process using the last supplied validation code.  The post body will contain the validation code.
+      summary: Validates the association or login process using the last supplied validation…
       tags:
       - User
-      description: '  Validates the association or login process using the last supplied validation code.  The post body will contain the validation code.'
+      description: Validates the association or login process using the last supplied validation code. The post body will contain the validation code.
       parameters:
       - in: path
         name: Application_ID
@@ -850,12 +858,14 @@ paths:
                   error_description:
                     description: A human readable description of the error.
                     type: string
+      operationId: post'applicationsByApplicationIDUsersByUserIDValidate'
+      x-operation-id-source: derived
   /'applications/{Application_ID}/users/{User_ID}/login_start':
     post:
-      summary: Creates and sends a MFA  validation code to the end user.   The POST body will contain the validation method with SMS as default.
+      summary: Creates and sends a MFA validation code to the end user.
       tags:
       - User
-      description: '  Creates and sends a MFA  validation code to the end user.   The POST body will contain the validation method with SMS as default.'
+      description: Creates and sends a MFA validation code to the end user. The POST body will contain the validation method with SMS as default.
       parameters:
       - in: path
         name: Application_ID
@@ -979,3 +989,5 @@ paths:
 
                     '
                   type: string
+      operationId: post'applicationsByApplicationIDUsersByUserIDLoginStart'
+      x-operation-id-source: derived

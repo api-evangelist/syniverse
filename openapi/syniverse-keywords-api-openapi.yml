@@ -13,7 +13,6 @@ paths:
       tags:
       - Keywords
       summary: Returns the list of all keywords
-      description: '  Returns the list of all keywords '
       parameters:
       - name: id
         in: query
@@ -220,11 +219,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getMessagingKeywords
+      x-operation-id-source: derived
     post:
       tags:
       - Keywords
       summary: Create a new keyword
-      description: '  Create a new keyword'
       responses:
         '200':
           description: Successful operation
@@ -321,12 +321,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Keywords'
+      operationId: postMessagingKeywords
+      x-operation-id-source: derived
   /'messaging/keywords/{Keyword_ID}':
     get:
       tags:
       - Keywords
       summary: Retrieve a specific keyword
-      description: '  Retrieve a specific keyword'
       parameters:
       - name: Keyword_ID
         in: path
@@ -425,11 +426,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'messagingKeywords{KeywordID}'
+      x-operation-id-source: derived
     post:
       tags:
       - Keywords
       summary: Update a keyword
-      description: '  Update a keyword'
       parameters:
       - name: Keyword_ID
         in: path
@@ -529,11 +531,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Keywords_2'
+      operationId: post'messagingKeywords{KeywordID}'
+      x-operation-id-source: derived
     put:
       tags:
       - Keywords
       summary: Replace the keyword
-      description: '  Replace the keyword'
       parameters:
       - name: Keyword_ID
         in: path
@@ -633,11 +636,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Keywords_1'
+      operationId: put'messagingKeywords{KeywordID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Keywords
       summary: Deletes specified keyword
-      description: '  Deletes specified keyword'
       parameters:
       - name: Keyword_ID
         in: path
@@ -732,270 +736,10 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'messagingKeywords{KeywordID}'
+      x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    inline_response_200_10:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_10_list'
-    Keywords_2:
-      type: object
-      properties:
-        name:
-          type: string
-          description: 'name of the keyword
-
-            '
-        description:
-          type: string
-          description: 'description of the keyword
-
-            '
-        value:
-          type: string
-          description: 'the keyword. For example ''SPORTS''. The keyword can be expressed in form of a regular expression. POSIX Extended syntax is supported.
-
-            '
-        case:
-          type: string
-          description: 'SENSITIVE/INSENSITIVE specifies whether the keyword is case sensitive or not. default is not case sensitive.
-
-            '
-        sender_id:
-          type: string
-          description: 'The sender id on which the keyword is valid. When this is empty, any sender id associated with the given customer will be sensitive to this keyword
-
-            '
-        valid_from:
-          type: string
-          description: 'the date range for which the keyword is valid
-
-            '
-        valid_to:
-          type: string
-          description: 'the date range for which the keyword is valid
-
-            '
-        associated_info:
-          type: string
-          description: 'additional information, value is at customer discretion, this attribute is added to the keyword event whenever the keyword is detected
-
-            '
-        campaign_id:
-          type: string
-          description: 'The campaign id
-
-            '
-        type:
-          type: string
-          description: 'the type of the keyword:
-
-            - RESERVED: those are the platform specific keywords that can not be used by customer in any campaign. Those keywords will always exist, the company will never need to add them
-
-            - COMPANY: company specific keywords
-
-            '
-        actions:
-          type: string
-          description: 'actions to be applied when the keyword has been received. Multiple actions can be specified. The various actions should be separated by a coma or space:
-
-            - OPTOUT -> mark the user as explicitly opted out (and forward message to Consent Manager)
-
-            - OPTIN > mark the user as explicitly opted in (and forward message to Consent Manager)
-
-            - STORE -> no action, just record in user profile
-
-            '
-        reply_template:
-          type: string
-          description: 'if specified then SCG will send a predefined message back to the user. This attribute will contain the name of the message template to be used in the automatic reply
-
-            '
-        attachments:
-          type: string
-          description: 'List of attachments to be sent as autoreplay
-
-            '
-        search_words_count:
-          type: integer
-          description: 'Server will search for pattern in first search_words  words of the message
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-    Keywords_1:
-      type: object
-      properties:
-        name:
-          type: string
-          description: 'name of the keyword
-
-            '
-        description:
-          type: string
-          description: 'description of the keyword
-
-            '
-        value:
-          type: string
-          description: 'the keyword. For example ''SPORTS''. The keyword can be expressed in form of a regular expression. POSIX Extended syntax is supported.
-
-            '
-        case:
-          type: string
-          description: 'SENSITIVE/INSENSITIVE specifies whether the keyword is case sensitive or not. default is not case sensitive.
-
-            '
-        sender_id:
-          type: string
-          description: 'The sender id on which the keyword is valid. When this is empty, any sender id associated with the given customer will be sensitive to this keyword
-
-            '
-        valid_from:
-          type: string
-          description: 'the date range for which the keyword is valid
-
-            '
-        valid_to:
-          type: string
-          description: 'the date range for which the keyword is valid
-
-            '
-        associated_info:
-          type: string
-          description: 'additional information, value is at customer discretion, this attribute is added to the keyword event whenever the keyword is detected
-
-            '
-        campaign_id:
-          type: string
-          description: 'The campaign id
-
-            '
-        type:
-          type: string
-          description: 'the type of the keyword:
-
-            - RESERVED: those are the platform specific keywords that can not be used by customer in any campaign. Those keywords will always exist, the company will never need to add them
-
-            - COMPANY: company specific keywords
-
-            '
-        actions:
-          type: string
-          description: 'actions to be applied when the keyword has been received. Multiple actions can be specified. The various actions should be separated by a coma or space:
-
-            - OPTOUT -> mark the user as explicitly opted out (and forward message to Consent Manager)
-
-            - OPTIN > mark the user as explicitly opted in (and forward message to Consent Manager)
-
-            - STORE -> no action, just record in user profile
-
-            '
-        reply_template:
-          type: string
-          description: 'if specified then SCG will send a predefined message back to the user. This attribute will contain the name of the message template to be used in the automatic reply
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-    Keywords:
-      type: object
-      properties:
-        name:
-          type: string
-          description: 'name of the keyword
-
-            '
-        description:
-          type: string
-          description: 'description of the keyword
-
-            '
-        value:
-          type: string
-          description: 'the keyword. For example ''SPORTS''. The keyword can be expressed in form of a regular expression. POSIX Extended syntax is supported.
-
-            '
-        case:
-          type: string
-          description: 'SENSITIVE/INSENSITIVE specifies whether the keyword is case sensitive or not. default is not case sensitive.
-
-            '
-        sender_id:
-          type: string
-          description: 'The sender id on which the keyword is valid. When this is empty, any sender id associated with the given customer will be sensitive to this keyword
-
-            '
-        valid_from:
-          type: string
-          description: 'the date range for which the keyword is valid
-
-            '
-        valid_to:
-          type: string
-          description: 'the date range for which the keyword is valid
-
-            '
-        associated_info:
-          type: string
-          description: 'additional information, value is at customer discretion, this attribute is added to the keyword event whenever the keyword is detected
-
-            '
-        campaign_id:
-          type: string
-          description: 'The campaign id
-
-            '
-        type:
-          type: string
-          description: 'the type of the keyword:
-
-            - RESERVED: those are the platform specific keywords that can not be used by customer in any campaign. Those keywords will always exist, the company will never need to add them
-
-            - COMPANY: company specific keywords
-
-            '
-        actions:
-          type: string
-          description: 'actions to be applied when the keyword has been received. Multiple actions can be specified. The various actions should be separated by a coma or space:
-
-            - OPTOUT -> mark the user as explicitly opted out (and forward message to Consent Manager)
-
-            - OPTIN > mark the user as explicitly opted in (and forward message to Consent Manager)
-
-            - STORE -> no action, just record in user profile
-
-            '
-        reply_template:
-          type: string
-          description: 'if specified then SCG will send a predefined message back to the user. This attribute will contain the name of the message template to be used in the automatic reply
-
-            '
-        attachments:
-          type: string
-          description: 'List of attachments to be sent as autoreplay
-
-            '
-        search_words_count:
-          type: integer
-          description: 'Server will search for pattern in first search_words  words of the message
-
-            '
     inline_response_200_10_list:
       type: object
       properties:
@@ -1102,5 +846,267 @@ components:
         search_words_count:
           type: integer
           description: 'Server will search for pattern in first search_words  words of the message
+
+            '
+    Keywords:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'name of the keyword
+
+            '
+        description:
+          type: string
+          description: 'description of the keyword
+
+            '
+        value:
+          type: string
+          description: 'the keyword. For example ''SPORTS''. The keyword can be expressed in form of a regular expression. POSIX Extended syntax is supported.
+
+            '
+        case:
+          type: string
+          description: 'SENSITIVE/INSENSITIVE specifies whether the keyword is case sensitive or not. default is not case sensitive.
+
+            '
+        sender_id:
+          type: string
+          description: 'The sender id on which the keyword is valid. When this is empty, any sender id associated with the given customer will be sensitive to this keyword
+
+            '
+        valid_from:
+          type: string
+          description: 'the date range for which the keyword is valid
+
+            '
+        valid_to:
+          type: string
+          description: 'the date range for which the keyword is valid
+
+            '
+        associated_info:
+          type: string
+          description: 'additional information, value is at customer discretion, this attribute is added to the keyword event whenever the keyword is detected
+
+            '
+        campaign_id:
+          type: string
+          description: 'The campaign id
+
+            '
+        type:
+          type: string
+          description: 'the type of the keyword:
+
+            - RESERVED: those are the platform specific keywords that can not be used by customer in any campaign. Those keywords will always exist, the company will never need to add them
+
+            - COMPANY: company specific keywords
+
+            '
+        actions:
+          type: string
+          description: 'actions to be applied when the keyword has been received. Multiple actions can be specified. The various actions should be separated by a coma or space:
+
+            - OPTOUT -> mark the user as explicitly opted out (and forward message to Consent Manager)
+
+            - OPTIN > mark the user as explicitly opted in (and forward message to Consent Manager)
+
+            - STORE -> no action, just record in user profile
+
+            '
+        reply_template:
+          type: string
+          description: 'if specified then SCG will send a predefined message back to the user. This attribute will contain the name of the message template to be used in the automatic reply
+
+            '
+        attachments:
+          type: string
+          description: 'List of attachments to be sent as autoreplay
+
+            '
+        search_words_count:
+          type: integer
+          description: 'Server will search for pattern in first search_words  words of the message
+
+            '
+    Keywords_1:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'name of the keyword
+
+            '
+        description:
+          type: string
+          description: 'description of the keyword
+
+            '
+        value:
+          type: string
+          description: 'the keyword. For example ''SPORTS''. The keyword can be expressed in form of a regular expression. POSIX Extended syntax is supported.
+
+            '
+        case:
+          type: string
+          description: 'SENSITIVE/INSENSITIVE specifies whether the keyword is case sensitive or not. default is not case sensitive.
+
+            '
+        sender_id:
+          type: string
+          description: 'The sender id on which the keyword is valid. When this is empty, any sender id associated with the given customer will be sensitive to this keyword
+
+            '
+        valid_from:
+          type: string
+          description: 'the date range for which the keyword is valid
+
+            '
+        valid_to:
+          type: string
+          description: 'the date range for which the keyword is valid
+
+            '
+        associated_info:
+          type: string
+          description: 'additional information, value is at customer discretion, this attribute is added to the keyword event whenever the keyword is detected
+
+            '
+        campaign_id:
+          type: string
+          description: 'The campaign id
+
+            '
+        type:
+          type: string
+          description: 'the type of the keyword:
+
+            - RESERVED: those are the platform specific keywords that can not be used by customer in any campaign. Those keywords will always exist, the company will never need to add them
+
+            - COMPANY: company specific keywords
+
+            '
+        actions:
+          type: string
+          description: 'actions to be applied when the keyword has been received. Multiple actions can be specified. The various actions should be separated by a coma or space:
+
+            - OPTOUT -> mark the user as explicitly opted out (and forward message to Consent Manager)
+
+            - OPTIN > mark the user as explicitly opted in (and forward message to Consent Manager)
+
+            - STORE -> no action, just record in user profile
+
+            '
+        reply_template:
+          type: string
+          description: 'if specified then SCG will send a predefined message back to the user. This attribute will contain the name of the message template to be used in the automatic reply
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+    inline_response_200_10:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_10_list'
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    Keywords_2:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'name of the keyword
+
+            '
+        description:
+          type: string
+          description: 'description of the keyword
+
+            '
+        value:
+          type: string
+          description: 'the keyword. For example ''SPORTS''. The keyword can be expressed in form of a regular expression. POSIX Extended syntax is supported.
+
+            '
+        case:
+          type: string
+          description: 'SENSITIVE/INSENSITIVE specifies whether the keyword is case sensitive or not. default is not case sensitive.
+
+            '
+        sender_id:
+          type: string
+          description: 'The sender id on which the keyword is valid. When this is empty, any sender id associated with the given customer will be sensitive to this keyword
+
+            '
+        valid_from:
+          type: string
+          description: 'the date range for which the keyword is valid
+
+            '
+        valid_to:
+          type: string
+          description: 'the date range for which the keyword is valid
+
+            '
+        associated_info:
+          type: string
+          description: 'additional information, value is at customer discretion, this attribute is added to the keyword event whenever the keyword is detected
+
+            '
+        campaign_id:
+          type: string
+          description: 'The campaign id
+
+            '
+        type:
+          type: string
+          description: 'the type of the keyword:
+
+            - RESERVED: those are the platform specific keywords that can not be used by customer in any campaign. Those keywords will always exist, the company will never need to add them
+
+            - COMPANY: company specific keywords
+
+            '
+        actions:
+          type: string
+          description: 'actions to be applied when the keyword has been received. Multiple actions can be specified. The various actions should be separated by a coma or space:
+
+            - OPTOUT -> mark the user as explicitly opted out (and forward message to Consent Manager)
+
+            - OPTIN > mark the user as explicitly opted in (and forward message to Consent Manager)
+
+            - STORE -> no action, just record in user profile
+
+            '
+        reply_template:
+          type: string
+          description: 'if specified then SCG will send a predefined message back to the user. This attribute will contain the name of the message template to be used in the automatic reply
+
+            '
+        attachments:
+          type: string
+          description: 'List of attachments to be sent as autoreplay
+
+            '
+        search_words_count:
+          type: integer
+          description: 'Server will search for pattern in first search_words  words of the message
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '

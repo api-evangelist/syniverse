@@ -13,7 +13,6 @@ paths:
       tags:
       - Contact Address History
       summary: List a Contact Address History
-      description: '  List a Contact Address History '
       parameters:
       - name: id
         in: query
@@ -200,6 +199,8 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getConsentContactAddressHistory
+      x-operation-id-source: derived
 components:
   schemas:
     inline_response_200_24_list:

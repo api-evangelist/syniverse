@@ -13,7 +13,6 @@ paths:
       tags:
       - Attachment
       summary: Creates a new attachment resource
-      description: '  Creates a new attachment resource'
       parameters:
       - name: id
         in: query
@@ -178,11 +177,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getMessagingAttachments
+      x-operation-id-source: derived
     post:
       tags:
       - Attachment
       summary: Creates a new attachment resource
-      description: '  Creates a new attachment resource'
       responses:
         '200':
           description: Successful operation
@@ -279,12 +279,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Attachment'
+      operationId: postMessagingAttachments
+      x-operation-id-source: derived
   /'messaging/attachments/{Attachment_ID}':
     get:
       tags:
       - Attachment
       summary: Returns the current version of the specified Attachment
-      description: '  Returns the current version of the specified Attachment'
       parameters:
       - name: Attachment_ID
         in: path
@@ -383,11 +384,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'messagingAttachments{AttachmentID}'
+      x-operation-id-source: derived
     post:
       tags:
       - Attachment
       summary: Update a specific attachment id
-      description: '  Update a specific attachment id '
       parameters:
       - name: Attachment_ID
         in: path
@@ -487,11 +489,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Attachment_1'
+      operationId: post'messagingAttachments{AttachmentID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Attachment
       summary: Delete an attachment
-      description: '  Delete an attachment'
       parameters:
       - name: Attachment_ID
         in: path
@@ -586,12 +589,13 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'messagingAttachments{AttachmentID}'
+      x-operation-id-source: derived
   /'messaging/attachments/{Attachment_ID}/access_tokens':
     post:
       tags:
       - Attachment
       summary: Create a new access token for an attachment
-      description: '  Create a new access token for an attachment'
       parameters:
       - name: Attachment_ID
         in: path
@@ -691,12 +695,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Access_Token'
+      operationId: post'messagingAttachmentsByAttachmentIDAccessTokens'
+      x-operation-id-source: derived
   /'messaging/attachments/{Attachment_ID}/content':
     get:
       tags:
       - Attachment
       summary: Returns the current version of the specified Attachment
-      description: '  Returns the current version of the specified Attachment'
       parameters:
       - name: Attachment_ID
         in: path
@@ -795,11 +800,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'messagingAttachmentsByAttachmentIDContent'
+      x-operation-id-source: derived
     post:
       tags:
       - Attachment
       summary: Uploads data to an attachment
-      description: '  Uploads data to an attachment'
       parameters:
       - name: Attachment_ID
         in: path
@@ -899,45 +905,10 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Attachment_Data'
+      operationId: post'messagingAttachmentsByAttachmentIDContent'
+      x-operation-id-source: derived
 components:
   schemas:
-    Access_Token:
-      type: object
-      properties:
-        expiry_time:
-          type: string
-          description: 'The UTC timestamp after which the token is no Integer valid.
-
-            '
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    Attachment_1:
-      type: object
-      properties:
-        name:
-          type: string
-          description: 'The name of the attachment (e.g. it''s filename or other non-generated identifier)  The value of this field should be unique for a given message.
-
-            '
-        type:
-          type: string
-          description: 'The MIME type of the attachment (if known)
-
-            '
-        filename:
-          type: string
-          description: 'Original file name of the attachment
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
     inline_response_200_7:
       type: object
       properties:
@@ -945,12 +916,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/inline_response_200_7_list'
-    Attachment_Data:
+    Access_Token:
       type: object
       properties:
-        content-data:
+        expiry_time:
           type: string
-          description: 'The binary data associated with the attachment.  The content-type of the HTPP request/reponse is the content type of the data.
+          description: 'The UTC timestamp after which the token is no Integer valid.
 
             '
     inline_response_200_7_list:
@@ -1022,6 +993,28 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
+    Attachment_Data:
+      type: object
+      properties:
+        content-data:
+          type: string
+          description: 'The binary data associated with the attachment.  The content-type of the HTPP request/reponse is the content type of the data.
+
+            '
+    inline_response_200_8:
+      type: object
+      properties:
+        content-data:
+          type: string
+          description: 'The binary data associated with the attachment.  The content-type of the HTPP request/reponse is the content type of the data.
+
+            '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     Attachment:
       type: object
       properties:
@@ -1040,11 +1033,26 @@ components:
           description: 'Original file name of the attachment
 
             '
-    inline_response_200_8:
+    Attachment_1:
       type: object
       properties:
-        content-data:
+        name:
           type: string
-          description: 'The binary data associated with the attachment.  The content-type of the HTPP request/reponse is the content type of the data.
+          description: 'The name of the attachment (e.g. it''s filename or other non-generated identifier)  The value of this field should be unique for a given message.
+
+            '
+        type:
+          type: string
+          description: 'The MIME type of the attachment (if known)
+
+            '
+        filename:
+          type: string
+          description: 'Original file name of the attachment
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '

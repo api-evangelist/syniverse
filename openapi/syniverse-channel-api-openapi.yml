@@ -13,7 +13,6 @@ paths:
       tags:
       - Channel
       summary: List available Private Channels
-      description: '  List available Private Channels'
       parameters:
       - name: id
         in: query
@@ -170,11 +169,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getMessagingChannels
+      x-operation-id-source: derived
     post:
       tags:
       - Channel
       summary: Create a Private Channel
-      description: '  Create a Private Channel'
       responses:
         '200':
           description: Successful operation
@@ -271,12 +271,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Channel'
+      operationId: postMessagingChannels
+      x-operation-id-source: derived
   /'messaging/channels/{Channel_ID}':
     get:
       tags:
       - Channel
       summary: Retrieve a specified Channel
-      description: '  Retrieve a specified Channel'
       parameters:
       - name: Channel_ID
         in: path
@@ -375,11 +376,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'messagingChannels{ChannelID}'
+      x-operation-id-source: derived
     post:
       tags:
       - Channel
       summary: Update a channel ID with attributes
-      description: '  Update a channel ID with attributes'
       parameters:
       - name: Channel_ID
         in: path
@@ -479,11 +481,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Channel_2'
+      operationId: post'messagingChannels{ChannelID}'
+      x-operation-id-source: derived
     put:
       tags:
       - Channel
-      summary: Replaces the specific Channel ID. All mandatory fields must be present.
-      description: '  Replaces the specific Channel ID. All mandatory fields must be present.'
+      summary: Replaces the specific Channel ID. All mandatory fields must be present
+      description: Replaces the specific Channel ID. All mandatory fields must be present.
       parameters:
       - name: Channel_ID
         in: path
@@ -583,11 +587,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Channel_1'
+      operationId: put'messagingChannels{ChannelID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Channel
       summary: Delete a specified Private Channel
-      description: '  Delete a specified Private Channel'
       parameters:
       - name: Channel_ID
         in: path
@@ -682,12 +687,13 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'messagingChannels{ChannelID}'
+      x-operation-id-source: derived
   /'messaging/channels/{Channel_ID}/sender_ids':
     get:
       tags:
       - Channel
       summary: List Sender IDs associated with a Channel
-      description: '  List Sender IDs associated with a Channel'
       parameters:
       - name: Channel_ID
         in: path
@@ -931,11 +937,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'messagingChannelsByChannelIDSenderIds'
+      x-operation-id-source: derived
     post:
       tags:
       - Channel
       summary: Add sender_id(s) to a channel
-      description: '  Add sender_id(s) to a channel'
       parameters:
       - name: Channel_ID
         in: path
@@ -1039,12 +1046,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Sender_ID_2'
+      operationId: post'messagingChannelsByChannelIDSenderIds'
+      x-operation-id-source: derived
   /'messaging/channels/{channel_ID}/sender_ids/{sender_ID}':
     delete:
       tags:
       - Channel
       summary: Removes the senderId from channel
-      description: '  Removes the senderId from channel'
       parameters:
       - name: channel_ID
         in: path
@@ -1145,78 +1153,10 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'messagingChannelsByChannelIDSenderIds{senderID}'
+      x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_4_list:
-      type: object
-      properties:
-        id:
-          type: string
-          description: 'The channel identifier, allocated by SCG when channel is created
-
-            '
-        name:
-          type: string
-          description: 'User Specified Name of the Channel
-
-            '
-        priority:
-          type: string
-          description: 'Determines the channel priority: high, normal or low. SCG will deliver to target system first for messages in high priority channels, then normal and at the end low priority. Message size does not affect the message priority
-
-            '
-        description:
-          type: string
-          description: 'Description of the Channel
-
-            '
-        ownership:
-          type: string
-          description: 'SHARED/PRIVATE/PUBLIC
-
-            '
-        message_templates:
-          type: array
-          description: 'A list of template ids that apply to this sender address. If more than one template applies, the elements will be separated by  a coma.
-
-            '
-          items:
-            type: string
-        country:
-          type: string
-          description: 'The country that the sender address can be used to send messages to. This field will contain ISO country code. The value is managed by Syniverse and not editable by the customer.
-
-            '
-        application_id:
-          type: integer
-          description: 'ID of the application that has created the resource
-
-            '
-        created_date:
-          type: string
-          description: 'The date the resource was created
-
-            '
-        last_updated_date:
-          type: string
-          description: 'The data the resource was last changed
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-    Sender_ID_2:
-      type: object
-      properties:
-        sender_ids:
-          type: array
-          description: 'A list of sender ids
-
-            '
-          items:
-            type: string
     inline_response_200_2_list:
       type: object
       properties:
@@ -1412,12 +1352,6 @@ components:
           description: 'verify sms agent id
 
             '
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
     Channel:
       type: object
       properties:
@@ -1436,36 +1370,13 @@ components:
           description: 'Description of the Channel
 
             '
-    inline_response_200_4:
+    inline_response_200_2:
       type: object
       properties:
         list:
           type: array
           items:
-            $ref: '#/components/schemas/inline_response_200_4_list'
-    Channel_2:
-      type: object
-      properties:
-        name:
-          type: string
-          description: 'User Specified Name of the Channel
-
-            '
-        priority:
-          type: string
-          description: 'Determines the channel priority: high, normal or low. SCG will deliver to target system first for messages in high priority channels, then normal and at the end low priority. Message size does not affect the message priority
-
-            '
-        description:
-          type: string
-          description: 'Description of the Channel
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
+            $ref: '#/components/schemas/inline_response_200_2_list'
     Channel_1:
       type: object
       properties:
@@ -1489,10 +1400,109 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
-    inline_response_200_2:
+    inline_response_200_4_list:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'The channel identifier, allocated by SCG when channel is created
+
+            '
+        name:
+          type: string
+          description: 'User Specified Name of the Channel
+
+            '
+        priority:
+          type: string
+          description: 'Determines the channel priority: high, normal or low. SCG will deliver to target system first for messages in high priority channels, then normal and at the end low priority. Message size does not affect the message priority
+
+            '
+        description:
+          type: string
+          description: 'Description of the Channel
+
+            '
+        ownership:
+          type: string
+          description: 'SHARED/PRIVATE/PUBLIC
+
+            '
+        message_templates:
+          type: array
+          description: 'A list of template ids that apply to this sender address. If more than one template applies, the elements will be separated by  a coma.
+
+            '
+          items:
+            type: string
+        country:
+          type: string
+          description: 'The country that the sender address can be used to send messages to. This field will contain ISO country code. The value is managed by Syniverse and not editable by the customer.
+
+            '
+        application_id:
+          type: integer
+          description: 'ID of the application that has created the resource
+
+            '
+        created_date:
+          type: string
+          description: 'The date the resource was created
+
+            '
+        last_updated_date:
+          type: string
+          description: 'The data the resource was last changed
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+    Channel_2:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'User Specified Name of the Channel
+
+            '
+        priority:
+          type: string
+          description: 'Determines the channel priority: high, normal or low. SCG will deliver to target system first for messages in high priority channels, then normal and at the end low priority. Message size does not affect the message priority
+
+            '
+        description:
+          type: string
+          description: 'Description of the Channel
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+    Sender_ID_2:
+      type: object
+      properties:
+        sender_ids:
+          type: array
+          description: 'A list of sender ids
+
+            '
+          items:
+            type: string
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    inline_response_200_4:
       type: object
       properties:
         list:
           type: array
           items:
-            $ref: '#/components/schemas/inline_response_200_2_list'
+            $ref: '#/components/schemas/inline_response_200_4_list'

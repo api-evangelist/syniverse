@@ -13,7 +13,6 @@ paths:
       tags:
       - Message Template
       summary: Retrieve all Templates
-      description: '  Retrieve all Templates'
       parameters:
       - name: id
         in: query
@@ -168,11 +167,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getMessagingMessageTemplates
+      x-operation-id-source: derived
     post:
       tags:
       - Message Template
       summary: Create a Template
-      description: '  Create a Template'
       responses:
         '200':
           description: Successful operation
@@ -269,12 +269,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Sender_ID_Message_Template'
+      operationId: postMessagingMessageTemplates
+      x-operation-id-source: derived
   /'messaging/message_templates/{Template_ID}':
     get:
       tags:
       - Message Template
       summary: Returns the current version of the specified Template
-      description: '  Returns the current version of the specified Template'
       parameters:
       - name: Template_ID
         in: path
@@ -373,11 +374,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'messagingMessageTemplates{TemplateID}'
+      x-operation-id-source: derived
     post:
       tags:
       - Message Template
       summary: Update a Template
-      description: '  Update a Template'
       parameters:
       - name: Template_ID
         in: path
@@ -477,11 +479,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Sender_ID_Message_Template_2'
+      operationId: post'messagingMessageTemplates{TemplateID}'
+      x-operation-id-source: derived
     put:
       tags:
       - Message Template
-      summary: Replaces the specific template ID. All mandatory fields must be present.
-      description: '  Replaces the specific template ID. All mandatory fields must be present.'
+      summary: Replaces the specific template ID. All mandatory fields must be present
+      description: Replaces the specific template ID. All mandatory fields must be present.
       parameters:
       - name: Template_ID
         in: path
@@ -581,11 +585,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Sender_ID_Message_Template_1'
+      operationId: put'messagingMessageTemplates{TemplateID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Message Template
       summary: Delete a Template
-      description: '  Delete a Template'
       parameters:
       - name: Template_ID
         in: path
@@ -680,51 +685,11 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'messagingMessageTemplates{TemplateID}'
+      x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_9:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_9_list'
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
     Sender_ID_Message_Template_1:
-      type: object
-      properties:
-        designation:
-          type: string
-          description: 'The template is used either for VALIDATOR or as an actual TEMPLATE.
-
-            VALIDATOR type templates will be associated with a sender id and any message that is submitted to a sender ID that has some VALIDATOR templates associated with it will be checked against the template.
-
-            TEMPLATE type templates are used to send messages. in such case the message request body will indicate with template to apply and the message processing will use the template body and apply conversion of applicable keywords to create the actual message body.
-
-            NOTE: validator type templates can not be modified by the customer where the message template is associated with a shared sender id
-
-            '
-        name:
-          type: string
-          description: 'The name of the template.
-
-            '
-        pattern:
-          type: string
-          description: 'template pattern can be used to enforce compliancy of the message body with the submitted program brief. The template pattern allows also to use the templates to form the message body by using the template pattern and replacing the keywords in the pattern with the values of submitted keywords in the message send from the sender id
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-    Sender_ID_Message_Template_2:
       type: object
       properties:
         designation:
@@ -815,6 +780,41 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    Sender_ID_Message_Template_2:
+      type: object
+      properties:
+        designation:
+          type: string
+          description: 'The template is used either for VALIDATOR or as an actual TEMPLATE.
+
+            VALIDATOR type templates will be associated with a sender id and any message that is submitted to a sender ID that has some VALIDATOR templates associated with it will be checked against the template.
+
+            TEMPLATE type templates are used to send messages. in such case the message request body will indicate with template to apply and the message processing will use the template body and apply conversion of applicable keywords to create the actual message body.
+
+            NOTE: validator type templates can not be modified by the customer where the message template is associated with a shared sender id
+
+            '
+        name:
+          type: string
+          description: 'The name of the template.
+
+            '
+        pattern:
+          type: string
+          description: 'template pattern can be used to enforce compliancy of the message body with the submitted program brief. The template pattern allows also to use the templates to form the message body by using the template pattern and replacing the keywords in the pattern with the values of submitted keywords in the message send from the sender id
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
     Sender_ID_Message_Template:
       type: object
       properties:
@@ -839,3 +839,10 @@ components:
           description: 'template pattern can be used to enforce compliancy of the message body with the submitted program brief. The template pattern allows also to use the templates to form the message body by using the template pattern and replacing the keywords in the pattern with the values of submitted keywords in the message send from the sender id
 
             '
+    inline_response_200_9:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_9_list'

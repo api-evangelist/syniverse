@@ -13,7 +13,6 @@ paths:
       tags:
       - Application Processor Results
       summary: Create a new Application Processor Results
-      description: '  Create a new Application Processor Results'
       parameters:
       - name: Application_Instance_ID
         in: path
@@ -119,6 +118,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Application_Instance_Session_1'
+      operationId: postAssistantCommunicationApplicationsInstancesByApplicationInstanceIDSessionsByApplicationInstanceSessionIDProcessorResults
+      x-operation-id-source: derived
 components:
   schemas:
     Application_Instance_Session_1:

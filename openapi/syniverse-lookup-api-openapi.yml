@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: PNV Lookup API
   version: 1.0.0
-  description: "The purpose of this specification is to describe the Syniverse Phone Number Verification(PNV) service capabilities, core concepts, and API set. The PNV offers a rich suite of RESTful APIs that allow lookup of salient phone number data, batch lookup of number data, scheduling of number lookup and proactive monitoring of numbers of interest for changes to critical attributes. Number lookup returns salient attributes of a phone number e.g., validity, country, carrier, deactivation and disconnection details). \n\nThe lookup and response can be tailored by specifying a feature set. Different feature sets provide different sets of information, i.e. feature set 2 provides standard routing information, and feature set 5 provides additional information on when a phone number was last disconnected. See the User Guide for more information on the different feature sets.\n"
+  description: The purpose of this specification is to describe the Syniverse Phone Number Verification(PNV) service capabilities, core concepts, and API set.
 servers:
 - url: https://api.syniverse.com/numberidentity/v3
 tags:
@@ -171,7 +171,7 @@ paths:
                     example: Internal Server Error - Retryable error code
         '503':
           description: "Service Unavailable. \n\nN.B. No Error code or description are provided for this error.\n  \n  **Suggested action:** Please check for any communcation related to service maintenace (or) contact customer support.\n"
-      description: '  Returns all information on the phone number including validity, number type, carrier identifier, carrier name, country, porting detail,  deactivation details, mcc, and mnc. Values returned depend on the feature set selected in request and any optional parameters included in the request.'
+      description: Returns all information on the phone number including validity, number type, carrier identifier, carrier name, country, porting detail, deactivation details, mcc, and mnc. Values returned depend on the feature set selected in request and any optional parameters included in the request.
       operationId: POST_lookup
       requestBody:
         content:
@@ -184,6 +184,8 @@ paths:
         required: false
       tags:
       - Lookup
+      summary: POST lookup
+      x-summary-source: derived
 components:
   securitySchemes:
     bearerAuth:

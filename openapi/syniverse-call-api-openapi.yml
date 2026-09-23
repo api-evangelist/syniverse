@@ -13,7 +13,6 @@ paths:
       tags:
       - Call
       summary: Returns the list of Calls
-      description: '  Returns the list of Calls'
       parameters:
       - name: id
         in: query
@@ -222,11 +221,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getCallingCalls
+      x-operation-id-source: derived
     post:
       tags:
       - Call
       summary: Make a Call
-      description: '  Make a Call'
       responses:
         '200':
           description: Successful operation
@@ -323,12 +323,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Call'
+      operationId: postCallingCalls
+      x-operation-id-source: derived
   /'calling/calls/{Call_ID}':
     get:
       tags:
       - Call
       summary: Returns the current version of the specified Call
-      description: '  Returns the current version of the specified Call'
       parameters:
       - name: Call_ID
         in: path
@@ -427,11 +428,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'callingCalls{CallID}'
+      x-operation-id-source: derived
     post:
       tags:
       - Call
       summary: Update a Call
-      description: '  Update a Call'
       parameters:
       - name: Call_ID
         in: path
@@ -531,11 +533,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Call_1'
+      operationId: post'callingCalls{CallID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Call
       summary: Deletes the Call resource with the specified ID
-      description: '  Deletes the Call resource with the specified ID'
       parameters:
       - name: Call_ID
         in: path
@@ -630,12 +633,13 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'callingCalls{CallID}'
+      x-operation-id-source: derived
   /'calling/calls/{call_id}/play_dtmf':
     post:
       tags:
       - Call
       summary: Play DTMF tones
-      description: '  Play DTMF tones'
       parameters:
       - name: call_id
         in: path
@@ -735,12 +739,14 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/TTS_Text'
+      operationId: post'callingCallsByCallIdPlayDtmf'
+      x-operation-id-source: derived
   /'calling/calls/{call_id}/play_tts':
     post:
       tags:
       - Call
       summary: Play Text to Speech
-      description: '  Play Text to Speech. When voice parameter is present, no language or gender parameters are accepted.'
+      description: Play Text to Speech. When voice parameter is present, no language or gender parameters are accepted.
       parameters:
       - name: call_id
         in: path
@@ -840,12 +846,14 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AudioFile'
+      operationId: post'callingCallsByCallIdPlayTts'
+      x-operation-id-source: derived
   /'calling/calls/{call_id}/play_audio':
     post:
       tags:
       - Call
-      summary: Play an audio file.
-      description: '  Play an audio file.'
+      summary: Play an audio file
+      description: Play an audio file.
       parameters:
       - name: call_id
         in: path
@@ -945,8 +953,17 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AudioFile_1'
+      operationId: post'callingCallsByCallIdPlayAudio'
+      x-operation-id-source: derived
 components:
   schemas:
+    inline_response_200_11:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_11_list'
     inline_response_200_11_list:
       type: object
       properties:
@@ -1070,6 +1087,61 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
+    AudioFile_1:
+      type: object
+      required:
+      - source
+      - source_type
+      properties:
+        source_type:
+          type: string
+          description: "This is the type of the source.  \nSupported values are:\n- ATTACHMENT\n- URL\n"
+        source:
+          type: string
+          description: 'The attachment ID or URL value for the audio file.
+
+            '
+    TTS_Text:
+      type: object
+      required:
+      - dtmfText
+      properties:
+        dtmfText:
+          type: string
+          description: 'The DTFM digits to be played.
+
+            '
+    Call:
+      type: object
+      required:
+      - from
+      - to
+      properties:
+        external_id:
+          type: string
+          description: 'The unique Id assigned by the application.
+
+            '
+        from:
+          type: string
+          description: 'The Sender ID associated with this call.
+
+            '
+        to:
+          type: string
+          description: 'The called party''s address.
+
+            '
+        answer_timeout:
+          type: integer
+          description: 'The number of miliseconds that the service will wait for an answer.
+
+            '
+        bridge_id:
+          type: string
+          description: 'the bridge ID to connect the call
+
+            '
     inline_response_200_3:
       type: object
       properties:
@@ -1111,13 +1183,6 @@ components:
         loopCount:
           type: integer
           description: "number of loop to play the tts voice  \n"
-    inline_response_200_11:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_11_list'
     Call_1:
       type: object
       required:
@@ -1132,60 +1197,5 @@ components:
             - ACTIVE
 
             - COMPLETED
-
-            '
-    AudioFile_1:
-      type: object
-      required:
-      - source
-      - source_type
-      properties:
-        source_type:
-          type: string
-          description: "This is the type of the source.  \nSupported values are:\n- ATTACHMENT\n- URL\n"
-        source:
-          type: string
-          description: 'The attachment ID or URL value for the audio file.
-
-            '
-    Call:
-      type: object
-      required:
-      - from
-      - to
-      properties:
-        external_id:
-          type: string
-          description: 'The unique Id assigned by the application.
-
-            '
-        from:
-          type: string
-          description: 'The Sender ID associated with this call.
-
-            '
-        to:
-          type: string
-          description: 'The called party''s address.
-
-            '
-        answer_timeout:
-          type: integer
-          description: 'The number of miliseconds that the service will wait for an answer.
-
-            '
-        bridge_id:
-          type: string
-          description: 'the bridge ID to connect the call
-
-            '
-    TTS_Text:
-      type: object
-      required:
-      - dtmfText
-      properties:
-        dtmfText:
-          type: string
-          description: 'The DTFM digits to be played.
 
             '

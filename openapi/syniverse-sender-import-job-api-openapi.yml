@@ -13,7 +13,6 @@ paths:
       tags:
       - Sender Import Job
       summary: List Sender Import Jobs
-      description: '  List Sender Import Jobs'
       parameters:
       - name: id
         in: query
@@ -114,11 +113,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getSenderIdsImport
+      x-operation-id-source: derived
     post:
       tags:
       - Sender Import Job
       summary: Create sender id import job
-      description: '  Create sender id import job'
       responses:
         '200':
           description: Successful operation
@@ -215,12 +215,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Sender_Import_Job'
+      operationId: postSenderIdsImport
+      x-operation-id-source: derived
   /'sender_ids_import/{import_ID}':
     get:
       tags:
       - Sender Import Job
       summary: Details of Sender Import Job with specified id
-      description: '  Details of Sender Import Job with specified id'
       parameters:
       - name: import_ID
         in: path
@@ -319,11 +320,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'senderIdsImport{importID}'
+      x-operation-id-source: derived
     post:
       tags:
       - Sender Import Job
       summary: Admin approves a specified import
-      description: '  Admin approves a specified import'
       parameters:
       - name: import_ID
         in: path
@@ -423,11 +425,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Sender_Import_Job_1'
+      operationId: post'senderIdsImport{importID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Sender Import Job
       summary: Delete a Sender Import Job
-      description: '  Delete a Sender Import Job '
       parameters:
       - name: import_ID
         in: path
@@ -522,54 +525,10 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'senderIdsImport{importID}'
+      x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_36:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_36_list'
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    Sender_Import_Job:
-      type: object
-      properties:
-        import_attachment_id:
-          type: string
-          description: 'attachment with csv data
-
-            '
-        receipts_attachment_id:
-          type: string
-          description: 'attachment with additional info
-
-            '
-        address_type:
-          type: string
-          description: 'Default Address type
-
-            '
-        capabilities:
-          type: string
-          description: 'default capabilities
-
-            '
-        country:
-          type: string
-          description: 'default country
-
-            '
-        tollfree_billing:
-          type: string
-          description: 'tollfree billing info
-
-            '
     Sender_Import_Job_1:
       type: object
       properties:
@@ -603,6 +562,52 @@ components:
           description: 'sender id fee type (PROCESSING, SETUP, INITIAL, RECURRING, CONSENT_INITIAL, CONSENT_RECURRING, IMPLEMENTATION)
 
             '
+    Sender_Import_Job:
+      type: object
+      properties:
+        import_attachment_id:
+          type: string
+          description: 'attachment with csv data
+
+            '
+        receipts_attachment_id:
+          type: string
+          description: 'attachment with additional info
+
+            '
+        address_type:
+          type: string
+          description: 'Default Address type
+
+            '
+        capabilities:
+          type: string
+          description: 'default capabilities
+
+            '
+        country:
+          type: string
+          description: 'default country
+
+            '
+        tollfree_billing:
+          type: string
+          description: 'tollfree billing info
+
+            '
+    inline_response_200_36:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_36_list'
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     inline_response_200_36_list:
       type: object
       properties:

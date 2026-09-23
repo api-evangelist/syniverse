@@ -15,8 +15,8 @@ paths:
       - Bearer: []
       tags:
       - 10DLC v1 Number Pools
-      summary: Association of Campaign  with the Number Pool
-      description: Syniverse is required to update some MNO A2P platforms with the new Number Pool for a given campaign, enabling   customers to better manage campaigns with large groups of numbers. Number pools require carrier approvals and this API currently covers  2 types SubId and CampaignId.
+      summary: Association of Campaign with the Number Pool
+      description: Syniverse is required to update some MNO A2P platforms with the new Number Pool for a given campaign, enabling customers to better manage campaigns with large groups of numbers. Number pools require carrier approvals and this API currently covers 2 types SubId and CampaignId.
       operationId: campaignWithNumberPoolAssociationUsingPOST
       parameters:
       - name: campaignId

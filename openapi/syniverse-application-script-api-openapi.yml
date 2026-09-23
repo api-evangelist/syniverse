@@ -13,7 +13,6 @@ paths:
       tags:
       - Application Script
       summary: Retrieve the list of matching Application Script
-      description: '  Retrieve the list of matching Application Script'
       parameters:
       - name: id
         in: query
@@ -130,11 +129,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getAssistantCommunicationApplicationsApplicationsScripts
+      x-operation-id-source: derived
     post:
       tags:
       - Application Script
       summary: Create a new Application Script
-      description: '  Create a new Application Script '
       responses:
         '200':
           description: Successful operation
@@ -231,12 +231,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Application_Script'
+      operationId: postAssistantCommunicationApplicationsApplicationsScripts
+      x-operation-id-source: derived
   /'assistant/communication_applications/applications/scripts/{Application_Script_ID}':
     get:
       tags:
       - Application Script
       summary: Retrieve a specified Application Script
-      description: '  Retrieve a specified Application Script'
       parameters:
       - name: Application_Script_ID
         in: path
@@ -335,11 +336,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'assistantCommunicationApplicationsApplicationsScripts{ApplicationScriptID}'
+      x-operation-id-source: derived
     put:
       tags:
       - Application Script
       summary: Update an application script
-      description: '  Update an application script'
       parameters:
       - name: Application_Script_ID
         in: path
@@ -439,11 +441,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Application_Script_1'
+      operationId: put'assistantCommunicationApplicationsApplicationsScripts{ApplicationScriptID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Application Script
       summary: Delete an Application Script
-      description: '  Delete an Application Script '
       parameters:
       - name: Application_Script_ID
         in: path
@@ -538,39 +541,10 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'assistantCommunicationApplicationsApplicationsScripts{ApplicationScriptID}'
+      x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_28:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_28_list'
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    Application_Script:
-      type: object
-      properties:
-        name:
-          type: string
-          description: 'The name of the script.
-
-            '
-        description:
-          type: string
-          description: 'A description of the script.
-
-            '
-        body:
-          type: string
-          description: 'The script XML.
-
-            '
     Application_Script_1:
       type: object
       properties:
@@ -589,6 +563,37 @@ components:
           description: 'The script XML.
 
             '
+    Application_Script:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'The name of the script.
+
+            '
+        description:
+          type: string
+          description: 'A description of the script.
+
+            '
+        body:
+          type: string
+          description: 'The script XML.
+
+            '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    inline_response_200_28:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_28_list'
     inline_response_200_28_list:
       type: object
       properties:

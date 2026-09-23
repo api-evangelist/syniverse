@@ -13,7 +13,6 @@ paths:
       tags:
       - Sender ID
       summary: Retrieve the list of matching sender addresses
-      description: '  Retrieve the list of matching sender addresses'
       parameters:
       - name: id
         in: query
@@ -183,11 +182,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getMessagingSenderIds
+      x-operation-id-source: derived
     post:
       tags:
       - Sender ID
       summary: Creates a Sender ID
-      description: '  Creates a Sender ID'
       responses:
         '200':
           description: Successful operation
@@ -296,11 +296,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Sender_ID'
+      operationId: postMessagingSenderIds
+      x-operation-id-source: derived
     delete:
       tags:
       - Sender ID
       summary: Delete the list of matching sender addresses
-      description: '  Delete the list of matching sender addresses'
       parameters:
       - name: id
         in: query
@@ -559,12 +560,13 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: deleteMessagingSenderIds
+      x-operation-id-source: derived
   /'messaging/sender_ids/purchase':
     post:
       tags:
       - Sender ID
       summary: Purchase a Sender Address
-      description: '  Purchase a Sender Address'
       responses:
         '204':
           description: Successful operation.  No Content in reponse.
@@ -669,12 +671,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Sender_ID_Purchase'
+      operationId: post'messagingSenderIdsPurchase'
+      x-operation-id-source: derived
   /'messaging/sender_ids/{Sender_ID}':
     get:
       tags:
       - Sender ID
       summary: Retrieve a specified Sender ID
-      description: '  Retrieve a specified Sender ID'
       parameters:
       - name: Sender_ID
         in: path
@@ -785,11 +788,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'messagingSenderIds{SenderID}'
+      x-operation-id-source: derived
     post:
       tags:
       - Sender ID
       summary: Update a Sender ID
-      description: '  Update a Sender ID'
       parameters:
       - name: Sender_ID
         in: path
@@ -901,11 +905,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Sender_ID_1'
+      operationId: post'messagingSenderIds{SenderID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Sender ID
       summary: Delete a Sender ID
-      description: '  Delete a Sender ID '
       parameters:
       - name: Sender_ID
         in: path
@@ -1025,6 +1030,8 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'messagingSenderIds{SenderID}'
+      x-operation-id-source: derived
   /messaging/sender_ids/list:
     get:
       tags:
@@ -1131,6 +1138,8 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getMessagingSenderIdsList
+      x-operation-id-source: derived
 components:
   schemas:
     inline_response_200_2_list:
@@ -1328,96 +1337,13 @@ components:
           description: 'verify sms agent id
 
             '
-    inline_response_200_2_list_limited:
+    inline_response_200_2:
       type: object
       properties:
-        id:
-          type: string
-          description: 'unique id of the sender address
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-        name:
-          type: string
-          description: 'name of the sender address
-
-            '
-        address:
-          type: string
-          description: 'The sender address. The address must correspond to the sender address type. For a2p sms this will be the shortcode or Integercode, for emails this will be the email address etc... For push this is a unique application name.  This name will be used in contacts to identify the application specific push registration ids for a particular user.
-
-            '
-        country:
-          type: string
-          description: 'The country that the sender address can be used to send messages to. This field will contain ISO country code. The value is managed by Syniverse and not editable by the customer.
-
-            '
-        countries:
+        list:
           type: array
           items:
-            type: string
-            description: 'The countries that the sender address can be used to send messages to. This field will contain the list of ISO country codes. The value is managed by Syniverse and not editable by the customer.
-
-              '
-        capabilities:
-          type: array
-          items:
-            type: string
-        application_id:
-          type: integer
-          description: 'ID of the application that has created the resource
-
-            '
-        company_id:
-          type: integer
-          description: 'ID of the company that has created the resource
-
-            '
-        type_id:
-          type: string
-          description: 'reference the sender address type that determines the data types allowed on the sender id and identifies the gateway used to deliver the messages
-
-            '
-        state:
-          type: string
-          description: 'represents the sender address status. Following values are allowed:
-
-            - PENDING_IMPLEMENTATION
-
-            - IMPLEMENTED
-
-            - ACTIVE
-
-            - INACTIVE
-
-            - BROKEN
-
-            - PENDING_DELETE
-
-            - PENDING_CONFIRMATION
-
-
-            For each sender address that require provisioning, when a sender address is requested, the initial status will be ''pending implementation''
-
-            '
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    Sender_ID_Purchase:
-      type: object
-      properties:
-        parent_id:
-          type: string
-          description: 'This is the Sender ID of the Preprovisioned Sender ID that is being purchased.
-
-            '
+            $ref: '#/components/schemas/inline_response_200_2_list'
     Sender_ID_1:
       type: object
       properties:
@@ -1538,6 +1464,20 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    Sender_ID_Purchase:
+      type: object
+      properties:
+        parent_id:
+          type: string
+          description: 'This is the Sender ID of the Preprovisioned Sender ID that is being purchased.
+
+            '
     Sender_ID:
       type: object
       properties:
@@ -1631,10 +1571,79 @@ components:
           description: 'Provides verification code for sender ids that need verification step - currently WhatsApp sender ids.
 
             '
-    inline_response_200_2:
+    inline_response_200_2_list_limited:
       type: object
       properties:
-        list:
+        id:
+          type: string
+          description: 'unique id of the sender address
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+        name:
+          type: string
+          description: 'name of the sender address
+
+            '
+        address:
+          type: string
+          description: 'The sender address. The address must correspond to the sender address type. For a2p sms this will be the shortcode or Integercode, for emails this will be the email address etc... For push this is a unique application name.  This name will be used in contacts to identify the application specific push registration ids for a particular user.
+
+            '
+        country:
+          type: string
+          description: 'The country that the sender address can be used to send messages to. This field will contain ISO country code. The value is managed by Syniverse and not editable by the customer.
+
+            '
+        countries:
           type: array
           items:
-            $ref: '#/components/schemas/inline_response_200_2_list'
+            type: string
+            description: 'The countries that the sender address can be used to send messages to. This field will contain the list of ISO country codes. The value is managed by Syniverse and not editable by the customer.
+
+              '
+        capabilities:
+          type: array
+          items:
+            type: string
+        application_id:
+          type: integer
+          description: 'ID of the application that has created the resource
+
+            '
+        company_id:
+          type: integer
+          description: 'ID of the company that has created the resource
+
+            '
+        type_id:
+          type: string
+          description: 'reference the sender address type that determines the data types allowed on the sender id and identifies the gateway used to deliver the messages
+
+            '
+        state:
+          type: string
+          description: 'represents the sender address status. Following values are allowed:
+
+            - PENDING_IMPLEMENTATION
+
+            - IMPLEMENTED
+
+            - ACTIVE
+
+            - INACTIVE
+
+            - BROKEN
+
+            - PENDING_DELETE
+
+            - PENDING_CONFIRMATION
+
+
+            For each sender address that require provisioning, when a sender address is requested, the initial status will be ''pending implementation''
+
+            '

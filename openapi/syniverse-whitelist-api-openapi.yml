@@ -10,7 +10,7 @@ info:
   title: Whitelisting_Service Whitelist API
   version: v1
 tags:
-- name: whitelist
+- name: Whitelist
 paths:
   /whitelist/{WHITELIST_ID}:
     post:
@@ -30,7 +30,7 @@ paths:
           type: string
       x-throttling-tier: Unlimited
       tags:
-      - whitelist
+      - Whitelist
       requestBody:
         content:
           application/json:
@@ -41,6 +41,8 @@ paths:
                   type: string
         description: Request Body
         required: true
+      summary: Post whitelist/{whitelist ID}
+      x-summary-source: derived
     get:
       security:
       - default: []
@@ -58,7 +60,7 @@ paths:
           type: string
       x-throttling-tier: Unlimited
       tags:
-      - whitelist
+      - Whitelist
       requestBody:
         content:
           application/json:
@@ -69,6 +71,8 @@ paths:
                   type: string
         description: Request Body
         required: true
+      summary: Get whitelist/{whitelist ID}
+      x-summary-source: derived
   /whitelist/{WHITELIST_ID}/{ENTITY_ID}:
     get:
       security:
@@ -93,7 +97,7 @@ paths:
           type: string
       x-throttling-tier: Unlimited
       tags:
-      - whitelist
+      - Whitelist
       requestBody:
         content:
           application/json:
@@ -104,6 +108,8 @@ paths:
                   type: string
         description: Request Body
         required: true
+      summary: Get whitelist/{whitelist ID}/{ENTITY ID}
+      x-summary-source: derived
     delete:
       security:
       - default: []
@@ -127,7 +133,7 @@ paths:
           type: string
       x-throttling-tier: Unlimited
       tags:
-      - whitelist
+      - Whitelist
       requestBody:
         content:
           application/json:
@@ -138,6 +144,8 @@ paths:
                   type: string
         description: Request Body
         required: true
+      summary: Delete whitelist/{whitelist ID}/{ENTITY ID}
+      x-summary-source: derived
   /whitelist/{WHITELIST_ID}/{ENTITY_ID}/{TRANSACTION_ID}:
     post:
       security:
@@ -168,7 +176,7 @@ paths:
           type: string
       x-throttling-tier: Unlimited
       tags:
-      - whitelist
+      - Whitelist
       requestBody:
         content:
           application/json:
@@ -179,6 +187,8 @@ paths:
                   type: string
         description: Request Body
         required: true
+      summary: Post whitelist/{whitelist ID}/{ENTITY ID}/{TRANSACTION ID}
+      x-summary-source: derived
     get:
       security:
       - default: []
@@ -208,7 +218,7 @@ paths:
           type: string
       x-throttling-tier: Unlimited
       tags:
-      - whitelist
+      - Whitelist
       requestBody:
         content:
           application/json:
@@ -219,6 +229,8 @@ paths:
                   type: string
         description: Request Body
         required: true
+      summary: Get whitelist/{whitelist ID}/{ENTITY ID}/{TRANSACTION ID}
+      x-summary-source: derived
 components:
   securitySchemes:
     default:

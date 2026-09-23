@@ -56,8 +56,33 @@ paths:
               schema:
                 $ref: '#/components/schemas/endpoint.FilterResponseError'
       x-codegen-request-body-name: body
+      operationId: postV1TxtResolve
+      x-operation-id-source: derived
 components:
   schemas:
+    endpoint.FilterResponseError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: error description
+    endpoint.TextResolveResponse:
+      type: object
+      properties:
+        disposition:
+          type: string
+          example: block
+          enum:
+          - allow
+          - block
+    endpoint.Address:
+      required:
+      - number
+      type: object
+      properties:
+        number:
+          type: string
+          example: '+12125551212'
     endpoint.TextResolveRequest:
       required:
       - message
@@ -75,29 +100,6 @@ components:
         sender:
           number: '+15712617625'
         message: Hello, activate your account at www.hackz.ai today!
-    endpoint.Address:
-      required:
-      - number
-      type: object
-      properties:
-        number:
-          type: string
-          example: '+12125551212'
-    endpoint.TextResolveResponse:
-      type: object
-      properties:
-        disposition:
-          type: string
-          example: block
-          enum:
-          - allow
-          - block
-    endpoint.FilterResponseError:
-      type: object
-      properties:
-        error:
-          type: string
-          example: error description
   securitySchemes:
     OAuth2:
       type: oauth2

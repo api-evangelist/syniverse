@@ -13,7 +13,13 @@ paths:
       tags:
       - Detect
       summary: Account Takeover Detection
-      description: An API that allows an enterpise to check if the end user MSISDN-to-SIM pairing has changed within a preconfigured window. The window is defined in hours and is configured at the time of onboarding by Syniverse Implementation Team. Call forwarding can also be checked for the MSISDN, if desired. Possible values include:<br>Y = SIM changed or call forwarding is enabled, if configured<br>N = SIM not changed and call forwarding disabled, if configured<br>Error -5061 = Insufficient information to determine response
+      description: 'An API that allows an enterpise to check if the end user MSISDN-to-SIM pairing has changed within a preconfigured window. The window is defined in hours and is configured at the time of onboarding by Syniverse Implementation Team. Call forwarding can also be checked for the MSISDN, if desired. Possible values include:
+
+        Y = SIM changed or call forwarding is enabled, if configured
+
+        N = SIM not changed and call forwarding disabled, if configured
+
+        Error -5061 = Insufficient information to determine response'
       parameters:
       - $ref: '#/components/parameters/Authorization'
       - $ref: '#/components/parameters/CommonContentTypeHeader'
@@ -58,6 +64,8 @@ paths:
                 $ref: '#/components/schemas/simCheckErrorResponse'
         '500':
           description: Internal system error.
+      operationId: postV1SimCheck
+      x-operation-id-source: derived
 components:
   schemas:
     simCheckRequest:
@@ -154,18 +162,14 @@ components:
               - N
               example: Y
   parameters:
-    RequestTime:
-      name: RequestTime
+    Authorization:
+      name: Authorization
       in: header
       required: true
-      example: '2020-09-24T09:33:43+00:00'
-      description: Current date time when request is sent.
+      description: The security key to use for ATO & RPV APIs.
       schema:
         type: string
-        format: date-time
-        description: Use RFC3339 format e.g. 2020-09-24T09:33:43+00:00
-        example: '2020-09-24T09:33:43+00:00'
-        default: '2020-09-24T09:33:43+00:00'
+        default: y5jBqXWLzEF4OgK61EbJ4jbEesmxE5No
     CommonAcceptHeader:
       name: Accept
       in: header
@@ -184,11 +188,15 @@ components:
       schema:
         type: string
         default: application/json
-    Authorization:
-      name: Authorization
+    RequestTime:
+      name: RequestTime
       in: header
       required: true
-      description: The security key to use for ATO & RPV APIs.
+      example: '2020-09-24T09:33:43+00:00'
+      description: Current date time when request is sent.
       schema:
         type: string
-        default: y5jBqXWLzEF4OgK61EbJ4jbEesmxE5No
+        format: date-time
+        description: Use RFC3339 format e.g. 2020-09-24T09:33:43+00:00
+        example: '2020-09-24T09:33:43+00:00'
+        default: '2020-09-24T09:33:43+00:00'

@@ -13,7 +13,6 @@ paths:
       tags:
       - Auto Alias Message Request
       summary: Create message request to an alias
-      description: '  Create message request to an alias'
       responses:
         '204':
           description: Successful operation.  No Content in reponse.
@@ -106,6 +105,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Message_Request_1'
+      operationId: postAssistantAutoAliasMessageRequests
+      x-operation-id-source: derived
 components:
   schemas:
     Message_Request_1:

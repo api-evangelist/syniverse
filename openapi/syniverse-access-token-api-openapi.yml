@@ -13,7 +13,6 @@ paths:
       tags:
       - Access Token
       summary: Returns the list of matching AccessTokens
-      description: '  Returns the list of matching AccessTokens'
       parameters:
       - name: id
         in: query
@@ -146,11 +145,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: getAccessTokens
+      x-operation-id-source: derived
     post:
       tags:
       - Access Token
       summary: Create a new access token for the given resource
-      description: '  Create a new access token for the given resource'
       responses:
         '200':
           description: Successful operation
@@ -247,12 +247,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Access_Token_2'
+      operationId: postAccessTokens
+      x-operation-id-source: derived
   /'access_tokens/{AccessToken_ID}':
     get:
       tags:
       - Access Token
       summary: Returns the current version of the AccessToken associated with the provided ID
-      description: '  Returns the current version of the AccessToken associated with the provided ID'
       parameters:
       - name: AccessToken_ID
         in: path
@@ -351,11 +352,12 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: get'accessTokens{AccessTokenID}'
+      x-operation-id-source: derived
     delete:
       tags:
       - Access Token
       summary: Delete an AccessToken associated with a provided ID
-      description: '  Delete an AccessToken associated with a provided ID'
       parameters:
       - name: AccessToken_ID
         in: path
@@ -450,14 +452,10 @@ paths:
                   error_description:
                     type: string
                     description: A human readable description of the error.
+      operationId: delete'accessTokens{AccessTokenID}'
+      x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
     inline_response_200_25:
       type: object
       properties:
@@ -465,6 +463,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/inline_response_200_17'
+    inline_response_200_17:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'The unique id of the token
+
+            '
+        expiry_time:
+          type: string
+          description: 'The UTC timestamp after which the token is no Integer valid.
+
+            '
     Access_Token_2:
       type: object
       properties:
@@ -487,16 +498,9 @@ components:
           description: 'The UTC timestamp after which the token is no Integer valid.
 
             '
-    inline_response_200_17:
+    inline_response_200_3:
       type: object
       properties:
         id:
           type: string
-          description: 'The unique id of the token
-
-            '
-        expiry_time:
-          type: string
-          description: 'The UTC timestamp after which the token is no Integer valid.
-
-            '
+          description: The identifier for the newly created resource.
