@@ -571,6 +571,78 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    Fast_Access:
+      type: object
+      properties:
+        target_attribute:
+          type: string
+          description: 'The name in the contact resource this mapping applies to: fast_access_1 .. fast_access_20.
+
+            '
+        target_attribute_name:
+          type: string
+          description: 'The friendly name of the fast access attribute. The corresponding attribute will appear under the fast_access sb-object of the contact object. The name must be used for all contact updates. It can be used with filters like fast_access.<name>
+
+            If not provided, the corresponding attribute will appear in the contact and filter criteria as is.
+
+            '
+        value_derivation_script:
+          type: string
+          description: 'The rule - JSON Path expression _ on how to compute the value of the target attribute from the contact.
+
+            If not provided the corresponding attribute will be editable in the contact.
+
+            '
+        user_data:
+          type: string
+          description: 'Data that the user can associate with an attribute, in case they want to do client side mapping instead of using target_attribute_name to do server side mapping of the attributes.
+
+            '
+    Fast_Access_1:
+      type: object
+      properties:
+        target_attribute:
+          type: string
+          description: 'The name in the contact resource this mapping applies to: fast_access_1 .. fast_access_20.
+
+            '
+        target_attribute_name:
+          type: string
+          description: 'The friendly name of the fast access attribute. The corresponding attribute will appear under the fast_access sb-object of the contact object. The name must be used for all contact updates. It can be used with filters like fast_access.<name>
+
+            If not provided, the corresponding attribute will appear in the contact and filter criteria as is.
+
+            '
+        value_derivation_script:
+          type: string
+          description: 'The rule - JSON Path expression _ on how to compute the value of the target attribute from the contact.
+
+            If not provided the corresponding attribute will be editable in the contact.
+
+            '
+        user_data:
+          type: string
+          description: 'Data that the user can associate with an attribute, in case they want to do client side mapping instead of using target_attribute_name to do server side mapping of the attributes.
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+    inline_response_200_19:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_19_list'
     inline_response_200_19_list:
       type: object
       properties:
@@ -623,75 +695,3 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
-    inline_response_200_19:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_19_list'
-    Fast_Access_1:
-      type: object
-      properties:
-        target_attribute:
-          type: string
-          description: 'The name in the contact resource this mapping applies to: fast_access_1 .. fast_access_20.
-
-            '
-        target_attribute_name:
-          type: string
-          description: 'The friendly name of the fast access attribute. The corresponding attribute will appear under the fast_access sb-object of the contact object. The name must be used for all contact updates. It can be used with filters like fast_access.<name>
-
-            If not provided, the corresponding attribute will appear in the contact and filter criteria as is.
-
-            '
-        value_derivation_script:
-          type: string
-          description: 'The rule - JSON Path expression _ on how to compute the value of the target attribute from the contact.
-
-            If not provided the corresponding attribute will be editable in the contact.
-
-            '
-        user_data:
-          type: string
-          description: 'Data that the user can associate with an attribute, in case they want to do client side mapping instead of using target_attribute_name to do server side mapping of the attributes.
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-    Fast_Access:
-      type: object
-      properties:
-        target_attribute:
-          type: string
-          description: 'The name in the contact resource this mapping applies to: fast_access_1 .. fast_access_20.
-
-            '
-        target_attribute_name:
-          type: string
-          description: 'The friendly name of the fast access attribute. The corresponding attribute will appear under the fast_access sb-object of the contact object. The name must be used for all contact updates. It can be used with filters like fast_access.<name>
-
-            If not provided, the corresponding attribute will appear in the contact and filter criteria as is.
-
-            '
-        value_derivation_script:
-          type: string
-          description: 'The rule - JSON Path expression _ on how to compute the value of the target attribute from the contact.
-
-            If not provided the corresponding attribute will be editable in the contact.
-
-            '
-        user_data:
-          type: string
-          description: 'Data that the user can associate with an attribute, in case they want to do client side mapping instead of using target_attribute_name to do server side mapping of the attributes.
-
-            '
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.

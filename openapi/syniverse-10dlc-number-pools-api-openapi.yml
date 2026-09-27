@@ -205,22 +205,22 @@ paths:
                 $ref: '#/components/schemas/ApiProcessedAlreadyResponse'
 components:
   schemas:
-    ApiAcceptedResponse:
+    ApiGeneralResponse:
       type: object
       properties:
         code:
           type: integer
           description: Http status code
           format: int32
-          example: 202
+          example: 200
         message:
           type: string
           description: Message
-          example: Request already in Progress.
+          example: Request received
         status:
           type: string
           description: Http status
-          example: Accepted
+          example: OK
           enum:
           - 100 CONTINUE
           - 101 SWITCHING_PROTOCOLS
@@ -297,22 +297,22 @@ components:
         data:
           type: object
           description: Response data
-    ApiGeneralResponse:
+    ApiAcceptedResponse:
       type: object
       properties:
         code:
           type: integer
           description: Http status code
           format: int32
-          example: 200
+          example: 202
         message:
           type: string
           description: Message
-          example: Request received
+          example: Request already in Progress.
         status:
           type: string
           description: Http status
-          example: OK
+          example: Accepted
           enum:
           - 100 CONTINUE
           - 101 SWITCHING_PROTOCOLS

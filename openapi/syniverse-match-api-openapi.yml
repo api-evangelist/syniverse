@@ -55,32 +55,6 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    Authorization:
-      name: Authorization
-      in: header
-      required: true
-      description: The security key to use for ATO & RPV APIs.
-      schema:
-        type: string
-        default: y5jBqXWLzEF4OgK61EbJ4jbEesmxE5No
-    CommonAcceptHeader:
-      name: Accept
-      in: header
-      required: true
-      example: application/json
-      description: Media type for the response. Only application/json is supported.
-      schema:
-        type: string
-        default: application/json
-    CommonContentTypeHeader:
-      name: Content-Type
-      in: header
-      required: true
-      example: application/json
-      description: Media type sent in the request. Only application/json is supported.
-      schema:
-        type: string
-        default: application/json
     RequestTime:
       name: RequestTime
       in: header
@@ -93,7 +67,150 @@ components:
         description: Use RFC3339 format e.g. 2020-09-24T09:33:43+00:00
         example: '2020-09-24T09:33:43+00:00'
         default: '2020-09-24T09:33:43+00:00'
+    Authorization:
+      name: Authorization
+      in: header
+      required: true
+      description: The security key to use for ATO & RPV APIs.
+      schema:
+        type: string
+        default: y5jBqXWLzEF4OgK61EbJ4jbEesmxE5No
+    CommonContentTypeHeader:
+      name: Content-Type
+      in: header
+      required: true
+      example: application/json
+      description: Media type sent in the request. Only application/json is supported.
+      schema:
+        type: string
+        default: application/json
+    CommonAcceptHeader:
+      name: Accept
+      in: header
+      required: true
+      example: application/json
+      description: Media type for the response. Only application/json is supported.
+      schema:
+        type: string
+        default: application/json
   schemas:
+    matchSuccessResponse:
+      properties:
+        results:
+          type: object
+          properties:
+            correlationId:
+              description: A nonce used by the enterprise that is unique to this transaction.
+              type: string
+              minLength: 8
+              maxLength: 80
+              example: 984681AFDB698C67
+            responseId:
+              description: A nonce used by Syniverse that is unique to this transaction.
+              type: string
+              maxLength: 30
+              example: 6496849684CBAF87A7
+            firstNameScore:
+              description: First Name Score.
+              type: string
+              enum:
+              - '10'
+              - '9'
+              - '5'
+              - '0'
+              - '-1'
+              example: '10'
+            lastNameScore:
+              description: Last Name Score.
+              type: string
+              enum:
+              - '10'
+              - '9'
+              - '5'
+              - '0'
+              - '-1'
+              example: '10'
+            streetAddressScore:
+              description: Address Score.
+              type: string
+              enum:
+              - '10'
+              - '9'
+              - '5'
+              - '0'
+              - '-1'
+              example: '10'
+            cityScore:
+              description: City Score
+              type: string
+              enum:
+              - '10'
+              - '9'
+              - '5'
+              - '0'
+              - '-1'
+              example: '10'
+            stateScore:
+              description: City Score
+              type: string
+              enum:
+              - '10'
+              - '9'
+              - '5'
+              - '0'
+              - '-1'
+              example: '10'
+            postalCodeScore:
+              description: Postal Code Score.
+              type: string
+              enum:
+              - '10'
+              - '9'
+              - '5'
+              - '0'
+              - '-1'
+              example: '0'
+            countryCodeScore:
+              description: Country Code Score.
+              type: string
+              enum:
+              - '10'
+              - '9'
+              - '5'
+              - '0'
+              - '-1'
+              example: '10'
+            dateOfBirthScore:
+              description: DOB Score.
+              type: string
+              enum:
+              - '10'
+              - '9'
+              - '5'
+              - '0'
+              - '-1'
+              example: '10'
+            nationalIdScore:
+              description: Score of National ID (If available).
+              type: string
+              enum:
+              - '10'
+              - '9'
+              - '5'
+              - '0'
+              - '-1'
+              example: '0'
+            dataSource:
+              description: What was used to match the information.
+              type: string
+              example: CARRIER
+              enum:
+              - CARRIER
+              - THIRD PARTY
+            identityScore:
+              description: A single score that indicates the overall level of match between Syniverse's data sources and end-user data sent in the enterprise request. 100 indicates strong match and 0 indicates complete mismatch.
+              type: string
+              example: '90'
     matchRequest:
       type: object
       properties:
@@ -224,120 +341,3 @@ components:
               type: string
               maxLength: 256
               example: A required parameter is missing.
-    matchSuccessResponse:
-      properties:
-        results:
-          type: object
-          properties:
-            correlationId:
-              description: A nonce used by the enterprise that is unique to this transaction.
-              type: string
-              minLength: 8
-              maxLength: 80
-              example: 984681AFDB698C67
-            responseId:
-              description: A nonce used by Syniverse that is unique to this transaction.
-              type: string
-              maxLength: 30
-              example: 6496849684CBAF87A7
-            firstNameScore:
-              description: First Name Score.
-              type: string
-              enum:
-              - '10'
-              - '9'
-              - '5'
-              - '0'
-              - '-1'
-              example: '10'
-            lastNameScore:
-              description: Last Name Score.
-              type: string
-              enum:
-              - '10'
-              - '9'
-              - '5'
-              - '0'
-              - '-1'
-              example: '10'
-            streetAddressScore:
-              description: Address Score.
-              type: string
-              enum:
-              - '10'
-              - '9'
-              - '5'
-              - '0'
-              - '-1'
-              example: '10'
-            cityScore:
-              description: City Score
-              type: string
-              enum:
-              - '10'
-              - '9'
-              - '5'
-              - '0'
-              - '-1'
-              example: '10'
-            stateScore:
-              description: City Score
-              type: string
-              enum:
-              - '10'
-              - '9'
-              - '5'
-              - '0'
-              - '-1'
-              example: '10'
-            postalCodeScore:
-              description: Postal Code Score.
-              type: string
-              enum:
-              - '10'
-              - '9'
-              - '5'
-              - '0'
-              - '-1'
-              example: '0'
-            countryCodeScore:
-              description: Country Code Score.
-              type: string
-              enum:
-              - '10'
-              - '9'
-              - '5'
-              - '0'
-              - '-1'
-              example: '10'
-            dateOfBirthScore:
-              description: DOB Score.
-              type: string
-              enum:
-              - '10'
-              - '9'
-              - '5'
-              - '0'
-              - '-1'
-              example: '10'
-            nationalIdScore:
-              description: Score of National ID (If available).
-              type: string
-              enum:
-              - '10'
-              - '9'
-              - '5'
-              - '0'
-              - '-1'
-              example: '0'
-            dataSource:
-              description: What was used to match the information.
-              type: string
-              example: CARRIER
-              enum:
-              - CARRIER
-              - THIRD PARTY
-            identityScore:
-              description: A single score that indicates the overall level of match between Syniverse's data sources and end-user data sent in the enterprise request. 100 indicates strong match and 0 indicates complete mismatch.
-              type: string
-              example: '90'

@@ -809,6 +809,24 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Message_3:
+      type: object
+      required:
+      - call_ids
+      properties:
+        call_ids:
+          type: array
+          description: 'The list of Call IDs for the calls associated with this bridge.
+
+            '
+          items:
+            type: string
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     inline_response_200_11:
       type: object
       properties:
@@ -816,6 +834,66 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/inline_response_200_11_list'
+    inline_response_200_12:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_12_list'
+    inline_response_200_12_list:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'The unique identifier for this resource.
+
+            '
+        external_id:
+          type: string
+          description: 'The unique Id assigned by the application.
+
+            '
+        state:
+          type: string
+          description: 'The bridge state:
+
+            - CREATED - The Bridge has been created.
+
+            - ACTIVE - The Bridge is active.
+
+            - HOLD - The Bridge in on hold.
+
+            - COMPLETED - The Bridge has been completed and is no longer active.
+
+            - ERROR - The bridge failed to be created or was ended due to an error.
+
+            '
+        completed_time - date:
+          type: string
+          description: 'The time that the Bridge was completed.
+
+            '
+        activated_time - date:
+          type: string
+          description: 'The time that the bridge was activated.
+
+            '
+        created_date:
+          type: string
+          description: 'The date the resource was created
+
+            '
+        last_updated_date:
+          type: string
+          description: 'The data the resource was last changed
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
     inline_response_200_11_list:
       type: object
       properties:
@@ -924,84 +1002,6 @@ components:
           type: array
           items:
             type: string
-        created_date:
-          type: string
-          description: 'The date the resource was created
-
-            '
-        last_updated_date:
-          type: string
-          description: 'The data the resource was last changed
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-    inline_response_200_12:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_12_list'
-    Message_3:
-      type: object
-      required:
-      - call_ids
-      properties:
-        call_ids:
-          type: array
-          description: 'The list of Call IDs for the calls associated with this bridge.
-
-            '
-          items:
-            type: string
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    inline_response_200_12_list:
-      type: object
-      properties:
-        id:
-          type: string
-          description: 'The unique identifier for this resource.
-
-            '
-        external_id:
-          type: string
-          description: 'The unique Id assigned by the application.
-
-            '
-        state:
-          type: string
-          description: 'The bridge state:
-
-            - CREATED - The Bridge has been created.
-
-            - ACTIVE - The Bridge is active.
-
-            - HOLD - The Bridge in on hold.
-
-            - COMPLETED - The Bridge has been completed and is no longer active.
-
-            - ERROR - The bridge failed to be created or was ended due to an error.
-
-            '
-        completed_time - date:
-          type: string
-          description: 'The time that the Bridge was completed.
-
-            '
-        activated_time - date:
-          type: string
-          description: 'The time that the bridge was activated.
-
-            '
         created_date:
           type: string
           description: 'The date the resource was created

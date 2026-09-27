@@ -66,6 +66,14 @@ components:
         error:
           type: string
           example: error description
+    endpoint.Address:
+      required:
+      - number
+      type: object
+      properties:
+        number:
+          type: string
+          example: '+12125551212'
     endpoint.TextResolveResponse:
       type: object
       properties:
@@ -75,14 +83,6 @@ components:
           enum:
           - allow
           - block
-    endpoint.Address:
-      required:
-      - number
-      type: object
-      properties:
-        number:
-          type: string
-          example: '+12125551212'
     endpoint.TextResolveRequest:
       required:
       - message

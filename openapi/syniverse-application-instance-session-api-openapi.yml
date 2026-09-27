@@ -665,6 +665,12 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     inline_response_200_30:
       type: object
       properties:
@@ -672,9 +678,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/inline_response_200_30_list'
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.

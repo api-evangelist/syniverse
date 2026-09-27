@@ -1157,6 +1157,107 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Channel:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'User Specified Name of the Channel
+
+            '
+        priority:
+          type: string
+          description: 'Determines the channel priority: high, normal or low. SCG will deliver to target system first for messages in high priority channels, then normal and at the end low priority. Message size does not affect the message priority
+
+            '
+        description:
+          type: string
+          description: 'Description of the Channel
+
+            '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    inline_response_200_4_list:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'The channel identifier, allocated by SCG when channel is created
+
+            '
+        name:
+          type: string
+          description: 'User Specified Name of the Channel
+
+            '
+        priority:
+          type: string
+          description: 'Determines the channel priority: high, normal or low. SCG will deliver to target system first for messages in high priority channels, then normal and at the end low priority. Message size does not affect the message priority
+
+            '
+        description:
+          type: string
+          description: 'Description of the Channel
+
+            '
+        ownership:
+          type: string
+          description: 'SHARED/PRIVATE/PUBLIC
+
+            '
+        message_templates:
+          type: array
+          description: 'A list of template ids that apply to this sender address. If more than one template applies, the elements will be separated by  a coma.
+
+            '
+          items:
+            type: string
+        country:
+          type: string
+          description: 'The country that the sender address can be used to send messages to. This field will contain ISO country code. The value is managed by Syniverse and not editable by the customer.
+
+            '
+        application_id:
+          type: integer
+          description: 'ID of the application that has created the resource
+
+            '
+        created_date:
+          type: string
+          description: 'The date the resource was created
+
+            '
+        last_updated_date:
+          type: string
+          description: 'The data the resource was last changed
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+    inline_response_200_2:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_2_list'
+    Sender_ID_2:
+      type: object
+      properties:
+        sender_ids:
+          type: array
+          description: 'A list of sender ids
+
+            '
+          items:
+            type: string
     inline_response_200_2_list:
       type: object
       properties:
@@ -1352,31 +1453,13 @@ components:
           description: 'verify sms agent id
 
             '
-    Channel:
-      type: object
-      properties:
-        name:
-          type: string
-          description: 'User Specified Name of the Channel
-
-            '
-        priority:
-          type: string
-          description: 'Determines the channel priority: high, normal or low. SCG will deliver to target system first for messages in high priority channels, then normal and at the end low priority. Message size does not affect the message priority
-
-            '
-        description:
-          type: string
-          description: 'Description of the Channel
-
-            '
-    inline_response_200_2:
+    inline_response_200_4:
       type: object
       properties:
         list:
           type: array
           items:
-            $ref: '#/components/schemas/inline_response_200_2_list'
+            $ref: '#/components/schemas/inline_response_200_4_list'
     Channel_1:
       type: object
       properties:
@@ -1393,66 +1476,6 @@ components:
         description:
           type: string
           description: 'Description of the Channel
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-    inline_response_200_4_list:
-      type: object
-      properties:
-        id:
-          type: string
-          description: 'The channel identifier, allocated by SCG when channel is created
-
-            '
-        name:
-          type: string
-          description: 'User Specified Name of the Channel
-
-            '
-        priority:
-          type: string
-          description: 'Determines the channel priority: high, normal or low. SCG will deliver to target system first for messages in high priority channels, then normal and at the end low priority. Message size does not affect the message priority
-
-            '
-        description:
-          type: string
-          description: 'Description of the Channel
-
-            '
-        ownership:
-          type: string
-          description: 'SHARED/PRIVATE/PUBLIC
-
-            '
-        message_templates:
-          type: array
-          description: 'A list of template ids that apply to this sender address. If more than one template applies, the elements will be separated by  a coma.
-
-            '
-          items:
-            type: string
-        country:
-          type: string
-          description: 'The country that the sender address can be used to send messages to. This field will contain ISO country code. The value is managed by Syniverse and not editable by the customer.
-
-            '
-        application_id:
-          type: integer
-          description: 'ID of the application that has created the resource
-
-            '
-        created_date:
-          type: string
-          description: 'The date the resource was created
-
-            '
-        last_updated_date:
-          type: string
-          description: 'The data the resource was last changed
 
             '
         version_number:
@@ -1483,26 +1506,3 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
-    Sender_ID_2:
-      type: object
-      properties:
-        sender_ids:
-          type: array
-          description: 'A list of sender ids
-
-            '
-          items:
-            type: string
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    inline_response_200_4:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_4_list'

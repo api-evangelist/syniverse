@@ -689,7 +689,13 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Sender_ID_Message_Template_1:
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    Sender_ID_Message_Template_2:
       type: object
       properties:
         designation:
@@ -780,13 +786,7 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    Sender_ID_Message_Template_2:
+    Sender_ID_Message_Template_1:
       type: object
       properties:
         designation:

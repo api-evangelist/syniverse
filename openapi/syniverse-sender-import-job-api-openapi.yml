@@ -529,79 +529,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Sender_Import_Job_1:
-      type: object
-      properties:
-        approval_state:
-          type: string
-          description: 'sender ids import approval state (WAITING, APPROVED, REJECTED, AUTO)
-
-            '
-        bulk_permission:
-          type: string
-          description: 'bulk permission
-
-            '
-        batch_size_limit:
-          type: integer
-          description: 'batch size limit
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-        register_provider:
-          type: string
-          description: 'register provider (NETNUMBERS, NONE, ZIPWHIP)
-
-            '
-        charges:
-          type: string
-          description: 'sender id fee type (PROCESSING, SETUP, INITIAL, RECURRING, CONSENT_INITIAL, CONSENT_RECURRING, IMPLEMENTATION)
-
-            '
-    Sender_Import_Job:
-      type: object
-      properties:
-        import_attachment_id:
-          type: string
-          description: 'attachment with csv data
-
-            '
-        receipts_attachment_id:
-          type: string
-          description: 'attachment with additional info
-
-            '
-        address_type:
-          type: string
-          description: 'Default Address type
-
-            '
-        capabilities:
-          type: string
-          description: 'default capabilities
-
-            '
-        country:
-          type: string
-          description: 'default country
-
-            '
-        tollfree_billing:
-          type: string
-          description: 'tollfree billing info
-
-            '
-    inline_response_200_36:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_36_list'
     inline_response_200_3:
       type: object
       properties:
@@ -760,3 +687,76 @@ components:
         version_number:
           type: integer
           description: An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+    Sender_Import_Job_1:
+      type: object
+      properties:
+        approval_state:
+          type: string
+          description: 'sender ids import approval state (WAITING, APPROVED, REJECTED, AUTO)
+
+            '
+        bulk_permission:
+          type: string
+          description: 'bulk permission
+
+            '
+        batch_size_limit:
+          type: integer
+          description: 'batch size limit
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+        register_provider:
+          type: string
+          description: 'register provider (NETNUMBERS, NONE, ZIPWHIP)
+
+            '
+        charges:
+          type: string
+          description: 'sender id fee type (PROCESSING, SETUP, INITIAL, RECURRING, CONSENT_INITIAL, CONSENT_RECURRING, IMPLEMENTATION)
+
+            '
+    inline_response_200_36:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_36_list'
+    Sender_Import_Job:
+      type: object
+      properties:
+        import_attachment_id:
+          type: string
+          description: 'attachment with csv data
+
+            '
+        receipts_attachment_id:
+          type: string
+          description: 'attachment with additional info
+
+            '
+        address_type:
+          type: string
+          description: 'Default Address type
+
+            '
+        capabilities:
+          type: string
+          description: 'default capabilities
+
+            '
+        country:
+          type: string
+          description: 'default country
+
+            '
+        tollfree_billing:
+          type: string
+          description: 'tollfree billing info
+
+            '

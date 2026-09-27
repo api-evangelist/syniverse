@@ -566,51 +566,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ConferenceMember_1:
-      type: object
-      properties:
-        hold:
-          type: boolean
-          description: 'If true, this member is hold to join the conference
-
-            '
-        mute:
-          type: boolean
-          description: 'If ''true'', this member is muted in the conference
-
-            '
-    ConferenceMember:
-      type: object
-      required:
-      - call_id
-      properties:
-        external_id:
-          type: string
-          description: 'The unique Id assigned by the application.
-
-            '
-        call_id:
-          type: string
-          description: 'The id for the Call resource that is associated with this member.
-
-            '
-        hold:
-          type: boolean
-          description: 'If true, all member can''t hear or speak in the conference
-
-            '
-        mute:
-          type: boolean
-          description: 'If ''true'', all member can''t speak in the conference
-
-            '
-    inline_response_200_14:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_14_list'
     inline_response_200_3:
       type: object
       properties:
@@ -668,5 +623,50 @@ components:
         version_number:
           type: integer
           description: 'An ascending version number of the object.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking.
+
+            '
+    ConferenceMember_1:
+      type: object
+      properties:
+        hold:
+          type: boolean
+          description: 'If true, this member is hold to join the conference
+
+            '
+        mute:
+          type: boolean
+          description: 'If ''true'', this member is muted in the conference
+
+            '
+    inline_response_200_14:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_14_list'
+    ConferenceMember:
+      type: object
+      required:
+      - call_id
+      properties:
+        external_id:
+          type: string
+          description: 'The unique Id assigned by the application.
+
+            '
+        call_id:
+          type: string
+          description: 'The id for the Call resource that is associated with this member.
+
+            '
+        hold:
+          type: boolean
+          description: 'If true, all member can''t hear or speak in the conference
+
+            '
+        mute:
+          type: boolean
+          description: 'If ''true'', all member can''t speak in the conference
 
             '
