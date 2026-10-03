@@ -742,6 +742,42 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Message_Request_body_extensions:
+      type: object
+      properties:
+        type:
+          example: DEEP_LINK
+        content:
+          example: https://www.syniverse.com/
+    inline_response_200_6:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_6_list'
+    inline_response_200_7:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_7_list'
+    Message_Request_options:
+      type: object
+      properties:
+        push:badge:
+          type: string
+          example: auto
+        push:notify_type:
+          type: string
+          example: silent
+        push:sound:
+          type: string
+          example: default
+      description: 'json options in use with push notifications.
+
+        '
     inline_response_200_6_list:
       type: object
       properties:
@@ -1066,6 +1102,75 @@ components:
         id:
           type: string
           description: The identifier for the newly created resource.
+    inline_response_200_7_list:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'Unique identifier
+
+            '
+        name:
+          type: string
+          description: 'The name of the attachment (e.g. it''s filename or other non-generated identifier)  The value of this field should be unique for a given message.
+
+            '
+        type:
+          type: string
+          description: 'The MIME type of the attachment (if known)
+
+            '
+        size:
+          type: integer
+          description: 'The size, in bytes, of the attachment body
+
+            '
+        filename:
+          type: string
+          description: 'Original file name of the attachment
+
+            '
+        state:
+          type: string
+          description: 'CREATED, UPLOADED
+
+            '
+        content_url:
+          type: string
+          description: 'The url of the content
+
+            '
+        designation:
+          type: string
+          description: 'The template is used either for VALIDATOR or as an actual TEMPLATE.
+
+            VALIDATOR type templates will be associated with a sender id and any message that is submitted to a sender ID that has some VALIDATOR templates associated with it will be checked against the template.
+
+            TEMPLATE type templates are used to send messages. in such case the message request body will indicate with template to apply and the message processing will use the template body and apply conversion of applicable keywords to create the actual message body.
+
+            NOTE: validator type templates can not be modified by the customer where the message template is associated with a shared sender id
+
+            '
+        application_id:
+          type: integer
+          description: 'ID of the application that has created the resource
+
+            '
+        created_date:
+          type: string
+          description: 'For a MT message (one which was sent via this API), this indicates the time when the API was called to request message delivery.  For a MO message, this is the point in time when the SCG was notified of the inbound message from the operator network/mediation channel.
+
+            '
+        last_updated_date:
+          type: string
+          description: 'The data the resource was last changed
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
     Message:
       type: object
       properties:
@@ -1199,108 +1304,3 @@ components:
             - NONE (message will be sent irrespectively of optin status)
 
             '
-    Message_Request_body_extensions:
-      type: object
-      properties:
-        type:
-          example: DEEP_LINK
-        content:
-          example: https://www.syniverse.com/
-    inline_response_200_7_list:
-      type: object
-      properties:
-        id:
-          type: string
-          description: 'Unique identifier
-
-            '
-        name:
-          type: string
-          description: 'The name of the attachment (e.g. it''s filename or other non-generated identifier)  The value of this field should be unique for a given message.
-
-            '
-        type:
-          type: string
-          description: 'The MIME type of the attachment (if known)
-
-            '
-        size:
-          type: integer
-          description: 'The size, in bytes, of the attachment body
-
-            '
-        filename:
-          type: string
-          description: 'Original file name of the attachment
-
-            '
-        state:
-          type: string
-          description: 'CREATED, UPLOADED
-
-            '
-        content_url:
-          type: string
-          description: 'The url of the content
-
-            '
-        designation:
-          type: string
-          description: 'The template is used either for VALIDATOR or as an actual TEMPLATE.
-
-            VALIDATOR type templates will be associated with a sender id and any message that is submitted to a sender ID that has some VALIDATOR templates associated with it will be checked against the template.
-
-            TEMPLATE type templates are used to send messages. in such case the message request body will indicate with template to apply and the message processing will use the template body and apply conversion of applicable keywords to create the actual message body.
-
-            NOTE: validator type templates can not be modified by the customer where the message template is associated with a shared sender id
-
-            '
-        application_id:
-          type: integer
-          description: 'ID of the application that has created the resource
-
-            '
-        created_date:
-          type: string
-          description: 'For a MT message (one which was sent via this API), this indicates the time when the API was called to request message delivery.  For a MO message, this is the point in time when the SCG was notified of the inbound message from the operator network/mediation channel.
-
-            '
-        last_updated_date:
-          type: string
-          description: 'The data the resource was last changed
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-    inline_response_200_6:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_6_list'
-    inline_response_200_7:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_7_list'
-    Message_Request_options:
-      type: object
-      properties:
-        push:badge:
-          type: string
-          example: auto
-        push:notify_type:
-          type: string
-          example: silent
-        push:sound:
-          type: string
-          example: default
-      description: 'json options in use with push notifications.
-
-        '

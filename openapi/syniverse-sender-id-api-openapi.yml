@@ -1218,12 +1218,14 @@ components:
             For each sender address that require provisioning, when a sender address is requested, the initial status will be ''pending implementation''
 
             '
-    inline_response_200_3:
+    Sender_ID_Purchase:
       type: object
       properties:
-        id:
+        parent_id:
           type: string
-          description: The identifier for the newly created resource.
+          description: 'This is the Sender ID of the Preprovisioned Sender ID that is being purchased.
+
+            '
     Sender_ID_1:
       type: object
       properties:
@@ -1344,13 +1346,12 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
-    inline_response_200_2:
+    inline_response_200_3:
       type: object
       properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_2_list'
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     inline_response_200_2_list:
       type: object
       properties:
@@ -1546,6 +1547,13 @@ components:
           description: 'verify sms agent id
 
             '
+    inline_response_200_2:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_2_list'
     Sender_ID:
       type: object
       properties:
@@ -1637,13 +1645,5 @@ components:
         verification_code:
           type: string
           description: 'Provides verification code for sender ids that need verification step - currently WhatsApp sender ids.
-
-            '
-    Sender_ID_Purchase:
-      type: object
-      properties:
-        parent_id:
-          type: string
-          description: 'This is the Sender ID of the Preprovisioned Sender ID that is being purchased.
 
             '

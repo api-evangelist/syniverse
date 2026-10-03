@@ -785,6 +785,197 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Message_Request_body_extensions:
+      type: object
+      properties:
+        type:
+          example: DEEP_LINK
+        content:
+          example: https://www.syniverse.com/
+    inline_response_200_6:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_6_list'
+    Message_Request_options:
+      type: object
+      properties:
+        push:badge:
+          type: string
+          example: auto
+        push:notify_type:
+          type: string
+          example: silent
+        push:sound:
+          type: string
+          example: default
+      description: 'json options in use with push notifications.
+
+        '
+    Message_Request:
+      type: object
+      properties:
+        from:
+          type: string
+          example: channel:1KJPMkuHQkair_o15etpmg
+          description: "The from attribute is the channel Id or Sender Id over/from which the message is to be sent.\n-To send from a sender ID, the ID should be prefixed with 'sender_id:'.   \n-To send from a channel the ID should be prefixed with 'channel:'.\n"
+        to:
+          type: array
+          example: 13467871829
+          description: 'For MT messages this will be a list of one or more recipient addresses, contact ids, contact group ids
+
+            '
+          items:
+            type: string
+        body:
+          type: string
+          description: 'This is the body of the message as supplied by the customer''s application.  It can reference a message template and supply the variables assignments for use with a template or contain the actual message body
+
+            '
+        attachments:
+          type: array
+          description: 'A list of attachment IDs which are associated with this message.
+
+            '
+          items:
+            type: string
+        media_urls:
+          type: array
+          description: 'A list of publicly accessible URLs that point to media files.  The media files will be used as attachments to the message.
+
+            '
+          items:
+            type: string
+        subject:
+          type: string
+          description: 'The subject - a short summary of the message''s purpose.
+
+            '
+        application_id:
+          type: string
+          description: 'ID of the application that has created the message request
+
+            '
+        external_id:
+          type: string
+          description: 'Application provided unique tracking ID for the message.   Can be used as an alternative key in query methods.
+
+            '
+        consent_requirement:
+          type: string
+          description: 'This field indicates if the message delivery is dependent on the consent status for the message recipient. This field is specific to a Sender address (Shortcode) that is classified as ''User Managed'' consent.  This is meant for Businesses who are responsible for managing consent but use the SCG contacts database to store the consent status for message recipients. Any contacts/destination MDNs for end-users that a message is sent to but does not have an opt-in status associated with the sender address will be blocked (message will be created but will be in ''failed'' status and will not be sent to the recipient).  Supported values are:
+
+            - OPT_IN (message will be sent only if user explicitly opted in)
+
+            - OPT_OUT (message will be sent unless user explicitly opted out)
+
+            - NONE (message will be sent irrespectively of optin status)
+
+            '
+        criteria:
+          type: string
+          description: 'The criteria string which was used in the bulk transmission, if any.
+
+            '
+        verify_number:
+          type: boolean
+          description: 'If this flag is set to ''true'' then the recipient phone numbers will be checked to ensure they are valid mobile numbers,  virtual mobile numbers or virtual landline numbers.
+
+            '
+        recipient_ count:
+          type: integer
+          description: 'The number of contacts satisfying the criteria (or in the contact group) who have an address on the channel the bulk message is targeted for.
+
+            '
+        sent_count:
+          type: integer
+          description: 'The number of messages successfully sent via API to the underlying channel. The counts are increased continuously as additional messages satisfy criteria.
+
+            '
+        delivered_count:
+          type: integer
+          description: 'The number of messages sent for which some form of delivery receipt confirmation has been received. The number of messages successfully sent via API to the underlying channel. The counts are increased continuously as additional messages satisfy criteria.
+
+            '
+        read_count:
+          type: integer
+          description: 'The number of messages sent for which some form of delivery receipt confirmation has been received. The number of messages successfully sent via API to the underlying channel. The counts are increased continuously as additional messages satisfy criteria.
+
+            '
+        converted_count:
+          type: integer
+          description: 'The number of messages where conversion has been confirmed. This will apply for messages with URL where the application requested a link track. The number of messages successfully sent via API to the underlying channel. The counts are increased continuously as additional messages satisfy criteria.
+
+            '
+        canceled_count:
+          type: integer
+          description: 'The number of messages that have been created but not sent because the message request was canceled
+
+            '
+        failover:
+          type: string
+          description: "Controls fail over to SMS in case of MMS, RCS and OTT message delivery failures. \nValid value: SMS\n"
+        src_language:
+          type: string
+          description: 'This is the source language of a message. The defauly is English ''en''
+
+            '
+        dst_language:
+          type: string
+          description: 'Translate message to a specified language. If not set,  only messages to contacts with language preference will be translated.
+
+            '
+        translate:
+          type: boolean
+          description: 'When translate attribute is set to ''true'' translation of message body is enabled.
+
+            '
+        content_type:
+          type: string
+          description: 'The content type of the message request body.
+
+            '
+        options:
+          $ref: '#/components/schemas/Message_Request_options'
+        body_extensions:
+          type: array
+          description: 'Extended body
+
+            '
+          items:
+            $ref: '#/components/schemas/Message_Request_body_extensions'
+        expiry_time:
+          type: string
+          example: 2023-07-31T15:50:00 or 2023-07-31 or Mon, 07 Aug 2023 11:54:28 UTC or 1690793596000
+          description: 'Date when the message would be expired, to be passed in epoch format.
+
+            '
+        scheduled_delivery_time:
+          type: string
+          example: '1690419562110'
+          description: 'Date when the message to be scheduled, to be passed in epoch format.
+
+            '
+        scheduled_delivery_time_zone:
+          type: string
+          example: LOCAL
+          description: 'Date when the message to be scheduled for specific timezone.
+
+            '
+        contact_delivery_address_priority:
+          type: string
+          example: WHATSAPP,MDN
+          description: 'Priority list of contact delivery addresses (MDN, PUSH)
+
+            '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     inline_response_200_6_list:
       type: object
       properties:
@@ -1103,12 +1294,13 @@ components:
           description: 'recipient verified sms enabled: true or false
 
             '
-    inline_response_200_3:
+    inline_response_200_5:
       type: object
       properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_5_list'
     inline_response_200_5_list:
       type: object
       properties:
@@ -1396,195 +1588,3 @@ components:
         version_number:
           type: integer
           description: "An ascending version number of the object.  1 upon creation, incremented by one for each modification done.  \nNOTE: unlike other resources in the messaging gateway, messages are not updated directly. Events happening to a message (sending, delivery receipts, replies, conversions ...) indirectly update the status and hence version number of the message.\n"
-    Message_Request_body_extensions:
-      type: object
-      properties:
-        type:
-          example: DEEP_LINK
-        content:
-          example: https://www.syniverse.com/
-    inline_response_200_5:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_5_list'
-    inline_response_200_6:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_6_list'
-    Message_Request:
-      type: object
-      properties:
-        from:
-          type: string
-          example: channel:1KJPMkuHQkair_o15etpmg
-          description: "The from attribute is the channel Id or Sender Id over/from which the message is to be sent.\n-To send from a sender ID, the ID should be prefixed with 'sender_id:'.   \n-To send from a channel the ID should be prefixed with 'channel:'.\n"
-        to:
-          type: array
-          example: 13467871829
-          description: 'For MT messages this will be a list of one or more recipient addresses, contact ids, contact group ids
-
-            '
-          items:
-            type: string
-        body:
-          type: string
-          description: 'This is the body of the message as supplied by the customer''s application.  It can reference a message template and supply the variables assignments for use with a template or contain the actual message body
-
-            '
-        attachments:
-          type: array
-          description: 'A list of attachment IDs which are associated with this message.
-
-            '
-          items:
-            type: string
-        media_urls:
-          type: array
-          description: 'A list of publicly accessible URLs that point to media files.  The media files will be used as attachments to the message.
-
-            '
-          items:
-            type: string
-        subject:
-          type: string
-          description: 'The subject - a short summary of the message''s purpose.
-
-            '
-        application_id:
-          type: string
-          description: 'ID of the application that has created the message request
-
-            '
-        external_id:
-          type: string
-          description: 'Application provided unique tracking ID for the message.   Can be used as an alternative key in query methods.
-
-            '
-        consent_requirement:
-          type: string
-          description: 'This field indicates if the message delivery is dependent on the consent status for the message recipient. This field is specific to a Sender address (Shortcode) that is classified as ''User Managed'' consent.  This is meant for Businesses who are responsible for managing consent but use the SCG contacts database to store the consent status for message recipients. Any contacts/destination MDNs for end-users that a message is sent to but does not have an opt-in status associated with the sender address will be blocked (message will be created but will be in ''failed'' status and will not be sent to the recipient).  Supported values are:
-
-            - OPT_IN (message will be sent only if user explicitly opted in)
-
-            - OPT_OUT (message will be sent unless user explicitly opted out)
-
-            - NONE (message will be sent irrespectively of optin status)
-
-            '
-        criteria:
-          type: string
-          description: 'The criteria string which was used in the bulk transmission, if any.
-
-            '
-        verify_number:
-          type: boolean
-          description: 'If this flag is set to ''true'' then the recipient phone numbers will be checked to ensure they are valid mobile numbers,  virtual mobile numbers or virtual landline numbers.
-
-            '
-        recipient_ count:
-          type: integer
-          description: 'The number of contacts satisfying the criteria (or in the contact group) who have an address on the channel the bulk message is targeted for.
-
-            '
-        sent_count:
-          type: integer
-          description: 'The number of messages successfully sent via API to the underlying channel. The counts are increased continuously as additional messages satisfy criteria.
-
-            '
-        delivered_count:
-          type: integer
-          description: 'The number of messages sent for which some form of delivery receipt confirmation has been received. The number of messages successfully sent via API to the underlying channel. The counts are increased continuously as additional messages satisfy criteria.
-
-            '
-        read_count:
-          type: integer
-          description: 'The number of messages sent for which some form of delivery receipt confirmation has been received. The number of messages successfully sent via API to the underlying channel. The counts are increased continuously as additional messages satisfy criteria.
-
-            '
-        converted_count:
-          type: integer
-          description: 'The number of messages where conversion has been confirmed. This will apply for messages with URL where the application requested a link track. The number of messages successfully sent via API to the underlying channel. The counts are increased continuously as additional messages satisfy criteria.
-
-            '
-        canceled_count:
-          type: integer
-          description: 'The number of messages that have been created but not sent because the message request was canceled
-
-            '
-        failover:
-          type: string
-          description: "Controls fail over to SMS in case of MMS, RCS and OTT message delivery failures. \nValid value: SMS\n"
-        src_language:
-          type: string
-          description: 'This is the source language of a message. The defauly is English ''en''
-
-            '
-        dst_language:
-          type: string
-          description: 'Translate message to a specified language. If not set,  only messages to contacts with language preference will be translated.
-
-            '
-        translate:
-          type: boolean
-          description: 'When translate attribute is set to ''true'' translation of message body is enabled.
-
-            '
-        content_type:
-          type: string
-          description: 'The content type of the message request body.
-
-            '
-        options:
-          $ref: '#/components/schemas/Message_Request_options'
-        body_extensions:
-          type: array
-          description: 'Extended body
-
-            '
-          items:
-            $ref: '#/components/schemas/Message_Request_body_extensions'
-        expiry_time:
-          type: string
-          example: 2023-07-31T15:50:00 or 2023-07-31 or Mon, 07 Aug 2023 11:54:28 UTC or 1690793596000
-          description: 'Date when the message would be expired, to be passed in epoch format.
-
-            '
-        scheduled_delivery_time:
-          type: string
-          example: '1690419562110'
-          description: 'Date when the message to be scheduled, to be passed in epoch format.
-
-            '
-        scheduled_delivery_time_zone:
-          type: string
-          example: LOCAL
-          description: 'Date when the message to be scheduled for specific timezone.
-
-            '
-        contact_delivery_address_priority:
-          type: string
-          example: WHATSAPP,MDN
-          description: 'Priority list of contact delivery addresses (MDN, PUSH)
-
-            '
-    Message_Request_options:
-      type: object
-      properties:
-        push:badge:
-          type: string
-          example: auto
-        push:notify_type:
-          type: string
-          example: silent
-        push:sound:
-          type: string
-          example: default
-      description: 'json options in use with push notifications.
-
-        '

@@ -249,22 +249,22 @@ paths:
                 $ref: '#/components/schemas/ApiProcessedAlreadyResponse'
 components:
   schemas:
-    ApiUnauthorizedResponse:
+    ApiOkLongcodeResponseExample:
       type: object
       properties:
         code:
           type: integer
           description: Http status code
           format: int32
-          example: 401
+          example: 200
         message:
           type: string
           description: Message
-          example: You are not authorized to view the resource
+          example: Request received
         status:
           type: string
           description: Http status
-          example: Unauthorized
+          example: Ok
           enum:
           - 100 CONTINUE
           - 101 SWITCHING_PROTOCOLS
@@ -339,24 +339,45 @@ components:
           description: Response time
           format: date-time
         data:
-          type: object
-          description: Response data
-    ApiGeneralResponse:
+          $ref: '#/components/schemas/ApplicationAddressResponse'
+    ApplicationAddressResponse:
+      type: object
+      properties:
+        applicationAddress:
+          type: string
+        campaignId:
+          type: string
+        action:
+          type: string
+        appId:
+          type: string
+        addressType:
+          type: string
+        companyId:
+          type: string
+        status:
+          type: string
+        insertedTime:
+          type: string
+        updatedTime:
+          type: string
+      description: Response data
+    ApiNotFoundResponseLongCode:
       type: object
       properties:
         code:
           type: integer
           description: Http status code
           format: int32
-          example: 200
+          example: 404
         message:
           type: string
           description: Message
-          example: Request received
+          example: Longcode does not exist
         status:
           type: string
           description: Http status
-          example: OK
+          example: Not found
           enum:
           - 100 CONTINUE
           - 101 SWITCHING_PROTOCOLS
@@ -617,44 +638,22 @@ components:
         data:
           type: object
           description: Response data
-    ApplicationAddressResponse:
-      type: object
-      properties:
-        applicationAddress:
-          type: string
-        campaignId:
-          type: string
-        action:
-          type: string
-        appId:
-          type: string
-        addressType:
-          type: string
-        companyId:
-          type: string
-        status:
-          type: string
-        insertedTime:
-          type: string
-        updatedTime:
-          type: string
-      description: Response data
-    ApiNotFoundResponseLongCode:
+    ApiUnauthorizedResponse:
       type: object
       properties:
         code:
           type: integer
           description: Http status code
           format: int32
-          example: 404
+          example: 401
         message:
           type: string
           description: Message
-          example: Longcode does not exist
+          example: You are not authorized to view the resource
         status:
           type: string
           description: Http status
-          example: Not found
+          example: Unauthorized
           enum:
           - 100 CONTINUE
           - 101 SWITCHING_PROTOCOLS
@@ -731,7 +730,7 @@ components:
         data:
           type: object
           description: Response data
-    ApiOkLongcodeResponseExample:
+    ApiGeneralResponse:
       type: object
       properties:
         code:
@@ -746,7 +745,7 @@ components:
         status:
           type: string
           description: Http status
-          example: Ok
+          example: OK
           enum:
           - 100 CONTINUE
           - 101 SWITCHING_PROTOCOLS
@@ -821,7 +820,8 @@ components:
           description: Response time
           format: date-time
         data:
-          $ref: '#/components/schemas/ApplicationAddressResponse'
+          type: object
+          description: Response data
   securitySchemes:
     SyniverseToken:
       type: http

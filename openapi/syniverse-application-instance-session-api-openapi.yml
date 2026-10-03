@@ -563,27 +563,12 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Application_Instance_Session:
+    inline_response_200_3:
       type: object
       properties:
-        to_address:
+        id:
           type: string
-          description: 'The address to which the session should be established.
-
-            '
-        state:
-          type: string
-          description: 'The state of the session This can be:
-
-            - NOTSTARTED
-
-            - ACTIVE
-
-            - PAUSED
-
-            - COMPLETED
-
-            '
+          description: The identifier for the newly created resource.
     inline_response_200_30_list:
       type: object
       properties:
@@ -665,12 +650,6 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
     inline_response_200_30:
       type: object
       properties:
@@ -678,3 +657,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/inline_response_200_30_list'
+    Application_Instance_Session:
+      type: object
+      properties:
+        to_address:
+          type: string
+          description: 'The address to which the session should be established.
+
+            '
+        state:
+          type: string
+          description: 'The state of the session This can be:
+
+            - NOTSTARTED
+
+            - ACTIVE
+
+            - PAUSED
+
+            - COMPLETED
+
+            '

@@ -88,15 +88,6 @@ components:
       schema:
         type: string
         default: y5jBqXWLzEF4OgK61EbJ4jbEesmxE5No
-    CommonContentTypeHeader:
-      name: Content-Type
-      in: header
-      required: true
-      example: application/json
-      description: Media type sent in the request. Only application/json is supported.
-      schema:
-        type: string
-        default: application/json
     CommonAcceptHeader:
       name: Accept
       in: header
@@ -106,7 +97,60 @@ components:
       schema:
         type: string
         default: application/json
+    CommonContentTypeHeader:
+      name: Content-Type
+      in: header
+      required: true
+      example: application/json
+      description: Media type sent in the request. Only application/json is supported.
+      schema:
+        type: string
+        default: application/json
   schemas:
+    simCheckRequest:
+      properties:
+        merchantId:
+          description: Your merchant ID that will be provided to you during onboarding.
+          example: 02200013919FB4
+          default: 02200013919FB4
+          type: string
+          maxLength: 30
+        subMerchantId:
+          description: Used by resellers, an ID that is assigned to the end merchant.
+          example: ''
+          default: ''
+          type: string
+          maxLength: 30
+        consentId:
+          description: Unique ID for the consent that is traceable if consent audit is required.
+          type: string
+          maxLength: 128
+          example: 9783471AFDB69NH34
+          default: 9783471AFDB69NH34
+        consentTimeStamp:
+          description: The time stamp that the consentId was generated. Format must be as date time RFC3339.
+          type: string
+          example: '2020-08-20T12:00:57+00:00'
+          default: '2020-08-20T12:00:57+00:00'
+          format: date-time
+        msisdn:
+          type: string
+          example: '+14444445555'
+          default: '+14444445555'
+          description: The MSISDN of the user that you want to check. Number to be provided in E.164 format.
+        correlationId:
+          description: A nonce used by the enterprise that is unique to this transaction.
+          type: string
+          minLength: 8
+          maxLength: 80
+          example: 984681AFDB698C67
+          default: 984681AFDB698C67
+      required:
+      - merchantId
+      - consentId
+      - msisdn
+      - correlationId
+      - consentTimeStamp
     simCheckErrorResponse:
       properties:
         error:
@@ -156,47 +200,3 @@ components:
               - Y
               - N
               example: Y
-    simCheckRequest:
-      properties:
-        merchantId:
-          description: Your merchant ID that will be provided to you during onboarding.
-          example: 02200013919FB4
-          default: 02200013919FB4
-          type: string
-          maxLength: 30
-        subMerchantId:
-          description: Used by resellers, an ID that is assigned to the end merchant.
-          example: ''
-          default: ''
-          type: string
-          maxLength: 30
-        consentId:
-          description: Unique ID for the consent that is traceable if consent audit is required.
-          type: string
-          maxLength: 128
-          example: 9783471AFDB69NH34
-          default: 9783471AFDB69NH34
-        consentTimeStamp:
-          description: The time stamp that the consentId was generated. Format must be as date time RFC3339.
-          type: string
-          example: '2020-08-20T12:00:57+00:00'
-          default: '2020-08-20T12:00:57+00:00'
-          format: date-time
-        msisdn:
-          type: string
-          example: '+14444445555'
-          default: '+14444445555'
-          description: The MSISDN of the user that you want to check. Number to be provided in E.164 format.
-        correlationId:
-          description: A nonce used by the enterprise that is unique to this transaction.
-          type: string
-          minLength: 8
-          maxLength: 80
-          example: 984681AFDB698C67
-          default: 984681AFDB698C67
-      required:
-      - merchantId
-      - consentId
-      - msisdn
-      - correlationId
-      - consentTimeStamp

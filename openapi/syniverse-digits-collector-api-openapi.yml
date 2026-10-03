@@ -450,6 +450,31 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    digit_collector_prompt:
+      type: object
+      required:
+      - sentence
+      properties:
+        sentence:
+          type: string
+          description: 'sentence to speak in the prompt
+
+            '
+        voice:
+          type: string
+          description: 'voice to speak the senttence
+
+            '
+        gender:
+          type: string
+          description: 'gender of the voice
+
+            '
+        locale:
+          type: string
+          description: 'language locale of the voice
+
+            '
     inline_response_200_3:
       type: object
       properties:
@@ -485,31 +510,6 @@ components:
             '
         prompt:
           $ref: '#/components/schemas/digit_collector_prompt'
-    digit_collector_prompt:
-      type: object
-      required:
-      - sentence
-      properties:
-        sentence:
-          type: string
-          description: 'sentence to speak in the prompt
-
-            '
-        voice:
-          type: string
-          description: 'voice to speak the senttence
-
-            '
-        gender:
-          type: string
-          description: 'gender of the voice
-
-            '
-        locale:
-          type: string
-          description: 'language locale of the voice
-
-            '
     inline_response_200_15_list:
       type: object
       properties:

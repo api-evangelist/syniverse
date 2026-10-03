@@ -427,57 +427,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    Connector:
-      type: object
-      properties:
-        external_id:
-          type: string
-          description: 'The id of the Connector at the customer system. Can be used by customer to update the Connectors
-
-            '
-        type:
-          type: string
-          description: "The type of the customer (bot) side API this connector will use. Currently supported values:\n\n  * AZURE_BOT_DIRECT_LINE - Microsoft Azure Bot Framework Direct Line API\n"
-        sender_id:
-          type: string
-          description: '
-
-            '
-        credentials:
-          type: string
-          description: '
-
-            '
-    Connector_1:
-      type: object
-      properties:
-        external_id:
-          type: string
-          description: 'The id of the Connector at the customer system. Can be used by customer to update the Connectors
-
-            '
-        type:
-          type: string
-          description: "The type of the customer (bot) side API this connector will use. Currently supported values:\n\n  * AZURE_BOT_DIRECT_LINE - Microsoft Azure Bot Framework Direct Line API\n"
-        sender_id:
-          type: string
-          description: '
-
-            '
-        credentials:
-          type: string
-          description: ''
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
     inline_response_200_31_list:
       type: object
       properties:
@@ -519,6 +468,36 @@ components:
           description: 'ID of the application that has created the resource
 
             '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    Connector_1:
+      type: object
+      properties:
+        external_id:
+          type: string
+          description: 'The id of the Connector at the customer system. Can be used by customer to update the Connectors
+
+            '
+        type:
+          type: string
+          description: "The type of the customer (bot) side API this connector will use. Currently supported values:\n\n  * AZURE_BOT_DIRECT_LINE - Microsoft Azure Bot Framework Direct Line API\n"
+        sender_id:
+          type: string
+          description: '
+
+            '
+        credentials:
+          type: string
+          description: ''
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
     inline_response_200_31:
       type: object
       properties:
@@ -526,3 +505,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/inline_response_200_31_list'
+    Connector:
+      type: object
+      properties:
+        external_id:
+          type: string
+          description: 'The id of the Connector at the customer system. Can be used by customer to update the Connectors
+
+            '
+        type:
+          type: string
+          description: "The type of the customer (bot) side API this connector will use. Currently supported values:\n\n  * AZURE_BOT_DIRECT_LINE - Microsoft Azure Bot Framework Direct Line API\n"
+        sender_id:
+          type: string
+          description: '
+
+            '
+        credentials:
+          type: string
+          description: '
+
+            '

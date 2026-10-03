@@ -61,6 +61,15 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    endpoint.SpamReportResponse:
+      type: object
+      properties:
+        batch_id:
+          type: string
+          example: 588de77e-5055-49f6-91de-441d672a0f9c
+        count:
+          type: integer
+          example: 10
     endpoint.SpamReportRequest:
       required:
       - reports
@@ -71,6 +80,15 @@ components:
           items:
             $ref: '#/components/schemas/endpoint.Report'
       description: List of spam reports
+    endpoint.SpamReportError:
+      type: object
+      properties:
+        batch_id:
+          type: string
+          example: 588de77e-5055-49f6-91de-441d672a0f9c
+        error:
+          type: string
+          example: error description
     endpoint.Report:
       required:
       - message
@@ -102,24 +120,6 @@ components:
           type: string
           example: '7727'
       description: Spam report information
-    endpoint.SpamReportResponse:
-      type: object
-      properties:
-        batch_id:
-          type: string
-          example: 588de77e-5055-49f6-91de-441d672a0f9c
-        count:
-          type: integer
-          example: 10
-    endpoint.SpamReportError:
-      type: object
-      properties:
-        batch_id:
-          type: string
-          example: 588de77e-5055-49f6-91de-441d672a0f9c
-        error:
-          type: string
-          example: error description
   securitySchemes:
     OAuth2:
       type: oauth2

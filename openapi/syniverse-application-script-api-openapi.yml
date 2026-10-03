@@ -545,6 +545,55 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Application_Script_1:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'The name of the script.
+
+            '
+        description:
+          type: string
+          description: 'A description of the script.
+
+            '
+        body:
+          type: string
+          description: 'The script XML.
+
+            '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    inline_response_200_28:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_28_list'
+    Application_Script:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'The name of the script.
+
+            '
+        description:
+          type: string
+          description: 'A description of the script.
+
+            '
+        body:
+          type: string
+          description: 'The script XML.
+
+            '
     inline_response_200_28_list:
       type: object
       properties:
@@ -598,54 +647,5 @@ components:
         version_number:
           type: integer
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    Application_Script_1:
-      type: object
-      properties:
-        name:
-          type: string
-          description: 'The name of the script.
-
-            '
-        description:
-          type: string
-          description: 'A description of the script.
-
-            '
-        body:
-          type: string
-          description: 'The script XML.
-
-            '
-    inline_response_200_28:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_28_list'
-    Application_Script:
-      type: object
-      properties:
-        name:
-          type: string
-          description: 'The name of the script.
-
-            '
-        description:
-          type: string
-          description: 'A description of the script.
-
-            '
-        body:
-          type: string
-          description: 'The script XML.
 
             '

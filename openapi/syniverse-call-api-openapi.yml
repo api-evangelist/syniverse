@@ -957,125 +957,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    AudioFile_1:
-      type: object
-      required:
-      - source
-      - source_type
-      properties:
-        source_type:
-          type: string
-          description: "This is the type of the source.  \nSupported values are:\n- ATTACHMENT\n- URL\n"
-        source:
-          type: string
-          description: 'The attachment ID or URL value for the audio file.
-
-            '
-    inline_response_200_11:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_11_list'
-    AudioFile:
-      type: object
-      required:
-      - text
-      properties:
-        text:
-          type: string
-          description: 'The text to be spoken.
-
-            '
-        language:
-          type: string
-          description: 'The language of the text.
-
-            '
-        gender:
-          type: string
-          description: "The gender of the speaker. \nSupported values are:\n- female\n- male\n"
-        voice:
-          type: string
-          description: 'One of the supported voices.  Voice implies gender and language.
-
-            Supported values are referenced in this page:
-
-            https://sdcsupport.syniverse.com/hc/en-us/articles/360042993153-Customizing-Spoken-Text-on-SCG-Voice-API-with-SSML-tags
-
-            '
-        loopEnabled:
-          type: boolean
-          description: 'If set to ture, tts voice will be looping.
-
-            '
-        loopCount:
-          type: integer
-          description: "number of loop to play the tts voice  \n"
-    TTS_Text:
-      type: object
-      required:
-      - dtmfText
-      properties:
-        dtmfText:
-          type: string
-          description: 'The DTFM digits to be played.
-
-            '
-    Call:
-      type: object
-      required:
-      - from
-      - to
-      properties:
-        external_id:
-          type: string
-          description: 'The unique Id assigned by the application.
-
-            '
-        from:
-          type: string
-          description: 'The Sender ID associated with this call.
-
-            '
-        to:
-          type: string
-          description: 'The called party''s address.
-
-            '
-        answer_timeout:
-          type: integer
-          description: 'The number of miliseconds that the service will wait for an answer.
-
-            '
-        bridge_id:
-          type: string
-          description: 'the bridge ID to connect the call
-
-            '
-    Call_1:
-      type: object
-      required:
-      - state
-      properties:
-        state:
-          type: string
-          description: 'The call state can be:
-
-            - STARTED
-
-            - ACTIVE
-
-            - COMPLETED
-
-            '
     inline_response_200_11_list:
       type: object
       properties:
@@ -1199,3 +1080,122 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
+    Call:
+      type: object
+      required:
+      - from
+      - to
+      properties:
+        external_id:
+          type: string
+          description: 'The unique Id assigned by the application.
+
+            '
+        from:
+          type: string
+          description: 'The Sender ID associated with this call.
+
+            '
+        to:
+          type: string
+          description: 'The called party''s address.
+
+            '
+        answer_timeout:
+          type: integer
+          description: 'The number of miliseconds that the service will wait for an answer.
+
+            '
+        bridge_id:
+          type: string
+          description: 'the bridge ID to connect the call
+
+            '
+    AudioFile_1:
+      type: object
+      required:
+      - source
+      - source_type
+      properties:
+        source_type:
+          type: string
+          description: "This is the type of the source.  \nSupported values are:\n- ATTACHMENT\n- URL\n"
+        source:
+          type: string
+          description: 'The attachment ID or URL value for the audio file.
+
+            '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    Call_1:
+      type: object
+      required:
+      - state
+      properties:
+        state:
+          type: string
+          description: 'The call state can be:
+
+            - STARTED
+
+            - ACTIVE
+
+            - COMPLETED
+
+            '
+    TTS_Text:
+      type: object
+      required:
+      - dtmfText
+      properties:
+        dtmfText:
+          type: string
+          description: 'The DTFM digits to be played.
+
+            '
+    inline_response_200_11:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_11_list'
+    AudioFile:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: 'The text to be spoken.
+
+            '
+        language:
+          type: string
+          description: 'The language of the text.
+
+            '
+        gender:
+          type: string
+          description: "The gender of the speaker. \nSupported values are:\n- female\n- male\n"
+        voice:
+          type: string
+          description: 'One of the supported voices.  Voice implies gender and language.
+
+            Supported values are referenced in this page:
+
+            https://sdcsupport.syniverse.com/hc/en-us/articles/360042993153-Customizing-Spoken-Text-on-SCG-Voice-API-with-SSML-tags
+
+            '
+        loopEnabled:
+          type: boolean
+          description: 'If set to ture, tts voice will be looping.
+
+            '
+        loopCount:
+          type: integer
+          description: "number of loop to play the tts voice  \n"

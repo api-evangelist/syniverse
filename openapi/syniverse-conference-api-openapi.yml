@@ -773,6 +773,13 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    inline_response_200_13:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_13_list'
     inline_response_200_3:
       type: object
       properties:
@@ -793,48 +800,6 @@ components:
           description: 'The attachment ID or URL value for the audio file.
 
             '
-    Conference_1:
-      type: object
-      required:
-      - state
-      properties:
-        state:
-          type: string
-          description: "The conference's state:\n - created (the conference is created but has no members)\n - active (the conference is active and has members)\n - completed (the conference is completed and has no members)\n"
-    AudioFile_4:
-      type: object
-      required:
-      - text
-      properties:
-        text:
-          type: string
-          description: 'The text to be spoken.
-
-            '
-        language:
-          type: string
-          description: 'The language of the text.
-
-            '
-        gender:
-          type: string
-          description: "The gender of the speaker. \nSupported values are:\n- female\n- male\n"
-        voice:
-          type: string
-          description: 'One of the supported voices.  Voice implies gender and language.
-
-            Supported values are referenced in this page:
-
-            https://sdcsupport.syniverse.com/hc/en-us/articles/360042993153-Customizing-Spoken-Text-on-SCG-Voice-API-with-SSML-tags
-
-            '
-    inline_response_200_13:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_13_list'
     inline_response_200_13_list:
       type: object
       properties:
@@ -904,5 +869,40 @@ components:
         from:
           type: string
           description: 'The calling party''s address.
+
+            '
+    Conference_1:
+      type: object
+      required:
+      - state
+      properties:
+        state:
+          type: string
+          description: "The conference's state:\n - created (the conference is created but has no members)\n - active (the conference is active and has members)\n - completed (the conference is completed and has no members)\n"
+    AudioFile_4:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: 'The text to be spoken.
+
+            '
+        language:
+          type: string
+          description: 'The language of the text.
+
+            '
+        gender:
+          type: string
+          description: "The gender of the speaker. \nSupported values are:\n- female\n- male\n"
+        voice:
+          type: string
+          description: 'One of the supported voices.  Voice implies gender and language.
+
+            Supported values are referenced in this page:
+
+            https://sdcsupport.syniverse.com/hc/en-us/articles/360042993153-Customizing-Spoken-Text-on-SCG-Voice-API-with-SSML-tags
 
             '

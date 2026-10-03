@@ -63,6 +63,33 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    endpoint.Address:
+      required:
+      - number
+      type: object
+      properties:
+        number:
+          type: string
+          example: '+12125551212'
+    endpoint.FilterResponseError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: error description
+    endpoint.MMSResolveResponse:
+      type: object
+      properties:
+        disposition:
+          type: string
+          example: block
+          enum:
+          - allow
+          - block
+    endpoint.MMSResolveRequestMm4:
+      type: string
+      format: binary
+      example: 'To: +19165551212/TYPE=PLMN From: +18135551212/TYPE=PLMN Content-Type: multipart/mixed;boundary=30b0aba7-81dd-45dd-8ea5-f07ef96bebe9 Message-ID: 0F92DBFD-3FC8-41E9-A529-DC4A13AEE48B X-Mms-Message-ID: "some-message-for-test" Mime-Version: 1.0 --30b0aba7-81dd-45dd-8ea5-f07ef96bebe9 Content-Transfer-Encoding: quoted-printable Content-Type: text/plain; charset=us-ascii Mime-Version: 1.0 Check out this announcement about what CL~PA is doing for you: https://trycurapa.com/acLjf8lbep39 reply STOP to opt out --30b0aba7-81dd-45dd-8ea5-f07ef96bebe9-- EOF'
     endpoint.MMSResolveRequestJson:
       required:
       - message
@@ -164,33 +191,6 @@ components:
           --b4f412fa2728097d4d3a6881fc7d778380b1014e51433f0ca801318bc226--
 
           '
-    endpoint.MMSResolveResponse:
-      type: object
-      properties:
-        disposition:
-          type: string
-          example: block
-          enum:
-          - allow
-          - block
-    endpoint.FilterResponseError:
-      type: object
-      properties:
-        error:
-          type: string
-          example: error description
-    endpoint.Address:
-      required:
-      - number
-      type: object
-      properties:
-        number:
-          type: string
-          example: '+12125551212'
-    endpoint.MMSResolveRequestMm4:
-      type: string
-      format: binary
-      example: 'To: +19165551212/TYPE=PLMN From: +18135551212/TYPE=PLMN Content-Type: multipart/mixed;boundary=30b0aba7-81dd-45dd-8ea5-f07ef96bebe9 Message-ID: 0F92DBFD-3FC8-41E9-A529-DC4A13AEE48B X-Mms-Message-ID: "some-message-for-test" Mime-Version: 1.0 --30b0aba7-81dd-45dd-8ea5-f07ef96bebe9 Content-Transfer-Encoding: quoted-printable Content-Type: text/plain; charset=us-ascii Mime-Version: 1.0 Check out this announcement about what CL~PA is doing for you: https://trycurapa.com/acLjf8lbep39 reply STOP to opt out --30b0aba7-81dd-45dd-8ea5-f07ef96bebe9-- EOF'
   securitySchemes:
     OAuth2:
       type: oauth2

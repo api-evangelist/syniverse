@@ -529,12 +529,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
     inline_response_200_36_list:
       type: object
       properties:
@@ -687,46 +681,6 @@ components:
         version_number:
           type: integer
           description: An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-    Sender_Import_Job_1:
-      type: object
-      properties:
-        approval_state:
-          type: string
-          description: 'sender ids import approval state (WAITING, APPROVED, REJECTED, AUTO)
-
-            '
-        bulk_permission:
-          type: string
-          description: 'bulk permission
-
-            '
-        batch_size_limit:
-          type: integer
-          description: 'batch size limit
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-        register_provider:
-          type: string
-          description: 'register provider (NETNUMBERS, NONE, ZIPWHIP)
-
-            '
-        charges:
-          type: string
-          description: 'sender id fee type (PROCESSING, SETUP, INITIAL, RECURRING, CONSENT_INITIAL, CONSENT_RECURRING, IMPLEMENTATION)
-
-            '
-    inline_response_200_36:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_36_list'
     Sender_Import_Job:
       type: object
       properties:
@@ -760,3 +714,49 @@ components:
           description: 'tollfree billing info
 
             '
+    Sender_Import_Job_1:
+      type: object
+      properties:
+        approval_state:
+          type: string
+          description: 'sender ids import approval state (WAITING, APPROVED, REJECTED, AUTO)
+
+            '
+        bulk_permission:
+          type: string
+          description: 'bulk permission
+
+            '
+        batch_size_limit:
+          type: integer
+          description: 'batch size limit
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+        register_provider:
+          type: string
+          description: 'register provider (NETNUMBERS, NONE, ZIPWHIP)
+
+            '
+        charges:
+          type: string
+          description: 'sender id fee type (PROCESSING, SETUP, INITIAL, RECURRING, CONSENT_INITIAL, CONSENT_RECURRING, IMPLEMENTATION)
+
+            '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    inline_response_200_36:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_36_list'

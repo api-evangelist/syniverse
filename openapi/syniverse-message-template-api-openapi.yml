@@ -689,12 +689,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
     Sender_ID_Message_Template_2:
       type: object
       properties:
@@ -724,6 +718,19 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
+    inline_response_200_9:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_9_list'
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     inline_response_200_9_list:
       type: object
       properties:
@@ -839,10 +846,3 @@ components:
           description: 'template pattern can be used to enforce compliancy of the message body with the submitted program brief. The template pattern allows also to use the templates to form the message body by using the template pattern and replacing the keywords in the pattern with the values of submitted keywords in the message send from the sender id
 
             '
-    inline_response_200_9:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_9_list'
