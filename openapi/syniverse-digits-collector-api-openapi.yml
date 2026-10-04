@@ -450,6 +450,12 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     digit_collector_prompt:
       type: object
       required:
@@ -475,19 +481,6 @@ components:
           description: 'language locale of the voice
 
             '
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    inline_response_200_15:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_15_list'
     Digits_Collector:
       type: object
       required:
@@ -510,6 +503,13 @@ components:
             '
         prompt:
           $ref: '#/components/schemas/digit_collector_prompt'
+    inline_response_200_15:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_15_list'
     inline_response_200_15_list:
       type: object
       properties:

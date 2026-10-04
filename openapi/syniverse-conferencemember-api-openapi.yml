@@ -566,13 +566,12 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_14:
+    inline_response_200_3:
       type: object
       properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_14_list'
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     ConferenceMember:
       type: object
       required:
@@ -651,12 +650,6 @@ components:
           description: 'An ascending version number of the object.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking.
 
             '
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
     ConferenceMember_1:
       type: object
       properties:
@@ -670,3 +663,10 @@ components:
           description: 'If ''true'', this member is muted in the conference
 
             '
+    inline_response_200_14:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_14_list'

@@ -1157,24 +1157,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Channel:
-      type: object
-      properties:
-        name:
-          type: string
-          description: 'User Specified Name of the Channel
-
-            '
-        priority:
-          type: string
-          description: 'Determines the channel priority: high, normal or low. SCG will deliver to target system first for messages in high priority channels, then normal and at the end low priority. Message size does not affect the message priority
-
-            '
-        description:
-          type: string
-          description: 'Description of the Channel
-
-            '
     Sender_ID_2:
       type: object
       properties:
@@ -1185,6 +1167,12 @@ components:
             '
           items:
             type: string
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     Channel_1:
       type: object
       properties:
@@ -1208,12 +1196,61 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
-    inline_response_200_3:
+    Channel:
       type: object
       properties:
-        id:
+        name:
           type: string
-          description: The identifier for the newly created resource.
+          description: 'User Specified Name of the Channel
+
+            '
+        priority:
+          type: string
+          description: 'Determines the channel priority: high, normal or low. SCG will deliver to target system first for messages in high priority channels, then normal and at the end low priority. Message size does not affect the message priority
+
+            '
+        description:
+          type: string
+          description: 'Description of the Channel
+
+            '
+    inline_response_200_4:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_4_list'
+    inline_response_200_2:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_2_list'
+    Channel_2:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'User Specified Name of the Channel
+
+            '
+        priority:
+          type: string
+          description: 'Determines the channel priority: high, normal or low. SCG will deliver to target system first for messages in high priority channels, then normal and at the end low priority. Message size does not affect the message priority
+
+            '
+        description:
+          type: string
+          description: 'Description of the Channel
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
     inline_response_200_2_list:
       type: object
       properties:
@@ -1407,43 +1444,6 @@ components:
         verify_sms_agent_id:
           type: string
           description: 'verify sms agent id
-
-            '
-    inline_response_200_4:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_4_list'
-    inline_response_200_2:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_2_list'
-    Channel_2:
-      type: object
-      properties:
-        name:
-          type: string
-          description: 'User Specified Name of the Channel
-
-            '
-        priority:
-          type: string
-          description: 'Determines the channel priority: high, normal or low. SCG will deliver to target system first for messages in high priority channels, then normal and at the end low priority. Message size does not affect the message priority
-
-            '
-        description:
-          type: string
-          description: 'Description of the Channel
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
     inline_response_200_4_list:

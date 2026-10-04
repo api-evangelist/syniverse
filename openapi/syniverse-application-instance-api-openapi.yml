@@ -532,13 +532,33 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_29:
+    Application_Instance:
       type: object
       properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_29_list'
+        script_id:
+          type: string
+          description: 'The is of the script to be used for this instance.
+
+            '
+        sender_id:
+          type: string
+          description: 'The sender_id that is to be used with this instance.
+
+            '
+        state:
+          type: string
+          description: 'The state of the instance. This can be:
+
+            - ENABLED
+
+            - DISABLED
+
+            '
+        allow_incoming_call:
+          type: string
+          description: 'This is used to enable handling of incoming calls by the application instance.
+
+            '
     inline_response_200_29_list:
       type: object
       properties:
@@ -612,30 +632,10 @@ components:
         id:
           type: string
           description: The identifier for the newly created resource.
-    Application_Instance:
+    inline_response_200_29:
       type: object
       properties:
-        script_id:
-          type: string
-          description: 'The is of the script to be used for this instance.
-
-            '
-        sender_id:
-          type: string
-          description: 'The sender_id that is to be used with this instance.
-
-            '
-        state:
-          type: string
-          description: 'The state of the instance. This can be:
-
-            - ENABLED
-
-            - DISABLED
-
-            '
-        allow_incoming_call:
-          type: string
-          description: 'This is used to enable handling of incoming calls by the application instance.
-
-            '
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_29_list'

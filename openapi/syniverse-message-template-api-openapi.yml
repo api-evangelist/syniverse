@@ -689,6 +689,35 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Sender_ID_Message_Template_1:
+      type: object
+      properties:
+        designation:
+          type: string
+          description: 'The template is used either for VALIDATOR or as an actual TEMPLATE.
+
+            VALIDATOR type templates will be associated with a sender id and any message that is submitted to a sender ID that has some VALIDATOR templates associated with it will be checked against the template.
+
+            TEMPLATE type templates are used to send messages. in such case the message request body will indicate with template to apply and the message processing will use the template body and apply conversion of applicable keywords to create the actual message body.
+
+            NOTE: validator type templates can not be modified by the customer where the message template is associated with a shared sender id
+
+            '
+        name:
+          type: string
+          description: 'The name of the template.
+
+            '
+        pattern:
+          type: string
+          description: 'template pattern can be used to enforce compliancy of the message body with the submitted program brief. The template pattern allows also to use the templates to form the message body by using the template pattern and replacing the keywords in the pattern with the values of submitted keywords in the message send from the sender id
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
     Sender_ID_Message_Template_2:
       type: object
       properties:
@@ -718,13 +747,6 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
-    inline_response_200_9:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_9_list'
     inline_response_200_3:
       type: object
       properties:
@@ -793,35 +815,6 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
-    Sender_ID_Message_Template_1:
-      type: object
-      properties:
-        designation:
-          type: string
-          description: 'The template is used either for VALIDATOR or as an actual TEMPLATE.
-
-            VALIDATOR type templates will be associated with a sender id and any message that is submitted to a sender ID that has some VALIDATOR templates associated with it will be checked against the template.
-
-            TEMPLATE type templates are used to send messages. in such case the message request body will indicate with template to apply and the message processing will use the template body and apply conversion of applicable keywords to create the actual message body.
-
-            NOTE: validator type templates can not be modified by the customer where the message template is associated with a shared sender id
-
-            '
-        name:
-          type: string
-          description: 'The name of the template.
-
-            '
-        pattern:
-          type: string
-          description: 'template pattern can be used to enforce compliancy of the message body with the submitted program brief. The template pattern allows also to use the templates to form the message body by using the template pattern and replacing the keywords in the pattern with the values of submitted keywords in the message send from the sender id
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
     Sender_ID_Message_Template:
       type: object
       properties:
@@ -846,3 +839,10 @@ components:
           description: 'template pattern can be used to enforce compliancy of the message body with the submitted program brief. The template pattern allows also to use the templates to form the message body by using the template pattern and replacing the keywords in the pattern with the values of submitted keywords in the message send from the sender id
 
             '
+    inline_response_200_9:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_9_list'

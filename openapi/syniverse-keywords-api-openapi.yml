@@ -848,6 +848,12 @@ components:
           description: 'Server will search for pattern in first search_words  words of the message
 
             '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     Keywords_2:
       type: object
       properties:
@@ -936,12 +942,6 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
     Keywords:
       type: object
       properties:
@@ -1025,13 +1025,6 @@ components:
           description: 'Server will search for pattern in first search_words  words of the message
 
             '
-    inline_response_200_10:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_10_list'
     Keywords_1:
       type: object
       properties:
@@ -1110,3 +1103,10 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
+    inline_response_200_10:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_10_list'

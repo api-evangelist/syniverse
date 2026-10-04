@@ -756,28 +756,139 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/inline_response_200_6_list'
-    inline_response_200_7:
+    Message:
       type: object
       properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_7_list'
-    Message_Request_options:
-      type: object
-      properties:
-        push:badge:
+        conversation_id:
           type: string
-          example: auto
-        push:notify_type:
-          type: string
-          example: silent
-        push:sound:
-          type: string
-          example: default
-      description: 'json options in use with push notifications.
+          description: 'The identifier of the conversation for conversation threading.
 
-        '
+            '
+        campaign_id:
+          type: string
+          description: 'The campaign id: A unique identifier for a particular messaging campaign or program
+
+            '
+        subject:
+          type: string
+          description: 'Subject of the message.
+
+            '
+        body:
+          type: string
+          description: 'The message body as sent to the recipient.
+
+            '
+        attachments:
+          type: array
+          description: 'A list of attachment IDs which are associated with this message.
+
+            '
+          items:
+            type: string
+        scheduled_delivery_time:
+          type: string
+          example: '1690419562110'
+          description: 'The date and time that this message should be delivered. This is the user specific time as calculated by the SCG based on the destination time zone and requested time zone calculation.
+
+            '
+        scheduled_delivery_time_zone:
+          type: string
+          example: LOCAL
+          description: 'Determines what time zone to apply to the scheduled delivery time:
+
+            - UTC  - If no timezone was supplied in the delivery time then UTC is used.
+
+            - LOCAL -  means that the scheduled delivery time as supplied in the request is expressed in LOCAL recipient time. The time zone of the recipient is determined by SCG automatically based on the primary_address_zip value in the recipient contact record.  The UTC time of day of the supplied scheduled_delivery_time will be used to deliver to the recipient at the same time of day in the local timezone.  For example, if the supplied scheduled delivery time is May 24th at 11:00am UTC, then the message would be delivered to someone with a zipcode in the Pacific timezone at  May 24th at 11:00am PDT.
+
+            '
+        options:
+          $ref: '#/components/schemas/Message_Request_options'
+        body_extensions:
+          type: array
+          description: "Extended body    \n"
+          items:
+            $ref: '#/components/schemas/Message_Request_body_extensions'
+        expiry_time:
+          type: string
+          example: 2023-07-31T15:50:00 or 2023-07-31 or Mon, 07 Aug 2023 11:54:28 UTC or 1690793596000
+          description: 'This is the timestamp after which the messages will no Integer be sent to the downstream system for delivery
+
+            '
+        external_id:
+          type: string
+          description: 'Application provided unique tracking ID for the message.   Can be used as an alternative key in query methods.
+
+            '
+        contact_delivery_address_priority:
+          type: string
+          example: WHATSAPP,MDN
+          description: 'Priority list of contact delivery addresses (MDN, PUSH)
+
+            '
+        failover:
+          type: string
+          description: 'Controls fail over to SMS in case of MMS, RCS and OTT message delivery failures.
+
+            Valid value: SMS
+
+            '
+        verify_number:
+          type: boolean
+          description: 'If this flag is set to ''true'' then the recipient phone numbers will be checked to ensure they are valid mobile numbers,  virtual mobile numbers or virtual landline numbers.
+
+            '
+        verify_sms:
+          type: boolean
+          description: 'If this flag is set to ''true'' then the message content  and the sender of the message will be verified via the  Google messages application. If the verification is  successful, the end-user will be shown a transcript  stating that the message was verified along with  the customer''s logo in the Google messages application.
+
+            '
+        sender_id_sort_criteria:
+          type: string
+          description: 'Priority list of SenderId selection criteria (DELIVERY_ADDRESS, PRICE)
+
+            '
+        from:
+          type: string
+          example: channel:1KJPMkuHQkair_o15etpmg
+          description: "The from attribute is the channel Id or Sender Id over/from which the message is to be sent.\n-To send from a sender ID, the ID should be prefixed with 'sender_id:'.   \n-To send from a channel the ID should be prefixed with 'channel:'.\n"
+        price_threshold:
+          type: integer
+          description: 'The price threshold for messages in a request
+
+            '
+        to:
+          type: string
+          example: '13467871829'
+          description: 'Recipient address or contact id.
+
+            '
+        src_language:
+          type: string
+          description: 'This is the source language of a message. The defauly is English ''en''
+
+            '
+        dst_language:
+          type: string
+          description: 'Translate message to a specified language. If not set,  only messages to contacts with language preference will be translated.
+
+            '
+        translate:
+          type: boolean
+          description: 'When translate attribute is set to ''true'' translation of message body is enabled.
+
+            '
+        consent_requirement:
+          type: string
+          description: 'This field indicates if the message delivery is dependent on the consent status for the message recipient. This field is specific to a Sender address (Shortcode) that is classified as ''User Managed'' consent.  This is meant for Businesses who are responsible for managing consent but use the SCG contacts database to store the consent status for message recipients. Any contacts/destination MDNs for end-users that a message is sent to but does not have an opt-in status associated with the sender address will be blocked (message will be created but will be in ''failed'' status and will not be sent to the recipient).  Supported values are:
+
+            - OPT_IN (message will be sent only if user explicitly opted in)
+
+            - OPT_OUT (message will be sent unless user explicitly opted out)
+
+            - NONE (message will be sent irrespectively of optin status)
+
+            '
     inline_response_200_6_list:
       type: object
       properties:
@@ -1102,6 +1213,28 @@ components:
         id:
           type: string
           description: The identifier for the newly created resource.
+    Message_Request_options:
+      type: object
+      properties:
+        push:badge:
+          type: string
+          example: auto
+        push:notify_type:
+          type: string
+          example: silent
+        push:sound:
+          type: string
+          example: default
+      description: 'json options in use with push notifications.
+
+        '
+    inline_response_200_7:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_7_list'
     inline_response_200_7_list:
       type: object
       properties:
@@ -1169,138 +1302,5 @@ components:
         version_number:
           type: integer
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-    Message:
-      type: object
-      properties:
-        conversation_id:
-          type: string
-          description: 'The identifier of the conversation for conversation threading.
-
-            '
-        campaign_id:
-          type: string
-          description: 'The campaign id: A unique identifier for a particular messaging campaign or program
-
-            '
-        subject:
-          type: string
-          description: 'Subject of the message.
-
-            '
-        body:
-          type: string
-          description: 'The message body as sent to the recipient.
-
-            '
-        attachments:
-          type: array
-          description: 'A list of attachment IDs which are associated with this message.
-
-            '
-          items:
-            type: string
-        scheduled_delivery_time:
-          type: string
-          example: '1690419562110'
-          description: 'The date and time that this message should be delivered. This is the user specific time as calculated by the SCG based on the destination time zone and requested time zone calculation.
-
-            '
-        scheduled_delivery_time_zone:
-          type: string
-          example: LOCAL
-          description: 'Determines what time zone to apply to the scheduled delivery time:
-
-            - UTC  - If no timezone was supplied in the delivery time then UTC is used.
-
-            - LOCAL -  means that the scheduled delivery time as supplied in the request is expressed in LOCAL recipient time. The time zone of the recipient is determined by SCG automatically based on the primary_address_zip value in the recipient contact record.  The UTC time of day of the supplied scheduled_delivery_time will be used to deliver to the recipient at the same time of day in the local timezone.  For example, if the supplied scheduled delivery time is May 24th at 11:00am UTC, then the message would be delivered to someone with a zipcode in the Pacific timezone at  May 24th at 11:00am PDT.
-
-            '
-        options:
-          $ref: '#/components/schemas/Message_Request_options'
-        body_extensions:
-          type: array
-          description: "Extended body    \n"
-          items:
-            $ref: '#/components/schemas/Message_Request_body_extensions'
-        expiry_time:
-          type: string
-          example: 2023-07-31T15:50:00 or 2023-07-31 or Mon, 07 Aug 2023 11:54:28 UTC or 1690793596000
-          description: 'This is the timestamp after which the messages will no Integer be sent to the downstream system for delivery
-
-            '
-        external_id:
-          type: string
-          description: 'Application provided unique tracking ID for the message.   Can be used as an alternative key in query methods.
-
-            '
-        contact_delivery_address_priority:
-          type: string
-          example: WHATSAPP,MDN
-          description: 'Priority list of contact delivery addresses (MDN, PUSH)
-
-            '
-        failover:
-          type: string
-          description: 'Controls fail over to SMS in case of MMS, RCS and OTT message delivery failures.
-
-            Valid value: SMS
-
-            '
-        verify_number:
-          type: boolean
-          description: 'If this flag is set to ''true'' then the recipient phone numbers will be checked to ensure they are valid mobile numbers,  virtual mobile numbers or virtual landline numbers.
-
-            '
-        verify_sms:
-          type: boolean
-          description: 'If this flag is set to ''true'' then the message content  and the sender of the message will be verified via the  Google messages application. If the verification is  successful, the end-user will be shown a transcript  stating that the message was verified along with  the customer''s logo in the Google messages application.
-
-            '
-        sender_id_sort_criteria:
-          type: string
-          description: 'Priority list of SenderId selection criteria (DELIVERY_ADDRESS, PRICE)
-
-            '
-        from:
-          type: string
-          example: channel:1KJPMkuHQkair_o15etpmg
-          description: "The from attribute is the channel Id or Sender Id over/from which the message is to be sent.\n-To send from a sender ID, the ID should be prefixed with 'sender_id:'.   \n-To send from a channel the ID should be prefixed with 'channel:'.\n"
-        price_threshold:
-          type: integer
-          description: 'The price threshold for messages in a request
-
-            '
-        to:
-          type: string
-          example: '13467871829'
-          description: 'Recipient address or contact id.
-
-            '
-        src_language:
-          type: string
-          description: 'This is the source language of a message. The defauly is English ''en''
-
-            '
-        dst_language:
-          type: string
-          description: 'Translate message to a specified language. If not set,  only messages to contacts with language preference will be translated.
-
-            '
-        translate:
-          type: boolean
-          description: 'When translate attribute is set to ''true'' translation of message body is enabled.
-
-            '
-        consent_requirement:
-          type: string
-          description: 'This field indicates if the message delivery is dependent on the consent status for the message recipient. This field is specific to a Sender address (Shortcode) that is classified as ''User Managed'' consent.  This is meant for Businesses who are responsible for managing consent but use the SCG contacts database to store the consent status for message recipients. Any contacts/destination MDNs for end-users that a message is sent to but does not have an opt-in status associated with the sender address will be blocked (message will be created but will be in ''failed'' status and will not be sent to the recipient).  Supported values are:
-
-            - OPT_IN (message will be sent only if user explicitly opted in)
-
-            - OPT_OUT (message will be sent unless user explicitly opted out)
-
-            - NONE (message will be sent irrespectively of optin status)
 
             '

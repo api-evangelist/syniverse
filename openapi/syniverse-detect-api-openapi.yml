@@ -67,46 +67,32 @@ paths:
       operationId: postV1SimCheck
       x-operation-id-source: derived
 components:
-  parameters:
-    RequestTime:
-      name: RequestTime
-      in: header
-      required: true
-      example: '2020-09-24T09:33:43+00:00'
-      description: Current date time when request is sent.
-      schema:
-        type: string
-        format: date-time
-        description: Use RFC3339 format e.g. 2020-09-24T09:33:43+00:00
-        example: '2020-09-24T09:33:43+00:00'
-        default: '2020-09-24T09:33:43+00:00'
-    Authorization:
-      name: Authorization
-      in: header
-      required: true
-      description: The security key to use for ATO & RPV APIs.
-      schema:
-        type: string
-        default: y5jBqXWLzEF4OgK61EbJ4jbEesmxE5No
-    CommonAcceptHeader:
-      name: Accept
-      in: header
-      required: true
-      example: application/json
-      description: Media type for the response. Only application/json is supported.
-      schema:
-        type: string
-        default: application/json
-    CommonContentTypeHeader:
-      name: Content-Type
-      in: header
-      required: true
-      example: application/json
-      description: Media type sent in the request. Only application/json is supported.
-      schema:
-        type: string
-        default: application/json
   schemas:
+    simCheckErrorResponse:
+      properties:
+        error:
+          type: object
+          properties:
+            correlationId:
+              description: A nonce used by the enterprise that is unique to this transaction.
+              type: string
+              minLength: 8
+              maxLength: 80
+              example: 984681AFDB698C67
+            responseId:
+              description: A nonce used by Syniverse that is unique to this transaction.
+              type: string
+              maxLength: 30
+              example: 6496849684CBAF87H1
+            code:
+              description: A Syniverse code regarding the error. Refer to the API guide for a complete list.
+              type: string
+              example: '-5061'
+            description:
+              description: Description of code.
+              type: string
+              maxLength: 256
+              example: Insufficient information to determine a response.
     simCheckRequest:
       properties:
         merchantId:
@@ -151,31 +137,6 @@ components:
       - msisdn
       - correlationId
       - consentTimeStamp
-    simCheckErrorResponse:
-      properties:
-        error:
-          type: object
-          properties:
-            correlationId:
-              description: A nonce used by the enterprise that is unique to this transaction.
-              type: string
-              minLength: 8
-              maxLength: 80
-              example: 984681AFDB698C67
-            responseId:
-              description: A nonce used by Syniverse that is unique to this transaction.
-              type: string
-              maxLength: 30
-              example: 6496849684CBAF87H1
-            code:
-              description: A Syniverse code regarding the error. Refer to the API guide for a complete list.
-              type: string
-              example: '-5061'
-            description:
-              description: Description of code.
-              type: string
-              maxLength: 256
-              example: Insufficient information to determine a response.
     simCheckSuccessResponse:
       properties:
         results:
@@ -200,3 +161,42 @@ components:
               - Y
               - N
               example: Y
+  parameters:
+    CommonContentTypeHeader:
+      name: Content-Type
+      in: header
+      required: true
+      example: application/json
+      description: Media type sent in the request. Only application/json is supported.
+      schema:
+        type: string
+        default: application/json
+    CommonAcceptHeader:
+      name: Accept
+      in: header
+      required: true
+      example: application/json
+      description: Media type for the response. Only application/json is supported.
+      schema:
+        type: string
+        default: application/json
+    Authorization:
+      name: Authorization
+      in: header
+      required: true
+      description: The security key to use for ATO & RPV APIs.
+      schema:
+        type: string
+        default: y5jBqXWLzEF4OgK61EbJ4jbEesmxE5No
+    RequestTime:
+      name: RequestTime
+      in: header
+      required: true
+      example: '2020-09-24T09:33:43+00:00'
+      description: Current date time when request is sent.
+      schema:
+        type: string
+        format: date-time
+        description: Use RFC3339 format e.g. 2020-09-24T09:33:43+00:00
+        example: '2020-09-24T09:33:43+00:00'
+        default: '2020-09-24T09:33:43+00:00'

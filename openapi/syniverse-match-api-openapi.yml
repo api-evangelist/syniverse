@@ -55,6 +55,32 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
+    CommonContentTypeHeader:
+      name: Content-Type
+      in: header
+      required: true
+      example: application/json
+      description: Media type sent in the request. Only application/json is supported.
+      schema:
+        type: string
+        default: application/json
+    CommonAcceptHeader:
+      name: Accept
+      in: header
+      required: true
+      example: application/json
+      description: Media type for the response. Only application/json is supported.
+      schema:
+        type: string
+        default: application/json
+    Authorization:
+      name: Authorization
+      in: header
+      required: true
+      description: The security key to use for ATO & RPV APIs.
+      schema:
+        type: string
+        default: y5jBqXWLzEF4OgK61EbJ4jbEesmxE5No
     RequestTime:
       name: RequestTime
       in: header
@@ -67,138 +93,32 @@ components:
         description: Use RFC3339 format e.g. 2020-09-24T09:33:43+00:00
         example: '2020-09-24T09:33:43+00:00'
         default: '2020-09-24T09:33:43+00:00'
-    Authorization:
-      name: Authorization
-      in: header
-      required: true
-      description: The security key to use for ATO & RPV APIs.
-      schema:
-        type: string
-        default: y5jBqXWLzEF4OgK61EbJ4jbEesmxE5No
-    CommonAcceptHeader:
-      name: Accept
-      in: header
-      required: true
-      example: application/json
-      description: Media type for the response. Only application/json is supported.
-      schema:
-        type: string
-        default: application/json
-    CommonContentTypeHeader:
-      name: Content-Type
-      in: header
-      required: true
-      example: application/json
-      description: Media type sent in the request. Only application/json is supported.
-      schema:
-        type: string
-        default: application/json
   schemas:
-    matchRequest:
-      type: object
+    errorResponse2:
       properties:
-        merchantId:
-          description: Your merchant ID that will be provided to you during onboarding.
-          example: 02200013919FB4
-          default: 02200013919FB4
-          type: string
-          maxLength: 30
-        subMerchantId:
-          description: Used by resellers, an ID that is assigned to the end merchant.
-          example: ''
-          default: ''
-          type: string
-          maxLength: 30
-        consentId:
-          description: Unique ID for the consent that is traceable if consent audit is required.
-          type: string
-          maxLength: 128
-          example: 9783471AFDB69NH34
-          default: 9783471AFDB69NH34
-        consentTimeStamp:
-          description: The time stamp that the consentId was generated. Format must be as date time RFC3339.
-          type: string
-          example: '2020-08-20T12:00:57+00:00'
-          default: '2020-08-20T12:00:57+00:00'
-          format: date-time
-        msisdn:
-          type: string
-          example: '+14444441333'
-          default: '+14444441333'
-          description: The MSISDN of the user that you want to check. Number to be provided in E.164 format.
-        correlationId:
-          description: A nonce used by the merchant that is unique to this transaction.
-          type: string
-          minLength: 8
-          maxLength: 80
-          example: 984681AFDB698C67
-          default: 984681AFDB698C67
-        firstName:
-          description: Consumer First Name.
-          type: string
-          maxLength: 128
-          example: Michael
-          default: Michael
-        lastName:
-          description: Consumer Last Name.
-          type: string
-          maxLength: 128
-          example: Johnson
-          default: Johnson
-        address1:
-          description: Consumer Address Line 1.
-          type: string
-          maxLength: 256
-          example: 3701 Ashwood Dr
-          default: 3701 Ashwood Dr
-        address2:
-          description: Consumer Address Line 1.
-          type: string
-          maxLength: 256
-          example: Apt 20
-          default: Apt 20
-        city:
-          description: Consumer City.
-          type: string
-          maxLength: 128
-          example: Council Bluffs
-          default: Council Bluffs
-        state:
-          description: Consumer State.
-          type: string
-          maxLength: 128
-          example: IA
-          default: IA
-        postalCode:
-          description: Consumer Postal or Zip Code.
-          type: string
-          maxLength: 10
-          example: '51501'
-          default: '51501'
-        countryCode:
-          description: Consumer Country. Two letter country ISO code values only.
-          type: string
-          maxLength: 2
-          example: US
-          default: US
-        nationalId:
-          description: Consumer National ID (If Used).
-          type: string
-          maxLength: 128
-          default: '345678901'
-          example: '345678901'
-        dateOfBirth:
-          description: Consumer DOB in YYYYMMDD format.
-          type: string
-          maxLength: 8
-          default: '19800303'
-          example: '19800303'
-      required:
-      - merchantId
-      - msisdn
-      - correlationId
-      - consentId
-      - consentTimeStamp
+        error:
+          type: object
+          properties:
+            correlationId:
+              description: A nonce used by the enterprise that is unique to this transaction.
+              type: string
+              minLength: 8
+              maxLength: 80
+              example: 984681AFDB698C67
+            responseId:
+              description: A nonce used by Syniverse that is unique to this transaction.
+              type: string
+              maxLength: 30
+              example: 6496849684CBAF87A9
+            code:
+              description: A Syniverse code regarding the error. Refer to the API guide for a complete list.
+              type: string
+              example: '-5003'
+            description:
+              description: Description of code.
+              type: string
+              maxLength: 256
+              example: A required parameter is missing.
     matchSuccessResponse:
       properties:
         results:
@@ -316,28 +236,108 @@ components:
               description: A single score that indicates the overall level of match between Syniverse's data sources and end-user data sent in the enterprise request. 100 indicates strong match and 0 indicates complete mismatch.
               type: string
               example: '90'
-    errorResponse2:
+    matchRequest:
+      type: object
       properties:
-        error:
-          type: object
-          properties:
-            correlationId:
-              description: A nonce used by the enterprise that is unique to this transaction.
-              type: string
-              minLength: 8
-              maxLength: 80
-              example: 984681AFDB698C67
-            responseId:
-              description: A nonce used by Syniverse that is unique to this transaction.
-              type: string
-              maxLength: 30
-              example: 6496849684CBAF87A9
-            code:
-              description: A Syniverse code regarding the error. Refer to the API guide for a complete list.
-              type: string
-              example: '-5003'
-            description:
-              description: Description of code.
-              type: string
-              maxLength: 256
-              example: A required parameter is missing.
+        merchantId:
+          description: Your merchant ID that will be provided to you during onboarding.
+          example: 02200013919FB4
+          default: 02200013919FB4
+          type: string
+          maxLength: 30
+        subMerchantId:
+          description: Used by resellers, an ID that is assigned to the end merchant.
+          example: ''
+          default: ''
+          type: string
+          maxLength: 30
+        consentId:
+          description: Unique ID for the consent that is traceable if consent audit is required.
+          type: string
+          maxLength: 128
+          example: 9783471AFDB69NH34
+          default: 9783471AFDB69NH34
+        consentTimeStamp:
+          description: The time stamp that the consentId was generated. Format must be as date time RFC3339.
+          type: string
+          example: '2020-08-20T12:00:57+00:00'
+          default: '2020-08-20T12:00:57+00:00'
+          format: date-time
+        msisdn:
+          type: string
+          example: '+14444441333'
+          default: '+14444441333'
+          description: The MSISDN of the user that you want to check. Number to be provided in E.164 format.
+        correlationId:
+          description: A nonce used by the merchant that is unique to this transaction.
+          type: string
+          minLength: 8
+          maxLength: 80
+          example: 984681AFDB698C67
+          default: 984681AFDB698C67
+        firstName:
+          description: Consumer First Name.
+          type: string
+          maxLength: 128
+          example: Michael
+          default: Michael
+        lastName:
+          description: Consumer Last Name.
+          type: string
+          maxLength: 128
+          example: Johnson
+          default: Johnson
+        address1:
+          description: Consumer Address Line 1.
+          type: string
+          maxLength: 256
+          example: 3701 Ashwood Dr
+          default: 3701 Ashwood Dr
+        address2:
+          description: Consumer Address Line 1.
+          type: string
+          maxLength: 256
+          example: Apt 20
+          default: Apt 20
+        city:
+          description: Consumer City.
+          type: string
+          maxLength: 128
+          example: Council Bluffs
+          default: Council Bluffs
+        state:
+          description: Consumer State.
+          type: string
+          maxLength: 128
+          example: IA
+          default: IA
+        postalCode:
+          description: Consumer Postal or Zip Code.
+          type: string
+          maxLength: 10
+          example: '51501'
+          default: '51501'
+        countryCode:
+          description: Consumer Country. Two letter country ISO code values only.
+          type: string
+          maxLength: 2
+          example: US
+          default: US
+        nationalId:
+          description: Consumer National ID (If Used).
+          type: string
+          maxLength: 128
+          default: '345678901'
+          example: '345678901'
+        dateOfBirth:
+          description: Consumer DOB in YYYYMMDD format.
+          type: string
+          maxLength: 8
+          default: '19800303'
+          example: '19800303'
+      required:
+      - merchantId
+      - msisdn
+      - correlationId
+      - consentId
+      - consentTimeStamp

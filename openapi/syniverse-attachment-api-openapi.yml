@@ -909,6 +909,59 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Attachment_1:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'The name of the attachment (e.g. it''s filename or other non-generated identifier)  The value of this field should be unique for a given message.
+
+            '
+        type:
+          type: string
+          description: 'The MIME type of the attachment (if known)
+
+            '
+        filename:
+          type: string
+          description: 'Original file name of the attachment
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+    Attachment_Data:
+      type: object
+      properties:
+        content-data:
+          type: string
+          description: 'The binary data associated with the attachment.  The content-type of the HTPP request/reponse is the content type of the data.
+
+            '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    inline_response_200_8:
+      type: object
+      properties:
+        content-data:
+          type: string
+          description: 'The binary data associated with the attachment.  The content-type of the HTPP request/reponse is the content type of the data.
+
+            '
+    Access_Token:
+      type: object
+      properties:
+        expiry_time:
+          type: string
+          description: 'The UTC timestamp after which the token is no Integer valid.
+
+            '
     inline_response_200_7:
       type: object
       properties:
@@ -934,20 +987,6 @@ components:
           description: 'Original file name of the attachment
 
             '
-    inline_response_200_8:
-      type: object
-      properties:
-        content-data:
-          type: string
-          description: 'The binary data associated with the attachment.  The content-type of the HTPP request/reponse is the content type of the data.
-
-            '
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
     inline_response_200_7_list:
       type: object
       properties:
@@ -1010,45 +1049,6 @@ components:
         last_updated_date:
           type: string
           description: 'The data the resource was last changed
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-    Attachment_Data:
-      type: object
-      properties:
-        content-data:
-          type: string
-          description: 'The binary data associated with the attachment.  The content-type of the HTPP request/reponse is the content type of the data.
-
-            '
-    Access_Token:
-      type: object
-      properties:
-        expiry_time:
-          type: string
-          description: 'The UTC timestamp after which the token is no Integer valid.
-
-            '
-    Attachment_1:
-      type: object
-      properties:
-        name:
-          type: string
-          description: 'The name of the attachment (e.g. it''s filename or other non-generated identifier)  The value of this field should be unique for a given message.
-
-            '
-        type:
-          type: string
-          description: 'The MIME type of the attachment (if known)
-
-            '
-        filename:
-          type: string
-          description: 'Original file name of the attachment
 
             '
         version_number:

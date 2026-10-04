@@ -1156,166 +1156,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Contact_Group_2:
-      type: object
-      properties:
-        external_id:
-          type: string
-          description: 'Customer supplied id of the contact group
-
-            '
-        name:
-          type: string
-          description: 'A name for the group
-
-            '
-        description:
-          type: string
-          description: 'Group description
-
-            '
-        criteria:
-          type: string
-          description: 'Filter definition for creation of the group. Users can use either criteria or members <FORMAT TBD -  figure our the syntax>
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-    Contact_Group_1:
-      type: object
-      properties:
-        external_id:
-          type: string
-          description: 'Customer supplied id of the contact group
-
-            '
-        name:
-          type: string
-          description: 'A name for the group
-
-            '
-        description:
-          type: string
-          description: 'Group description
-
-            '
-        criteria:
-          type: string
-          description: 'Filter definition for creation of the group. Users can use either criteria or members <FORMAT TBD -  figure our the syntax>
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    inline_response_200_20:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_20_list'
-    inline_response_200_20_list:
-      type: object
-      properties:
-        id:
-          type: string
-          description: 'Unique identifier of the contact group
-
-            '
-        external_id:
-          type: string
-          description: 'Customer supplied id of the contact group
-
-            '
-        name:
-          type: string
-          description: 'A name for the group
-
-            '
-        description:
-          type: string
-          description: 'Group description
-
-            '
-        type:
-          type: string
-          description: "The group type: \n- DYNAMIC: meaning the list of members associated with the group is calculated dynamically whenever the group is referenced by applying the CRITERIA to the customer contact list\n- STATIC: meaning the list of members is determined at the time of contact group creation and hence static. Customers will be also able to add or remove contacts from a STATIC group by accessing the contacts list associated with the group\n"
-        criteria:
-          type: string
-          description: 'Filter definition for creation of the group. Users can use either criteria or members <FORMAT TBD -  figure our the syntax>
-
-            '
-        state:
-          type: string
-          description: 'Processing
-
-            Ready
-
-            '
-        member_count:
-          type: number
-          description: 'Count of members in the group.
-
-            '
-        application_id:
-          type: integer
-          description: 'ID of the application that has created the resource
-
-            '
-        created_date:
-          type: string
-          description: 'The creation date of the object.
-
-            '
-        last_updated_date:
-          type: string
-          description: 'The last modification date of the object.
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the object.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking.
-
-            '
-    Contact_Group:
-      type: object
-      properties:
-        external_id:
-          type: string
-          description: 'Customer supplied id of the contact group
-
-            '
-        name:
-          type: string
-          description: 'A name for the group
-
-            '
-        description:
-          type: string
-          description: 'Group description
-
-            '
-        criteria:
-          type: string
-          description: 'Filter definition for creation of the group. Users can use either criteria or members <FORMAT TBD -  figure our the syntax>
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
     inline_response_200_16_list:
       type: object
       properties:
@@ -1639,6 +1479,40 @@ components:
           description: 'Is rcs capable: true or false
 
             '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
+    Contact_Group_1:
+      type: object
+      properties:
+        external_id:
+          type: string
+          description: 'Customer supplied id of the contact group
+
+            '
+        name:
+          type: string
+          description: 'A name for the group
+
+            '
+        description:
+          type: string
+          description: 'Group description
+
+            '
+        criteria:
+          type: string
+          description: 'Filter definition for creation of the group. Users can use either criteria or members <FORMAT TBD -  figure our the syntax>
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
     inline_response_200_16:
       type: object
       properties:
@@ -1646,6 +1520,132 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/inline_response_200_16_list'
+    Contact_Group:
+      type: object
+      properties:
+        external_id:
+          type: string
+          description: 'Customer supplied id of the contact group
+
+            '
+        name:
+          type: string
+          description: 'A name for the group
+
+            '
+        description:
+          type: string
+          description: 'Group description
+
+            '
+        criteria:
+          type: string
+          description: 'Filter definition for creation of the group. Users can use either criteria or members <FORMAT TBD -  figure our the syntax>
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+    inline_response_200_20_list:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'Unique identifier of the contact group
+
+            '
+        external_id:
+          type: string
+          description: 'Customer supplied id of the contact group
+
+            '
+        name:
+          type: string
+          description: 'A name for the group
+
+            '
+        description:
+          type: string
+          description: 'Group description
+
+            '
+        type:
+          type: string
+          description: "The group type: \n- DYNAMIC: meaning the list of members associated with the group is calculated dynamically whenever the group is referenced by applying the CRITERIA to the customer contact list\n- STATIC: meaning the list of members is determined at the time of contact group creation and hence static. Customers will be also able to add or remove contacts from a STATIC group by accessing the contacts list associated with the group\n"
+        criteria:
+          type: string
+          description: 'Filter definition for creation of the group. Users can use either criteria or members <FORMAT TBD -  figure our the syntax>
+
+            '
+        state:
+          type: string
+          description: 'Processing
+
+            Ready
+
+            '
+        member_count:
+          type: number
+          description: 'Count of members in the group.
+
+            '
+        application_id:
+          type: integer
+          description: 'ID of the application that has created the resource
+
+            '
+        created_date:
+          type: string
+          description: 'The creation date of the object.
+
+            '
+        last_updated_date:
+          type: string
+          description: 'The last modification date of the object.
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the object.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking.
+
+            '
+    inline_response_200_20:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_20_list'
+    Contact_Group_2:
+      type: object
+      properties:
+        external_id:
+          type: string
+          description: 'Customer supplied id of the contact group
+
+            '
+        name:
+          type: string
+          description: 'A name for the group
+
+            '
+        description:
+          type: string
+          description: 'Group description
+
+            '
+        criteria:
+          type: string
+          description: 'Filter definition for creation of the group. Users can use either criteria or members <FORMAT TBD -  figure our the syntax>
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
     Contact_5:
       type: object
       properties:

@@ -60,6 +60,20 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    endpoint.FilterResponseError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: error description
+    endpoint.Address:
+      required:
+      - number
+      type: object
+      properties:
+        number:
+          type: string
+          example: '+12125551212'
     endpoint.TextResolveResponse:
       type: object
       properties:
@@ -69,20 +83,6 @@ components:
           enum:
           - allow
           - block
-    endpoint.Address:
-      required:
-      - number
-      type: object
-      properties:
-        number:
-          type: string
-          example: '+12125551212'
-    endpoint.FilterResponseError:
-      type: object
-      properties:
-        error:
-          type: string
-          example: error description
     endpoint.TextResolveRequest:
       required:
       - message

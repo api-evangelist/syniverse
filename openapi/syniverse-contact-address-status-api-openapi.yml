@@ -599,6 +599,37 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Contact_Address_Status_1:
+      type: object
+      properties:
+        consent_status:
+          type: string
+          description: 'this is the current optin status for the specific address / sender id. The possible values are:
+
+            - NONE (no optin or optout message received from the address on the specific sender id)
+
+            - OPTIN (user has explicitly opted in to the sender id)
+
+            - OPTOUT (user has explicitly opted out of the sender id)
+
+            - BLACKLIST (blacklisted address - will be treated as explicit OPTOUT)
+
+            - WHITELIST (whitelisted address - will be treated as explicit OPTIN)
+
+            NOTE: Whitelisted or blacklisted status can not be overwritten by the end-user by sending messages to the sender id. Such users can be only un-listed by changing the optin-status explicitly put POST to address status ID
+
+            '
+        version_number:
+          type: integer
+          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+
+            '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     inline_response_200_23_list:
       type: object
       properties:
@@ -672,35 +703,12 @@ components:
           description: 'An ascending version number of the object.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking.
 
             '
-    inline_response_200_3:
+    Contact_Address_Status:
       type: object
       properties:
-        id:
+        address_type:
           type: string
-          description: The identifier for the newly created resource.
-    Contact_Address_Status_1:
-      type: object
-      properties:
-        consent_status:
-          type: string
-          description: 'this is the current optin status for the specific address / sender id. The possible values are:
-
-            - NONE (no optin or optout message received from the address on the specific sender id)
-
-            - OPTIN (user has explicitly opted in to the sender id)
-
-            - OPTOUT (user has explicitly opted out of the sender id)
-
-            - BLACKLIST (blacklisted address - will be treated as explicit OPTOUT)
-
-            - WHITELIST (whitelisted address - will be treated as explicit OPTIN)
-
-            NOTE: Whitelisted or blacklisted status can not be overwritten by the end-user by sending messages to the sender id. Such users can be only un-listed by changing the optin-status explicitly put POST to address status ID
-
-            '
-        version_number:
-          type: integer
-          description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
+          description: 'The address type MDN (for phone numbers), EMAIL, SOCIAL, PUSH (...)
 
             '
     inline_response_200_23:
@@ -710,11 +718,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/inline_response_200_23_list'
-    Contact_Address_Status:
-      type: object
-      properties:
-        address_type:
-          type: string
-          description: 'The address type MDN (for phone numbers), EMAIL, SOCIAL, PUSH (...)
-
-            '

@@ -456,6 +456,19 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    inline_response_200_17:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'The unique id of the token
+
+            '
+        expiry_time:
+          type: string
+          description: 'The UTC timestamp after which the token is no Integer valid.
+
+            '
     Access_Token_2:
       type: object
       properties:
@@ -471,19 +484,6 @@ components:
         resource_id:
           type: string
           description: 'The unique ID for the resource instance that this token is associated with.
-
-            '
-        expiry_time:
-          type: string
-          description: 'The UTC timestamp after which the token is no Integer valid.
-
-            '
-    inline_response_200_17:
-      type: object
-      properties:
-        id:
-          type: string
-          description: 'The unique id of the token
 
             '
         expiry_time:

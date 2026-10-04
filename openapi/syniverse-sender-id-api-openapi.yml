@@ -1142,6 +1142,12 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     inline_response_200_2_list_limited:
       type: object
       properties:
@@ -1226,6 +1232,106 @@ components:
           description: 'This is the Sender ID of the Preprovisioned Sender ID that is being purchased.
 
             '
+    Sender_ID:
+      type: object
+      properties:
+        parent_id:
+          type: string
+          description: 'for shared short codes, this is a reference to the system  sender id that is associated with this preprovisioned address.  Whenever a customer wants to use a preprovisioned, shared code, the parent sender address id will indicate the sender id that was used to create customer version of the sender id
+
+            '
+        name:
+          type: string
+          description: 'name of the sender address
+
+            '
+        ownership:
+          type: string
+          description: 'this field determines the ownership category of a shortcode. Applies only for SMS type of sender id''s. Following values are allowed:
+
+            - PRIVATE -> represents a short code that is private for use by one company only
+
+            - SHARED -> represents a short code that is owned by Syniverse and where multiple customers can use it. When a customer wants to use a SHARED sender id, a new PRIVATE sender address will be created with parent sender id set to the SHARED sender id
+
+            - PREPROVISIONED -> represents an address that is owned by Syniverse and can be selected by a customer. Upon a customer selecting a preprovisioned sender address, new sender id document as a copy of the PREPROVISIONED document is created, with state PRIVATE and parent_id pointing the original PREPROVISIONED sender address. The PREPROVISIONED sender address changes ownership to PURCHASED. Once the PRIVATE sender address, pointing to the PURCHASED is deleted, the PURCHASED sender changes its ownership back to PREPROVISIONED.
+
+            - PURCHASED -> PREPROVISIONED sender address, currently occupied by a customer.
+
+            '
+        class_id:
+          type: string
+          description: 'reference to the sender address class that determines the priority and throughput of the configured sender id
+
+            '
+        type_id:
+          type: string
+          description: 'reference the sender address type that determines the data types allowed on the sender id and identifies the gateway used to deliver the messages
+
+            '
+        address:
+          type: string
+          description: 'The sender address. The address must correspond to the sender address type. For a2p sms this will be the shortcode or Integercode, for emails this will be the email address etc... For push this is a unique application name.  This name will be used in contacts to identify the application specific push registration ids for a particular user.
+
+            '
+        content_type:
+          type: string
+          description: 'the content of this field is specific the sender type / gateway associated with this sender
+
+            '
+        message_templates:
+          type: array
+          description: 'A list of template ids that apply to this sender address. If more than one template applies, the elements will be separated by  a coma.
+
+            '
+          items:
+            type: string
+        country:
+          type: string
+          description: 'The country that the sender address can be used to send messages to. This field will contain ISO country code. The value is managed by Syniverse and not editable by the customer.
+
+            '
+        credentials:
+          type: string
+          description: 'An array of  inline JSON objects with a list of name, value pairs that contain the credential and configuration values need to use this sender ID.  There is one object in the array per message delivery provider that will be used for delivery messages with this sender ID.  For example, the array may contain one entry for APN and one entry for GCN.
+
+            '
+        consent_managed_by:
+          type: string
+          description: 'Possible values: USER, SCG or SCG_UNSOLICITED_OPT_OUT. Default is USER
+
+            '
+        capabilities:
+          type: array
+          description: 'Message types allowed on the sender ids from of this type: SMS, MMS, VOICE, WhatsApp etc.
+
+            '
+          items:
+            type: string
+        check_white_list:
+          type: boolean
+          description: 'If set, sending via this sender ID is limited to recipients present in the customer''s white list.
+
+            '
+        register_number:
+          type: string
+          description: 'When the ''register_number'' can be set to ''true'' or ''false''. When set to ''true'', this instructs SCG to register a Telephone number with the appropriate Operator or Registration entity.
+
+            '
+        register_method:
+          type: string
+          description: "Provides registration method for sender ids that need registration step - currently WhatsApp sender ids.\n\nValues:\n\n * voice - deliver verification code via phone call\n * sms -  deliver verification code via SMS\n"
+        verification_code:
+          type: string
+          description: 'Provides verification code for sender ids that need verification step - currently WhatsApp sender ids.
+
+            '
+    inline_response_200_2:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_2_list'
     Sender_ID_1:
       type: object
       properties:
@@ -1346,12 +1452,6 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
     inline_response_200_2_list:
       type: object
       properties:
@@ -1545,105 +1645,5 @@ components:
         verify_sms_agent_id:
           type: string
           description: 'verify sms agent id
-
-            '
-    inline_response_200_2:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_2_list'
-    Sender_ID:
-      type: object
-      properties:
-        parent_id:
-          type: string
-          description: 'for shared short codes, this is a reference to the system  sender id that is associated with this preprovisioned address.  Whenever a customer wants to use a preprovisioned, shared code, the parent sender address id will indicate the sender id that was used to create customer version of the sender id
-
-            '
-        name:
-          type: string
-          description: 'name of the sender address
-
-            '
-        ownership:
-          type: string
-          description: 'this field determines the ownership category of a shortcode. Applies only for SMS type of sender id''s. Following values are allowed:
-
-            - PRIVATE -> represents a short code that is private for use by one company only
-
-            - SHARED -> represents a short code that is owned by Syniverse and where multiple customers can use it. When a customer wants to use a SHARED sender id, a new PRIVATE sender address will be created with parent sender id set to the SHARED sender id
-
-            - PREPROVISIONED -> represents an address that is owned by Syniverse and can be selected by a customer. Upon a customer selecting a preprovisioned sender address, new sender id document as a copy of the PREPROVISIONED document is created, with state PRIVATE and parent_id pointing the original PREPROVISIONED sender address. The PREPROVISIONED sender address changes ownership to PURCHASED. Once the PRIVATE sender address, pointing to the PURCHASED is deleted, the PURCHASED sender changes its ownership back to PREPROVISIONED.
-
-            - PURCHASED -> PREPROVISIONED sender address, currently occupied by a customer.
-
-            '
-        class_id:
-          type: string
-          description: 'reference to the sender address class that determines the priority and throughput of the configured sender id
-
-            '
-        type_id:
-          type: string
-          description: 'reference the sender address type that determines the data types allowed on the sender id and identifies the gateway used to deliver the messages
-
-            '
-        address:
-          type: string
-          description: 'The sender address. The address must correspond to the sender address type. For a2p sms this will be the shortcode or Integercode, for emails this will be the email address etc... For push this is a unique application name.  This name will be used in contacts to identify the application specific push registration ids for a particular user.
-
-            '
-        content_type:
-          type: string
-          description: 'the content of this field is specific the sender type / gateway associated with this sender
-
-            '
-        message_templates:
-          type: array
-          description: 'A list of template ids that apply to this sender address. If more than one template applies, the elements will be separated by  a coma.
-
-            '
-          items:
-            type: string
-        country:
-          type: string
-          description: 'The country that the sender address can be used to send messages to. This field will contain ISO country code. The value is managed by Syniverse and not editable by the customer.
-
-            '
-        credentials:
-          type: string
-          description: 'An array of  inline JSON objects with a list of name, value pairs that contain the credential and configuration values need to use this sender ID.  There is one object in the array per message delivery provider that will be used for delivery messages with this sender ID.  For example, the array may contain one entry for APN and one entry for GCN.
-
-            '
-        consent_managed_by:
-          type: string
-          description: 'Possible values: USER, SCG or SCG_UNSOLICITED_OPT_OUT. Default is USER
-
-            '
-        capabilities:
-          type: array
-          description: 'Message types allowed on the sender ids from of this type: SMS, MMS, VOICE, WhatsApp etc.
-
-            '
-          items:
-            type: string
-        check_white_list:
-          type: boolean
-          description: 'If set, sending via this sender ID is limited to recipients present in the customer''s white list.
-
-            '
-        register_number:
-          type: string
-          description: 'When the ''register_number'' can be set to ''true'' or ''false''. When set to ''true'', this instructs SCG to register a Telephone number with the appropriate Operator or Registration entity.
-
-            '
-        register_method:
-          type: string
-          description: "Provides registration method for sender ids that need registration step - currently WhatsApp sender ids.\n\nValues:\n\n * voice - deliver verification code via phone call\n * sms -  deliver verification code via SMS\n"
-        verification_code:
-          type: string
-          description: 'Provides verification code for sender ids that need verification step - currently WhatsApp sender ids.
 
             '

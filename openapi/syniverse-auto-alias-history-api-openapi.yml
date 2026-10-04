@@ -313,13 +313,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_27:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_27_list'
     inline_response_200_27_list:
       type: object
       properties:
@@ -363,3 +356,10 @@ components:
           description: 'An ascending version number of the object.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking.
 
             '
+    inline_response_200_27:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_27_list'
