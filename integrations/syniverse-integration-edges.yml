@@ -19,7 +19,28 @@ edges:
     api_families_basis: null
     detected_by: sweep-telco-network-apis.py
     detected: '2026-10-12'
+- partner_name: Ping Identity (own)
+  partner: ping-identity
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.pingone.com/item/syniverse-pingone-mfa-integration
+  mirror_of: ping-identity/integrations/ping-identity-integration-edges.yml
+  apps:
+  - Syniverse PingOne MFA Integration
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  badges:
+  - Ping Verified
 generated: '2026-10-12'
 method: searched
 checked:
 - https://raw.githubusercontent.com/camaraproject/camara-landscape/main/landscape.yml
+- ping-identity/integrations/ping-identity-integration-edges.yml
+source:
+- ping-identity/integrations/ping-identity-integration-edges.yml
