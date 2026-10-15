@@ -1,31 +1,28 @@
-generated: '2026-07-25'
-method: derived
-source: openapi/syniverse-messaging-trust-datafeed-openapi.yml, openapi/syniverse-messaging-trust-resolve-openapi.yml,
-  openapi/syniverse-whitelisting-service-openapi.json
-summary: >-
-  Syniverse declares three oauth2 security schemes but publishes ZERO scopes. Every flow
-  carries an empty scopes map, no operation names a scope in its security requirement, and
-  the Developer Community documentation has no scopes or permissions reference page — the
-  docs and support knowledge base were searched on 2026-07-25 and none exists. Authorization
-  is coarse: an SDC application access token carries whatever entitlements the account
-  holds, and 403 Forbidden means "credentials do not carry the entitlements" rather than
-  "missing scope". Recorded as a genuine empty result, not a gap in the harvest.
-scopes_documented: false
-docs: null
+generated: '2026-10-14'
+method: none
+source: openapi/syniverse-mms-resolver-api-api-openapi.yml, openapi/syniverse-reports-api-openapi.yml,
+  openapi/syniverse-text-resolver-api-api-openapi.yml, openapi/syniverse-whitelist-api-openapi.yml
 schemes:
 - name: OAuth2
-  source: openapi/syniverse-messaging-trust-datafeed-openapi.yml
+  source: openapi/syniverse-mms-resolver-api-api-openapi.yml
   flows:
   - flow: clientCredentials
     tokenUrl: https://api.mt1.messaging-trust.syniverse.com/oauth2/token
 - name: OAuth2
-  source: openapi/syniverse-messaging-trust-resolve-openapi.yml
+  source: openapi/syniverse-reports-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.mt1.messaging-trust.syniverse.com/oauth2/token
+- name: OAuth2
+  source: openapi/syniverse-text-resolver-api-api-openapi.yml
   flows:
   - flow: clientCredentials
     tokenUrl: https://api.mt1.messaging-trust.syniverse.com/oauth2/token
 - name: default
-  source: openapi/syniverse-whitelisting-service-openapi.json
+  source: openapi/syniverse-whitelist-api-openapi.yml
   flows:
   - flow: implicit
     authorizationUrl: https://beta.api.syniverse.com/token
 scopes: []
+note: The OAuth2 security scheme(s) in the OpenAPI declare no scopes, and no security requirement
+  references one.
