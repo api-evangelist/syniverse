@@ -909,6 +909,20 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Attachment_Data:
+      type: object
+      properties:
+        content-data:
+          type: string
+          description: 'The binary data associated with the attachment.  The content-type of the HTPP request/reponse is the content type of the data.
+
+            '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     Attachment_1:
       type: object
       properties:
@@ -932,28 +946,13 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
-    Attachment_Data:
+    inline_response_200_7:
       type: object
       properties:
-        content-data:
-          type: string
-          description: 'The binary data associated with the attachment.  The content-type of the HTPP request/reponse is the content type of the data.
-
-            '
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    inline_response_200_8:
-      type: object
-      properties:
-        content-data:
-          type: string
-          description: 'The binary data associated with the attachment.  The content-type of the HTPP request/reponse is the content type of the data.
-
-            '
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_7_list'
     Access_Token:
       type: object
       properties:
@@ -962,13 +961,14 @@ components:
           description: 'The UTC timestamp after which the token is no Integer valid.
 
             '
-    inline_response_200_7:
+    inline_response_200_8:
       type: object
       properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_7_list'
+        content-data:
+          type: string
+          description: 'The binary data associated with the attachment.  The content-type of the HTPP request/reponse is the content type of the data.
+
+            '
     Attachment:
       type: object
       properties:

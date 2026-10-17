@@ -624,12 +624,27 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
+    Contact_Address_Status:
+      type: object
+      properties:
+        address_type:
+          type: string
+          description: 'The address type MDN (for phone numbers), EMAIL, SOCIAL, PUSH (...)
+
+            '
     inline_response_200_3:
       type: object
       properties:
         id:
           type: string
           description: The identifier for the newly created resource.
+    inline_response_200_23:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_23_list'
     inline_response_200_23_list:
       type: object
       properties:
@@ -703,18 +718,3 @@ components:
           description: 'An ascending version number of the object.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking.
 
             '
-    Contact_Address_Status:
-      type: object
-      properties:
-        address_type:
-          type: string
-          description: 'The address type MDN (for phone numbers), EMAIL, SOCIAL, PUSH (...)
-
-            '
-    inline_response_200_23:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_23_list'

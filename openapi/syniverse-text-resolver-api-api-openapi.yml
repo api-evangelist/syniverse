@@ -60,12 +60,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    endpoint.FilterResponseError:
-      type: object
-      properties:
-        error:
-          type: string
-          example: error description
     endpoint.Address:
       required:
       - number
@@ -100,6 +94,12 @@ components:
         sender:
           number: '+15712617625'
         message: Hello, activate your account at www.hackz.ai today!
+    endpoint.FilterResponseError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: error description
   securitySchemes:
     OAuth2:
       type: oauth2

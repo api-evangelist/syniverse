@@ -566,37 +566,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    ConferenceMember:
-      type: object
-      required:
-      - call_id
-      properties:
-        external_id:
-          type: string
-          description: 'The unique Id assigned by the application.
-
-            '
-        call_id:
-          type: string
-          description: 'The id for the Call resource that is associated with this member.
-
-            '
-        hold:
-          type: boolean
-          description: 'If true, all member can''t hear or speak in the conference
-
-            '
-        mute:
-          type: boolean
-          description: 'If ''true'', all member can''t speak in the conference
-
-            '
     inline_response_200_14_list:
       type: object
       properties:
@@ -650,6 +619,12 @@ components:
           description: 'An ascending version number of the object.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking.
 
             '
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     ConferenceMember_1:
       type: object
       properties:
@@ -661,6 +636,31 @@ components:
         mute:
           type: boolean
           description: 'If ''true'', this member is muted in the conference
+
+            '
+    ConferenceMember:
+      type: object
+      required:
+      - call_id
+      properties:
+        external_id:
+          type: string
+          description: 'The unique Id assigned by the application.
+
+            '
+        call_id:
+          type: string
+          description: 'The id for the Call resource that is associated with this member.
+
+            '
+        hold:
+          type: boolean
+          description: 'If true, all member can''t hear or speak in the conference
+
+            '
+        mute:
+          type: boolean
+          description: 'If ''true'', all member can''t speak in the conference
 
             '
     inline_response_200_14:

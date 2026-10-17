@@ -70,25 +70,6 @@ components:
         error:
           type: string
           example: error description
-    endpoint.SpamReportRequest:
-      required:
-      - reports
-      type: object
-      properties:
-        reports:
-          type: array
-          items:
-            $ref: '#/components/schemas/endpoint.Report'
-      description: List of spam reports
-    endpoint.SpamReportResponse:
-      type: object
-      properties:
-        batch_id:
-          type: string
-          example: 588de77e-5055-49f6-91de-441d672a0f9c
-        count:
-          type: integer
-          example: 10
     endpoint.Report:
       required:
       - message
@@ -120,6 +101,25 @@ components:
           type: string
           example: '7727'
       description: Spam report information
+    endpoint.SpamReportResponse:
+      type: object
+      properties:
+        batch_id:
+          type: string
+          example: 588de77e-5055-49f6-91de-441d672a0f9c
+        count:
+          type: integer
+          example: 10
+    endpoint.SpamReportRequest:
+      required:
+      - reports
+      type: object
+      properties:
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/endpoint.Report'
+      description: List of spam reports
   securitySchemes:
     OAuth2:
       type: oauth2

@@ -608,6 +608,31 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Contact_3:
+      type: object
+      properties:
+        sender_id_address:
+          type: string
+          description: 'The address of the sender Id that is associated with this application.
+
+            '
+        message_delivery_provider:
+          type: string
+          description: 'The code that indicates the message devliery provider (e.g. APN, GCN)
+
+            '
+        token:
+          type: string
+          description: 'The token the user, application and device.
+
+            '
+    inline_response_200_18:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_18_list'
     inline_response_200_3:
       type: object
       properties:
@@ -637,13 +662,6 @@ components:
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
 
             '
-    inline_response_200_18:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_18_list'
     inline_response_200_18_list:
       type: object
       properties:
@@ -693,23 +711,5 @@ components:
         version_number:
           type: integer
           description: 'An ascending version number of the resource.  1 upon creation, incremented by one for each modification done.  Used to implement optimistic locking
-
-            '
-    Contact_3:
-      type: object
-      properties:
-        sender_id_address:
-          type: string
-          description: 'The address of the sender Id that is associated with this application.
-
-            '
-        message_delivery_provider:
-          type: string
-          description: 'The code that indicates the message devliery provider (e.g. APN, GCN)
-
-            '
-        token:
-          type: string
-          description: 'The token the user, application and device.
 
             '

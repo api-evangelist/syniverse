@@ -63,14 +63,12 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    endpoint.Address:
-      required:
-      - number
+    endpoint.FilterResponseError:
       type: object
       properties:
-        number:
+        error:
           type: string
-          example: '+12125551212'
+          example: error description
     endpoint.MMSResolveRequestJson:
       required:
       - message
@@ -176,12 +174,14 @@ components:
       type: string
       format: binary
       example: 'To: +19165551212/TYPE=PLMN From: +18135551212/TYPE=PLMN Content-Type: multipart/mixed;boundary=30b0aba7-81dd-45dd-8ea5-f07ef96bebe9 Message-ID: 0F92DBFD-3FC8-41E9-A529-DC4A13AEE48B X-Mms-Message-ID: "some-message-for-test" Mime-Version: 1.0 --30b0aba7-81dd-45dd-8ea5-f07ef96bebe9 Content-Transfer-Encoding: quoted-printable Content-Type: text/plain; charset=us-ascii Mime-Version: 1.0 Check out this announcement about what CL~PA is doing for you: https://trycurapa.com/acLjf8lbep39 reply STOP to opt out --30b0aba7-81dd-45dd-8ea5-f07ef96bebe9-- EOF'
-    endpoint.FilterResponseError:
+    endpoint.Address:
+      required:
+      - number
       type: object
       properties:
-        error:
+        number:
           type: string
-          example: error description
+          example: '+12125551212'
     endpoint.MMSResolveResponse:
       type: object
       properties:

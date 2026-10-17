@@ -551,6 +551,13 @@ components:
         id:
           type: string
           description: The identifier for the newly created resource.
+    inline_response_200_28:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_28_list'
     Application_Script_1:
       type: object
       properties:
@@ -587,13 +594,6 @@ components:
           description: 'The script XML.
 
             '
-    inline_response_200_28:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_28_list'
     inline_response_200_28_list:
       type: object
       properties:

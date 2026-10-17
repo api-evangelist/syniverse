@@ -469,6 +469,19 @@ components:
           description: 'The UTC timestamp after which the token is no Integer valid.
 
             '
+    inline_response_200_25:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/inline_response_200_17'
+    inline_response_200_3:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the newly created resource.
     Access_Token_2:
       type: object
       properties:
@@ -491,16 +504,3 @@ components:
           description: 'The UTC timestamp after which the token is no Integer valid.
 
             '
-    inline_response_200_3:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the newly created resource.
-    inline_response_200_25:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/inline_response_200_17'
