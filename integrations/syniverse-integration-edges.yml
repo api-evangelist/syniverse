@@ -106,6 +106,39 @@ edges:
     detected: '2026-10-18'
   detected_by: sweep-official-sdks.py
   first_seen: '2026-10-18'
+- partner_name: PCI Security Standards Council (program listings)
+  partner: null
+  partner_match: register-name
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://listings.pcisecuritystandards.org/assessors_and_solutions/payment_applications
+  category: Payment security validation
+  contract_reference:
+    register: PCI SSC program listings (listings.pcisecuritystandards.org / pcisecuritystandards.org)
+    spec_file: null
+    standard: PCI SSC
+    role: pci-validated-vendor
+    registered_name: Syniverse
+    website: null
+    matched_domain: null
+    matched_by: register-name
+    identity_source: register-name
+    certified_products:
+    - product: PA-DSS Validated Payment Application
+      lapsed: true
+      latest_expiry: '2019-10-28'
+      listed: 2
+    signal_note: one certified_products entry per PCI SSC program (Secure Software, PA-DSS, P2PE solution / component
+      / application, 3DS SDK, SPoC, CPoC, MPoC, PTS device, Secure SLC); lapsed = every listed product in that program
+      is past its expiry / reassessment date or marked expired; `listed` is context only. List Access Agreement
+      accepted on Kin's instruction 2026-10-20
+    detected_by: sweep-compliance-assurance.py
+    detected: '2026-10-20'
+    identity_note: register-name 'syniverse' = syniverse; wikidata P856 syniverse.com agrees or unheld
+  detected_by: sweep-compliance-assurance.py
+  first_seen: '2026-10-20'
 generated: '2026-10-12'
 method: searched
 checked:
@@ -118,5 +151,6 @@ checked:
 - https://repo1.maven.org/maven2
 - https://rubygems.org/api/v1
 - ping-identity/integrations/ping-identity-integration-edges.yml
+- https://listings.pcisecuritystandards.org/assessors_and_solutions
 source:
 - ping-identity/integrations/ping-identity-integration-edges.yml
